@@ -1,0 +1,9 @@
+{
+  "name": "@medicare/shared",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "dependencies": {
+    "@tanstack/react-query": "^5.99.2",
+    "react": "^18.3.1"
+  }
+}

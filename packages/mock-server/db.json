@@ -1,0 +1,2177 @@
+{
+  "hero": {
+    "tag": "PERSONALIZED CARE",
+    "heading": "Your Care Concierge is ready to help.",
+    "subtext": "Need help scheduling an appointment or understanding your benefits? Elena is your dedicated specialist.",
+    "ctaLabel": "Call Concierge",
+    "ctaPhone": "tel:+18005551234"
+  },
+  "member": {
+    "cardLabel": "MEMBER CARD",
+    "insurerName": "AmeriHealth",
+    "name": "Eleanor Vance",
+    "memberId": "982 441 8023",
+    "group": "00014",
+    "pcn": "MEDADV"
+  },
+  "plan": {
+    "name": "Medicare Advantage Plus",
+    "coverageThrough": "Dec 2024",
+    "copays": [
+      {
+        "type": "PRIMARY CARE",
+        "amount": "$0 Copay"
+      },
+      {
+        "type": "SPECIALISTS",
+        "amount": "$20 Copay"
+      },
+      {
+        "type": "ER VISIT",
+        "amount": "$50 Copay"
+      }
+    ],
+    "logos": [
+      "H",
+      "D",
+      "V"
+    ],
+    "documentUrl": "#"
+  },
+  "quickActions": [
+    {
+      "id": "find-doctor",
+      "label": "Find a Doctor",
+      "icon": "medical-bag",
+      "color": "#2563EB"
+    },
+    {
+      "id": "refill-rx",
+      "label": "Refill Rx",
+      "icon": "pill",
+      "color": "#2563EB"
+    },
+    {
+      "id": "view-claims",
+      "label": "View Claims",
+      "icon": "file-document-outline",
+      "color": "#2563EB"
+    },
+    {
+      "id": "help-center",
+      "label": "Help Center",
+      "icon": "help-circle-outline",
+      "color": "#2563EB"
+    }
+  ],
+  "recentActivity": [
+    {
+      "id": "act-1",
+      "type": "claim",
+      "statusIcon": "check-circle",
+      "statusColor": "#22C55E",
+      "title": "Claim #99283 processed",
+      "subtitle": "Pharmacy, CVS Health #412",
+      "detail": "$0.00 Cost",
+      "date": "Oct 24",
+      "dateLabel": "OCT\n24"
+    },
+    {
+      "id": "act-2",
+      "type": "appointment",
+      "statusIcon": "calendar-clock",
+      "statusColor": "#3B82F6",
+      "title": "Annual Wellness Upcoming Visit",
+      "subtitle": "Dr. Marcus Thorne • 10:00 AM",
+      "detail": "",
+      "date": "Oct 26",
+      "dateLabel": "OCT\n26"
+    }
+  ],
+  "actionAlert": {
+    "id": "alert-1",
+    "icon": "bell",
+    "iconColor": "#FFFFFF",
+    "backgroundColor": "#EA580C",
+    "title": "Action Required: Benefit Update",
+    "body": "Your annual benefits have been updated for 2025.",
+    "ctaUrl": "#"
+  },
+  "navigation": [
+    {
+      "id": "dashboard",
+      "label": "DASHBOARD",
+      "icon": "view-dashboard-outline"
+    },
+    {
+      "id": "find-care",
+      "label": "FIND CARE",
+      "icon": "map-marker-outline"
+    },
+    {
+      "id": "benefits",
+      "label": "BENEFITS",
+      "icon": "shield-outline"
+    },
+    {
+      "id": "rx",
+      "label": "RX",
+      "icon": "pill"
+    },
+    {
+      "id": "menu",
+      "label": "MENU",
+      "icon": "menu"
+    }
+  ],
+  "providers": [
+    {
+      "id": "p1",
+      "name": "Dr. Sarah Miller",
+      "specialty": "Internal Medicine & Geriatrics",
+      "category": "Primary Care",
+      "rating": 4.9,
+      "distance": 0.8,
+      "photo": "https://i.pravatar.cc/100?img=1",
+      "inNetwork": true,
+      "address": "100 Health Way, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7849,
+        "longitude": -122.4124
+      },
+      "languages": [
+        "English"
+      ],
+      "nextAvailable": "Tomorrow, 9:00 AM",
+      "yearsExperience": 16,
+      "bio": "Delivers comprehensive preventive care and chronic disease management with a patient-first philosophy."
+    },
+    {
+      "id": "p2",
+      "name": "Dr. Robert Chen",
+      "specialty": "Family Medicine",
+      "category": "Primary Care",
+      "rating": 4.7,
+      "distance": 1.5,
+      "photo": "https://i.pravatar.cc/100?img=3",
+      "inNetwork": true,
+      "address": "245 Wellness Blvd, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7659,
+        "longitude": -122.4054
+      },
+      "languages": [
+        "English"
+      ],
+      "nextAvailable": "Tomorrow, 2:30 PM",
+      "yearsExperience": 17,
+      "bio": "Delivers comprehensive preventive care and chronic disease management with a patient-first philosophy."
+    },
+    {
+      "id": "p3",
+      "name": "Dr. Maria Santos",
+      "specialty": "Preventive Care",
+      "category": "Primary Care",
+      "rating": 4.6,
+      "distance": 3.2,
+      "photo": "https://i.pravatar.cc/100?img=36",
+      "inNetwork": true,
+      "address": "500 Sunset Ave, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7749,
+        "longitude": -122.4784
+      },
+      "languages": [
+        "English"
+      ],
+      "nextAvailable": "Monday, 10:00 AM",
+      "yearsExperience": 18,
+      "bio": "Delivers comprehensive preventive care and chronic disease management with a patient-first philosophy."
+    },
+    {
+      "id": "p4",
+      "name": "Dr. James Kim",
+      "specialty": "General Practice",
+      "category": "Primary Care",
+      "rating": 4.5,
+      "distance": 6.1,
+      "photo": "https://i.pravatar.cc/100?img=5",
+      "inNetwork": false,
+      "address": "88 Bay Street, Oakland, CA",
+      "coordinate": {
+        "latitude": 37.8044,
+        "longitude": -122.3412
+      },
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "nextAvailable": "Tuesday, 11:00 AM",
+      "yearsExperience": 19,
+      "bio": "Delivers comprehensive preventive care and chronic disease management with a patient-first philosophy."
+    },
+    {
+      "id": "p5",
+      "name": "Dr. Patricia Walsh",
+      "specialty": "Family Medicine",
+      "category": "Primary Care",
+      "rating": 4.8,
+      "distance": 11.4,
+      "photo": "https://i.pravatar.cc/100?img=40",
+      "inNetwork": true,
+      "address": "200 Wellness Pkwy, San Mateo, CA",
+      "coordinate": {
+        "latitude": 37.663,
+        "longitude": -122.4602
+      },
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "nextAvailable": "Tuesday, 3:30 PM",
+      "yearsExperience": 20,
+      "bio": "Delivers comprehensive preventive care and chronic disease management with a patient-first philosophy."
+    },
+    {
+      "id": "p6",
+      "name": "Dr. James Wilson",
+      "specialty": "Cardiology Specialist",
+      "category": "Cardiology",
+      "rating": 4.8,
+      "distance": 2.5,
+      "photo": "https://i.pravatar.cc/100?img=7",
+      "inNetwork": true,
+      "address": "12 Heart Center Plaza, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7569,
+        "longitude": -122.3794
+      },
+      "languages": [
+        "English",
+        "Mandarin"
+      ],
+      "nextAvailable": "Wednesday, 9:30 AM",
+      "yearsExperience": 20,
+      "bio": "Expert in diagnosing and treating heart disease, arrhythmias, and cardiovascular risk reduction."
+    },
+    {
+      "id": "p7",
+      "name": "Dr. David Park",
+      "specialty": "Interventional Cardiology",
+      "category": "Cardiology",
+      "rating": 4.6,
+      "distance": 4.8,
+      "photo": "https://i.pravatar.cc/100?img=9",
+      "inNetwork": true,
+      "address": "450 Medical Center Dr, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.8099,
+        "longitude": -122.3434
+      },
+      "languages": [
+        "English",
+        "Korean"
+      ],
+      "nextAvailable": "Wednesday, 2:00 PM",
+      "yearsExperience": 21,
+      "bio": "Expert in diagnosing and treating heart disease, arrhythmias, and cardiovascular risk reduction."
+    },
+    {
+      "id": "p8",
+      "name": "Dr. Anita Sharma",
+      "specialty": "Electrophysiology",
+      "category": "Cardiology",
+      "rating": 4.7,
+      "distance": 7.3,
+      "photo": "https://i.pravatar.cc/100?img=44",
+      "inNetwork": true,
+      "address": "1 Hospital Way, Sausalito, CA",
+      "coordinate": {
+        "latitude": 37.8669,
+        "longitude": -122.4804
+      },
+      "languages": [
+        "English",
+        "Russian"
+      ],
+      "nextAvailable": "Thursday, 10:30 AM",
+      "yearsExperience": 22,
+      "bio": "Expert in diagnosing and treating heart disease, arrhythmias, and cardiovascular risk reduction."
+    },
+    {
+      "id": "p9",
+      "name": "Dr. Michael Torres",
+      "specialty": "Non-Invasive Cardiology",
+      "category": "Cardiology",
+      "rating": 4.5,
+      "distance": 13.2,
+      "photo": "https://i.pravatar.cc/100?img=11",
+      "inNetwork": false,
+      "address": "567 Grand Ave, Oakland, CA",
+      "coordinate": {
+        "latitude": 37.7749,
+        "longitude": -122.1784
+      },
+      "languages": [
+        "English",
+        "French"
+      ],
+      "nextAvailable": "Friday, 9:00 AM",
+      "yearsExperience": 23,
+      "bio": "Expert in diagnosing and treating heart disease, arrhythmias, and cardiovascular risk reduction."
+    },
+    {
+      "id": "p10",
+      "name": "Dr. Lisa Nakamura",
+      "specialty": "Cardiac Imaging",
+      "category": "Cardiology",
+      "rating": 4.4,
+      "distance": 18.6,
+      "photo": "https://i.pravatar.cc/100?img=47",
+      "inNetwork": true,
+      "address": "890 Medical Way, San Mateo, CA",
+      "coordinate": {
+        "latitude": 37.563,
+        "longitude": -122.3255
+      },
+      "languages": [
+        "English",
+        "Spanish",
+        "Mandarin"
+      ],
+      "nextAvailable": null,
+      "yearsExperience": 24,
+      "bio": "Expert in diagnosing and treating heart disease, arrhythmias, and cardiovascular risk reduction."
+    },
+    {
+      "id": "p11",
+      "name": "Dr. Elena Rodriguez",
+      "specialty": "Internal Medicine",
+      "category": "Internal Medicine",
+      "rating": 4.7,
+      "distance": 1.9,
+      "photo": "https://i.pravatar.cc/100?img=48",
+      "inNetwork": true,
+      "address": "333 Pacific Heights Rd, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7939,
+        "longitude": -122.4444
+      },
+      "languages": [
+        "English"
+      ],
+      "nextAvailable": "Tomorrow, 9:00 AM",
+      "yearsExperience": 13,
+      "bio": "Specializes in managing complex multi-system conditions with evidence-based, whole-person care."
+    },
+    {
+      "id": "p12",
+      "name": "Dr. Thomas Hayes",
+      "specialty": "Hospital Medicine",
+      "category": "Internal Medicine",
+      "rating": 4.5,
+      "distance": 3.7,
+      "photo": "https://i.pravatar.cc/100?img=13",
+      "inNetwork": true,
+      "address": "700 Mission St, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7749,
+        "longitude": -122.3514
+      },
+      "languages": [
+        "English"
+      ],
+      "nextAvailable": "Tomorrow, 2:30 PM",
+      "yearsExperience": 14,
+      "bio": "Specializes in managing complex multi-system conditions with evidence-based, whole-person care."
+    },
+    {
+      "id": "p13",
+      "name": "Dr. Priya Patel",
+      "specialty": "Geriatric Medicine",
+      "category": "Internal Medicine",
+      "rating": 4.6,
+      "distance": 5.5,
+      "photo": "https://i.pravatar.cc/100?img=50",
+      "inNetwork": true,
+      "address": "221 Noe Valley Blvd, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7189,
+        "longitude": -122.4904
+      },
+      "languages": [
+        "English"
+      ],
+      "nextAvailable": "Monday, 10:00 AM",
+      "yearsExperience": 15,
+      "bio": "Specializes in managing complex multi-system conditions with evidence-based, whole-person care."
+    },
+    {
+      "id": "p14",
+      "name": "Dr. Christopher Lee",
+      "specialty": "Critical Care Medicine",
+      "category": "Internal Medicine",
+      "rating": 4.4,
+      "distance": 9.8,
+      "photo": "https://i.pravatar.cc/100?img=15",
+      "inNetwork": false,
+      "address": "450 Foothill Blvd, Oakland, CA",
+      "coordinate": {
+        "latitude": 37.6749,
+        "longitude": -122.2894
+      },
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "nextAvailable": "Tuesday, 11:00 AM",
+      "yearsExperience": 16,
+      "bio": "Specializes in managing complex multi-system conditions with evidence-based, whole-person care."
+    },
+    {
+      "id": "p15",
+      "name": "Dr. Amanda Foster",
+      "specialty": "Internal Medicine",
+      "category": "Internal Medicine",
+      "rating": 4.8,
+      "distance": 15.3,
+      "photo": "https://i.pravatar.cc/100?img=52",
+      "inNetwork": true,
+      "address": "100 Marin Health Dr, San Rafael, CA",
+      "coordinate": {
+        "latitude": 37.9701,
+        "longitude": -122.5311
+      },
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "nextAvailable": "Tuesday, 3:30 PM",
+      "yearsExperience": 17,
+      "bio": "Specializes in managing complex multi-system conditions with evidence-based, whole-person care."
+    },
+    {
+      "id": "p16",
+      "name": "Dr. Kevin Martinez",
+      "specialty": "Sports Rehabilitation",
+      "category": "Physical Therapy",
+      "rating": 4.8,
+      "distance": 1.2,
+      "photo": "https://i.pravatar.cc/100?img=17",
+      "inNetwork": true,
+      "address": "99 Marina Blvd, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.8037,
+        "longitude": -122.4368
+      },
+      "languages": [
+        "English",
+        "Mandarin"
+      ],
+      "nextAvailable": "Wednesday, 9:30 AM",
+      "yearsExperience": 8,
+      "bio": "Focuses on restoring mobility and function through individualized rehabilitation programs."
+    },
+    {
+      "id": "p17",
+      "name": "Dr. Rachel Green",
+      "specialty": "Orthopedic Physical Therapy",
+      "category": "Physical Therapy",
+      "rating": 4.9,
+      "distance": 2.8,
+      "photo": "https://i.pravatar.cc/100?img=53",
+      "inNetwork": true,
+      "address": "44 Castro St, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7609,
+        "longitude": -122.435
+      },
+      "languages": [
+        "English",
+        "Korean"
+      ],
+      "nextAvailable": "Wednesday, 2:00 PM",
+      "yearsExperience": 9,
+      "bio": "Focuses on restoring mobility and function through individualized rehabilitation programs."
+    },
+    {
+      "id": "p18",
+      "name": "Dr. Daniel Nguyen",
+      "specialty": "Neurological Rehab",
+      "category": "Physical Therapy",
+      "rating": 4.5,
+      "distance": 4.4,
+      "photo": "https://i.pravatar.cc/100?img=19",
+      "inNetwork": true,
+      "address": "600 Potrero Ave, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7501,
+        "longitude": -122.4003
+      },
+      "languages": [
+        "English",
+        "Russian"
+      ],
+      "nextAvailable": "Thursday, 10:30 AM",
+      "yearsExperience": 10,
+      "bio": "Focuses on restoring mobility and function through individualized rehabilitation programs."
+    },
+    {
+      "id": "p19",
+      "name": "Dr. Sophia Patel",
+      "specialty": "Pediatric PT",
+      "category": "Physical Therapy",
+      "rating": 4.7,
+      "distance": 8.1,
+      "photo": "https://i.pravatar.cc/100?img=55",
+      "inNetwork": true,
+      "address": "2200 Webster St, Oakland, CA",
+      "coordinate": {
+        "latitude": 37.8044,
+        "longitude": -122.2712
+      },
+      "languages": [
+        "English",
+        "French"
+      ],
+      "nextAvailable": "Friday, 9:00 AM",
+      "yearsExperience": 11,
+      "bio": "Focuses on restoring mobility and function through individualized rehabilitation programs."
+    },
+    {
+      "id": "p20",
+      "name": "Dr. Marcus Johnson",
+      "specialty": "Aquatic Therapy",
+      "category": "Physical Therapy",
+      "rating": 4.3,
+      "distance": 16.7,
+      "photo": "https://i.pravatar.cc/100?img=21",
+      "inNetwork": false,
+      "address": "5 Bayfront Dr, San Mateo, CA",
+      "coordinate": {
+        "latitude": 37.563,
+        "longitude": -122.3055
+      },
+      "languages": [
+        "English",
+        "Spanish",
+        "Mandarin"
+      ],
+      "nextAvailable": null,
+      "yearsExperience": 12,
+      "bio": "Focuses on restoring mobility and function through individualized rehabilitation programs."
+    },
+    {
+      "id": "p21",
+      "name": "Dr. Jennifer Wu",
+      "specialty": "Medical Dermatology",
+      "category": "Dermatology",
+      "rating": 5,
+      "distance": 0.6,
+      "photo": "https://i.pravatar.cc/100?img=56",
+      "inNetwork": true,
+      "address": "10 Union St, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7946,
+        "longitude": -122.4099
+      },
+      "languages": [
+        "English"
+      ],
+      "nextAvailable": "Tomorrow, 9:00 AM",
+      "yearsExperience": 12,
+      "bio": "Provides expert care for skin, hair, and nail conditions with a focus on early detection."
+    },
+    {
+      "id": "p22",
+      "name": "Dr. Steven Brooks",
+      "specialty": "Cosmetic Dermatology",
+      "category": "Dermatology",
+      "rating": 4.6,
+      "distance": 3.1,
+      "photo": "https://i.pravatar.cc/100?img=23",
+      "inNetwork": true,
+      "address": "180 Haight St, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7692,
+        "longitude": -122.4481
+      },
+      "languages": [
+        "English"
+      ],
+      "nextAvailable": "Tomorrow, 2:30 PM",
+      "yearsExperience": 13,
+      "bio": "Provides expert care for skin, hair, and nail conditions with a focus on early detection."
+    },
+    {
+      "id": "p23",
+      "name": "Dr. Carmen Diaz",
+      "specialty": "Pediatric Dermatology",
+      "category": "Dermatology",
+      "rating": 4.7,
+      "distance": 5.8,
+      "photo": "https://i.pravatar.cc/100?img=58",
+      "inNetwork": true,
+      "address": "909 Hyde St, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7849,
+        "longitude": -122.4184
+      },
+      "languages": [
+        "English"
+      ],
+      "nextAvailable": "Monday, 10:00 AM",
+      "yearsExperience": 14,
+      "bio": "Provides expert care for skin, hair, and nail conditions with a focus on early detection."
+    },
+    {
+      "id": "p24",
+      "name": "Dr. Andrew Kim",
+      "specialty": "Surgical Dermatology",
+      "category": "Dermatology",
+      "rating": 4.4,
+      "distance": 10.4,
+      "photo": "https://i.pravatar.cc/100?img=25",
+      "inNetwork": false,
+      "address": "3500 MacArthur Blvd, Oakland, CA",
+      "coordinate": {
+        "latitude": 37.7799,
+        "longitude": -122.2102
+      },
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "nextAvailable": "Tuesday, 11:00 AM",
+      "yearsExperience": 15,
+      "bio": "Provides expert care for skin, hair, and nail conditions with a focus on early detection."
+    },
+    {
+      "id": "p25",
+      "name": "Dr. Nicole Thompson",
+      "specialty": "Mohs Surgery",
+      "category": "Dermatology",
+      "rating": 4.5,
+      "distance": 22.5,
+      "photo": "https://i.pravatar.cc/100?img=60",
+      "inNetwork": true,
+      "address": "700 El Camino Real, San Mateo, CA",
+      "coordinate": {
+        "latitude": 37.563,
+        "longitude": -122.3155
+      },
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "nextAvailable": "Tuesday, 3:30 PM",
+      "yearsExperience": 16,
+      "bio": "Provides expert care for skin, hair, and nail conditions with a focus on early detection."
+    },
+    {
+      "id": "p26",
+      "name": "Dr. Richard Scott",
+      "specialty": "Joint Replacement",
+      "category": "Orthopedics",
+      "rating": 4.6,
+      "distance": 1.7,
+      "photo": "https://i.pravatar.cc/100?img=27",
+      "inNetwork": true,
+      "address": "55 Civic Center Dr, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7793,
+        "longitude": -122.4193
+      },
+      "languages": [
+        "English",
+        "Mandarin"
+      ],
+      "nextAvailable": "Wednesday, 9:30 AM",
+      "yearsExperience": 18,
+      "bio": "Specializes in musculoskeletal conditions, joint replacement, and sports-related injuries."
+    },
+    {
+      "id": "p27",
+      "name": "Dr. Hannah Lee",
+      "specialty": "Sports Medicine",
+      "category": "Orthopedics",
+      "rating": 4.8,
+      "distance": 4.2,
+      "photo": "https://i.pravatar.cc/100?img=61",
+      "inNetwork": true,
+      "address": "200 Irving St, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7638,
+        "longitude": -122.466
+      },
+      "languages": [
+        "English",
+        "Korean"
+      ],
+      "nextAvailable": "Wednesday, 2:00 PM",
+      "yearsExperience": 19,
+      "bio": "Specializes in musculoskeletal conditions, joint replacement, and sports-related injuries."
+    },
+    {
+      "id": "p28",
+      "name": "Dr. Carlos Rivera",
+      "specialty": "Spine Surgery",
+      "category": "Orthopedics",
+      "rating": 4.5,
+      "distance": 7.9,
+      "photo": "https://i.pravatar.cc/100?img=29",
+      "inNetwork": true,
+      "address": "1 Fruitvale Ave, Oakland, CA",
+      "coordinate": {
+        "latitude": 37.7749,
+        "longitude": -122.2242
+      },
+      "languages": [
+        "English",
+        "Russian"
+      ],
+      "nextAvailable": "Thursday, 10:30 AM",
+      "yearsExperience": 20,
+      "bio": "Specializes in musculoskeletal conditions, joint replacement, and sports-related injuries."
+    },
+    {
+      "id": "p29",
+      "name": "Dr. Emily Watson",
+      "specialty": "Hand Surgery",
+      "category": "Orthopedics",
+      "rating": 4.7,
+      "distance": 12.6,
+      "photo": "https://i.pravatar.cc/100?img=63",
+      "inNetwork": true,
+      "address": "450 30th St, Oakland, CA",
+      "coordinate": {
+        "latitude": 37.8044,
+        "longitude": -122.2312
+      },
+      "languages": [
+        "English",
+        "French"
+      ],
+      "nextAvailable": "Friday, 9:00 AM",
+      "yearsExperience": 21,
+      "bio": "Specializes in musculoskeletal conditions, joint replacement, and sports-related injuries."
+    },
+    {
+      "id": "p30",
+      "name": "Dr. Frank Liu",
+      "specialty": "Foot & Ankle Surgery",
+      "category": "Orthopedics",
+      "rating": 4.3,
+      "distance": 19.3,
+      "photo": "https://i.pravatar.cc/100?img=31",
+      "inNetwork": false,
+      "address": "100 Hospital Cir, San Leandro, CA",
+      "coordinate": {
+        "latitude": 37.7249,
+        "longitude": -122.1561
+      },
+      "languages": [
+        "English",
+        "Spanish",
+        "Mandarin"
+      ],
+      "nextAvailable": null,
+      "yearsExperience": 22,
+      "bio": "Specializes in musculoskeletal conditions, joint replacement, and sports-related injuries."
+    },
+    {
+      "id": "p31",
+      "name": "Dr. Grace Chen",
+      "specialty": "Movement Disorders",
+      "category": "Neurology",
+      "rating": 4.9,
+      "distance": 2.3,
+      "photo": "https://i.pravatar.cc/100?img=64",
+      "inNetwork": true,
+      "address": "505 Parnassus Ave, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7626,
+        "longitude": -122.4584
+      },
+      "languages": [
+        "English"
+      ],
+      "nextAvailable": "Tomorrow, 9:00 AM",
+      "yearsExperience": 15,
+      "bio": "Diagnoses and manages disorders of the brain, spinal cord, and peripheral nervous system."
+    },
+    {
+      "id": "p32",
+      "name": "Dr. Timothy Brown",
+      "specialty": "Epilepsy",
+      "category": "Neurology",
+      "rating": 4.6,
+      "distance": 4.9,
+      "photo": "https://i.pravatar.cc/100?img=33",
+      "inNetwork": true,
+      "address": "2100 Webster St, Oakland, CA",
+      "coordinate": {
+        "latitude": 37.8044,
+        "longitude": -122.3312
+      },
+      "languages": [
+        "English"
+      ],
+      "nextAvailable": "Tomorrow, 2:30 PM",
+      "yearsExperience": 16,
+      "bio": "Diagnoses and manages disorders of the brain, spinal cord, and peripheral nervous system."
+    },
+    {
+      "id": "p33",
+      "name": "Dr. Diana Lopez",
+      "specialty": "Headache Medicine",
+      "category": "Neurology",
+      "rating": 4.7,
+      "distance": 8.6,
+      "photo": "https://i.pravatar.cc/100?img=65",
+      "inNetwork": true,
+      "address": "3801 Howe St, Oakland, CA",
+      "coordinate": {
+        "latitude": 37.821,
+        "longitude": -122.2562
+      },
+      "languages": [
+        "English"
+      ],
+      "nextAvailable": "Monday, 10:00 AM",
+      "yearsExperience": 17,
+      "bio": "Diagnoses and manages disorders of the brain, spinal cord, and peripheral nervous system."
+    },
+    {
+      "id": "p34",
+      "name": "Dr. Matthew Singh",
+      "specialty": "Neuromuscular Disease",
+      "category": "Neurology",
+      "rating": 4.5,
+      "distance": 14.1,
+      "photo": "https://i.pravatar.cc/100?img=35",
+      "inNetwork": true,
+      "address": "1650 Los Gamos Dr, San Rafael, CA",
+      "coordinate": {
+        "latitude": 37.9701,
+        "longitude": -122.5011
+      },
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "nextAvailable": "Tuesday, 11:00 AM",
+      "yearsExperience": 18,
+      "bio": "Diagnoses and manages disorders of the brain, spinal cord, and peripheral nervous system."
+    },
+    {
+      "id": "p35",
+      "name": "Dr. Laura Kim",
+      "specialty": "Sleep Medicine",
+      "category": "Neurology",
+      "rating": 4.4,
+      "distance": 21.8,
+      "photo": "https://i.pravatar.cc/100?img=66",
+      "inNetwork": false,
+      "address": "200 Hospital Pkwy, San Leandro, CA",
+      "coordinate": {
+        "latitude": 37.6688,
+        "longitude": -122.1508
+      },
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "nextAvailable": "Tuesday, 3:30 PM",
+      "yearsExperience": 19,
+      "bio": "Diagnoses and manages disorders of the brain, spinal cord, and peripheral nervous system."
+    },
+    {
+      "id": "p36",
+      "name": "Dr. Brian Taylor",
+      "specialty": "Advanced Endoscopy",
+      "category": "Gastroenterology",
+      "rating": 4.5,
+      "distance": 3.4,
+      "photo": "https://i.pravatar.cc/100?img=2",
+      "inNetwork": true,
+      "address": "1 Geary Blvd, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7876,
+        "longitude": -122.4088
+      },
+      "languages": [
+        "English",
+        "Mandarin"
+      ],
+      "nextAvailable": "Wednesday, 9:30 AM",
+      "yearsExperience": 10,
+      "bio": "Expert in digestive health, including endoscopy, liver disease, and inflammatory bowel conditions."
+    },
+    {
+      "id": "p37",
+      "name": "Dr. Susan Rao",
+      "specialty": "Hepatology",
+      "category": "Gastroenterology",
+      "rating": 4.7,
+      "distance": 5.2,
+      "photo": "https://i.pravatar.cc/100?img=67",
+      "inNetwork": true,
+      "address": "300 Lakeshore Ave, Oakland, CA",
+      "coordinate": {
+        "latitude": 37.8044,
+        "longitude": -122.2912
+      },
+      "languages": [
+        "English",
+        "Korean"
+      ],
+      "nextAvailable": "Wednesday, 2:00 PM",
+      "yearsExperience": 11,
+      "bio": "Expert in digestive health, including endoscopy, liver disease, and inflammatory bowel conditions."
+    },
+    {
+      "id": "p38",
+      "name": "Dr. Kenneth Park",
+      "specialty": "Colorectal Disease",
+      "category": "Gastroenterology",
+      "rating": 4.6,
+      "distance": 9.3,
+      "photo": "https://i.pravatar.cc/100?img=4",
+      "inNetwork": true,
+      "address": "2100 Powell St, Emeryville, CA",
+      "coordinate": {
+        "latitude": 37.831,
+        "longitude": -122.2913
+      },
+      "languages": [
+        "English",
+        "Russian"
+      ],
+      "nextAvailable": "Thursday, 10:30 AM",
+      "yearsExperience": 12,
+      "bio": "Expert in digestive health, including endoscopy, liver disease, and inflammatory bowel conditions."
+    },
+    {
+      "id": "p39",
+      "name": "Dr. Michelle Adams",
+      "specialty": "Inflammatory Bowel Disease",
+      "category": "Gastroenterology",
+      "rating": 4.8,
+      "distance": 15.7,
+      "photo": "https://i.pravatar.cc/100?img=68",
+      "inNetwork": true,
+      "address": "1 Hillsdale Blvd, San Mateo, CA",
+      "coordinate": {
+        "latitude": 37.5985,
+        "longitude": -122.3369
+      },
+      "languages": [
+        "English",
+        "French"
+      ],
+      "nextAvailable": "Friday, 9:00 AM",
+      "yearsExperience": 13,
+      "bio": "Expert in digestive health, including endoscopy, liver disease, and inflammatory bowel conditions."
+    },
+    {
+      "id": "p40",
+      "name": "Dr. Paul Hernandez",
+      "specialty": "Pancreatic Disease",
+      "category": "Gastroenterology",
+      "rating": 4.4,
+      "distance": 23.1,
+      "photo": "https://i.pravatar.cc/100?img=6",
+      "inNetwork": false,
+      "address": "27400 Hesperian Blvd, Hayward, CA",
+      "coordinate": {
+        "latitude": 37.6688,
+        "longitude": -122.0808
+      },
+      "languages": [
+        "English",
+        "Spanish",
+        "Mandarin"
+      ],
+      "nextAvailable": null,
+      "yearsExperience": 14,
+      "bio": "Expert in digestive health, including endoscopy, liver disease, and inflammatory bowel conditions."
+    },
+    {
+      "id": "p41",
+      "name": "Dr. Jessica White",
+      "specialty": "Geriatric Psychiatry",
+      "category": "Psychiatry",
+      "rating": 4.8,
+      "distance": 1.4,
+      "photo": "https://i.pravatar.cc/100?img=69",
+      "inNetwork": true,
+      "address": "775 Sacramento St, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7928,
+        "longitude": -122.4059
+      },
+      "languages": [
+        "English"
+      ],
+      "nextAvailable": "Tomorrow, 9:00 AM",
+      "yearsExperience": 9,
+      "bio": "Provides compassionate mental health care with evidence-based therapies and medication management."
+    },
+    {
+      "id": "p42",
+      "name": "Dr. Anthony Davis",
+      "specialty": "Addiction Psychiatry",
+      "category": "Psychiatry",
+      "rating": 4.6,
+      "distance": 3.8,
+      "photo": "https://i.pravatar.cc/100?img=8",
+      "inNetwork": true,
+      "address": "501 Duboce Ave, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7692,
+        "longitude": -122.4281
+      },
+      "languages": [
+        "English"
+      ],
+      "nextAvailable": "Tomorrow, 2:30 PM",
+      "yearsExperience": 10,
+      "bio": "Provides compassionate mental health care with evidence-based therapies and medication management."
+    },
+    {
+      "id": "p43",
+      "name": "Dr. Samantha Patel",
+      "specialty": "Anxiety & Mood Disorders",
+      "category": "Psychiatry",
+      "rating": 4.7,
+      "distance": 6.5,
+      "photo": "https://i.pravatar.cc/100?img=70",
+      "inNetwork": true,
+      "address": "450 30th Ave, Oakland, CA",
+      "coordinate": {
+        "latitude": 37.8044,
+        "longitude": -122.2412
+      },
+      "languages": [
+        "English"
+      ],
+      "nextAvailable": "Monday, 10:00 AM",
+      "yearsExperience": 11,
+      "bio": "Provides compassionate mental health care with evidence-based therapies and medication management."
+    },
+    {
+      "id": "p44",
+      "name": "Dr. William Carter",
+      "specialty": "Child Psychiatry",
+      "category": "Psychiatry",
+      "rating": 4.5,
+      "distance": 11.9,
+      "photo": "https://i.pravatar.cc/100?img=10",
+      "inNetwork": true,
+      "address": "99 Montecito Ave, Oakland, CA",
+      "coordinate": {
+        "latitude": 37.821,
+        "longitude": -122.2212
+      },
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "nextAvailable": "Tuesday, 11:00 AM",
+      "yearsExperience": 12,
+      "bio": "Provides compassionate mental health care with evidence-based therapies and medication management."
+    },
+    {
+      "id": "p45",
+      "name": "Dr. Karen Yamamoto",
+      "specialty": "Trauma & PTSD",
+      "category": "Psychiatry",
+      "rating": 4.9,
+      "distance": 20.2,
+      "photo": "https://i.pravatar.cc/100?img=12",
+      "inNetwork": true,
+      "address": "400 Medical Ctr Dr, Walnut Creek, CA",
+      "coordinate": {
+        "latitude": 37.9101,
+        "longitude": -122.0652
+      },
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "nextAvailable": "Tuesday, 3:30 PM",
+      "yearsExperience": 13,
+      "bio": "Provides compassionate mental health care with evidence-based therapies and medication management."
+    },
+    {
+      "id": "p46",
+      "name": "Dr. George Liu",
+      "specialty": "Retina & Vitreous",
+      "category": "Ophthalmology",
+      "rating": 4.7,
+      "distance": 2.1,
+      "photo": "https://i.pravatar.cc/100?img=14",
+      "inNetwork": true,
+      "address": "490 Post St, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7888,
+        "longitude": -122.4113
+      },
+      "languages": [
+        "English",
+        "Mandarin"
+      ],
+      "nextAvailable": "Wednesday, 9:30 AM",
+      "yearsExperience": 14,
+      "bio": "Dedicated to preserving and restoring vision through advanced surgical and non-surgical treatments."
+    },
+    {
+      "id": "p47",
+      "name": "Dr. Christine Moore",
+      "specialty": "Glaucoma Specialist",
+      "category": "Ophthalmology",
+      "rating": 4.8,
+      "distance": 4.6,
+      "photo": "https://i.pravatar.cc/100?img=16",
+      "inNetwork": true,
+      "address": "2299 Post St, San Francisco, CA",
+      "coordinate": {
+        "latitude": 37.7862,
+        "longitude": -122.4502
+      },
+      "languages": [
+        "English",
+        "Korean"
+      ],
+      "nextAvailable": "Wednesday, 2:00 PM",
+      "yearsExperience": 15,
+      "bio": "Dedicated to preserving and restoring vision through advanced surgical and non-surgical treatments."
+    },
+    {
+      "id": "p48",
+      "name": "Dr. Robert Johnson",
+      "specialty": "Cataract Surgery",
+      "category": "Ophthalmology",
+      "rating": 4.6,
+      "distance": 7.2,
+      "photo": "https://i.pravatar.cc/100?img=18",
+      "inNetwork": true,
+      "address": "8888 MacArthur Blvd, Oakland, CA",
+      "coordinate": {
+        "latitude": 37.7749,
+        "longitude": -122.2142
+      },
+      "languages": [
+        "English",
+        "Russian"
+      ],
+      "nextAvailable": "Thursday, 10:30 AM",
+      "yearsExperience": 16,
+      "bio": "Dedicated to preserving and restoring vision through advanced surgical and non-surgical treatments."
+    },
+    {
+      "id": "p49",
+      "name": "Dr. Elizabeth Torres",
+      "specialty": "Pediatric Ophthalmology",
+      "category": "Ophthalmology",
+      "rating": 4.5,
+      "distance": 13.8,
+      "photo": "https://i.pravatar.cc/100?img=20",
+      "inNetwork": true,
+      "address": "101 South B St, San Mateo, CA",
+      "coordinate": {
+        "latitude": 37.573,
+        "longitude": -122.3255
+      },
+      "languages": [
+        "English",
+        "French"
+      ],
+      "nextAvailable": "Friday, 9:00 AM",
+      "yearsExperience": 17,
+      "bio": "Dedicated to preserving and restoring vision through advanced surgical and non-surgical treatments."
+    },
+    {
+      "id": "p50",
+      "name": "Dr. John Nakamura",
+      "specialty": "Cornea & External Disease",
+      "category": "Ophthalmology",
+      "rating": 4.4,
+      "distance": 17.5,
+      "photo": "https://i.pravatar.cc/100?img=22",
+      "inNetwork": false,
+      "address": "2500 Mowry Ave, Fremont, CA",
+      "coordinate": {
+        "latitude": 37.5485,
+        "longitude": -121.9886
+      },
+      "languages": [
+        "English",
+        "Spanish",
+        "Mandarin"
+      ],
+      "nextAvailable": null,
+      "yearsExperience": 18,
+      "bio": "Dedicated to preserving and restoring vision through advanced surgical and non-surgical treatments."
+    }
+  ],
+  "benefits": {
+    "planName": "Medicare Advantage Plus",
+    "memberId": "AH-982341-01",
+    "costs": [
+      {
+        "label": "Annual Deductible",
+        "spent": 450,
+        "total": 1500
+      },
+      {
+        "label": "Out-of-Pocket Max",
+        "spent": 1280,
+        "total": 4500
+      }
+    ],
+    "breakdown": [
+      {
+        "id": "medical",
+        "icon": "hospital-box-outline",
+        "title": "Medical Care",
+        "subtitle": "Comprehensive Coverage",
+        "featured": true,
+        "lineItems": [
+          {
+            "label": "Primary Care",
+            "value": "$0 Copay"
+          },
+          {
+            "label": "Specialist Visit",
+            "value": "$15 Copay"
+          },
+          {
+            "label": "Urgent Care",
+            "value": "$30 Copay"
+          },
+          {
+            "label": "Emergency Room",
+            "value": "$90 Copay"
+          }
+        ]
+      },
+      {
+        "id": "dental",
+        "icon": "tooth-outline",
+        "title": "Dental",
+        "subtitle": "100% Coverage",
+        "featured": false,
+        "lineItems": [
+          {
+            "label": "Preventive Care",
+            "value": "100%"
+          },
+          {
+            "label": "Basic Services",
+            "value": "80%"
+          }
+        ]
+      },
+      {
+        "id": "vision",
+        "icon": "eye-outline",
+        "title": "Vision",
+        "subtitle": "$0 Copay",
+        "featured": false,
+        "lineItems": [
+          {
+            "label": "Eye Exam",
+            "value": "$0 Copay"
+          },
+          {
+            "label": "Frame Allowance",
+            "value": "$200"
+          }
+        ]
+      },
+      {
+        "id": "hearing",
+        "icon": "ear-hearing",
+        "title": "Hearing",
+        "subtitle": "$500 Allowance",
+        "featured": false,
+        "lineItems": [
+          {
+            "label": "Hearing Aid",
+            "value": "$500"
+          },
+          {
+            "label": "Exam",
+            "value": "$0 Copay"
+          }
+        ]
+      }
+    ],
+    "wellness": {
+      "imageUrl": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop",
+      "title": "Earn Rewards for Staying Healthy",
+      "body": "Complete wellness activities and earn points redeemable for gift cards, fitness gear, and more."
+    }
+  },
+  "claims": [
+    {
+      "id": "CLM-99281-01",
+      "provider": "St. Mary's Medical",
+      "type": "Outpatient Services",
+      "date": "Oct 12, 2023",
+      "status": "Processed",
+      "memberResponsibility": 42.5,
+      "totalBilled": 1450,
+      "planDiscount": 820.5,
+      "insurancePaid": 587,
+      "serviceDate": "Oct 10, 2023",
+      "category": "Medical Services",
+      "doctor": "Dr. Elena Rodriguez, MD",
+      "doctorNpi": "1234567890",
+      "address": "900 University Terrace, Suite 400, Glen Cove, NY 11542",
+      "diagnoses": [
+        {
+          "code": "M17.12",
+          "title": "Unilateral primary osteoarthritis",
+          "subtitle": "Left knee primary osteoarthritis"
+        },
+        {
+          "code": "R52.0",
+          "title": "Acute pain",
+          "subtitle": "Localized musculoskeletal pain"
+        }
+      ],
+      "services": [
+        {
+          "code": "99214",
+          "title": "Office Visit",
+          "subtitle": "Established patient, moderate complexity"
+        },
+        {
+          "code": "73562",
+          "title": "X-ray, Knee",
+          "subtitle": "Radiologic exam, knee, 3 views"
+        }
+      ],
+      "journey": [
+        {
+          "step": "Received",
+          "date": "Oct 11, 2023",
+          "complete": true
+        },
+        {
+          "step": "Review",
+          "date": "Oct 13, 2023",
+          "complete": true
+        },
+        {
+          "step": "Processed",
+          "date": "Oct 14, 2023",
+          "complete": true
+        },
+        {
+          "step": "Paid",
+          "date": "Pending",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "id": "CLM-88310-44",
+      "provider": "Walgreens Pharmacy",
+      "type": "Prescription Meds",
+      "date": "Oct 10, 2023",
+      "status": "Pending Review",
+      "memberResponsibility": 12,
+      "totalBilled": 85,
+      "planDiscount": 42,
+      "insurancePaid": 31,
+      "serviceDate": "Oct 9, 2023",
+      "category": "Pharmacy",
+      "doctor": "Dr. Sarah Jenkins, MD",
+      "doctorNpi": "9876543210",
+      "address": "1200 Walgreens Blvd, Scottsdale, AZ 85251",
+      "diagnoses": [
+        {
+          "code": "I10",
+          "title": "Essential hypertension",
+          "subtitle": "Primary hypertension"
+        },
+        {
+          "code": "E11.9",
+          "title": "Type 2 diabetes mellitus",
+          "subtitle": "Without complications"
+        }
+      ],
+      "services": [
+        {
+          "code": "99213",
+          "title": "Prescription Fill",
+          "subtitle": "Lisinopril 10mg, 30-day supply"
+        },
+        {
+          "code": "99212",
+          "title": "Prescription Fill",
+          "subtitle": "Metformin 500mg, 30-day supply"
+        }
+      ],
+      "journey": [
+        {
+          "step": "Received",
+          "date": "Oct 10, 2023",
+          "complete": true
+        },
+        {
+          "step": "Review",
+          "date": "In Progress",
+          "complete": false
+        },
+        {
+          "step": "Processed",
+          "date": "Pending",
+          "complete": false
+        },
+        {
+          "step": "Paid",
+          "date": "Pending",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "id": "CLM-77123-99",
+      "provider": "City General Hospital",
+      "type": "Emergency Visit",
+      "date": "Sep 28, 2023",
+      "status": "Paid",
+      "memberResponsibility": 150,
+      "totalBilled": 3200,
+      "planDiscount": 1800,
+      "insurancePaid": 1250,
+      "serviceDate": "Sep 27, 2023",
+      "category": "Emergency Services",
+      "doctor": "Dr. Marcus Thorne, MD",
+      "doctorNpi": "1122334455",
+      "address": "500 City General Way, San Francisco, CA 94102",
+      "diagnoses": [
+        {
+          "code": "R07.9",
+          "title": "Chest pain, unspecified",
+          "subtitle": "Unspecified chest pain"
+        },
+        {
+          "code": "Z03.89",
+          "title": "Encounter for observation",
+          "subtitle": "No diagnosis found"
+        }
+      ],
+      "services": [
+        {
+          "code": "99285",
+          "title": "Emergency Dept Visit",
+          "subtitle": "High complexity medical decision making"
+        },
+        {
+          "code": "93000",
+          "title": "Electrocardiogram",
+          "subtitle": "ECG with interpretation and report"
+        }
+      ],
+      "journey": [
+        {
+          "step": "Received",
+          "date": "Sep 28, 2023",
+          "complete": true
+        },
+        {
+          "step": "Review",
+          "date": "Sep 29, 2023",
+          "complete": true
+        },
+        {
+          "step": "Processed",
+          "date": "Oct 1, 2023",
+          "complete": true
+        },
+        {
+          "step": "Paid",
+          "date": "Oct 3, 2023",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "id": "CLM-44201-BB",
+      "provider": "Sunrise Orthopedic Center",
+      "type": "Specialist Visit",
+      "date": "Sep 5, 2023",
+      "status": "Paid",
+      "memberResponsibility": 20,
+      "totalBilled": 620,
+      "planDiscount": 310,
+      "insurancePaid": 290,
+      "serviceDate": "Sep 5, 2023",
+      "category": "Specialist Services",
+      "doctor": "Dr. James Patel, MD",
+      "doctorNpi": "2233445566",
+      "address": "88 Orthopedic Way, Suite 200, Boston, MA 02115",
+      "diagnoses": [
+        {
+          "code": "M54.5",
+          "title": "Low back pain",
+          "subtitle": "Chronic lumbar strain"
+        }
+      ],
+      "services": [
+        {
+          "code": "99213",
+          "title": "Office Visit",
+          "subtitle": "Established patient, low complexity"
+        },
+        {
+          "code": "72100",
+          "title": "X-ray, Lumbar Spine",
+          "subtitle": "2-3 views"
+        }
+      ],
+      "journey": [
+        {
+          "step": "Received",
+          "date": "Sep 6, 2023",
+          "complete": true
+        },
+        {
+          "step": "Review",
+          "date": "Sep 7, 2023",
+          "complete": true
+        },
+        {
+          "step": "Processed",
+          "date": "Sep 9, 2023",
+          "complete": true
+        },
+        {
+          "step": "Paid",
+          "date": "Sep 12, 2023",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "id": "CLM-55312-CC",
+      "provider": "ClearVision Eye Care",
+      "type": "Vision Services",
+      "date": "Aug 20, 2023",
+      "status": "Processed",
+      "memberResponsibility": 10,
+      "totalBilled": 280,
+      "planDiscount": 140,
+      "insurancePaid": 130,
+      "serviceDate": "Aug 20, 2023",
+      "category": "Vision Services",
+      "doctor": "Dr. Priya Sharma, OD",
+      "doctorNpi": "3344556677",
+      "address": "22 Vision Blvd, Chicago, IL 60601",
+      "diagnoses": [
+        {
+          "code": "H52.1",
+          "title": "Myopia",
+          "subtitle": "Bilateral myopia, moderate"
+        }
+      ],
+      "services": [
+        {
+          "code": "92004",
+          "title": "Eye Exam",
+          "subtitle": "Comprehensive, new patient"
+        },
+        {
+          "code": "V2100",
+          "title": "Spectacle Lenses",
+          "subtitle": "Single vision, sphere"
+        }
+      ],
+      "journey": [
+        {
+          "step": "Received",
+          "date": "Aug 21, 2023",
+          "complete": true
+        },
+        {
+          "step": "Review",
+          "date": "Aug 22, 2023",
+          "complete": true
+        },
+        {
+          "step": "Processed",
+          "date": "Aug 24, 2023",
+          "complete": true
+        },
+        {
+          "step": "Paid",
+          "date": "Pending",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "id": "CLM-66423-DD",
+      "provider": "BrightSmile Dental",
+      "type": "Dental Services",
+      "date": "Aug 8, 2023",
+      "status": "Paid",
+      "memberResponsibility": 0,
+      "totalBilled": 190,
+      "planDiscount": 95,
+      "insurancePaid": 95,
+      "serviceDate": "Aug 8, 2023",
+      "category": "Dental Services",
+      "doctor": "Dr. Linda Chu, DDS",
+      "doctorNpi": "4455667788",
+      "address": "15 Dental Plaza, Suite 101, Seattle, WA 98101",
+      "diagnoses": [
+        {
+          "code": "Z01.20",
+          "title": "Dental examination",
+          "subtitle": "Routine preventive visit"
+        }
+      ],
+      "services": [
+        {
+          "code": "D0120",
+          "title": "Periodic Oral Exam",
+          "subtitle": "Established patient"
+        },
+        {
+          "code": "D1110",
+          "title": "Prophylaxis",
+          "subtitle": "Adult cleaning"
+        }
+      ],
+      "journey": [
+        {
+          "step": "Received",
+          "date": "Aug 9, 2023",
+          "complete": true
+        },
+        {
+          "step": "Review",
+          "date": "Aug 10, 2023",
+          "complete": true
+        },
+        {
+          "step": "Processed",
+          "date": "Aug 11, 2023",
+          "complete": true
+        },
+        {
+          "step": "Paid",
+          "date": "Aug 14, 2023",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "id": "CLM-77534-EE",
+      "provider": "Harbor Mental Health",
+      "type": "Mental Health Services",
+      "date": "Jul 25, 2023",
+      "status": "Processed",
+      "memberResponsibility": 30,
+      "totalBilled": 350,
+      "planDiscount": 175,
+      "insurancePaid": 145,
+      "serviceDate": "Jul 25, 2023",
+      "category": "Behavioral Health",
+      "doctor": "Dr. Aisha Patel, LCSW",
+      "doctorNpi": "5566778899",
+      "address": "300 Harbor Drive, Suite 410, Miami, FL 33101",
+      "diagnoses": [
+        {
+          "code": "F41.1",
+          "title": "Generalized anxiety disorder",
+          "subtitle": "Moderate severity"
+        }
+      ],
+      "services": [
+        {
+          "code": "90837",
+          "title": "Psychotherapy",
+          "subtitle": "Individual, 60 minutes"
+        }
+      ],
+      "journey": [
+        {
+          "step": "Received",
+          "date": "Jul 26, 2023",
+          "complete": true
+        },
+        {
+          "step": "Review",
+          "date": "Jul 28, 2023",
+          "complete": true
+        },
+        {
+          "step": "Processed",
+          "date": "Jul 30, 2023",
+          "complete": true
+        },
+        {
+          "step": "Paid",
+          "date": "Pending",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "id": "CLM-88645-FF",
+      "provider": "Metro Imaging Center",
+      "type": "Diagnostic Imaging",
+      "date": "Jul 10, 2023",
+      "status": "Paid",
+      "memberResponsibility": 50,
+      "totalBilled": 1800,
+      "planDiscount": 1100,
+      "insurancePaid": 650,
+      "serviceDate": "Jul 10, 2023",
+      "category": "Diagnostic Services",
+      "doctor": "Dr. Robert Kim, MD",
+      "doctorNpi": "6677889900",
+      "address": "500 Imaging Drive, Houston, TX 77001",
+      "diagnoses": [
+        {
+          "code": "M51.16",
+          "title": "Intervertebral disc degeneration",
+          "subtitle": "Lumbar region"
+        }
+      ],
+      "services": [
+        {
+          "code": "72148",
+          "title": "MRI Lumbar Spine",
+          "subtitle": "Without contrast"
+        }
+      ],
+      "journey": [
+        {
+          "step": "Received",
+          "date": "Jul 11, 2023",
+          "complete": true
+        },
+        {
+          "step": "Review",
+          "date": "Jul 12, 2023",
+          "complete": true
+        },
+        {
+          "step": "Processed",
+          "date": "Jul 14, 2023",
+          "complete": true
+        },
+        {
+          "step": "Paid",
+          "date": "Jul 17, 2023",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "id": "CLM-99756-GG",
+      "provider": "Valley Physical Therapy",
+      "type": "Physical Therapy",
+      "date": "Jun 18, 2023",
+      "status": "Paid",
+      "memberResponsibility": 15,
+      "totalBilled": 420,
+      "planDiscount": 210,
+      "insurancePaid": 195,
+      "serviceDate": "Jun 18, 2023",
+      "category": "Rehabilitation",
+      "doctor": "Dr. Thomas Green, DPT",
+      "doctorNpi": "7788990011",
+      "address": "77 Rehab Road, Phoenix, AZ 85001",
+      "diagnoses": [
+        {
+          "code": "M79.3",
+          "title": "Panniculitis",
+          "subtitle": "Shoulder and rotator cuff strain"
+        }
+      ],
+      "services": [
+        {
+          "code": "97110",
+          "title": "Therapeutic Exercise",
+          "subtitle": "Each 15 minutes"
+        },
+        {
+          "code": "97140",
+          "title": "Manual Therapy",
+          "subtitle": "Each 15 minutes"
+        }
+      ],
+      "journey": [
+        {
+          "step": "Received",
+          "date": "Jun 19, 2023",
+          "complete": true
+        },
+        {
+          "step": "Review",
+          "date": "Jun 20, 2023",
+          "complete": true
+        },
+        {
+          "step": "Processed",
+          "date": "Jun 22, 2023",
+          "complete": true
+        },
+        {
+          "step": "Paid",
+          "date": "Jun 25, 2023",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "id": "CLM-10867-HH",
+      "provider": "Apex Cardiology Group",
+      "type": "Cardiology Consult",
+      "date": "Jun 3, 2023",
+      "status": "Pending Review",
+      "memberResponsibility": 40,
+      "totalBilled": 950,
+      "planDiscount": 475,
+      "insurancePaid": 435,
+      "serviceDate": "Jun 3, 2023",
+      "category": "Specialist Services",
+      "doctor": "Dr. Maria Santos, MD",
+      "doctorNpi": "8899001122",
+      "address": "120 Heart Health Blvd, Dallas, TX 75201",
+      "diagnoses": [
+        {
+          "code": "I25.10",
+          "title": "Coronary artery disease",
+          "subtitle": "Without angina pectoris"
+        }
+      ],
+      "services": [
+        {
+          "code": "99244",
+          "title": "Cardiology Consult",
+          "subtitle": "Moderate complexity"
+        },
+        {
+          "code": "93306",
+          "title": "Echocardiogram",
+          "subtitle": "Transthoracic, complete"
+        }
+      ],
+      "journey": [
+        {
+          "step": "Received",
+          "date": "Jun 4, 2023",
+          "complete": true
+        },
+        {
+          "step": "Review",
+          "date": "In Progress",
+          "complete": false
+        },
+        {
+          "step": "Processed",
+          "date": "Pending",
+          "complete": false
+        },
+        {
+          "step": "Paid",
+          "date": "Pending",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "id": "CLM-11978-II",
+      "provider": "Sunset Dermatology",
+      "type": "Dermatology Visit",
+      "date": "May 15, 2023",
+      "status": "Paid",
+      "memberResponsibility": 20,
+      "totalBilled": 380,
+      "planDiscount": 190,
+      "insurancePaid": 170,
+      "serviceDate": "May 15, 2023",
+      "category": "Specialist Services",
+      "doctor": "Dr. Sarah Nguyen, MD",
+      "doctorNpi": "9900112233",
+      "address": "45 Skin Care Lane, San Diego, CA 92101",
+      "diagnoses": [
+        {
+          "code": "L70.0",
+          "title": "Acne vulgaris",
+          "subtitle": "Moderate inflammatory acne"
+        }
+      ],
+      "services": [
+        {
+          "code": "99213",
+          "title": "Office Visit",
+          "subtitle": "Established patient, low complexity"
+        },
+        {
+          "code": "17000",
+          "title": "Destruction, benign lesion",
+          "subtitle": "First lesion"
+        }
+      ],
+      "journey": [
+        {
+          "step": "Received",
+          "date": "May 16, 2023",
+          "complete": true
+        },
+        {
+          "step": "Review",
+          "date": "May 17, 2023",
+          "complete": true
+        },
+        {
+          "step": "Processed",
+          "date": "May 19, 2023",
+          "complete": true
+        },
+        {
+          "step": "Paid",
+          "date": "May 22, 2023",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "id": "CLM-12089-JJ",
+      "provider": "HealthFirst Urgent Care",
+      "type": "Urgent Care Visit",
+      "date": "Apr 28, 2023",
+      "status": "Paid",
+      "memberResponsibility": 25,
+      "totalBilled": 310,
+      "planDiscount": 155,
+      "insurancePaid": 130,
+      "serviceDate": "Apr 28, 2023",
+      "category": "Urgent Care",
+      "doctor": "Dr. Kevin Brooks, MD",
+      "doctorNpi": "1011121314",
+      "address": "200 Urgent Care Blvd, Portland, OR 97201",
+      "diagnoses": [
+        {
+          "code": "J06.9",
+          "title": "Acute upper respiratory infection",
+          "subtitle": "Unspecified URI"
+        }
+      ],
+      "services": [
+        {
+          "code": "99213",
+          "title": "Urgent Care Visit",
+          "subtitle": "Established patient"
+        },
+        {
+          "code": "87880",
+          "title": "Rapid Strep Test",
+          "subtitle": "Streptococcus, group A"
+        }
+      ],
+      "journey": [
+        {
+          "step": "Received",
+          "date": "Apr 29, 2023",
+          "complete": true
+        },
+        {
+          "step": "Review",
+          "date": "Apr 30, 2023",
+          "complete": true
+        },
+        {
+          "step": "Processed",
+          "date": "May 2, 2023",
+          "complete": true
+        },
+        {
+          "step": "Paid",
+          "date": "May 5, 2023",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "id": "CLM-13190-KK",
+      "provider": "Premier Sleep Center",
+      "type": "Sleep Study",
+      "date": "Apr 5, 2023",
+      "status": "Processed",
+      "memberResponsibility": 75,
+      "totalBilled": 2400,
+      "planDiscount": 1400,
+      "insurancePaid": 925,
+      "serviceDate": "Apr 5, 2023",
+      "category": "Diagnostic Services",
+      "doctor": "Dr. Natalie Ford, MD",
+      "doctorNpi": "1516171819",
+      "address": "88 Sleep Way, Denver, CO 80201",
+      "diagnoses": [
+        {
+          "code": "G47.33",
+          "title": "Obstructive sleep apnea",
+          "subtitle": "Adult, moderate severity"
+        }
+      ],
+      "services": [
+        {
+          "code": "95810",
+          "title": "Polysomnography",
+          "subtitle": "Sleep staging, full night"
+        }
+      ],
+      "journey": [
+        {
+          "step": "Received",
+          "date": "Apr 6, 2023",
+          "complete": true
+        },
+        {
+          "step": "Review",
+          "date": "Apr 8, 2023",
+          "complete": true
+        },
+        {
+          "step": "Processed",
+          "date": "Apr 10, 2023",
+          "complete": true
+        },
+        {
+          "step": "Paid",
+          "date": "Pending",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "id": "CLM-15312-MM",
+      "provider": "Riverside Neurology",
+      "type": "Neurology Consult",
+      "date": "Mar 5, 2023",
+      "status": "Paid",
+      "memberResponsibility": 40,
+      "totalBilled": 780,
+      "planDiscount": 390,
+      "insurancePaid": 350,
+      "serviceDate": "Mar 5, 2023",
+      "category": "Specialist Services",
+      "doctor": "Dr. William Hayes, MD",
+      "doctorNpi": "2530414243",
+      "address": "99 Neuro Pkwy, Suite 300, Atlanta, GA 30301",
+      "diagnoses": [
+        {
+          "code": "G43.909",
+          "title": "Migraine, unspecified",
+          "subtitle": "Without status migrainosus, not intractable"
+        }
+      ],
+      "services": [
+        {
+          "code": "99244",
+          "title": "Neurology Consult",
+          "subtitle": "Moderate complexity"
+        },
+        {
+          "code": "95816",
+          "title": "EEG",
+          "subtitle": "Awake and drowsy"
+        }
+      ],
+      "journey": [
+        {
+          "step": "Received",
+          "date": "Mar 6, 2023",
+          "complete": true
+        },
+        {
+          "step": "Review",
+          "date": "Mar 7, 2023",
+          "complete": true
+        },
+        {
+          "step": "Processed",
+          "date": "Mar 9, 2023",
+          "complete": true
+        },
+        {
+          "step": "Paid",
+          "date": "Mar 12, 2023",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "id": "CLM-14201-LL",
+      "provider": "CVS Specialty Pharmacy",
+      "type": "Specialty Pharmacy",
+      "date": "Mar 20, 2023",
+      "status": "Paid",
+      "memberResponsibility": 5,
+      "totalBilled": 120,
+      "planDiscount": 60,
+      "insurancePaid": 55,
+      "serviceDate": "Mar 20, 2023",
+      "category": "Pharmacy",
+      "doctor": "Dr. Eric Walsh, MD",
+      "doctorNpi": "2021222324",
+      "address": "600 CVS Drive, Minneapolis, MN 55401",
+      "diagnoses": [
+        {
+          "code": "E78.5",
+          "title": "Hyperlipidemia",
+          "subtitle": "Mixed hyperlipidemia"
+        }
+      ],
+      "services": [
+        {
+          "code": "99211",
+          "title": "Medication Refill",
+          "subtitle": "Rosuvastatin 10mg, 90-day supply"
+        }
+      ],
+      "journey": [
+        {
+          "step": "Received",
+          "date": "Mar 21, 2023",
+          "complete": true
+        },
+        {
+          "step": "Review",
+          "date": "Mar 22, 2023",
+          "complete": true
+        },
+        {
+          "step": "Processed",
+          "date": "Mar 23, 2023",
+          "complete": true
+        },
+        {
+          "step": "Paid",
+          "date": "Mar 25, 2023",
+          "complete": true
+        }
+      ]
+    }
+  ],
+  "wellnessWisdom": {
+    "badge": "ARTICLE",
+    "imageUrl": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop",
+    "title": "Mindful Eating for Longevity",
+    "description": "Discover how shifting your relationship with food can lead to increased energy and mental clarity during your senior years.",
+    "buttonText": "Read More"
+  }
+}
