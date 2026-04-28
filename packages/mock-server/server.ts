@@ -8,13 +8,13 @@ const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
-app.use((_req, _res, next) => { setTimeout(() => next(), 2000); });
 
 const dbPath = path.join(__dirname, 'db.json');
 
+let _db: ReturnType<typeof JSON.parse> | null = null;
 function getDb() {
-  const raw = fs.readFileSync(dbPath, 'utf-8');
-  return JSON.parse(raw);
+  if (!_db) _db = JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+  return _db;
 }
 
 app.get('/hero', (_req, res) => {
@@ -63,6 +63,14 @@ app.get('/claims/:id', (req, res) => {
   res.json(claim);
 });
 
+app.get('/reviews', (_req, res) => {
+  res.json(getDb().reviews);
+});
+
+app.get('/prescriptions', (_req, res) => {
+  res.json(getDb().prescriptions);
+});
+
 app.get('/providers/:id', (req, res) => {
   const provider = getDb().providers.find((p: any) => p.id === req.params.id);
   if (!provider) return res.status(404).json({ error: 'Not found' });
@@ -100,5 +108,7 @@ app.listen(PORT, () => {
   console.log('  GET /benefits');
   console.log('  GET /claims');
   console.log('  GET /claims/:id');
-  console.log('  GET /providers?category=&maxDistance=&name=\n');
+  console.log('  GET /providers?category=&maxDistance=&name=');
+  console.log('  GET /reviews');
+  console.log('  GET /prescriptions\n');
 });

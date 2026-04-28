@@ -229,10 +229,8 @@ export default function Claims() {
           <div
             key={claim.id}
             onClick={() => navigate(`/claims/${claim.id}`)}
-            className="group bg-white rounded-2xl border border-outline-variant/20 flex flex-col md:flex-row p-8 cursor-pointer items-center gap-8 relative overflow-hidden"
-            style={{ boxShadow: '0 2px 8px rgba(0,52,97,0.07)', transition: 'box-shadow 0.2s, transform 0.18s' }}
-            onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = '0 8px 28px rgba(0,52,97,0.15)'; (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)'; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = '0 2px 8px rgba(0,52,97,0.07)'; (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)'; }}
+            className={`group bg-white rounded-2xl border border-outline-variant/20 flex flex-col md:flex-row p-8 cursor-pointer items-center gap-8 relative overflow-hidden ${styles.hoverLift}`}
+            style={{ boxShadow: '0 2px 8px rgba(0,52,97,0.07)' }}
           >
             {/* Status Colored Lead Border */}
             <div className={`absolute left-0 top-0 bottom-0 w-2 ${claim.status === 'Processed' ? 'bg-secondary-container' : claim.status === 'Pending Review' ? 'bg-tertiary-container' : 'bg-secondary-container'}`}></div>

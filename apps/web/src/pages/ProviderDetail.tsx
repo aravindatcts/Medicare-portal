@@ -1,89 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
-import { useProvider } from '@medicare/shared';
+import { useProvider, useReviews } from '@medicare/shared';
 import type { ProviderData } from '@medicare/shared';
+import { DoctorAvatar } from '@medicare/ui';
 import styles from '../App.module.css';
-
-// ── Specialty palette ─────────────────────────────────────────────────────────
-const SPECIALTY_THEME: Record<string, [string, string, string]> = {
-  'Primary Care':      ['#003461', '#1D6FA4', 'stethoscope'],
-  'Family Medicine':   ['#003461', '#1D6FA4', 'stethoscope'],
-  'Cardiology':        ['#7F1D1D', '#C0392B', 'cardiology'],
-  'Internal Medicine': ['#065F46', '#0D9B6A', 'medical_information'],
-  'Physical Therapy':  ['#713F12', '#C67A1D', 'self_improvement'],
-  'Dermatology':       ['#4C1D95', '#7C3AED', 'dermatology'],
-  'Orthopedics':       ['#0C4A6E', '#0284C7', 'orthopedics'],
-  'Neurology':         ['#1E1B4B', '#4338CA', 'neurology'],
-  'Gastroenterology':  ['#134E4A', '#0F9488', 'biotech'],
-  'Psychiatry':        ['#831843', '#BE185D', 'psychology'],
-  'Ophthalmology':     ['#164E63', '#0891B2', 'visibility'],
-};
-const FALLBACK_THEME: [string, string, string] = ['#1E3A5F', '#2563EB', 'medical_services'];
-
-function DoctorAvatar({ name, category, providerId, size = 224 }: {
-  name: string; category: string; providerId: string; size?: number;
-}) {
-  const cleanName = name.replace(/^Dr\.?\s+/i, '');
-  const parts = cleanName.trim().split(/\s+/);
-  const initials = ((parts[0]?.[0] ?? '') + (parts[1]?.[0] ?? '')).toUpperCase();
-  const [g1, g2, icon] = SPECIALTY_THEME[category] ?? FALLBACK_THEME;
-  const gradId = `dgrad-${providerId}`;
-
-  return (
-    <div style={{
-      position: 'relative', width: size, height: size, borderRadius: 24,
-      overflow: 'hidden', flexShrink: 0,
-      boxShadow: '0 16px 48px rgba(0,52,97,0.28)',
-    }}>
-      <svg width={size} height={size} viewBox="0 0 224 224" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
-        <defs>
-          <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor={g1} />
-            <stop offset="100%" stopColor={g2} />
-          </linearGradient>
-        </defs>
-        <rect width="224" height="224" fill={`url(#${gradId})`} />
-        <circle cx="196" cy="28" r="64" fill="rgba(255,255,255,0.07)" />
-        <circle cx="28" cy="196" r="52" fill="rgba(255,255,255,0.05)" />
-        <path d="M0 224 L0 158 Q0 134 28 126 L78 108 L112 136 L146 108 L196 126 Q224 134 224 158 L224 224 Z"
-          fill="rgba(255,255,255,0.15)" />
-        <path d="M78 108 L112 140 L146 108 L154 114 L112 166 L70 114 Z" fill="rgba(255,255,255,0.22)" />
-        <ellipse cx="112" cy="72" rx="38" ry="42" fill="rgba(255,255,255,0.18)" />
-        <text x="112" y="84" dominantBaseline="central" textAnchor="middle"
-          fontFamily="Manrope, sans-serif" fontWeight="800" fontSize="46" fill="white" opacity="0.95" letterSpacing="-2">
-          {initials}
-        </text>
-      </svg>
-      <div style={{
-        position: 'absolute', bottom: 12, right: 12, width: 40, height: 40,
-        background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(6px)',
-        borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center',
-      }}>
-        <span className="material-symbols-outlined"
-          style={{ fontSize: 22, color: 'white', fontVariationSettings: "'FILL' 1, 'wght' 300" }}>
-          {icon}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-// Hardcoded patient reviews (no server endpoint for these)
-const REVIEWS = [
-  { initials: 'MB', bg: '#c6e7ff', name: 'Margaret B.', ago: '2 weeks ago', stars: 5,
-    text: '"The doctor was incredibly patient and thorough. Explained my condition clearly and in a way that actually made sense to me."' },
-  { initials: 'JW', bg: '#d3e4ff', name: 'James W.', ago: '1 month ago', stars: 5,
-    text: '"The treatment plan has made a huge difference in my daily life. I really feel like my health is in good hands."' },
-  { initials: 'RC', bg: '#ffdbc8', name: 'Robert C.', ago: '2 months ago', stars: 4,
-    text: '"Very professional office. The staff is friendly and the doctor takes time to listen without rushing through the appointment."' },
-  { initials: 'SK', bg: '#c6e7ff', name: 'Sarah K.', ago: '3 months ago', stars: 5,
-    text: '"Compassionate care. He didn\'t rush me through questions about my medication side effects — I felt truly heard."' },
-  { initials: 'DL', bg: '#d3e4ff', name: 'David L.', ago: '3 months ago', stars: 5,
-    text: '"Professional and thorough. The entire medical team seems very synchronized and works seamlessly together."' },
-];
 
 function StarRow({ count }: { count: number }) {
   return (
-    <div className="flex items-center gap-1 mb-4" style={{ color: '#793701' }}>
+    <div className="flex items-center gap-1 mb-4 text-tertiary-container">
       {Array.from({ length: 5 }, (_, i) => (
         <span key={i} className="material-symbols-outlined text-lg"
           style={{ fontVariationSettings: i < count ? "'FILL' 1" : "'FILL' 0" }}>star</span>
@@ -97,11 +20,11 @@ export default function ProviderDetail() {
   const { data: provider, isLoading } = useProvider(id ?? '') as {
     data: ProviderData | undefined; isLoading: boolean;
   };
+  const { data: reviews = [] } = useReviews();
 
   if (isLoading) {
     return (
       <main className={styles.pageWrap}>
-        {/* Breadcrumb skeleton */}
         <div className="flex items-center gap-2 mb-10">
           {[120, 60, 140].map((w, i) => (
             <div key={i} className="flex items-center gap-2">
@@ -110,7 +33,6 @@ export default function ProviderDetail() {
             </div>
           ))}
         </div>
-        {/* Profile skeleton */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
           <div className="lg:col-span-8 bg-surface-container-lowest p-8 rounded-2xl flex gap-8"
             style={{ boxShadow: '0 16px 40px rgba(0,52,97,0.08)' }}>
@@ -236,7 +158,7 @@ export default function ProviderDetail() {
                 `${provider.languages?.join(' & ') ?? 'English'} speaking`,
               ].map(item => (
                 <li key={item} className="flex gap-3 text-sm font-body">
-                  <span className="material-symbols-outlined" style={{ color: '#41befd', flexShrink: 0 }}>check_circle</span>
+                  <span className="material-symbols-outlined text-secondary-container" style={{ flexShrink: 0 }}>check_circle</span>
                   {item}
                 </li>
               ))}
@@ -244,7 +166,7 @@ export default function ProviderDetail() {
           </div>
           <div className="mt-8 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
             <div className="h-1.5 w-full rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.1)' }}>
-              <div className="h-full rounded-full" style={{ width: `${Math.round(provider.rating / 5 * 100)}%`, background: '#41befd' }} />
+              <div className="h-full rounded-full bg-secondary-container" style={{ width: `${Math.round(provider.rating / 5 * 100)}%` }} />
             </div>
             <p className="text-xs uppercase tracking-widest mt-2 font-bold opacity-60 font-label">
               {Math.round(provider.rating / 5 * 100)}% Match Confidence
@@ -255,7 +177,6 @@ export default function ProviderDetail() {
 
       {/* ── Location & Accessibility ─────────────────────────────────────── */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
-        {/* Map placeholder */}
         <div className="lg:col-span-7 rounded-3xl overflow-hidden relative" style={{ height: 400 }}>
           <div className="absolute inset-0"
             style={{ background: 'linear-gradient(160deg, #c9dce8 0%, #b8cfe0 25%, #cfdec9 55%, #b8d4b4 100%)' }}>
@@ -280,10 +201,9 @@ export default function ProviderDetail() {
               </div>
             </div>
           </div>
-          <style>{`@keyframes bounce { 0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)} }`}</style>
+          <style>{`@keyframes bounce { 0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)} } @media (prefers-reduced-motion: reduce) { @keyframes bounce { 0%,100%,50%{transform:translateY(0)} } }`}</style>
         </div>
 
-        {/* Office info */}
         <div className="lg:col-span-5 bg-surface-container-low p-8 rounded-2xl flex flex-col justify-between">
           <h2 className="font-headline text-2xl font-bold text-primary mb-6 flex items-center gap-2">
             <span className="material-symbols-outlined">location_city</span>
@@ -327,19 +247,19 @@ export default function ProviderDetail() {
           </div>
           <button className="text-primary font-bold hover:underline flex items-center gap-1 font-label">
             See all reviews
-            <span className="material-symbols-outlined text-lg">arrow_forward</span>
+            <span className="material-symbols-outlined text-lg" aria-hidden="true">arrow_forward</span>
           </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {REVIEWS.slice(0, 5).map((review, idx) => (
+          {reviews.slice(0, 5).map((review, idx) => (
             <div key={idx} className="bg-surface-container-lowest p-6 rounded-2xl flex flex-col"
               style={{ boxShadow: '0 4px 16px rgba(0,52,97,0.07)', border: '1px solid rgba(194,198,209,0.2)' }}>
               <StarRow count={review.stars} />
               <p className="text-on-surface italic mb-6 leading-relaxed flex-1 font-body text-sm">{review.text}</p>
               <div className="flex items-center gap-3 mt-auto">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-on-primary font-label"
-                  style={{ background: review.bg, color: '#003461', fontSize: 13 }}>
+                <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-primary font-label text-xs"
+                  style={{ background: review.bg }}>
                   {review.initials}
                 </div>
                 <div>

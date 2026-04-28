@@ -165,6 +165,38 @@ export interface ClaimData {
   journey: JourneyStep[];
 }
 
+export interface ReviewItem {
+  initials: string;
+  bg: string;
+  name: string;
+  ago: string;
+  stars: number;
+  text: string;
+}
+
+export interface PrescriptionMed {
+  name: string;
+  dose: string;
+}
+
+export type PrescriptionStatus = 'refill-ready' | 'no-refills';
+
+export interface ActivePrescription {
+  name: string;
+  dose: string;
+  indication: string;
+  doctor: string;
+  lastFilled: string;
+  refills: number;
+  status: PrescriptionStatus;
+}
+
+export interface PrescriptionsData {
+  morning: PrescriptionMed[];
+  evening: PrescriptionMed[];
+  active: ActivePrescription[];
+}
+
 export interface DashboardData {
   hero: HeroData;
   member: MemberData;

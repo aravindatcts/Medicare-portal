@@ -33,6 +33,15 @@
   transform: translateY(-2px);
 }
 
+/* Generic hover-lift used on list cards (Claims, Benefits, FindCare) */
+.hoverLift {
+  transition: box-shadow 0.2s ease, transform 0.18s ease;
+}
+.hoverLift:hover {
+  box-shadow: 0 8px 28px rgba(0,52,97,0.15) !important;
+  transform: translateY(-2px);
+}
+
 /* ─── Global Reset ─────────────────────────────────────────────── */
 .root {
   min-height: 100vh;
@@ -67,7 +76,7 @@
 
 .brand {
   font-family: 'Manrope', sans-serif;
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 800;
   color: #003461;
   letter-spacing: -0.02em;
@@ -81,7 +90,7 @@
 
 .navLink {
   color: #1e40af;
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s;
@@ -117,7 +126,7 @@
   padding: 10px 20px;
   border-radius: 9999px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 0.875rem;
   cursor: pointer;
   transition: box-shadow 0.2s, transform 0.1s;
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -189,7 +198,7 @@
 
 .alertTitle {
   font-family: 'Manrope', sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
   color: #321300;
   margin: 0 0 6px;
@@ -199,7 +208,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: rgba(50, 19, 0, 0.8);
   margin: 3px 0;
 }
@@ -252,7 +261,7 @@
 /* ─── Welcome ──────────────────────────────────────────────────── */
 .welcomeHeading {
   font-family: 'Manrope', sans-serif;
-  font-size: clamp(32px, 4vw, 48px);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   color: #003461;
   letter-spacing: -0.03em;
@@ -260,7 +269,7 @@
 }
 
 .welcomeSub {
-  font-size: 18px;
+  font-size: 1.125rem;
   color: #424750;
   margin: 0;
 }
@@ -321,7 +330,7 @@
 .idCardBrand {
   font-family: 'Manrope', sans-serif;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 1.125rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   opacity: 0.8;
@@ -329,7 +338,7 @@
 
 .idCardName {
   font-family: 'Manrope', sans-serif;
-  font-size: 26px;
+  font-size: 1.625rem;
   font-weight: 700;
   margin: 0 0 6px;
 }
@@ -338,7 +347,7 @@
   color: #a3c9ff;
   font-weight: 500;
   margin: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .idCardFooter {
@@ -348,7 +357,7 @@
 }
 
 .idCardLabel {
-  font-size: 11px;
+  font-size: 0.6875rem;
   opacity: 0.6;
   margin: 0 0 2px;
 }
@@ -356,7 +365,7 @@
 .idCardPlanName {
   font-weight: 700;
   margin: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .qrBtn {
@@ -368,7 +377,7 @@
   color: #ffffff;
   padding: 8px 14px;
   border-radius: 8px;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 700;
   cursor: pointer;
   backdrop-filter: blur(4px);
@@ -390,7 +399,7 @@
   border-radius: 10px;
   color: #003461;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 0.875rem;
   cursor: pointer;
   transition: background 0.15s, transform 0.1s;
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -439,7 +448,7 @@
 /* ─── Section Heading ──────────────────────────────────────────── */
 .sectionHeading {
   font-family: 'Manrope', sans-serif;
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 700;
   color: #003461;
   margin: 0;
@@ -466,7 +475,7 @@
   border: none;
   border-bottom: 3px solid transparent;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: #424750;
   cursor: pointer;
   transition: background 0.15s;
@@ -482,7 +491,7 @@
   border: none;
   border-bottom: 3px solid #003461;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: #003461;
   cursor: pointer;
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -503,7 +512,7 @@
 
 .benefitTitle {
   font-family: 'Manrope', sans-serif;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 700;
   color: #003461;
   margin: 0 0 6px;
@@ -516,7 +525,7 @@
   background: rgba(0,101,141,0.1);
   color: #00658d;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 0.8125rem;
   padding: 6px 14px;
   border-radius: 9999px;
   white-space: nowrap;
@@ -624,14 +633,14 @@
 
 .editorialTitle {
   font-family: 'Manrope', sans-serif;
-  font-size: 26px;
+  font-size: 1.625rem;
   font-weight: 800;
   line-height: 1.25;
   margin: 0 0 14px;
 }
 
 .editorialDesc {
-  font-size: 15px;
+  font-size: 0.9375rem;
   opacity: 0.9;
   line-height: 1.55;
   margin: 0 0 24px;
@@ -641,7 +650,7 @@
   background: #ffffff;
   color: #003461;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 0.875rem;
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
@@ -674,14 +683,14 @@
 
 .footerBrand {
   font-family: 'Manrope', sans-serif;
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 700;
   color: #003461;
   margin-bottom: 6px;
 }
 
 .footerLink {
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: #727781;
   text-decoration: none;
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -772,5 +781,16 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 32px 16px;
+  }
+}
+
+/* ─── Reduced motion ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

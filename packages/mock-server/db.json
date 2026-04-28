@@ -1,4 +1,30 @@
 {
+  "reviews": [
+    { "initials": "MB", "bg": "#c6e7ff", "name": "Margaret B.", "ago": "2 weeks ago", "stars": 5,
+      "text": "\"The doctor was incredibly patient and thorough. Explained my condition clearly and in a way that actually made sense to me.\"" },
+    { "initials": "JW", "bg": "#d3e4ff", "name": "James W.", "ago": "1 month ago", "stars": 5,
+      "text": "\"The treatment plan has made a huge difference in my daily life. I really feel like my health is in good hands.\"" },
+    { "initials": "RC", "bg": "#ffdbc8", "name": "Robert C.", "ago": "2 months ago", "stars": 4,
+      "text": "\"Very professional office. The staff is friendly and the doctor takes time to listen without rushing through the appointment.\"" },
+    { "initials": "SK", "bg": "#c6e7ff", "name": "Sarah K.", "ago": "3 months ago", "stars": 5,
+      "text": "\"Compassionate care. He didn't rush me through questions about my medication side effects — I felt truly heard.\"" },
+    { "initials": "DL", "bg": "#d3e4ff", "name": "David L.", "ago": "3 months ago", "stars": 5,
+      "text": "\"Professional and thorough. The entire medical team seems very synchronized and works seamlessly together.\"" }
+  ],
+  "prescriptions": {
+    "morning": [
+      { "name": "Lisinopril", "dose": "10mg Tablet" },
+      { "name": "Metformin",  "dose": "500mg Tablet" }
+    ],
+    "evening": [
+      { "name": "Atorvastatin", "dose": "20mg Tablet" }
+    ],
+    "active": [
+      { "name": "Atorvastatin", "dose": "20mg", "indication": "High Cholesterol",    "doctor": "Dr. Sarah Jenkins", "lastFilled": "Oct 12", "refills": 2, "status": "refill-ready" },
+      { "name": "Lisinopril",   "dose": "10mg", "indication": "High Blood Pressure", "doctor": "Dr. Sarah Jenkins", "lastFilled": "Oct 8",  "refills": 5, "status": "refill-ready" },
+      { "name": "Metformin",    "dose": "500mg","indication": "Type 2 Diabetes",     "doctor": "Dr. Sarah Jenkins", "lastFilled": "Sep 30", "refills": 0, "status": "no-refills" }
+    ]
+  },
   "hero": {
     "tag": "PERSONALIZED CARE",
     "heading": "Your Care Concierge is ready to help.",

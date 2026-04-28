@@ -1,54 +1,20 @@
-import { useMember, usePlan } from '@medicare/shared';
-
-// Static prescription data — matches mobile RxScreen
-const MORNING_MEDS = [
-  { name: 'Lisinopril', dose: '10mg Tablet' },
-  { name: 'Metformin', dose: '500mg Tablet' },
-];
-
-const EVENING_MEDS = [
-  { name: 'Atorvastatin', dose: '20mg Tablet' },
-];
-
-const ACTIVE_PRESCRIPTIONS = [
-  {
-    name: 'Atorvastatin',
-    dose: '20mg',
-    indication: 'High Cholesterol',
-    doctor: 'Dr. Sarah Jenkins',
-    lastFilled: 'Oct 12',
-    refills: 2,
-    status: 'refill-ready' as const,
-  },
-  {
-    name: 'Lisinopril',
-    dose: '10mg',
-    indication: 'High Blood Pressure',
-    doctor: 'Dr. Sarah Jenkins',
-    lastFilled: 'Oct 8',
-    refills: 5,
-    status: 'refill-ready' as const,
-  },
-  {
-    name: 'Metformin',
-    dose: '500mg',
-    indication: 'Type 2 Diabetes',
-    doctor: 'Dr. Sarah Jenkins',
-    lastFilled: 'Sep 30',
-    refills: 0,
-    status: 'no-refills' as const,
-  },
-];
+import { useMember, usePlan, usePrescriptions } from '@medicare/shared';
+import styles from '../App.module.css';
 
 const FOOTER_LINKS = ['Privacy Policy', 'Terms of Use', 'Accessibility Services', 'Language Support', 'Contact Us'];
 
 export default function Prescriptions() {
   const { data: member } = useMember();
   const { data: plan } = usePlan();
+  const { data: rx } = usePrescriptions();
+
+  const morningMeds  = rx?.morning  ?? [];
+  const eveningMeds  = rx?.evening  ?? [];
+  const activePrescriptions = rx?.active ?? [];
 
   return (
     <>
-      <main className="max-w-screen-xl mx-auto px-6 py-9 pb-20 box-border" style={{ maxWidth: 1200 }}>
+      <main className={styles.pageWrap}>
         <header className="mb-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
           <div className="md:col-span-7">
             <h1 className="font-headline text-6xl font-extrabold text-primary tracking-tight mb-4">Your Wellness, Simplified.</h1>
@@ -92,7 +58,7 @@ export default function Prescriptions() {
                     <span className="material-symbols-outlined text-secondary text-5xl">light_mode</span>
                   </div>
                   <ul className="space-y-4">
-                    {MORNING_MEDS.map(med => (
+                    {morningMeds.map(med => (
                       <li key={med.name} className="flex items-center justify-between p-4 bg-surface rounded-lg">
                         <span className="text-xl font-bold text-on-surface">{med.name}</span>
                         <span className="text-on-surface-variant font-medium text-lg">{med.dose}</span>
@@ -113,7 +79,7 @@ export default function Prescriptions() {
                     <span className="material-symbols-outlined text-primary text-5xl">dark_mode</span>
                   </div>
                   <ul className="space-y-4">
-                    {EVENING_MEDS.map(med => (
+                    {eveningMeds.map(med => (
                       <li key={med.name} className="flex items-center justify-between p-4 bg-surface rounded-lg">
                         <span className="text-xl font-bold text-on-surface">{med.name}</span>
                         <span className="text-on-surface-variant font-medium text-lg">{med.dose}</span>
@@ -132,7 +98,7 @@ export default function Prescriptions() {
             <section>
               <h2 className="font-headline text-3xl font-bold text-primary mb-8">Active Prescriptions</h2>
               <div className="bg-white rounded-2xl overflow-hidden" style={{ boxShadow: '0 2px 12px rgba(0,52,97,0.08)', border: '1px solid rgba(0,52,97,0.05)' }}>
-                {ACTIVE_PRESCRIPTIONS.map((rx, i) => (
+                {activePrescriptions.map((rx, i) => (
                   <div key={rx.name}>
                     {i > 0 && <div className="h-px bg-outline-variant/20 mx-8" />}
                     <div className="p-8 hover:bg-white transition-colors">

@@ -13,6 +13,8 @@ import {
   getBenefits,
   getClaims,
   getClaim,
+  getReviews,
+  getPrescriptions,
 } from '../services/dashboardService';
 
 const STALE = 5 * 60 * 1000; // 5 minutes
@@ -52,6 +54,12 @@ export const useClaim = (id: string) =>
 
 export const useProvider = (id: string) =>
   useQuery({ queryKey: ['provider', id], queryFn: () => getProvider(id), staleTime: STALE, enabled: !!id });
+
+export const useReviews = () =>
+  useQuery({ queryKey: ['reviews'], queryFn: getReviews, staleTime: STALE });
+
+export const usePrescriptions = () =>
+  useQuery({ queryKey: ['prescriptions'], queryFn: getPrescriptions, staleTime: STALE });
 
 export const useProviders = (
   params: { category?: string; maxDistance?: number; name?: string } = {},

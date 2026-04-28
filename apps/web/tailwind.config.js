@@ -62,6 +62,16 @@ export default {
         "xl": "0.75rem",
         "full": "9999px"
       },
+      "boxShadow": {
+        "card-sm":     "0 2px 8px rgba(0,52,97,0.07)",
+        "card":        "0 4px 20px rgba(0,52,97,0.10)",
+        "card-lg":     "0 20px 40px -10px rgba(0,52,97,0.10)",
+        "card-xl":     "0 25px 50px -12px rgba(0,75,135,0.20)",
+        "id-card":     "0 8px 32px rgba(0,52,97,0.35)",
+        "btn-primary": "0 4px 15px rgba(0,52,97,0.30)",
+        "btn-cta":     "0 4px 16px rgba(0,101,141,0.30)",
+        "card-hover":  "0 8px 28px rgba(0,52,97,0.15)"
+      },
       "fontFamily": {
         "headline": ["Manrope", "sans-serif"],
         "display": ["Manrope", "sans-serif"],

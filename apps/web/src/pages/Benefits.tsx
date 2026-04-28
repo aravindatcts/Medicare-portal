@@ -135,7 +135,7 @@ export default function Benefits() {
               {(benefits?.costs ?? []).map((cost, i) => {
                 const pct = Math.round((cost.spent / cost.total) * 100);
                 return (
-                  <div key={cost.label} className="bg-white p-8 rounded-2xl flex flex-col" style={{ boxShadow: '0 2px 10px rgba(0,52,97,0.08)', transition: 'box-shadow 0.2s, transform 0.18s' }} onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow='0 8px 28px rgba(0,52,97,0.15)'; (e.currentTarget as HTMLDivElement).style.transform='translateY(-2px)'; }} onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow='0 2px 10px rgba(0,52,97,0.08)'; (e.currentTarget as HTMLDivElement).style.transform='translateY(0)'; }}>
+                  <div key={cost.label} className={`bg-white p-8 rounded-2xl flex flex-col ${styles.hoverLift}`} style={{ boxShadow: '0 2px 10px rgba(0,52,97,0.08)' }}>
                     <div className="flex items-center gap-4 mb-8">
                       <div className="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center">
                         <span className="material-symbols-outlined text-secondary" style={{ fontVariationSettings: '"FILL" 1' }}>
@@ -219,7 +219,7 @@ export default function Benefits() {
               <h3 className="font-headline text-2xl font-bold text-primary mb-6">Additional Benefits</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {compactBenefits.map(benefit => (
-                  <div key={benefit.id} className="bg-white p-6 rounded-2xl" style={{ boxShadow: '0 2px 8px rgba(0,52,97,0.07)', transition: 'box-shadow 0.2s, transform 0.18s' }} onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow='0 8px 28px rgba(0,52,97,0.15)'; (e.currentTarget as HTMLDivElement).style.transform='translateY(-2px)'; }} onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow='0 2px 8px rgba(0,52,97,0.07)'; (e.currentTarget as HTMLDivElement).style.transform='translateY(0)'; }}>
+                  <div key={benefit.id} className={`bg-white p-6 rounded-2xl ${styles.hoverLift}`} style={{ boxShadow: '0 2px 8px rgba(0,52,97,0.07)' }}>
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center">
                         <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: '"FILL" 1' }}>

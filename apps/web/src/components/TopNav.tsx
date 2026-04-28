@@ -1,14 +1,16 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 // import { useDescope, useUser } from '@descope/react-sdk';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styles from '../App.module.css';
 
 export default function TopNav() {
   // const { logout } = useDescope();
   // const { user } = useUser();
+  const navigate = useNavigate();
   const userPicture: string | null = null;
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const menuItemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   const displayName = 'Member';
   const initials = 'M';
@@ -23,16 +25,31 @@ export default function TopNav() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // async function handleLogout() {
-  //   await logout();
-  //   navigate('/login', { replace: true });
-  // }
+  const handleDropdownKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (!dropdownOpen) return;
+    if (e.key === 'Escape') {
+      setDropdownOpen(false);
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const idx = menuItemRefs.current.findIndex(el => el === document.activeElement);
+      menuItemRefs.current[idx + 1]?.focus();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const idx = menuItemRefs.current.findIndex(el => el === document.activeElement);
+      menuItemRefs.current[idx - 1]?.focus();
+    }
+  }, [dropdownOpen]);
+
+  async function handleLogout() {
+    // await logout();
+    navigate('/login', { replace: true });
+  }
 
   return (
     <header className={styles.nav}>
       <div className={styles.navInner}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
-          <button className={styles.iconBtn}>
+          <button className={styles.iconBtn} aria-label="Open menu">
             <span className="material-symbols-outlined">menu</span>
           </button>
           <span className={styles.brand}>AmeriHealth Sanctuary</span>
@@ -51,10 +68,13 @@ export default function TopNav() {
                 key={path}
                 className="relative"
                 ref={dropdownRef}
+                onKeyDown={handleDropdownKeyDown}
               >
                 <NavLink
                   to={path}
                   className={styles.navLink}
+                  aria-haspopup="menu"
+                  aria-expanded={dropdownOpen}
                   onClick={e => { e.preventDefault(); setDropdownOpen(o => !o); }}
                   style={({ isActive }) => isActive ? {
                     borderBottom: '4px solid #2563eb',
@@ -73,21 +93,28 @@ export default function TopNav() {
                   }}
                 >
                   {label}
-                  <span className="material-symbols-outlined text-sm">
+                  <span className="material-symbols-outlined text-sm" aria-hidden="true">
                     {dropdownOpen ? 'expand_less' : 'expand_more'}
                   </span>
                 </NavLink>
                 {dropdownOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-slate-200 rounded-lg shadow-lg flex flex-col py-2 z-50">
+                  <div
+                    role="menu"
+                    className="absolute top-full left-0 mt-1 w-48 bg-white border border-slate-200 rounded-lg shadow-lg flex flex-col py-2 z-50"
+                  >
                     <NavLink
+                      role="menuitem"
                       to="/claims"
+                      ref={el => { menuItemRefs.current[0] = el; }}
                       className="px-4 py-2 hover:bg-slate-50 text-blue-800 text-base font-bold transition-colors"
                       onClick={() => setDropdownOpen(false)}
                     >
                       View Claims
                     </NavLink>
                     <NavLink
+                      role="menuitem"
                       to="/claims/submit"
+                      ref={el => { menuItemRefs.current[1] = el; }}
                       className="px-4 py-2 hover:bg-slate-50 text-blue-800 text-base font-bold transition-colors"
                       onClick={() => setDropdownOpen(false)}
                     >
@@ -97,22 +124,17 @@ export default function TopNav() {
                 )}
               </div>
             ) : (
-              <NavLink 
-                key={path} 
-                to={path} 
+              <NavLink
+                key={path}
+                to={path}
                 className={styles.navLink}
-                style={({ isActive }) => isActive && path !== '/' ? { 
-                  borderBottom: '4px solid #2563eb', 
-                  color: '#1e40af', 
-                  paddingBottom: '6px', 
-                  fontWeight: 'bold' 
-                } : isActive && path === '/' ? {
-                  borderBottom: '4px solid #2563eb', 
-                  color: '#1e40af', 
-                  paddingBottom: '6px', 
-                  fontWeight: 'bold' 
+                style={({ isActive }) => isActive ? {
+                  borderBottom: '4px solid #2563eb',
+                  color: '#1e40af',
+                  paddingBottom: '6px',
+                  fontWeight: 'bold',
                 } : {
-                  paddingBottom: '10px'
+                  paddingBottom: '10px',
                 }}
               >
                 {label}
@@ -127,17 +149,11 @@ export default function TopNav() {
             Concierge
           </button>
 
-          {/* User menu */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <div
               className={styles.avatarWrap}
               title={displayName}
-              style={{
-                background: '#003461',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
+              style={{ background: '#003461', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
               {userPicture ? (
                 <img src={userPicture} alt={displayName} className={styles.avatar} />
@@ -147,24 +163,9 @@ export default function TopNav() {
             </div>
 
             <button
-              onClick={() => {}}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 4,
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                color: '#475569',
-                fontSize: 13,
-                fontWeight: 600,
-                fontFamily: 'Plus Jakarta Sans, sans-serif',
-                padding: '4px 6px',
-                borderRadius: 6,
-                transition: 'color 0.2s',
-              }}
-              onMouseOver={e => (e.currentTarget.style.color = '#003461')}
-              onMouseOut={e => (e.currentTarget.style.color = '#475569')}
+              onClick={handleLogout}
+              className="flex items-center gap-1 bg-transparent border-none cursor-pointer text-slate-600 hover:text-primary text-sm font-semibold px-1.5 py-1 rounded transition-colors"
+              style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
             >
               <span className="material-symbols-outlined" style={{ fontSize: 18 }}>logout</span>
               Sign out

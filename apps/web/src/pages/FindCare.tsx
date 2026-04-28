@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useProviders } from '@medicare/shared';
 import type { ProviderData } from '@medicare/shared';
+import { DoctorAvatar } from '@medicare/ui';
 import styles from '../App.module.css';
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -24,78 +25,6 @@ const MAP_PINS = [
 ];
 
 const PAGE_SIZE = 5;
-
-// ── Specialty palette (gradient, icon) ────────────────────────────────────────
-const SPECIALTY_THEME: Record<string, [string, string, string]> = {
-  'Primary Care':      ['#003461', '#1D6FA4', 'stethoscope'],
-  'Family Medicine':   ['#003461', '#1D6FA4', 'stethoscope'],
-  'Cardiology':        ['#7F1D1D', '#C0392B', 'cardiology'],
-  'Internal Medicine': ['#065F46', '#0D9B6A', 'medical_information'],
-  'Physical Therapy':  ['#713F12', '#C67A1D', 'self_improvement'],
-  'Dermatology':       ['#4C1D95', '#7C3AED', 'dermatology'],
-  'Orthopedics':       ['#0C4A6E', '#0284C7', 'orthopedics'],
-  'Neurology':         ['#1E1B4B', '#4338CA', 'neurology'],
-  'Gastroenterology':  ['#134E4A', '#0F9488', 'biotech'],
-  'Psychiatry':        ['#831843', '#BE185D', 'psychology'],
-  'Ophthalmology':     ['#164E63', '#0891B2', 'visibility'],
-};
-const FALLBACK_THEME: [string, string, string] = ['#1E3A5F', '#2563EB', 'medical_services'];
-
-// ── DoctorAvatar ─────────────────────────────────────────────────────────────
-function DoctorAvatar({
-  name, category, providerId, size = 160, dimmed = false,
-}: {
-  name: string; category: string; providerId: string; size?: number; dimmed?: boolean;
-}) {
-  const cleanName = name.replace(/^Dr\.?\s+/i, '');
-  const parts = cleanName.trim().split(/\s+/);
-  const initials = ((parts[0]?.[0] ?? '') + (parts[1]?.[0] ?? '')).toUpperCase();
-  const [g1, g2, icon] = SPECIALTY_THEME[category] ?? FALLBACK_THEME;
-  const gradId = `avgrad-${providerId}`;
-
-  return (
-    <div style={{
-      position: 'relative', width: size, height: size, borderRadius: 16, overflow: 'hidden', flexShrink: 0,
-      filter: dimmed ? 'grayscale(0.5) opacity(0.75)' : 'none',
-      boxShadow: dimmed ? 'none' : '0 8px 28px rgba(0,52,97,0.22)',
-    }}>
-      <svg width={size} height={size} viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
-        <defs>
-          <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor={g1} />
-            <stop offset="100%" stopColor={g2} />
-          </linearGradient>
-        </defs>
-        <rect width="160" height="160" fill={`url(#${gradId})`} />
-        <circle cx="138" cy="22"  r="48" fill="rgba(255,255,255,0.07)" />
-        <circle cx="22"  cy="140" r="40" fill="rgba(255,255,255,0.05)" />
-        {/* coat body */}
-        <path d="M0 160 L0 114 Q0 96 20 90 L56 77 L80 97 L104 77 L140 90 Q160 96 160 114 L160 160 Z"
-          fill="rgba(255,255,255,0.15)" />
-        {/* collar */}
-        <path d="M56 77 L80 100 L104 77 L110 81 L80 118 L50 81 Z" fill="rgba(255,255,255,0.22)" />
-        {/* head */}
-        <ellipse cx="80" cy="52" rx="27" ry="30" fill="rgba(255,255,255,0.18)" />
-        {/* initials */}
-        <text x="80" y="60" dominantBaseline="central" textAnchor="middle"
-          fontFamily="Manrope, sans-serif" fontWeight="800" fontSize="32" fill="white" opacity="0.95" letterSpacing="-1">
-          {initials}
-        </text>
-      </svg>
-      {/* specialty badge */}
-      <div style={{
-        position: 'absolute', bottom: 10, right: 10, width: 32, height: 32,
-        background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(6px)',
-        borderRadius: 9, display: 'flex', alignItems: 'center', justifyContent: 'center',
-      }}>
-        <span className="material-symbols-outlined"
-          style={{ fontSize: 18, color: 'white', fontVariationSettings: "'FILL' 1, 'wght' 300" }}>
-          {icon}
-        </span>
-      </div>
-    </div>
-  );
-}
 
 // ── Skeleton card ─────────────────────────────────────────────────────────────
 function SkeletonCard() {
@@ -126,15 +55,13 @@ function ProviderCard({ provider, isSmartMatch }: { provider: ProviderData; isSm
 
   return (
     <div
-      className="group relative bg-surface-container-lowest rounded-2xl p-8 flex flex-col md:flex-row gap-8 transition-all duration-300"
+      className={`group relative bg-surface-container-lowest rounded-2xl p-8 flex flex-col md:flex-row gap-8 transition-all duration-300 ${styles.hoverLift}`}
       style={{
         boxShadow: isSmartMatch
           ? '0 25px 50px -12px rgba(0,75,135,0.20)'
           : '0 20px 40px -10px rgba(0,52,97,0.10)',
         border: isSmartMatch ? '2px solid rgba(0,75,135,0.25)' : '2px solid transparent',
       }}
-      onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = '0 30px 60px -12px rgba(0,75,135,0.22)'; }}
-      onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = isSmartMatch ? '0 25px 50px -12px rgba(0,75,135,0.20)' : '0 20px 40px -10px rgba(0,52,97,0.10)'; }}
     >
       {/* Smart Match badge */}
       {isSmartMatch && (
@@ -162,8 +89,8 @@ function ProviderCard({ provider, isSmartMatch }: { provider: ProviderData; isSm
             <span className="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase font-label">
               {provider.category}
             </span>
-            <div className="flex items-center gap-1 text-sm font-bold" style={{ color: '#793701' }}>
-              <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1", color: '#793701' }}>star</span>
+            <div className="flex items-center gap-1 text-sm font-bold text-tertiary-container">
+              <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
               {provider.rating.toFixed(1)}
               {isSmartMatch && <span className="text-on-surface-variant font-normal">(124 reviews)</span>}
             </div>
@@ -392,6 +319,9 @@ export default function FindCare() {
               style={{ background: 'rgba(0,52,97,0.04)', border: '1px solid rgba(0,52,97,0.08)' }}>
               <span className="font-bold text-primary text-sm font-label">In-Network Only</span>
               <button
+                role="switch"
+                aria-checked={filterInNetwork}
+                aria-label="In-Network Only"
                 onClick={() => setFilterInNetwork(v => !v)}
                 className={`relative w-11 h-6 rounded-full transition-colors ${filterInNetwork ? 'bg-primary' : 'bg-outline-variant'}`}
               >
@@ -492,6 +422,9 @@ export default function FindCare() {
               style={{ boxShadow: '0 4px 20px rgba(0,52,97,0.12)' }}>
               <span className="text-sm font-bold text-primary mr-3 font-label">Show Full Map</span>
               <button
+                role="switch"
+                aria-checked={showMap}
+                aria-label="Show Full Map"
                 onClick={() => setShowMap(v => !v)}
                 className={`relative w-11 h-6 rounded-full transition-colors ${showMap ? 'bg-primary' : 'bg-outline-variant'}`}
               >
@@ -525,8 +458,8 @@ export default function FindCare() {
                   onKeyDown={e => e.key === 'Enter' && applyAndSearch()}
                 />
                 {searchInput && (
-                  <button onClick={() => setSearchInput('')} className="text-outline hover:text-primary p-1">
-                    <span className="material-symbols-outlined text-base">close</span>
+                  <button onClick={() => setSearchInput('')} aria-label="Clear search" className="text-outline hover:text-primary p-1">
+                    <span className="material-symbols-outlined text-base" aria-hidden="true">close</span>
                   </button>
                 )}
               </div>
@@ -612,9 +545,10 @@ export default function FindCare() {
                   <button
                     onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                     disabled={safePage === 1}
+                    aria-label="Previous page"
                     className="w-10 h-10 flex items-center justify-center rounded-xl border border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary transition-colors disabled:opacity-30 disabled:pointer-events-none"
                   >
-                    <span className="material-symbols-outlined text-lg">chevron_left</span>
+                    <span className="material-symbols-outlined text-lg" aria-hidden="true">chevron_left</span>
                   </button>
 
                   {getPageButtons().map((page, idx) =>
@@ -636,9 +570,10 @@ export default function FindCare() {
                   <button
                     onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                     disabled={safePage === totalPages}
+                    aria-label="Next page"
                     className="w-10 h-10 flex items-center justify-center rounded-xl border border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary transition-colors disabled:opacity-30 disabled:pointer-events-none"
                   >
-                    <span className="material-symbols-outlined text-lg">chevron_right</span>
+                    <span className="material-symbols-outlined text-lg" aria-hidden="true">chevron_right</span>
                   </button>
                 </div>
               )}

@@ -241,8 +241,7 @@ export default function Dashboard() {
                 padding: '6px 12px', borderRadius: 8, background: '#eff6ff',
                 transition: 'background 0.18s',
               }}
-                onMouseEnter={e => (e.currentTarget.style.background = '#dbeafe')}
-                onMouseLeave={e => (e.currentTarget.style.background = '#eff6ff')}
+                className="hover:bg-blue-100 transition-colors"
               >
                 <span className="material-symbols-outlined" style={{ fontSize: 16, color: '#003461' }}>notifications</span>
                 View All Notifications
@@ -250,15 +249,13 @@ export default function Dashboard() {
               <button
                 onClick={() => setAlertMinimized(v => !v)}
                 title={alertMinimized ? 'Expand' : 'Minimize'}
+                className="hover:bg-slate-100 transition-colors"
                 style={{
                   display: 'flex', alignItems: 'center', gap: 5,
                   background: 'none', border: '1.5px solid #e2e8f0', borderRadius: 8,
                   padding: '6px 10px', cursor: 'pointer', color: '#424750',
                   fontFamily: 'inherit', fontSize: 12, fontWeight: 600,
-                  transition: 'background 0.15s',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.background = '#f1f5f9')}
-                onMouseLeave={e => (e.currentTarget.style.background = 'none')}
               >
                 <span className="material-symbols-outlined" style={{
                   fontSize: 18,
@@ -336,8 +333,7 @@ export default function Dashboard() {
                     boxShadow: isLast ? '0 4px 12px rgba(0,52,97,0.3)' : 'none',
                     transition: 'transform 0.15s',
                   }}
-                    onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
-                    onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                    className="hover:-translate-y-0.5 transition-transform"
                   >
                     <span className="material-symbols-outlined" style={{ fontSize: 22, color: isLast ? '#fff' : '#003461' }}>{matIcon}</span>
                     {!isLast && <span style={{ fontSize: 12, fontWeight: 600, color: '#424750', whiteSpace: 'nowrap' }}>{action.label}</span>}

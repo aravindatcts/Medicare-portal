@@ -1,22 +1,34 @@
-import { StrictMode } from 'react'
+import { StrictMode, lazy, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 // import { AuthProvider } from '@descope/react-sdk'
-import App from './App.tsx'
-// import LoginPage from './pages/LoginPage.tsx'
-import Dashboard from './pages/Dashboard.tsx'
-import FindCare from './pages/FindCare.tsx'
-import Benefits from './pages/Benefits.tsx'
-import Prescriptions from './pages/Prescriptions.tsx'
-import Claims from './pages/Claims.tsx'
-import ClaimDetails from './pages/ClaimDetails.tsx'
-import SubmitClaim from './pages/SubmitClaim.tsx'
-import ProviderDetail from './pages/ProviderDetail.tsx'
 // import ProtectedRoute from './components/ProtectedRoute.tsx'
+import ErrorBoundary from './components/ErrorBoundary.tsx'
+
+const App           = lazy(() => import('./App.tsx'))
+const LoginPage     = lazy(() => import('./pages/LoginPage.tsx'))
+const Dashboard     = lazy(() => import('./pages/Dashboard.tsx'))
+const FindCare      = lazy(() => import('./pages/FindCare.tsx'))
+const Benefits      = lazy(() => import('./pages/Benefits.tsx'))
+const Prescriptions = lazy(() => import('./pages/Prescriptions.tsx'))
+const Claims        = lazy(() => import('./pages/Claims.tsx'))
+const ClaimDetails  = lazy(() => import('./pages/ClaimDetails.tsx'))
+const SubmitClaim   = lazy(() => import('./pages/SubmitClaim.tsx'))
+const ProviderDetail = lazy(() => import('./pages/ProviderDetail.tsx'))
 
 const queryClient = new QueryClient()
+
+function Page({ children }: { children: React.ReactNode }) {
+  return (
+    <ErrorBoundary>
+      <Suspense fallback={<div style={{ padding: '3rem', textAlign: 'center' }}>Loading…</div>}>
+        {children}
+      </Suspense>
+    </ErrorBoundary>
+  )
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -24,19 +36,23 @@ createRoot(document.getElementById('root')!).render(
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>
-            {/* <Route path="/login" element={<LoginPage />} /> */}
+            <Route path="/login" element={<Page><LoginPage /></Page>} />
             <Route
               path="/"
-              element={<App />}
+              element={
+                /* <ProtectedRoute> */
+                  <Page><App /></Page>
+                /* </ProtectedRoute> */
+              }
             >
-              <Route index element={<Dashboard />} />
-              <Route path="find-care" element={<FindCare />} />
-              <Route path="find-care/:id" element={<ProviderDetail />} />
-              <Route path="benefits" element={<Benefits />} />
-              <Route path="prescriptions" element={<Prescriptions />} />
-              <Route path="claims" element={<Claims />} />
-              <Route path="claims/:id" element={<ClaimDetails />} />
-              <Route path="claims/submit" element={<SubmitClaim />} />
+              <Route index element={<Page><Dashboard /></Page>} />
+              <Route path="find-care" element={<Page><FindCare /></Page>} />
+              <Route path="find-care/:id" element={<Page><ProviderDetail /></Page>} />
+              <Route path="benefits" element={<Page><Benefits /></Page>} />
+              <Route path="prescriptions" element={<Page><Prescriptions /></Page>} />
+              <Route path="claims" element={<Page><Claims /></Page>} />
+              <Route path="claims/:id" element={<Page><ClaimDetails /></Page>} />
+              <Route path="claims/submit" element={<Page><SubmitClaim /></Page>} />
             </Route>
           </Routes>
         </BrowserRouter>

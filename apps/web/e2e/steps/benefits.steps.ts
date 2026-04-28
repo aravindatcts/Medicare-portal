@@ -1,7 +1,7 @@
 import { When, Then } from '../fixtures';
 import { expect } from '../fixtures';
 
-Then('I should see the deductible progress bar', async ({ benefitsPage }) => {
+Then('I should see the benefits deductible progress bar', async ({ benefitsPage }) => {
   await expect(benefitsPage.deductibleBar).toBeVisible();
 });
 
