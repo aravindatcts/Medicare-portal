@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import type { MemberData, PlanData } from '@medicare/shared';
+import flags from '../config/featureFlags';
 
 /* ── CSS injected once ─────────────────────────────────────── */
 const CARD_CSS = `
@@ -419,13 +420,15 @@ export default function InsuranceCard({ member, plan, isLoading }: Props) {
                 <span className="material-symbols-outlined" style={{ fontSize:14 }}>flip</span>
                 View Back
               </button>
-              <button
-                className={`_card-btn${emailOpen ? ' _card-btn-active' : ''}`}
-                onClick={() => { setEmailOpen(o => !o); setFlipped(false); }}
-              >
-                <span className="material-symbols-outlined" style={{ fontSize:13 }}>mail</span>
-                Email
-              </button>
+              {flags.ID_CARD_EMAIL && (
+                <button
+                  className={`_card-btn${emailOpen ? ' _card-btn-active' : ''}`}
+                  onClick={() => { setEmailOpen(o => !o); setFlipped(false); }}
+                >
+                  <span className="material-symbols-outlined" style={{ fontSize:13 }}>mail</span>
+                  Email
+                </button>
+              )}
               <button className="_card-btn _card-btn-accent">Order Card</button>
             </div>
           </div>
@@ -497,7 +500,7 @@ export default function InsuranceCard({ member, plan, isLoading }: Props) {
       </div>
 
       {/* Email panel — slides in below the card */}
-      {emailOpen && (
+      {flags.ID_CARD_EMAIL && emailOpen && (
         <EmailPanel onClose={() => setEmailOpen(false)} />
       )}
     </div>

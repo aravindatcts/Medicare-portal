@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from '../App.module.css';
+import flags from '../config/featureFlags';
 
 /* ── Email panel CSS injected once ───────────────────────────── */
 const EMAIL_CSS = `
@@ -200,7 +201,7 @@ function EmailPanel({ onClose }: { onClose: () => void }) {
 /* ── Main component ──────────────────────────────────────────── */
 const BASE_ACTIONS = [
   { icon: 'flip',  label: 'View Back of Card' },
-  { icon: 'mail',  label: 'Email ID Card' },
+  ...(flags.ID_CARD_EMAIL ? [{ icon: 'mail', label: 'Email ID Card' }] : []),
   { icon: 'style', label: 'Order Physical ID Card' },
 ];
 
