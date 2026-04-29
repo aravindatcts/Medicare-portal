@@ -13,6 +13,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
 import { useProviders } from '@medicare/shared';
 import type { ProviderData } from '@medicare/shared';
+import LoadingSkeleton from '../components/LoadingSkeleton';
 
 const C = {
   primary: '#003461',
@@ -229,11 +230,10 @@ const FindCareScreen: React.FC = () => {
         </View>
       )}
 
-      {/* Results header */}
       <View style={styles.resultsHeader}>
         <Text style={styles.resultsTitle}>Top matches for you</Text>
         {isLoading ? (
-          <ActivityIndicator size="small" color={C.secondary} />
+          <LoadingSkeleton style={{ width: 60, height: 16, borderRadius: 4 }} />
         ) : (
           <Text style={styles.resultsCount}>
             {providers.length} {providers.length === 1 ? 'Result' : 'Results'}
@@ -243,9 +243,10 @@ const FindCareScreen: React.FC = () => {
 
       {/* Provider list */}
       {isLoading ? (
-        <View style={styles.loadingWrap}>
-          <ActivityIndicator size="large" color={C.primary} />
-          <Text style={styles.loadingText}>Finding providers…</Text>
+        <View style={styles.providerList}>
+          <LoadingSkeleton style={{ height: 160, borderRadius: 16, marginBottom: 12 }} />
+          <LoadingSkeleton style={{ height: 160, borderRadius: 16, marginBottom: 12 }} />
+          <LoadingSkeleton style={{ height: 160, borderRadius: 16 }} />
         </View>
       ) : providers.length === 0 ? (
         <View style={styles.emptyWrap}>

@@ -153,12 +153,12 @@
   "providers": [
     {
       "id": "p1",
-      "name": "Dr. Sarah Miller",
-      "specialty": "Internal Medicine & Geriatrics",
+      "name": "Dr. Sarah Chen, MD",
+      "specialty": "Internal Medicine",
       "category": "Primary Care",
       "rating": 4.9,
       "distance": 0.8,
-      "photo": "https://i.pravatar.cc/100?img=1",
+      "photo": "https://lh3.googleusercontent.com/aida-public/AB6AXuDpNp6vDOItN01NDYvZkb2zA0Yuf9RVccyys6XecLpA88VvYr-1oMLTLlFmyLybLtiYqNXC-ok3xeijXFAtAr92DPaIP1KmHndVWkOOiY1nbBqOQxrZByjLvU97pzIXsJl8MX-V3hLY77KlCfcOZ21NAB4Y_c_fqA3CpsR5y9SM2FYZY17rRWH5sxAgekM7Wlh5g_kA1Gj-Pk_8mbpi-2ZfUJV6ownb_rRONsuyMPOlDw_5bOrD4yz2gHKtMWDJqNQ2W8JtVhBAUITT",
       "inNetwork": true,
       "address": "100 Health Way, San Francisco, CA",
       "coordinate": {

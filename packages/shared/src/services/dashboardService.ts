@@ -126,9 +126,7 @@ const ClaimSchema = z.object({
 
 // ── Fetch helper ─────────────────────────────────────────────────────────────
 
-const BASE_URL =
-  (typeof import.meta !== 'undefined' && (import.meta as { env?: { VITE_API_URL?: string } }).env?.VITE_API_URL) ||
-  'http://localhost:3001';
+const BASE_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3001';
 
 async function fetchJson<S extends z.ZodTypeAny>(path: string, schema: S): Promise<z.infer<S>> {
   const res = await fetch(`${BASE_URL}${path}`);

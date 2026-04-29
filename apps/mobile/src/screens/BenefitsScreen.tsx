@@ -6,12 +6,12 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  ActivityIndicator,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useBenefits, useMember } from '@medicare/shared';
 import type { BenefitBreakdownItem, CostItem } from '@medicare/shared';
+import LoadingSkeleton from '../components/LoadingSkeleton';
 
 const C = {
   primary: '#003461',
@@ -153,8 +153,13 @@ const BenefitsScreen: React.FC = () => {
 
   if (isLoading || !benefits) {
     return (
-      <View style={styles.loader}>
-        <ActivityIndicator size="large" color={C.primary} />
+      <View style={[styles.scroll, styles.scrollContent]}>
+        <LoadingSkeleton style={{ height: 180, borderRadius: 20, borderTopRightRadius: 48, borderBottomLeftRadius: 48, marginBottom: 20 }} />
+        <LoadingSkeleton style={{ width: 140, height: 24, marginBottom: 12, borderRadius: 4 }} />
+        <LoadingSkeleton style={{ height: 110, borderRadius: 16, marginBottom: 10, borderTopRightRadius: 28 }} />
+        <LoadingSkeleton style={{ height: 110, borderRadius: 16, marginBottom: 20, borderTopRightRadius: 28 }} />
+        <LoadingSkeleton style={{ width: 160, height: 24, marginBottom: 12, borderRadius: 4 }} />
+        <LoadingSkeleton style={{ height: 140, borderRadius: 16, marginBottom: 10, borderTopRightRadius: 32 }} />
       </View>
     );
   }

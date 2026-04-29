@@ -16,6 +16,11 @@ const CSP = [
 
 // https://vite.dev/config/
 export default defineConfig({
+  define: {
+    'process.env.EXPO_PUBLIC_API_URL': JSON.stringify(
+      process.env.VITE_API_URL || process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3001'
+    ),
+  },
   plugins: [
     react(),
     createHtmlPlugin({
