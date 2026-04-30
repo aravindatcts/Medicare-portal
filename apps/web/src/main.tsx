@@ -3,19 +3,23 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-// import { AuthProvider } from '@descope/react-sdk'
-// import ProtectedRoute from './components/ProtectedRoute.tsx'
+import { AuthProvider } from '@descope/react-sdk'
+import ProtectedRoute from './components/ProtectedRoute.tsx'
 import ErrorBoundary from './components/ErrorBoundary.tsx'
+import { setBaseUrl } from '@medicare/shared'
 
-const App           = lazy(() => import('./App.tsx'))
-const LoginPage     = lazy(() => import('./pages/LoginPage.tsx'))
-const Dashboard     = lazy(() => import('./pages/Dashboard.tsx'))
-const FindCare      = lazy(() => import('./pages/FindCare.tsx'))
-const Benefits      = lazy(() => import('./pages/Benefits.tsx'))
-const Prescriptions = lazy(() => import('./pages/Prescriptions.tsx'))
-const Claims        = lazy(() => import('./pages/Claims.tsx'))
-const ClaimDetails  = lazy(() => import('./pages/ClaimDetails.tsx'))
-const SubmitClaim   = lazy(() => import('./pages/SubmitClaim.tsx'))
+// Configure the shared API layer with the Vite env URL before any query runs
+setBaseUrl(import.meta.env.VITE_API_URL ?? 'http://localhost:3001')
+
+const App            = lazy(() => import('./App.tsx'))
+const LoginPage      = lazy(() => import('./pages/LoginPage.tsx'))
+const Dashboard      = lazy(() => import('./pages/Dashboard.tsx'))
+const FindCare       = lazy(() => import('./pages/FindCare.tsx'))
+const Benefits       = lazy(() => import('./pages/Benefits.tsx'))
+const Prescriptions  = lazy(() => import('./pages/Prescriptions.tsx'))
+const Claims         = lazy(() => import('./pages/Claims.tsx'))
+const ClaimDetails   = lazy(() => import('./pages/ClaimDetails.tsx'))
+const SubmitClaim    = lazy(() => import('./pages/SubmitClaim.tsx'))
 const ProviderDetail = lazy(() => import('./pages/ProviderDetail.tsx'))
 
 const queryClient = new QueryClient()
@@ -32,7 +36,7 @@ function Page({ children }: { children: React.ReactNode }) {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {/* <AuthProvider projectId={import.meta.env.VITE_DESCOPE_PROJECT_ID}> */}
+    <AuthProvider projectId={import.meta.env.VITE_DESCOPE_PROJECT_ID}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>
@@ -40,9 +44,9 @@ createRoot(document.getElementById('root')!).render(
             <Route
               path="/"
               element={
-                /* <ProtectedRoute> */
+                <ProtectedRoute>
                   <Page><App /></Page>
-                /* </ProtectedRoute> */
+                </ProtectedRoute>
               }
             >
               <Route index element={<Page><Dashboard /></Page>} />
@@ -57,6 +61,6 @@ createRoot(document.getElementById('root')!).render(
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
-    {/* </AuthProvider> */}
+    </AuthProvider>
   </StrictMode>,
 )

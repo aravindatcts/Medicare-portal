@@ -1,19 +1,19 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-// import { useDescope, useUser } from '@descope/react-sdk';
+import { useDescope, useUser } from '@descope/react-sdk';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styles from '../App.module.css';
 
 export default function TopNav() {
-  // const { logout } = useDescope();
-  // const { user } = useUser();
+  const { logout } = useDescope();
+  const { user } = useUser();
   const navigate = useNavigate();
-  const userPicture: string | null = null;
+  const userPicture: string | null = user?.picture ?? null;
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const menuItemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
-  const displayName = 'Member';
-  const initials = 'M';
+  const displayName = user?.name ?? 'Member';
+  const initials = displayName.charAt(0).toUpperCase();
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -41,7 +41,7 @@ export default function TopNav() {
   }, [dropdownOpen]);
 
   async function handleLogout() {
-    // await logout();
+    await logout();
     navigate('/login', { replace: true });
   }
 

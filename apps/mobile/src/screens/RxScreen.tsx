@@ -7,6 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 // Design tokens from the Rx spec
 const C = {
@@ -170,14 +171,10 @@ function PharmacistCard() {
   );
 }
 
-// ─── Main Screen ──────────────────────────────────────────────────────────────
 const RxScreen: React.FC = () => {
+  const insets = useSafeAreaInsets();
   return (
-    <ScrollView
-      style={styles.scroll}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.scrollContent}
-    >
+    <View style={[styles.root, { paddingTop: insets.top }]}>
       {/* Header */}
       <View style={styles.header}>
         <View>
@@ -190,6 +187,11 @@ const RxScreen: React.FC = () => {
         </TouchableOpacity>
       </View>
 
+      <ScrollView
+        style={styles.scroll}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
       <PharmacyCard />
       <DailySchedule />
 
@@ -215,13 +217,15 @@ const RxScreen: React.FC = () => {
       <PharmacistCard />
 
       <View style={{ height: 16 }} />
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  root: { flex: 1, backgroundColor: C.surfaceLow },
   scroll: { flex: 1 },
-  scrollContent: { paddingTop: 16, paddingBottom: 8 },
+  scrollContent: { paddingTop: 4, paddingBottom: 8 },
 
   // ── Header
   header: {
@@ -229,7 +233,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     marginHorizontal: 16,
-    marginBottom: 20,
+    marginBottom: 16,
+    marginTop: 8,
   },
   pageTitle: {
     fontSize: 28,

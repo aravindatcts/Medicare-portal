@@ -1,17 +1,26 @@
-// Must be the very first import — patches RN's URL polyfill so
-// @react-navigation/native's window stub doesn't throw URL.protocol
+// URL polyfill must come before any navigation import
 import 'react-native-url-polyfill/auto';
 
 import React from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import DashboardScreen from './src/screens/DashboardScreen';
-
-const queryClient = new QueryClient();
+import { StyleSheet } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from './src/config/queryClient';
+import RootNavigator from './src/navigation/RootNavigator';
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <DashboardScreen />
-    </QueryClientProvider>
+    <GestureHandlerRootView style={styles.root}>
+      <SafeAreaProvider>
+        <QueryClientProvider client={queryClient}>
+          <RootNavigator />
+        </QueryClientProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({
+  root: { flex: 1 },
+});

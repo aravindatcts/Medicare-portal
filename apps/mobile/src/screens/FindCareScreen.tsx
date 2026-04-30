@@ -1,19 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   View,
   Text,
   ScrollView,
   TextInput,
   TouchableOpacity,
-  Image,
   StyleSheet,
-  ActivityIndicator,
+  Dimensions,
+  Switch,
+  Animated,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
+import MapView, { Marker, Circle, PROVIDER_DEFAULT } from 'react-native-maps';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ProviderAvatar } from '../components/ProviderAvatar';
+import { SmartFiltersModal, FilterState } from '../components/SmartFiltersModal';
 import { useProviders } from '@medicare/shared';
 import type { ProviderData } from '@medicare/shared';
-import LoadingSkeleton from '../components/LoadingSkeleton';
+import type { FindCareScreenProps } from '../navigation/types';
+
+const { height: SCREEN_H } = Dimensions.get('window');
 
 const C = {
   primary: '#003461',
@@ -21,592 +27,818 @@ const C = {
   secondary: '#00658d',
   secondaryContainer: '#41befd',
   onSecondaryContainer: '#004b69',
-  secondaryFixed: '#c6e7ff',
-  primaryFixed: '#d3e4ff',
-  onPrimaryContainer: '#8abcff',
   tertiary: '#572500',
+  surface: '#f8f9fa',
   surfaceLowest: '#ffffff',
-  surfaceHighest: '#e1e3e4',
   surfaceLow: '#f3f4f5',
+  surfaceHigh: '#e7e8e9',
+  surfaceHighest: '#e1e3e4',
+  outlineVariant: '#c2c6d1',
+  onSurface: '#191c1d',
   onSurfaceVariant: '#424750',
   white: '#ffffff',
-  chipActive: '#003461',
-  chipActiveTxt: '#ffffff',
-  chipInactive: '#f3f4f5',
-  chipInactiveTxt: '#424750',
+  outline: '#727781',
 };
 
-const SF_REGION = {
-  latitude: 37.7749,
-  longitude: -122.4194,
-  latitudeDelta: 0.18,
-  longitudeDelta: 0.18,
+const MAP_REGION = {
+  latitude: 39.9526,
+  longitude: -75.1652,
+  latitudeDelta: 0.15,
+  longitudeDelta: 0.15,
 };
 
-const RADIUS_OPTIONS = [
-  { label: 'Any',   value: undefined },
-  { label: '2 mi',  value: 2 },
-  { label: '5 mi',  value: 5 },
-  { label: '10 mi', value: 10 },
-  { label: '25 mi', value: 25 },
-];
+const MEMBER_ADDRESS = {
+  latitude: 39.9526,
+  longitude: -75.1652,
+};
 
-const CATEGORIES = [
-  'All',
-  'Primary Care',
-  'Cardiology',
-  'Internal Medicine',
-  'Physical Therapy',
-  'Dermatology',
-  'Orthopedics',
-  'Neurology',
-  'Gastroenterology',
-  'Psychiatry',
-  'Ophthalmology',
-];
+const SORT_OPTIONS = ['Recommended', 'Distance', 'Rating'] as const;
 
-// ─── Provider Card ─────────────────────────────────────────────────────────────
-function ProviderCard({ provider }: { provider: ProviderData }) {
+// Stable pseudo review count derived from provider id — no reviewCount field in API
+function deriveReviewCount(provider: ProviderData): number {
+  const hash = provider.id.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+  return (hash % 180) + 50;
+}
+
+// ─── Arc motif ────────────────────────────────────────────────────────────────
+function ArcMotif() {
+  return <View style={styles.arcMotif} />;
+}
+
+// ─── Smart Match banner card ──────────────────────────────────────────────────
+function SmartMatchCard({
+  provider,
+  onPress,
+}: {
+  provider: ProviderData;
+  onPress: () => void;
+}) {
   return (
-    <View style={styles.providerCard}>
-      <Image source={{ uri: provider.photo }} style={styles.providerPhoto} />
-
-      <View style={styles.providerBody}>
-        <View style={styles.providerTopRow}>
-          <Text style={styles.providerName} numberOfLines={1}>{provider.name}</Text>
-          {provider.inNetwork && (
-            <View style={styles.networkBadge}>
-              <MaterialCommunityIcons name="check-decagram" size={11} color={C.onSecondaryContainer} />
-              <Text style={styles.networkBadgeText}>IN-NETWORK</Text>
-            </View>
-          )}
-        </View>
-
-        <Text style={styles.providerSpecialty} numberOfLines={1}>{provider.specialty}</Text>
-
-        <View style={styles.providerMeta}>
-          <View style={styles.metaItem}>
-            <MaterialCommunityIcons name="star" size={14} color={C.tertiary} />
-            <Text style={styles.metaRating}>{provider.rating.toFixed(1)}</Text>
-          </View>
-          <View style={styles.metaItem}>
-            <MaterialCommunityIcons name="map-marker-outline" size={14} color={C.onSurfaceVariant} />
-            <Text style={styles.metaDistance}>{provider.distance.toFixed(1)} mi</Text>
-          </View>
-          <Text style={styles.metaAddress} numberOfLines={1}>{provider.address}</Text>
-        </View>
-
-        <TouchableOpacity style={styles.bookBtn} activeOpacity={0.85}>
-          <Text style={styles.bookBtnText}>Book Now</Text>
-        </TouchableOpacity>
+    <View style={styles.smartCard}>
+      {/* SMART MATCH tab */}
+      <View style={styles.smartBadge}>
+        <MaterialCommunityIcons name="check-decagram" size={11} color={C.secondaryContainer} />
+        <Text style={styles.smartBadgeText}>SMART MATCH</Text>
       </View>
+
+      <View style={styles.cardRow}>
+        <View style={styles.avatarWrap}>
+          <ProviderAvatar name={provider.name} category={provider.category} size={64} />
+        </View>
+        <View style={styles.cardInfo}>
+          <View style={styles.nameRow}>
+            <Text style={styles.smartProviderName} numberOfLines={1}>{provider.name}</Text>
+            {provider.inNetwork && (
+              <View style={styles.networkBadge}>
+                <Text style={styles.networkBadgeText}>IN-NETWORK</Text>
+              </View>
+            )}
+          </View>
+          <View style={styles.specialtyRow}>
+            <MaterialCommunityIcons name="medical-bag" size={13} color={C.secondaryContainer} />
+            <Text style={styles.smartSpecialtyText} numberOfLines={1}>
+              {provider.specialty}
+              {provider.yearsExperience != null ? ` · ${provider.yearsExperience} yrs exp` : ''}
+            </Text>
+          </View>
+          <View style={styles.metaRow}>
+            <View style={styles.metaItem}>
+              <MaterialCommunityIcons name="star" size={12} color={C.secondaryContainer} />
+              <Text style={styles.smartMetaRating}>{provider.rating.toFixed(1)}</Text>
+            </View>
+            <View style={styles.metaItem}>
+              <MaterialCommunityIcons name="navigation" size={12} color="rgba(255,255,255,0.6)" />
+              <Text style={styles.smartMetaDistance}>{provider.distance.toFixed(1)} mi</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+
+      {/* Confidence bar */}
+      <View style={styles.confidenceRow}>
+        <View style={styles.confidenceTrack}>
+          <View style={[styles.confidenceFill, { width: `${Math.round(provider.rating / 5 * 100)}%` }]} />
+        </View>
+        <Text style={styles.confidenceLabel}>
+          {Math.round(provider.rating / 5 * 100)}% Match Confidence
+        </Text>
+      </View>
+
+      <TouchableOpacity style={styles.smartViewBtn} onPress={onPress} activeOpacity={0.85}>
+        <Text style={styles.smartViewBtnText}>View Details</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
-// ─── Main Screen ───────────────────────────────────────────────────────────────
-const FindCareScreen: React.FC = () => {
-  const [mapEnabled, setMapEnabled] = useState(false);
-  const [nameInput, setNameInput] = useState('');
-  const [debouncedName, setDebouncedName] = useState('');
-  const [selectedRadius, setSelectedRadius] = useState<number | undefined>(undefined);
-  const [selectedCategory, setSelectedCategory] = useState('All');
-
-  // Debounce name search — only fires query after 400 ms of inactivity
-  useEffect(() => {
-    const t = setTimeout(() => setDebouncedName(nameInput), 400);
-    return () => clearTimeout(t);
-  }, [nameInput]);
-
-  const { data: providers = [], isLoading } = useProviders({
-    category: selectedCategory,
-    maxDistance: selectedRadius,
-    name: debouncedName || undefined,
-  });
+// ─── Provider Card ────────────────────────────────────────────────────────────
+function ProviderCard({
+  provider,
+  onPress,
+}: {
+  provider: ProviderData;
+  onPress: () => void;
+}) {
+  const reviewNum = deriveReviewCount(provider);
+  const bilingual = provider.languages && provider.languages.length > 1;
 
   return (
-    <ScrollView
-      style={styles.scroll}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.scrollContent}
-      keyboardShouldPersistTaps="handled"
-    >
-      {/* Page title */}
-      <Text style={styles.pageTitle}>How can we{'\n'}help today?</Text>
-
-      {/* Search by name */}
-      <View style={styles.searchWrap}>
-        <MaterialCommunityIcons name="account-heart-outline" size={22} color={C.secondary} style={styles.searchIcon} />
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search by provider name…"
-          placeholderTextColor={`${C.onSurfaceVariant}99`}
-          value={nameInput}
-          onChangeText={setNameInput}
-          returnKeyType="search"
-        />
-        {nameInput.length > 0 && (
-          <TouchableOpacity onPress={() => setNameInput('')} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
-            <MaterialCommunityIcons name="close-circle" size={18} color={C.onSurfaceVariant} />
-          </TouchableOpacity>
-        )}
-      </View>
-
-      {/* Radius filter */}
-      <View style={styles.filterSection}>
-        <Text style={styles.filterLabel}>Radius</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.chipsRow}>
-          {RADIUS_OPTIONS.map(opt => {
-            const active = selectedRadius === opt.value;
-            return (
-              <TouchableOpacity
-                key={opt.label}
-                style={[styles.chip, active && styles.chipActive]}
-                onPress={() => setSelectedRadius(opt.value)}
-                activeOpacity={0.75}
-              >
-                <Text style={[styles.chipText, active && styles.chipTextActive]}>{opt.label}</Text>
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
-      </View>
-
-      {/* Category filter */}
-      <View style={styles.filterSection}>
-        <Text style={styles.filterLabel}>Category</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.chipsRow}>
-          {CATEGORIES.map(cat => {
-            const active = selectedCategory === cat;
-            return (
-              <TouchableOpacity
-                key={cat}
-                style={[styles.chip, active && styles.chipActive]}
-                onPress={() => setSelectedCategory(cat)}
-                activeOpacity={0.75}
-              >
-                <Text style={[styles.chipText, active && styles.chipTextActive]}>{cat}</Text>
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
-      </View>
-
-      {/* Map toggle */}
-      <View style={styles.mapToggleRow}>
-        <View style={styles.mapToggleLeft}>
-          <MaterialCommunityIcons name="map-outline" size={20} color={C.secondary} />
-          <Text style={styles.mapToggleLabel}>Show Map View</Text>
+    <View style={styles.card}>
+      <ArcMotif />
+      <View style={styles.cardRow}>
+        <View style={styles.avatarWrap}>
+          <ProviderAvatar name={provider.name} category={provider.category} size={64} />
         </View>
-        <TouchableOpacity
-          style={[styles.toggle, mapEnabled && styles.toggleActive]}
-          onPress={() => setMapEnabled(!mapEnabled)}
-          activeOpacity={0.8}
-        >
-          <View style={[styles.toggleThumb, mapEnabled && styles.toggleThumbActive]} />
-        </TouchableOpacity>
+        <View style={styles.cardInfo}>
+          <View style={styles.nameRow}>
+            <Text style={styles.providerName} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.85}>
+              {provider.name}
+            </Text>
+            {provider.inNetwork && (
+              <View style={styles.networkBadge}>
+                <Text style={styles.networkBadgeText}>IN-NETWORK</Text>
+              </View>
+            )}
+          </View>
+          <View style={styles.specialtyRow}>
+            <MaterialCommunityIcons name="medical-bag" size={13} color={C.secondary} />
+            <Text style={styles.specialtyText} numberOfLines={1}>
+              {provider.specialty}
+              {bilingual ? ' • Bilingual' : ''}
+            </Text>
+          </View>
+          <View style={styles.metaRow}>
+            <View style={styles.metaItem}>
+              <MaterialCommunityIcons name="star" size={12} color={C.tertiary} />
+              <Text style={styles.metaRating}>
+                {provider.rating.toFixed(1)} ({reviewNum})
+              </Text>
+            </View>
+            <View style={styles.metaItem}>
+              <MaterialCommunityIcons name="navigation" size={12} color={C.outline} />
+              <Text style={styles.metaDistance}>{provider.distance.toFixed(1)} mi</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <TouchableOpacity style={styles.viewBtn} onPress={onPress} activeOpacity={0.85}
+        accessibilityRole="button" accessibilityLabel={`View details for ${provider.name}`}>
+        <Text style={styles.viewBtnText}>View Details</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+// ─── Skeleton card ────────────────────────────────────────────────────────────
+function SkeletonCard() {
+  const opacity = React.useRef(new Animated.Value(0.4)).current;
+  React.useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(opacity, { toValue: 1, duration: 800, useNativeDriver: true }),
+        Animated.timing(opacity, { toValue: 0.4, duration: 800, useNativeDriver: true }),
+      ])
+    ).start();
+  }, [opacity]);
+  return (
+    <Animated.View style={[styles.card, styles.skeletonCard, { opacity }]}>
+      <View style={styles.skeletonAvatar} />
+      <View style={styles.skeletonLines}>
+        <View style={[styles.skeletonLine, { width: '60%' }]} />
+        <View style={[styles.skeletonLine, { width: '40%', marginTop: 6 }]} />
+        <View style={[styles.skeletonLine, { width: '30%', marginTop: 6 }]} />
+      </View>
+    </Animated.View>
+  );
+}
+
+// ─── Main Screen ──────────────────────────────────────────────────────────────
+export default function FindCareScreen({ navigation }: FindCareScreenProps) {
+  const insets = useSafeAreaInsets();
+  const [query, setQuery] = useState('');
+  const [viewMode, setViewMode] = useState<'list'|'map'>('list');
+  const [sortIndex, setSortIndex] = useState(0);
+  const [selectedProviderId, setSelectedProviderId] = useState<string | null>(null);
+  
+  const [isFilterModalVisible, setIsFilterModalVisible] = useState(false);
+  const [filters, setFilters] = useState<FilterState>({ category: 'All' });
+
+  // ── Data layer: mirrors web FindCare.tsx exactly ──────────────────────────
+  // Fetch ALL providers with no server-side params; all filtering is client-side.
+  // This matches the web pattern: useProviders({}, { enabled: true })
+  const { data: allProviders = [], isLoading } = useProviders({}, { enabled: true });
+
+  // Smart Match = highest-rated in-network provider from the full pool (same as web)
+  const smartMatch = useMemo<ProviderData | null>(() => {
+    const inNet = allProviders.filter((p) => p.inNetwork);
+    const pool = inNet.length > 0 ? inNet : allProviders;
+    if (pool.length === 0) return null;
+    return pool.reduce((best, p) => (p.rating > best.rating ? p : best), pool[0]);
+  }, [allProviders]);
+
+  // Client-side filter + sort, excluding Smart Match from the list (same as web)
+  const filteredProviders = useMemo(() => {
+    let result = allProviders.filter((p) => p.id !== smartMatch?.id);
+    if (query.trim()) {
+      const q = query.trim().toLowerCase();
+      result = result.filter(
+        (p) =>
+          p.name.toLowerCase().includes(q) ||
+          p.specialty.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q) ||
+          p.address.toLowerCase().includes(q),
+      );
+    }
+
+    if (filters.category !== 'All') {
+      result = result.filter(p => p.category === filters.category || p.specialty === filters.category);
+    }
+    if (filters.inNetwork !== undefined) {
+      result = result.filter(p => p.inNetwork === filters.inNetwork);
+    }
+    if (filters.language !== undefined) {
+      result = result.filter(p => p.languages && p.languages.includes(filters.language!));
+    }
+    if (filters.minRating !== undefined) {
+      result = result.filter(p => p.rating >= filters.minRating!);
+    }
+    if (filters.maxDistance !== undefined) {
+      result = result.filter(p => p.distance <= filters.maxDistance!);
+    }
+
+    if (sortIndex === 1) result = [...result].sort((a, b) => a.distance - b.distance);
+    else if (sortIndex === 2) result = [...result].sort((a, b) => b.rating - a.rating);
+    return result;
+  }, [allProviders, smartMatch, query, sortIndex, filters]);
+
+  const activeFiltersCount = 
+    (query.trim().length > 0 ? 1 : 0) +
+    (filters.category !== 'All' ? 1 : 0) +
+    (filters.inNetwork !== undefined ? 1 : 0) +
+    (filters.language !== undefined ? 1 : 0) +
+    (filters.minRating !== undefined ? 1 : 0) +
+    (filters.maxDistance !== undefined ? 1 : 0);
+
+  const selectedProvider = useMemo(() => {
+    return filteredProviders.find(p => p.id === selectedProviderId) || null;
+  }, [filteredProviders, selectedProviderId]);
+
+  function navigateToDetail(provider: ProviderData) {
+    navigation.navigate('ProviderDetail', {
+      providerId: provider.id,
+      providerName: provider.name,
+    });
+  }
+
+  return (
+    <View style={[styles.root, { paddingTop: insets.top }]}>
+
+      {/* ══ Fixed header — hero + map + controls (never scrolls) ════════════ */}
+      <View style={styles.stableHeader}>
+        <Text style={styles.navTitle}>Find Care</Text>
+        <Text style={styles.pageSubtitle}>Your first step towards care.</Text>
+      </View>
+      <View>
+        {/* ── Hero ─────────────────────────────────────────── */}
+        <View style={styles.heroCard}>
+          <View style={styles.heroGlow} />
+          <Text style={styles.heroTitle}>How can we help you{'\n'}feel better today?</Text>
+          <View style={styles.searchBar}>
+            <MaterialCommunityIcons name="auto-fix" size={18} color="rgba(255,255,255,0.55)" style={styles.searchIcon} />
+            <TextInput
+              style={styles.searchInput}
+              placeholder="I need a doctor..."
+              placeholderTextColor="rgba(255,255,255,0.45)"
+              value={query}
+              onChangeText={setQuery}
+              returnKeyType="search"
+              selectionColor="rgba(255,255,255,0.7)"
+            />
+            <TouchableOpacity style={styles.askAiBtn} activeOpacity={0.85}>
+              <Text style={styles.askAiText}>Ask AI</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.suggestRow}>
+            <Text style={styles.suggestLabel}>Try:</Text>
+            {['"Senior cardiology"', '"Spanish therapists"'].map((chip) => (
+              <TouchableOpacity
+                key={chip}
+                style={styles.suggestChip}
+                onPress={() => setQuery(chip.replace(/"/g, ''))}
+                activeOpacity={0.7}
+              >
+                <Text style={styles.suggestChipText}>{chip}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+
+        {/* ── Controls bar ─────────────────────────────────── */}
+        <View style={styles.controlsBar}>
+          <TouchableOpacity style={styles.filtersBtn} activeOpacity={0.85} onPress={() => setIsFilterModalVisible(true)}>
+            <MaterialCommunityIcons name="tune-variant" size={16} color={C.secondary} />
+            <Text style={styles.filtersBtnText}>Filters</Text>
+            {activeFiltersCount > 0 && (
+              <View style={styles.filtersBadge}>
+                <Text style={styles.filtersBadgeText}>{activeFiltersCount}</Text>
+              </View>
+            )}
+          </TouchableOpacity>
+          <View style={styles.divider} />
+          
+          <View style={styles.viewToggleGroup}>
+            <TouchableOpacity 
+              style={[styles.viewToggleBtn, viewMode === 'list' && styles.viewToggleBtnActive]} 
+              onPress={() => setViewMode('list')}
+            >
+              <MaterialCommunityIcons name="format-list-bulleted" size={16} color={viewMode === 'list' ? C.white : C.onSurfaceVariant} />
+              <Text style={[styles.viewToggleText, viewMode === 'list' && styles.viewToggleTextActive]}>List</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={[styles.viewToggleBtn, viewMode === 'map' && styles.viewToggleBtnActive]} 
+              onPress={() => setViewMode('map')}
+            >
+              <MaterialCommunityIcons name="map-outline" size={16} color={viewMode === 'map' ? C.white : C.onSurfaceVariant} />
+              <Text style={[styles.viewToggleText, viewMode === 'map' && styles.viewToggleTextActive]}>Map</Text>
+            </TouchableOpacity>
+          </View>
+
+          <TouchableOpacity style={styles.sortBtn} onPress={() => setSortIndex((i) => (i + 1) % SORT_OPTIONS.length)} activeOpacity={0.8}>
+            <Text style={styles.sortBtnText}>{SORT_OPTIONS[sortIndex]}</Text>
+            <MaterialCommunityIcons name="chevron-down" size={14} color={C.primary} />
+          </TouchableOpacity>
+        </View>
       </View>
 
-      {/* Map */}
-      {mapEnabled && (
-        <View style={styles.mapWrap}>
+      {/* ══ Content Area (List or Map) ════════ */}
+      {viewMode === 'map' ? (
+        <View style={styles.fullMapSection}>
           <MapView
             provider={PROVIDER_DEFAULT}
             style={styles.map}
-            initialRegion={SF_REGION}
-            showsUserLocation
+            initialRegion={MAP_REGION}
+            showsUserLocation={false}
             showsMyLocationButton={false}
+            onPress={() => setSelectedProviderId(null)}
           >
-            {providers.map(p => (
+            {/* Member Home Location */}
+            <Marker coordinate={MEMBER_ADDRESS} zIndex={100} tracksViewChanges={false}>
+              <View style={{
+                width: 18, 
+                height: 18, 
+                borderRadius: 9, 
+                backgroundColor: C.primary,
+                borderWidth: 3, 
+                borderColor: C.white,
+                shadowColor: '#000', 
+                shadowOpacity: 0.3, 
+                shadowRadius: 4, 
+                shadowOffset: { width: 0, height: 2 }, 
+                elevation: 5
+              }} />
+            </Marker>
+
+            {/* Radius Circle if selected */}
+            {filters.maxDistance && (
+              <Circle
+                center={MEMBER_ADDRESS}
+                radius={filters.maxDistance * 1609.34} // Convert miles to meters
+                fillColor="rgba(0, 52, 97, 0.1)"
+                strokeColor="rgba(0, 52, 97, 0.3)"
+                strokeWidth={2}
+              />
+            )}
+
+            {activeFiltersCount > 0 && filteredProviders.map((p) => (
               <Marker
                 key={p.id}
                 coordinate={p.coordinate}
-                title={p.name}
-                description={`${p.specialty} · ${p.distance.toFixed(1)} mi`}
-                pinColor={p.inNetwork ? C.primary : C.tertiary}
+                pinColor={p.inNetwork ? C.primary : C.secondary}
+                onPress={(e) => {
+                  e.stopPropagation();
+                  setSelectedProviderId(p.id);
+                }}
               />
             ))}
           </MapView>
-        </View>
-      )}
+          
+          <View style={styles.mapControlsFloat}>
+            {(['crosshairs-gps', 'plus', 'minus'] as const).map((icon) => (
+              <TouchableOpacity key={icon} style={styles.mapCtrlBtn} activeOpacity={0.85}>
+                <MaterialCommunityIcons name={icon} size={20} color={C.primary} />
+              </TouchableOpacity>
+            ))}
+          </View>
 
-      <View style={styles.resultsHeader}>
-        <Text style={styles.resultsTitle}>Top matches for you</Text>
-        {isLoading ? (
-          <LoadingSkeleton style={{ width: 60, height: 16, borderRadius: 4 }} />
-        ) : (
-          <Text style={styles.resultsCount}>
-            {providers.length} {providers.length === 1 ? 'Result' : 'Results'}
-          </Text>
-        )}
-      </View>
-
-      {/* Provider list */}
-      {isLoading ? (
-        <View style={styles.providerList}>
-          <LoadingSkeleton style={{ height: 160, borderRadius: 16, marginBottom: 12 }} />
-          <LoadingSkeleton style={{ height: 160, borderRadius: 16, marginBottom: 12 }} />
-          <LoadingSkeleton style={{ height: 160, borderRadius: 16 }} />
-        </View>
-      ) : providers.length === 0 ? (
-        <View style={styles.emptyWrap}>
-          <MaterialCommunityIcons name="account-search-outline" size={48} color={C.onSurfaceVariant} />
-          <Text style={styles.emptyText}>No providers match your filters.</Text>
-          <Text style={styles.emptySub}>Try widening your radius or changing the category.</Text>
+          {selectedProvider && (
+            <View style={styles.floatingProviderCard}>
+              <ProviderCard provider={selectedProvider} onPress={() => navigateToDetail(selectedProvider)} />
+            </View>
+          )}
         </View>
       ) : (
-        <View style={styles.providerList}>
-          {providers.map(p => <ProviderCard key={p.id} provider={p} />)}
+        <ScrollView
+          style={styles.list}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.listContent}
+          keyboardShouldPersistTaps="handled"
+          scrollEventThrottle={16}
+        >
+        <View style={styles.listSection}>
+          {isLoading ? (
+            <>
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+            </>
+          ) : activeFiltersCount === 0 ? (
+            <View style={styles.emptyWrap}>
+              <MaterialCommunityIcons name="magnify" size={48} color={C.outlineVariant} />
+              <Text style={[styles.emptyTitle, { color: C.onSurfaceVariant, marginTop: 16 }]}>Search to find care</Text>
+              <Text style={styles.emptySub}>Enter a provider name, specialty, or use filters to discover healthcare options near you.</Text>
+            </View>
+          ) : (
+            <>
+              {smartMatch && (
+                <View>
+                  <Text style={styles.sectionLabel}>Smart Match For You</Text>
+                  <SmartMatchCard provider={smartMatch} onPress={() => navigateToDetail(smartMatch)} />
+                </View>
+              )}
+
+              <Text style={styles.countLabel}>
+                {filteredProviders.length} Provider{filteredProviders.length !== 1 ? 's' : ''} near you
+              </Text>
+
+              {filteredProviders.length === 0 ? (
+                <View style={styles.emptyWrap}>
+                  <MaterialCommunityIcons name="account-search-outline" size={48} color={C.onSurfaceVariant} />
+                  <Text style={styles.emptyTitle}>No providers found</Text>
+                  <Text style={styles.emptySub}>Try a different search term or clear the field.</Text>
+                </View>
+              ) : (
+                filteredProviders.map((p) => (
+                  <ProviderCard key={p.id} provider={p} onPress={() => navigateToDetail(p)} />
+                ))
+              )}
+            </>
+          )}
         </View>
+        <View style={{ height: 100 }} />
+      </ScrollView>
       )}
 
-      {/* Care Guide CTA */}
-      <View style={styles.ctaCard}>
-        <View style={styles.ctaCircle} />
-        <Text style={styles.ctaTitle}>Need help deciding?</Text>
-        <Text style={styles.ctaBody}>
-          Speak with a Care Guide who understands your benefits and can find the right specialist for you.
-        </Text>
-        <TouchableOpacity style={styles.ctaBtn} activeOpacity={0.85}>
-          <MaterialCommunityIcons name="face-agent" size={18} color={C.onSecondaryContainer} />
-          <Text style={styles.ctaBtnText}>Call Care Guide</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={{ height: 16 }} />
-    </ScrollView>
+      <SmartFiltersModal
+        visible={isFilterModalVisible}
+        initialFilters={filters}
+        onClose={() => setIsFilterModalVisible(false)}
+        onApply={(newFilters) => {
+          setFilters(newFilters);
+          setIsFilterModalVisible(false);
+        }}
+      />
+    </View>
   );
-};
+}
 
+// ─── Styles ───────────────────────────────────────────────────────────────────
 const styles = StyleSheet.create({
-  scroll: { flex: 1 },
-  scrollContent: { paddingTop: 16, paddingBottom: 8 },
-
-  pageTitle: {
-    fontSize: 30,
+  root: { flex: 1, backgroundColor: C.surface },
+  stableHeader: {
+    paddingHorizontal: 16,
+    paddingBottom: 8,
+    paddingTop: 8,
+  },
+  navTitle: {
+    fontSize: 28,
     fontWeight: '800',
     color: C.primary,
     letterSpacing: -0.5,
-    lineHeight: 38,
+  },
+  pageSubtitle: {
+    fontSize: 13,
+    color: C.onSurfaceVariant,
+    marginTop: 2,
+  },
+  list: { flex: 1 },
+  listContent: { paddingBottom: 8 },
+
+  // ── Hero
+  heroCard: {
+    backgroundColor: C.primary,
     marginHorizontal: 16,
+    marginTop: 8,
+    borderRadius: 24,
+    padding: 24,
+    overflow: 'hidden',
+    shadowColor: C.primary,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.25,
+    shadowRadius: 20,
+    elevation: 8,
+  },
+  heroGlow: {
+    position: 'absolute',
+    top: -40,
+    right: -40,
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    backgroundColor: 'rgba(65,190,253,0.18)',
+  },
+  heroTitle: {
+    fontSize: 24,
+    fontWeight: '800',
+    color: C.white,
+    letterSpacing: -0.3,
+    lineHeight: 32,
     marginBottom: 16,
   },
-
-  // ── Search
-  searchWrap: {
+  searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: C.surfaceHighest,
-    borderRadius: 16,
-    marginHorizontal: 16,
-    marginBottom: 16,
-    paddingHorizontal: 14,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderRadius: 14,
     height: 52,
+    marginBottom: 12,
   },
-  searchIcon: { marginRight: 10 },
+  searchIcon: { marginHorizontal: 12 },
   searchInput: {
     flex: 1,
-    fontSize: 15,
+    fontSize: 14,
+    color: C.white,
     fontWeight: '500',
-    color: C.primary,
+    paddingVertical: 0,
   },
-
-  // ── Filter sections
-  filterSection: {
-    marginBottom: 14,
-  },
-  filterLabel: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: C.onSurfaceVariant,
-    textTransform: 'uppercase',
-    letterSpacing: 0.8,
-    marginHorizontal: 16,
-    marginBottom: 8,
-  },
-  chipsRow: {
+  askAiBtn: {
+    backgroundColor: C.secondaryContainer,
+    borderRadius: 10,
     paddingHorizontal: 16,
-    gap: 8,
-  },
-  chip: {
-    paddingHorizontal: 14,
     paddingVertical: 8,
-    borderRadius: 99,
-    backgroundColor: C.chipInactive,
+    marginRight: 6,
   },
-  chipActive: {
-    backgroundColor: C.chipActive,
-  },
-  chipText: {
+  askAiText: {
+    color: C.onSecondaryContainer,
+    fontWeight: '700',
     fontSize: 13,
-    fontWeight: '600',
-    color: C.chipInactiveTxt,
   },
-  chipTextActive: {
-    color: C.chipActiveTxt,
-  },
-
-  // ── Map toggle
-  mapToggleRow: {
+  suggestRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: `${C.secondaryFixed}50`,
-    marginHorizontal: 16,
-    marginBottom: 16,
-    borderRadius: 16,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
+    flexWrap: 'wrap',
+    gap: 6,
   },
-  mapToggleLeft: {
+  suggestLabel: { fontSize: 11, color: 'rgba(255,255,255,0.6)', fontWeight: '600' },
+  suggestChip: {
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderRadius: 99,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+  },
+  suggestChipText: { fontSize: 11, color: 'rgba(255,255,255,0.85)', fontWeight: '500' },
+
+  suggestChipText: { fontSize: 11, color: 'rgba(255,255,255,0.85)', fontWeight: '500' },
+
+  // ── Map
+  fullMapSection: {
+    flex: 1,
+    backgroundColor: '#e5e7eb',
+    position: 'relative',
+  },
+  map: { flex: 1 },
+  mapControlsFloat: { position: 'absolute', top: 16, right: 14, gap: 8 },
+  floatingProviderCard: {
+    position: 'absolute',
+    bottom: 24,
+    left: 16,
+    right: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    elevation: 8,
+  },
+  mapCtrlBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    backgroundColor: C.surfaceLowest,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    elevation: 3,
+  },
+
+  // ── Controls bar
+  controlsBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: C.surfaceLowest,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    gap: 8,
+  },
+  filtersBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    backgroundColor: C.surfaceHigh,
+    borderRadius: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+  },
+  filtersBtnText: { fontSize: 14, fontWeight: '700', color: C.primary },
+  filtersBadge: {
+    backgroundColor: C.primary,
+    borderRadius: 99,
+    minWidth: 18,
+    height: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 4,
+  },
+  filtersBadgeText: { color: C.white, fontSize: 10, fontWeight: '800' },
+  divider: { width: 1, height: 28, backgroundColor: `${C.outlineVariant}60` },
+  viewToggleGroup: { flexDirection: 'row', backgroundColor: C.surfaceHigh, borderRadius: 10, padding: 4 },
+  viewToggleBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 8 },
+  viewToggleBtnActive: { backgroundColor: C.primary },
+  viewToggleText: { fontSize: 12, fontWeight: '700', color: C.onSurfaceVariant },
+  viewToggleTextActive: { color: C.white },
+  sortBtn: { flexDirection: 'row', alignItems: 'center', gap: 2, marginLeft: 'auto' },
+  sortBtnText: { fontSize: 14, fontWeight: '700', color: C.primary },
+
+  // ── Provider list
+  listSection: { paddingHorizontal: 16, paddingTop: 16, gap: 14 },
+  sectionLabel: {
+    fontSize: 13,
+    fontWeight: '800',
+    color: C.primary,
+    letterSpacing: 0.2,
+    marginBottom: 10,
+  },
+  countLabel: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: C.outline,
+    textTransform: 'uppercase',
+    letterSpacing: 1.2,
+    marginBottom: 2,
+    paddingHorizontal: 4,
+  },
+
+  // ── Smart Match card
+  smartCard: {
+    backgroundColor: C.primary,
+    borderRadius: 32,
+    padding: 20,
+    overflow: 'hidden',
+    shadowColor: C.primary,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.25,
+    shadowRadius: 16,
+    elevation: 6,
+    marginBottom: 16,
+  },
+  smartBadge: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: 'rgba(65,190,253,0.25)',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderTopRightRadius: 32,
+    borderBottomLeftRadius: 16,
+  },
+  smartBadgeText: {
+    fontSize: 9,
+    fontWeight: '900',
+    color: C.secondaryContainer,
+    letterSpacing: 0.8,
+  },
+  smartProviderName: {
+    fontSize: 17,
+    fontWeight: '800',
+    color: C.white,
+    flexShrink: 1,
+  },
+  smartSpecialtyText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.75)',
+    flex: 1,
+  },
+  smartMetaRating: { fontSize: 11, fontWeight: '700', color: C.secondaryContainer },
+  smartMetaDistance: { fontSize: 11, fontWeight: '600', color: 'rgba(255,255,255,0.6)' },
+  confidenceRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 10,
+    marginTop: 14,
+    marginBottom: 4,
   },
-  mapToggleLabel: {
-    fontSize: 15,
-    fontWeight: '700',
-    color: C.onSecondaryContainer,
-  },
-  toggle: {
-    width: 52,
-    height: 30,
-    borderRadius: 15,
-    backgroundColor: C.surfaceHighest,
-    justifyContent: 'center',
-    paddingHorizontal: 3,
-  },
-  toggleActive: {
-    backgroundColor: C.secondary,
-  },
-  toggleThumb: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: C.white,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.15,
-    shadowRadius: 2,
-    elevation: 2,
-  },
-  toggleThumbActive: {
-    alignSelf: 'flex-end',
-  },
-
-  // ── Map
-  mapWrap: {
-    marginHorizontal: 16,
-    marginBottom: 16,
-    borderRadius: 16,
+  confidenceTrack: {
+    flex: 1,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: 'rgba(255,255,255,0.1)',
     overflow: 'hidden',
-    height: 240,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 4,
   },
-  map: { flex: 1 },
-
-  // ── Results header
-  resultsHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginHorizontal: 16,
-    marginBottom: 12,
+  confidenceFill: {
+    height: '100%',
+    borderRadius: 3,
+    backgroundColor: C.secondaryContainer,
   },
-  resultsTitle: {
-    fontSize: 18,
+  confidenceLabel: {
+    fontSize: 10,
     fontWeight: '700',
-    color: C.primary,
-  },
-  resultsCount: {
-    fontSize: 11,
-    fontWeight: '700',
-    color: C.secondary,
+    color: 'rgba(255,255,255,0.55)',
+    letterSpacing: 0.5,
     textTransform: 'uppercase',
-    letterSpacing: 1,
   },
-
-  // ── Loading / empty
-  loadingWrap: {
+  smartViewBtn: {
+    backgroundColor: 'rgba(255,255,255,0.12)',
+    borderRadius: 12,
+    paddingVertical: 13,
     alignItems: 'center',
-    paddingVertical: 40,
-    gap: 12,
+    marginTop: 14,
   },
-  loadingText: {
-    fontSize: 14,
-    color: C.onSurfaceVariant,
-  },
-  emptyWrap: {
-    alignItems: 'center',
-    paddingVertical: 40,
-    paddingHorizontal: 32,
-    gap: 8,
-  },
-  emptyText: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: C.primary,
-    textAlign: 'center',
-  },
-  emptySub: {
-    fontSize: 13,
-    color: C.onSurfaceVariant,
-    textAlign: 'center',
-    lineHeight: 20,
-  },
+  smartViewBtnText: { color: C.white, fontSize: 13, fontWeight: '700', letterSpacing: 0.2 },
 
-  // ── Provider list
-  providerList: {
-    gap: 12,
-    marginHorizontal: 16,
-    marginBottom: 24,
-  },
-  providerCard: {
-    flexDirection: 'row',
+  // ── Regular provider card
+  card: {
     backgroundColor: C.surfaceLowest,
-    borderRadius: 16,
-    padding: 14,
-    gap: 12,
+    borderRadius: 32,
+    padding: 20,
+    overflow: 'hidden',
+    shadowColor: C.primary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 3,
+  },
+  arcMotif: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    width: 40,
+    height: 40,
+    borderTopRightRadius: 32,
+    backgroundColor: 'rgba(0,101,141,0.05)',
+  },
+  cardRow: { flexDirection: 'row', gap: 16, alignItems: 'flex-start' },
+  avatarWrap: {
+    flexShrink: 0,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-    elevation: 2,
+    shadowOpacity: 0.12,
+    shadowRadius: 6,
+    elevation: 3,
   },
-  providerPhoto: {
-    width: 54,
-    height: 54,
-    borderRadius: 27,
-    backgroundColor: C.primaryFixed,
-    flexShrink: 0,
-  },
-  providerBody: { flex: 1 },
-  providerTopRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 2,
-    gap: 6,
-  },
-  providerName: {
-    fontSize: 15,
-    fontWeight: '700',
-    color: C.primary,
-    flex: 1,
-  },
+  cardInfo: { flex: 1, gap: 4 },
+  nameRow: { flexDirection: 'row', alignItems: 'center', gap: 6, flexWrap: 'wrap' },
+  providerName: { fontSize: 17, fontWeight: '800', color: C.primary, flexShrink: 1 },
   networkBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 3,
-    backgroundColor: `${C.secondaryContainer}30`,
-    paddingHorizontal: 6,
+    backgroundColor: 'rgba(0,101,141,0.1)',
+    paddingHorizontal: 8,
     paddingVertical: 3,
-    borderRadius: 6,
-    flexShrink: 0,
+    borderRadius: 99,
   },
   networkBadgeText: {
     fontSize: 8,
-    fontWeight: '800',
-    color: C.onSecondaryContainer,
-    letterSpacing: 0.3,
+    fontWeight: '900',
+    color: C.secondary,
+    letterSpacing: 0.5,
+    textTransform: 'uppercase',
   },
-  providerSpecialty: {
-    fontSize: 12,
-    fontWeight: '500',
-    color: C.onSurfaceVariant,
-    marginBottom: 8,
-  },
-  providerMeta: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-    marginBottom: 10,
-    flexWrap: 'nowrap',
-  },
-  metaItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 3,
-    flexShrink: 0,
-  },
-  metaRating: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: C.tertiary,
-  },
-  metaDistance: {
-    fontSize: 12,
-    color: C.onSurfaceVariant,
-  },
-  metaAddress: {
-    fontSize: 11,
-    color: C.onSurfaceVariant,
-    flex: 1,
-  },
-  bookBtn: {
-    backgroundColor: C.primary,
-    borderRadius: 10,
-    paddingVertical: 10,
-    alignItems: 'center',
-  },
-  bookBtnText: {
-    color: C.white,
-    fontWeight: '700',
-    fontSize: 13,
-  },
-
-  // ── CTA card
-  ctaCard: {
-    backgroundColor: C.primary,
-    marginHorizontal: 16,
-    borderRadius: 24,
-    borderTopRightRadius: 0,
-    padding: 28,
-    overflow: 'hidden',
-  },
-  ctaCircle: {
-    position: 'absolute',
-    right: -40,
-    bottom: -40,
-    width: 180,
-    height: 180,
-    borderRadius: 90,
-    borderWidth: 24,
-    borderColor: 'rgba(255,255,255,0.05)',
-  },
-  ctaTitle: {
-    fontSize: 22,
-    fontWeight: '800',
-    color: C.white,
-    marginBottom: 8,
-    lineHeight: 28,
-  },
-  ctaBody: {
-    fontSize: 13,
-    color: C.onPrimaryContainer,
-    lineHeight: 20,
-    marginBottom: 20,
-    maxWidth: '85%',
-  },
-  ctaBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    backgroundColor: C.secondaryContainer,
-    alignSelf: 'flex-start',
-    paddingHorizontal: 18,
-    paddingVertical: 12,
+  specialtyRow: { flexDirection: 'row', alignItems: 'center', gap: 5 },
+  specialtyText: { fontSize: 12, fontWeight: '600', color: C.onSurfaceVariant, flex: 1 },
+  metaRow: { flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 2 },
+  metaItem: { flexDirection: 'row', alignItems: 'center', gap: 3 },
+  metaRating: { fontSize: 11, fontWeight: '700', color: C.tertiary },
+  metaDistance: { fontSize: 11, fontWeight: '600', color: C.outline },
+  viewBtn: {
+    backgroundColor: C.primaryContainer,
     borderRadius: 12,
+    paddingVertical: 13,
+    alignItems: 'center',
+    marginTop: 16,
   },
-  ctaBtnText: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: C.onSecondaryContainer,
-  },
-});
+  viewBtnText: { color: C.white, fontSize: 13, fontWeight: '700', letterSpacing: 0.2 },
 
-export default FindCareScreen;
+  // ── Skeleton
+  skeletonCard: { flexDirection: 'row', gap: 16, alignItems: 'flex-start' },
+  skeletonAvatar: { width: 64, height: 64, borderRadius: 32, backgroundColor: C.surfaceHigh, flexShrink: 0 },
+  skeletonLines: { flex: 1, paddingTop: 8 },
+  skeletonLine: { height: 12, borderRadius: 6, backgroundColor: C.surfaceHigh },
+
+  // ── Empty state
+  emptyWrap: { alignItems: 'center', paddingVertical: 40, paddingHorizontal: 24, gap: 10 },
+  emptyTitle: { fontSize: 17, fontWeight: '700', color: C.primary, textAlign: 'center' },
+  emptySub: { fontSize: 13, color: C.onSurfaceVariant, textAlign: 'center', lineHeight: 20 },
+});

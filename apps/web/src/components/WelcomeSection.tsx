@@ -1,16 +1,8 @@
-// import { useUser } from '@descope/react-sdk';
-import { useMember } from '@medicare/shared';
+import { useWelcomeSection } from '@medicare/shared';
 import styles from '../App.module.css';
 
 export default function WelcomeSection() {
-  // const { user } = useUser();
-  const { data: member, isLoading } = useMember();
-
-  const rawName = member?.name || '';
-  const firstName = rawName.split(' ')[0] || 'there';
-
-  const hour = new Date().getHours();
-  const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  const { greeting, firstName, subtitle, isLoading } = useWelcomeSection();
 
   return (
     <section style={{ marginBottom: 48 }}>
@@ -22,7 +14,7 @@ export default function WelcomeSection() {
       ) : (
         <>
           <h1 className={styles.welcomeHeading}>{greeting}, {firstName}.</h1>
-          <p className={styles.welcomeSub}>Your wellness journey is looking bright today.</p>
+          <p className={styles.welcomeSub}>{subtitle}</p>
         </>
       )}
     </section>

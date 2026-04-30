@@ -1,10 +1,17 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { Descope, useSession } from '@descope/react-sdk';
+import { Descope, useSession } from '@descope/react-sdk';
 import styles from './LoginPage.module.css';
 
 export default function LoginPage() {
-  // const { isAuthenticated } = useSession();
+  const { isAuthenticated } = useSession();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/', { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
 
   return (
     <div className={styles.page}>
@@ -46,13 +53,11 @@ export default function LoginPage() {
           <h2 className={styles.cardTitle}>Welcome back</h2>
           <p className={styles.cardSub}>Sign in or create your member account below.</p>
           <div className={styles.descopeWrap}>
-            {/* Auth disabled — bypass login */}
-            <button
-              onClick={() => navigate('/', { replace: true })}
-              style={{ padding: '12px 24px', background: '#003461', color: '#fff', border: 'none', borderRadius: 8, cursor: 'pointer', fontSize: 16, fontWeight: 600, width: '100%' }}
-            >
-              Continue as Member
-            </button>
+            <Descope
+              flowId="sign-in"
+              onSuccess={() => navigate('/', { replace: true })}
+              onError={(e) => console.error('Auth error', e)}
+            />
           </div>
         </div>
       </div>
@@ -61,7 +66,7 @@ export default function LoginPage() {
       <footer className={styles.footer}>
         Need help?{' '}
         <a href="tel:+18005551234" className={styles.footerLink}>Call 1-800-555-1234</a>
-        {' '}· {' '}
+        {' '}·{' '}
         <a href="#" className={styles.footerLink}>Privacy Policy</a>
       </footer>
     </div>

@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { useMember } from '@medicare/shared';
+import { useWelcomeSection } from '@medicare/shared';
 import LoadingSkeleton from './LoadingSkeleton';
+import { Colors } from '@medicare/shared';
 
 const WelcomeSection: React.FC = () => {
-  const { data, isLoading } = useMember();
+  const { greeting, firstName, subtitle, isLoading } = useWelcomeSection();
 
-  if (isLoading || !data) {
+  if (isLoading) {
     return (
       <View style={styles.container}>
         <LoadingSkeleton style={{ width: '60%', height: 32, marginBottom: 8 }} />
@@ -15,12 +16,10 @@ const WelcomeSection: React.FC = () => {
     );
   }
 
-  const firstName = data.name.split(' ')[0];
-
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Good morning, {firstName}</Text>
-      <Text style={styles.subtitle}>Your health journey is looking great today.</Text>
+      <Text style={styles.title}>{greeting}, {firstName}.</Text>
+      <Text style={styles.subtitle}>{subtitle}</Text>
     </View>
   );
 };
@@ -34,14 +33,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: '800',
-    color: '#003461', // primary
+    color: Colors.primary,
     marginBottom: 4,
     letterSpacing: -0.5,
   },
   subtitle: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#424750', // on-surface-variant
+    color: Colors.onSurfaceVariant,
   },
 });
 

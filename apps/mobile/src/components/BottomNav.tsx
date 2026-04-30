@@ -1,42 +1,48 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useNavigation, Colors } from '@medicare/shared';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import { Colors } from '@medicare/shared';
 
-const ICON_MAP: Record<string, React.ComponentProps<typeof MaterialCommunityIcons>['name']> = {
-  'view-dashboard-outline': 'view-dashboard-outline',
-  'map-marker-outline': 'map-marker-outline',
-  'shield-outline': 'shield-outline',
-  'pill': 'pill',
-  'menu': 'menu',
+const TAB_CONFIG: Record<
+  string,
+  { icon: React.ComponentProps<typeof MaterialCommunityIcons>['name']; label: string }
+> = {
+  Dashboard:     { icon: 'view-dashboard-outline', label: 'Dashboard' },
+  Claims:        { icon: 'file-document-outline', label: 'Claims' },
+  FindCare:      { icon: 'map-marker-outline',      label: 'Find Care'  },
+  Benefits:      { icon: 'shield-outline',          label: 'Benefits'   },
+  Prescriptions: { icon: 'pill',                   label: 'Rx'         },
 };
 
-interface Props {
-  activeId: string;
-  onPress: (id: string) => void;
-}
-
-const BottomNav: React.FC<Props> = ({ activeId, onPress }) => {
-  const { data: items = [] } = useNavigation();
-
+export default function BottomNav({ state, navigation }: BottomTabBarProps) {
+  const insets = useSafeAreaInsets();
   return (
-    <View style={styles.container}>
-      {items.map((item) => {
-        const isActive = item.id === activeId;
+    <View style={[styles.container, { paddingBottom: Math.max(insets.bottom, 8) }]}>
+      {state.routes.map((route, index) => {
+        const isActive = state.index === index;
+        const config = TAB_CONFIG[route.name];
+        if (!config) return null;
+
         return (
           <TouchableOpacity
-            key={item.id}
+            key={route.key}
             style={styles.tab}
-            onPress={() => onPress(item.id)}
+            onPress={() => navigation.navigate(route.name)}
             activeOpacity={0.7}
+            accessibilityRole="tab"
+            accessibilityState={{ selected: isActive }}
+            accessibilityLabel={config.label}
+            testID={`tab-${route.name.toLowerCase()}`}
           >
             <MaterialCommunityIcons
-              name={ICON_MAP[item.icon] ?? 'circle'}
+              name={config.icon}
               size={22}
               color={isActive ? Colors.navActive : Colors.navInactive}
             />
             <Text style={[styles.label, isActive && styles.labelActive]}>
-              {item.label}
+              {config.label}
             </Text>
             {isActive && <View style={styles.activeIndicator} />}
           </TouchableOpacity>
@@ -44,7 +50,7 @@ const BottomNav: React.FC<Props> = ({ activeId, onPress }) => {
       })}
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -52,7 +58,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.navBg,
     borderTopWidth: 1,
     borderTopColor: Colors.navBorder,
-    paddingBottom: 4,
   },
   tab: {
     flex: 1,
@@ -69,9 +74,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     textTransform: 'uppercase',
   },
-  labelActive: {
-    color: Colors.navActive,
-  },
+  labelActive: { color: Colors.navActive },
   activeIndicator: {
     position: 'absolute',
     top: 0,
@@ -83,5 +86,3 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 2,
   },
 });
-
-export default BottomNav;

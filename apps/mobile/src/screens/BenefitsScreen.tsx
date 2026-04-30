@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useBenefits, useMember } from '@medicare/shared';
 import type { BenefitBreakdownItem, CostItem } from '@medicare/shared';
 import LoadingSkeleton from '../components/LoadingSkeleton';
@@ -148,18 +149,25 @@ function WellnessCard({ imageUrl, title, body }: { imageUrl: string; title: stri
 }
 
 const BenefitsScreen: React.FC = () => {
+  const insets = useSafeAreaInsets();
   const { data: benefits, isLoading } = useBenefits();
   const { data: member } = useMember();
 
   if (isLoading || !benefits) {
     return (
-      <View style={[styles.scroll, styles.scrollContent]}>
-        <LoadingSkeleton style={{ height: 180, borderRadius: 20, borderTopRightRadius: 48, borderBottomLeftRadius: 48, marginBottom: 20 }} />
-        <LoadingSkeleton style={{ width: 140, height: 24, marginBottom: 12, borderRadius: 4 }} />
-        <LoadingSkeleton style={{ height: 110, borderRadius: 16, marginBottom: 10, borderTopRightRadius: 28 }} />
-        <LoadingSkeleton style={{ height: 110, borderRadius: 16, marginBottom: 20, borderTopRightRadius: 28 }} />
-        <LoadingSkeleton style={{ width: 160, height: 24, marginBottom: 12, borderRadius: 4 }} />
-        <LoadingSkeleton style={{ height: 140, borderRadius: 16, marginBottom: 10, borderTopRightRadius: 32 }} />
+      <View style={[styles.root, { paddingTop: insets.top }]}>
+        <View style={styles.stableHeader}>
+          <Text style={styles.navTitle}>Your Benefits</Text>
+          <Text style={styles.pageSubtitle}>Maximize your health coverage.</Text>
+        </View>
+        <View style={[styles.scroll, styles.scrollContent]}>
+          <LoadingSkeleton style={{ height: 180, borderRadius: 20, borderTopRightRadius: 48, borderBottomLeftRadius: 48, marginBottom: 20 }} />
+          <LoadingSkeleton style={{ width: 140, height: 24, marginBottom: 12, borderRadius: 4 }} />
+          <LoadingSkeleton style={{ height: 110, borderRadius: 16, marginBottom: 10, borderTopRightRadius: 28 }} />
+          <LoadingSkeleton style={{ height: 110, borderRadius: 16, marginBottom: 20, borderTopRightRadius: 28 }} />
+          <LoadingSkeleton style={{ width: 160, height: 24, marginBottom: 12, borderRadius: 4 }} />
+          <LoadingSkeleton style={{ height: 140, borderRadius: 16, marginBottom: 10, borderTopRightRadius: 32 }} />
+        </View>
       </View>
     );
   }
@@ -168,12 +176,17 @@ const BenefitsScreen: React.FC = () => {
   const compact = benefits.breakdown.filter(b => !b.featured);
 
   return (
-    <ScrollView
-      style={styles.scroll}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.scrollContent}
-    >
-      {/* Hero Coverage Card */}
+    <View style={[styles.root, { paddingTop: insets.top }]}>
+      <View style={styles.stableHeader}>
+        <Text style={styles.navTitle}>Your Benefits</Text>
+        <Text style={styles.pageSubtitle}>Maximize your health coverage.</Text>
+      </View>
+      <ScrollView
+        style={styles.scroll}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
+        {/* Hero Coverage Card */}
       <HeroCoverageCard
         planName={benefits.planName}
         memberId={member ? `AH-${member.memberId.replace(/\s/g, '').slice(0, 6)}-01` : benefits.memberId}
@@ -203,13 +216,32 @@ const BenefitsScreen: React.FC = () => {
       />
 
       <View style={{ height: 24 }} />
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  root: { flex: 1, backgroundColor: C.bgLight },
+  stableHeader: {
+    backgroundColor: C.bgLight,
+    paddingHorizontal: 16,
+    paddingBottom: 16,
+    paddingTop: 8,
+  },
+  navTitle: {
+    fontSize: 28,
+    fontWeight: '800',
+    color: C.primary,
+    letterSpacing: -0.5,
+  },
+  pageSubtitle: {
+    fontSize: 13,
+    color: C.onSurfaceVariant,
+    marginTop: 2,
+  },
   scroll: { flex: 1, backgroundColor: C.bgLight },
-  scrollContent: { paddingHorizontal: 16, paddingTop: 16 },
+  scrollContent: { paddingHorizontal: 16, paddingTop: 4 },
 
   loader: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: C.bgLight },
 

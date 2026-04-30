@@ -1,28 +1,91 @@
 {
   "reviews": [
-    { "initials": "MB", "bg": "#c6e7ff", "name": "Margaret B.", "ago": "2 weeks ago", "stars": 5,
-      "text": "\"The doctor was incredibly patient and thorough. Explained my condition clearly and in a way that actually made sense to me.\"" },
-    { "initials": "JW", "bg": "#d3e4ff", "name": "James W.", "ago": "1 month ago", "stars": 5,
-      "text": "\"The treatment plan has made a huge difference in my daily life. I really feel like my health is in good hands.\"" },
-    { "initials": "RC", "bg": "#ffdbc8", "name": "Robert C.", "ago": "2 months ago", "stars": 4,
-      "text": "\"Very professional office. The staff is friendly and the doctor takes time to listen without rushing through the appointment.\"" },
-    { "initials": "SK", "bg": "#c6e7ff", "name": "Sarah K.", "ago": "3 months ago", "stars": 5,
-      "text": "\"Compassionate care. He didn't rush me through questions about my medication side effects — I felt truly heard.\"" },
-    { "initials": "DL", "bg": "#d3e4ff", "name": "David L.", "ago": "3 months ago", "stars": 5,
-      "text": "\"Professional and thorough. The entire medical team seems very synchronized and works seamlessly together.\"" }
+    {
+      "initials": "MB",
+      "bg": "#c6e7ff",
+      "name": "Margaret B.",
+      "ago": "2 weeks ago",
+      "stars": 5,
+      "text": "\"The doctor was incredibly patient and thorough. Explained my condition clearly and in a way that actually made sense to me.\""
+    },
+    {
+      "initials": "JW",
+      "bg": "#d3e4ff",
+      "name": "James W.",
+      "ago": "1 month ago",
+      "stars": 5,
+      "text": "\"The treatment plan has made a huge difference in my daily life. I really feel like my health is in good hands.\""
+    },
+    {
+      "initials": "RC",
+      "bg": "#ffdbc8",
+      "name": "Robert C.",
+      "ago": "2 months ago",
+      "stars": 4,
+      "text": "\"Very professional office. The staff is friendly and the doctor takes time to listen without rushing through the appointment.\""
+    },
+    {
+      "initials": "SK",
+      "bg": "#c6e7ff",
+      "name": "Sarah K.",
+      "ago": "3 months ago",
+      "stars": 5,
+      "text": "\"Compassionate care. He didn't rush me through questions about my medication side effects — I felt truly heard.\""
+    },
+    {
+      "initials": "DL",
+      "bg": "#d3e4ff",
+      "name": "David L.",
+      "ago": "3 months ago",
+      "stars": 5,
+      "text": "\"Professional and thorough. The entire medical team seems very synchronized and works seamlessly together.\""
+    }
   ],
   "prescriptions": {
     "morning": [
-      { "name": "Lisinopril", "dose": "10mg Tablet" },
-      { "name": "Metformin",  "dose": "500mg Tablet" }
+      {
+        "name": "Lisinopril",
+        "dose": "10mg Tablet"
+      },
+      {
+        "name": "Metformin",
+        "dose": "500mg Tablet"
+      }
     ],
     "evening": [
-      { "name": "Atorvastatin", "dose": "20mg Tablet" }
+      {
+        "name": "Atorvastatin",
+        "dose": "20mg Tablet"
+      }
     ],
     "active": [
-      { "name": "Atorvastatin", "dose": "20mg", "indication": "High Cholesterol",    "doctor": "Dr. Sarah Jenkins", "lastFilled": "Oct 12", "refills": 2, "status": "refill-ready" },
-      { "name": "Lisinopril",   "dose": "10mg", "indication": "High Blood Pressure", "doctor": "Dr. Sarah Jenkins", "lastFilled": "Oct 8",  "refills": 5, "status": "refill-ready" },
-      { "name": "Metformin",    "dose": "500mg","indication": "Type 2 Diabetes",     "doctor": "Dr. Sarah Jenkins", "lastFilled": "Sep 30", "refills": 0, "status": "no-refills" }
+      {
+        "name": "Atorvastatin",
+        "dose": "20mg",
+        "indication": "High Cholesterol",
+        "doctor": "Dr. Sarah Jenkins",
+        "lastFilled": "Oct 12",
+        "refills": 2,
+        "status": "refill-ready"
+      },
+      {
+        "name": "Lisinopril",
+        "dose": "10mg",
+        "indication": "High Blood Pressure",
+        "doctor": "Dr. Sarah Jenkins",
+        "lastFilled": "Oct 8",
+        "refills": 5,
+        "status": "refill-ready"
+      },
+      {
+        "name": "Metformin",
+        "dose": "500mg",
+        "indication": "Type 2 Diabetes",
+        "doctor": "Dr. Sarah Jenkins",
+        "lastFilled": "Sep 30",
+        "refills": 0,
+        "status": "no-refills"
+      }
     ]
   },
   "hero": {
@@ -162,15 +225,88 @@
       "inNetwork": true,
       "address": "100 Health Way, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7849,
-        "longitude": -122.4124
+        "latitude": 39.913,
+        "longitude": -75.1834
       },
+      "locations": [
+        {
+          "name": "City Center Health Pavilion",
+          "address": "1200 Medical Plaza, Suite 400\nPhiladelphia, PA 19104",
+          "phone": "215-555-0101",
+          "coordinate": {
+            "latitude": 39.9268,
+            "longitude": -75.1691
+          }
+        },
+        {
+          "name": "Westside Wellness Clinic",
+          "address": "4000 Market St, Suite 200\nPhiladelphia, PA 19104",
+          "phone": "215-555-0102",
+          "coordinate": {
+            "latitude": 40.0006,
+            "longitude": -75.1725
+          }
+        },
+        {
+          "name": "North Broad Medical Hub",
+          "address": "1500 N Broad St\nPhiladelphia, PA 19121",
+          "phone": "215-555-0103",
+          "coordinate": {
+            "latitude": 39.9901,
+            "longitude": -75.1959
+          }
+        },
+        {
+          "name": "South Philly Care Center",
+          "address": "1900 S Broad St\nPhiladelphia, PA 19145",
+          "phone": "215-555-0104",
+          "coordinate": {
+            "latitude": 39.9909,
+            "longitude": -75.1644
+          }
+        },
+        {
+          "name": "Main Line Health Associates",
+          "address": "100 E Lancaster Ave\nWynnewood, PA 19096",
+          "phone": "610-555-0105",
+          "coordinate": {
+            "latitude": 39.9175,
+            "longitude": -75.2011
+          }
+        }
+      ],
       "languages": [
         "English"
       ],
       "nextAvailable": "Tomorrow, 9:00 AM",
       "yearsExperience": 16,
-      "bio": "Delivers comprehensive preventive care and chronic disease management with a patient-first philosophy."
+      "bio": "Delivers comprehensive preventive care and chronic disease management with a patient-first philosophy.",
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p2",
@@ -183,15 +319,88 @@
       "inNetwork": true,
       "address": "245 Wellness Blvd, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7659,
-        "longitude": -122.4054
+        "latitude": 40.0016,
+        "longitude": -75.1776
       },
       "languages": [
         "English"
       ],
       "nextAvailable": "Tomorrow, 2:30 PM",
       "yearsExperience": 17,
-      "bio": "Delivers comprehensive preventive care and chronic disease management with a patient-first philosophy."
+      "bio": "Delivers comprehensive preventive care and chronic disease management with a patient-first philosophy.",
+      "locations": [
+        {
+          "name": "Main Hospital p2",
+          "address": "100 Main St, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9038,
+            "longitude": -75.1701
+          }
+        },
+        {
+          "name": "City Clinic p2",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9374,
+            "longitude": -75.1452
+          }
+        },
+        {
+          "name": "Westside Hub p2",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9565,
+            "longitude": -75.1315
+          }
+        },
+        {
+          "name": "Eastside Care p2",
+          "address": "400 East Rd, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9482,
+            "longitude": -75.1644
+          }
+        },
+        {
+          "name": "North Annex p2",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9234,
+            "longitude": -75.1177
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p3",
@@ -204,15 +413,88 @@
       "inNetwork": true,
       "address": "500 Sunset Ave, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7749,
-        "longitude": -122.4784
+        "latitude": 39.9209,
+        "longitude": -75.1832
       },
       "languages": [
         "English"
       ],
       "nextAvailable": "Monday, 10:00 AM",
       "yearsExperience": 18,
-      "bio": "Delivers comprehensive preventive care and chronic disease management with a patient-first philosophy."
+      "bio": "Delivers comprehensive preventive care and chronic disease management with a patient-first philosophy.",
+      "locations": [
+        {
+          "name": "Main Hospital p3",
+          "address": "100 Main St, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 40.0005,
+            "longitude": -75.1956
+          }
+        },
+        {
+          "name": "City Clinic p3",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9974,
+            "longitude": -75.1283
+          }
+        },
+        {
+          "name": "Westside Hub p3",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9859,
+            "longitude": -75.1285
+          }
+        },
+        {
+          "name": "Eastside Care p3",
+          "address": "400 East Rd, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9053,
+            "longitude": -75.2107
+          }
+        },
+        {
+          "name": "North Annex p3",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9076,
+            "longitude": -75.1228
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p4",
@@ -225,8 +507,8 @@
       "inNetwork": false,
       "address": "88 Bay Street, Oakland, CA",
       "coordinate": {
-        "latitude": 37.8044,
-        "longitude": -122.3412
+        "latitude": 39.9326,
+        "longitude": -75.1421
       },
       "languages": [
         "English",
@@ -234,7 +516,80 @@
       ],
       "nextAvailable": "Tuesday, 11:00 AM",
       "yearsExperience": 19,
-      "bio": "Delivers comprehensive preventive care and chronic disease management with a patient-first philosophy."
+      "bio": "Delivers comprehensive preventive care and chronic disease management with a patient-first philosophy.",
+      "locations": [
+        {
+          "name": "Main Hospital p4",
+          "address": "100 Main St, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9491,
+            "longitude": -75.1517
+          }
+        },
+        {
+          "name": "City Clinic p4",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9887,
+            "longitude": -75.1655
+          }
+        },
+        {
+          "name": "Westside Hub p4",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9081,
+            "longitude": -75.139
+          }
+        },
+        {
+          "name": "Eastside Care p4",
+          "address": "400 East Rd, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9196,
+            "longitude": -75.1455
+          }
+        },
+        {
+          "name": "North Annex p4",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.9772,
+            "longitude": -75.1791
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p5",
@@ -247,8 +602,8 @@
       "inNetwork": true,
       "address": "200 Wellness Pkwy, San Mateo, CA",
       "coordinate": {
-        "latitude": 37.663,
-        "longitude": -122.4602
+        "latitude": 39.9676,
+        "longitude": -75.1347
       },
       "languages": [
         "English",
@@ -256,7 +611,80 @@
       ],
       "nextAvailable": "Tuesday, 3:30 PM",
       "yearsExperience": 20,
-      "bio": "Delivers comprehensive preventive care and chronic disease management with a patient-first philosophy."
+      "bio": "Delivers comprehensive preventive care and chronic disease management with a patient-first philosophy.",
+      "locations": [
+        {
+          "name": "Main Hospital p5",
+          "address": "100 Main St, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9166,
+            "longitude": -75.1921
+          }
+        },
+        {
+          "name": "City Clinic p5",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.925,
+            "longitude": -75.1217
+          }
+        },
+        {
+          "name": "Westside Hub p5",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9258,
+            "longitude": -75.2012
+          }
+        },
+        {
+          "name": "Eastside Care p5",
+          "address": "400 East Rd, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.9462,
+            "longitude": -75.1273
+          }
+        },
+        {
+          "name": "North Annex p5",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.987,
+            "longitude": -75.146
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p6",
@@ -269,8 +697,8 @@
       "inNetwork": true,
       "address": "12 Heart Center Plaza, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7569,
-        "longitude": -122.3794
+        "latitude": 39.9819,
+        "longitude": -75.21
       },
       "languages": [
         "English",
@@ -278,7 +706,80 @@
       ],
       "nextAvailable": "Wednesday, 9:30 AM",
       "yearsExperience": 20,
-      "bio": "Expert in diagnosing and treating heart disease, arrhythmias, and cardiovascular risk reduction."
+      "bio": "Expert in diagnosing and treating heart disease, arrhythmias, and cardiovascular risk reduction.",
+      "locations": [
+        {
+          "name": "Main Hospital p6",
+          "address": "100 Main St, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9386,
+            "longitude": -75.1684
+          }
+        },
+        {
+          "name": "City Clinic p6",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9429,
+            "longitude": -75.163
+          }
+        },
+        {
+          "name": "Westside Hub p6",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9225,
+            "longitude": -75.1301
+          }
+        },
+        {
+          "name": "Eastside Care p6",
+          "address": "400 East Rd, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9789,
+            "longitude": -75.1182
+          }
+        },
+        {
+          "name": "North Annex p6",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.91,
+            "longitude": -75.1425
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p7",
@@ -291,8 +792,8 @@
       "inNetwork": true,
       "address": "450 Medical Center Dr, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.8099,
-        "longitude": -122.3434
+        "latitude": 39.9311,
+        "longitude": -75.197
       },
       "languages": [
         "English",
@@ -300,7 +801,80 @@
       ],
       "nextAvailable": "Wednesday, 2:00 PM",
       "yearsExperience": 21,
-      "bio": "Expert in diagnosing and treating heart disease, arrhythmias, and cardiovascular risk reduction."
+      "bio": "Expert in diagnosing and treating heart disease, arrhythmias, and cardiovascular risk reduction.",
+      "locations": [
+        {
+          "name": "Main Hospital p7",
+          "address": "100 Main St, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.937,
+            "longitude": -75.1537
+          }
+        },
+        {
+          "name": "City Clinic p7",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9956,
+            "longitude": -75.184
+          }
+        },
+        {
+          "name": "Westside Hub p7",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9736,
+            "longitude": -75.1628
+          }
+        },
+        {
+          "name": "Eastside Care p7",
+          "address": "400 East Rd, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9605,
+            "longitude": -75.1997
+          }
+        },
+        {
+          "name": "North Annex p7",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9404,
+            "longitude": -75.1351
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p8",
@@ -313,8 +887,8 @@
       "inNetwork": true,
       "address": "1 Hospital Way, Sausalito, CA",
       "coordinate": {
-        "latitude": 37.8669,
-        "longitude": -122.4804
+        "latitude": 39.9474,
+        "longitude": -75.215
       },
       "languages": [
         "English",
@@ -322,7 +896,80 @@
       ],
       "nextAvailable": "Thursday, 10:30 AM",
       "yearsExperience": 22,
-      "bio": "Expert in diagnosing and treating heart disease, arrhythmias, and cardiovascular risk reduction."
+      "bio": "Expert in diagnosing and treating heart disease, arrhythmias, and cardiovascular risk reduction.",
+      "locations": [
+        {
+          "name": "Main Hospital p8",
+          "address": "100 Main St, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9157,
+            "longitude": -75.1228
+          }
+        },
+        {
+          "name": "City Clinic p8",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.967,
+            "longitude": -75.1991
+          }
+        },
+        {
+          "name": "Westside Hub p8",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9791,
+            "longitude": -75.1912
+          }
+        },
+        {
+          "name": "Eastside Care p8",
+          "address": "400 East Rd, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9944,
+            "longitude": -75.1322
+          }
+        },
+        {
+          "name": "North Annex p8",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9328,
+            "longitude": -75.1556
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p9",
@@ -335,8 +982,8 @@
       "inNetwork": false,
       "address": "567 Grand Ave, Oakland, CA",
       "coordinate": {
-        "latitude": 37.7749,
-        "longitude": -122.1784
+        "latitude": 39.9215,
+        "longitude": -75.2099
       },
       "languages": [
         "English",
@@ -344,7 +991,80 @@
       ],
       "nextAvailable": "Friday, 9:00 AM",
       "yearsExperience": 23,
-      "bio": "Expert in diagnosing and treating heart disease, arrhythmias, and cardiovascular risk reduction."
+      "bio": "Expert in diagnosing and treating heart disease, arrhythmias, and cardiovascular risk reduction.",
+      "locations": [
+        {
+          "name": "Main Hospital p9",
+          "address": "100 Main St, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9684,
+            "longitude": -75.1355
+          }
+        },
+        {
+          "name": "City Clinic p9",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9434,
+            "longitude": -75.182
+          }
+        },
+        {
+          "name": "Westside Hub p9",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9668,
+            "longitude": -75.1868
+          }
+        },
+        {
+          "name": "Eastside Care p9",
+          "address": "400 East Rd, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9741,
+            "longitude": -75.1555
+          }
+        },
+        {
+          "name": "North Annex p9",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.9354,
+            "longitude": -75.1928
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p10",
@@ -357,8 +1077,8 @@
       "inNetwork": true,
       "address": "890 Medical Way, San Mateo, CA",
       "coordinate": {
-        "latitude": 37.563,
-        "longitude": -122.3255
+        "latitude": 39.933,
+        "longitude": -75.1625
       },
       "languages": [
         "English",
@@ -367,7 +1087,80 @@
       ],
       "nextAvailable": null,
       "yearsExperience": 24,
-      "bio": "Expert in diagnosing and treating heart disease, arrhythmias, and cardiovascular risk reduction."
+      "bio": "Expert in diagnosing and treating heart disease, arrhythmias, and cardiovascular risk reduction.",
+      "locations": [
+        {
+          "name": "Main Hospital p10",
+          "address": "100 Main St, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9891,
+            "longitude": -75.1888
+          }
+        },
+        {
+          "name": "City Clinic p10",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9379,
+            "longitude": -75.1315
+          }
+        },
+        {
+          "name": "Westside Hub p10",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9676,
+            "longitude": -75.144
+          }
+        },
+        {
+          "name": "Eastside Care p10",
+          "address": "400 East Rd, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9414,
+            "longitude": -75.1566
+          }
+        },
+        {
+          "name": "North Annex p10",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9626,
+            "longitude": -75.201
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p11",
@@ -380,15 +1173,88 @@
       "inNetwork": true,
       "address": "333 Pacific Heights Rd, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7939,
-        "longitude": -122.4444
+        "latitude": 39.9368,
+        "longitude": -75.1512
       },
       "languages": [
         "English"
       ],
       "nextAvailable": "Tomorrow, 9:00 AM",
       "yearsExperience": 13,
-      "bio": "Specializes in managing complex multi-system conditions with evidence-based, whole-person care."
+      "bio": "Specializes in managing complex multi-system conditions with evidence-based, whole-person care.",
+      "locations": [
+        {
+          "name": "Main Hospital p11",
+          "address": "100 Main St, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 40.0003,
+            "longitude": -75.2038
+          }
+        },
+        {
+          "name": "City Clinic p11",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9685,
+            "longitude": -75.1848
+          }
+        },
+        {
+          "name": "Westside Hub p11",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9939,
+            "longitude": -75.204
+          }
+        },
+        {
+          "name": "Eastside Care p11",
+          "address": "400 East Rd, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9567,
+            "longitude": -75.2091
+          }
+        },
+        {
+          "name": "North Annex p11",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9686,
+            "longitude": -75.1391
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p12",
@@ -401,15 +1267,88 @@
       "inNetwork": true,
       "address": "700 Mission St, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7749,
-        "longitude": -122.3514
+        "latitude": 39.9775,
+        "longitude": -75.1688
       },
       "languages": [
         "English"
       ],
       "nextAvailable": "Tomorrow, 2:30 PM",
       "yearsExperience": 14,
-      "bio": "Specializes in managing complex multi-system conditions with evidence-based, whole-person care."
+      "bio": "Specializes in managing complex multi-system conditions with evidence-based, whole-person care.",
+      "locations": [
+        {
+          "name": "Main Hospital p12",
+          "address": "100 Main St, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.9441,
+            "longitude": -75.146
+          }
+        },
+        {
+          "name": "City Clinic p12",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.9912,
+            "longitude": -75.1538
+          }
+        },
+        {
+          "name": "Westside Hub p12",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 40.0018,
+            "longitude": -75.1838
+          }
+        },
+        {
+          "name": "Eastside Care p12",
+          "address": "400 East Rd, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9356,
+            "longitude": -75.1305
+          }
+        },
+        {
+          "name": "North Annex p12",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9952,
+            "longitude": -75.2028
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p13",
@@ -422,15 +1361,88 @@
       "inNetwork": true,
       "address": "221 Noe Valley Blvd, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7189,
-        "longitude": -122.4904
+        "latitude": 39.9563,
+        "longitude": -75.2088
       },
       "languages": [
         "English"
       ],
       "nextAvailable": "Monday, 10:00 AM",
       "yearsExperience": 15,
-      "bio": "Specializes in managing complex multi-system conditions with evidence-based, whole-person care."
+      "bio": "Specializes in managing complex multi-system conditions with evidence-based, whole-person care.",
+      "locations": [
+        {
+          "name": "Main Hospital p13",
+          "address": "100 Main St, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9308,
+            "longitude": -75.1321
+          }
+        },
+        {
+          "name": "City Clinic p13",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9161,
+            "longitude": -75.1689
+          }
+        },
+        {
+          "name": "Westside Hub p13",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9064,
+            "longitude": -75.1729
+          }
+        },
+        {
+          "name": "Eastside Care p13",
+          "address": "400 East Rd, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9485,
+            "longitude": -75.14
+          }
+        },
+        {
+          "name": "North Annex p13",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.9395,
+            "longitude": -75.143
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p14",
@@ -443,8 +1455,8 @@
       "inNetwork": false,
       "address": "450 Foothill Blvd, Oakland, CA",
       "coordinate": {
-        "latitude": 37.6749,
-        "longitude": -122.2894
+        "latitude": 39.9676,
+        "longitude": -75.1887
       },
       "languages": [
         "English",
@@ -452,7 +1464,80 @@
       ],
       "nextAvailable": "Tuesday, 11:00 AM",
       "yearsExperience": 16,
-      "bio": "Specializes in managing complex multi-system conditions with evidence-based, whole-person care."
+      "bio": "Specializes in managing complex multi-system conditions with evidence-based, whole-person care.",
+      "locations": [
+        {
+          "name": "Main Hospital p14",
+          "address": "100 Main St, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9771,
+            "longitude": -75.209
+          }
+        },
+        {
+          "name": "City Clinic p14",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.95,
+            "longitude": -75.1924
+          }
+        },
+        {
+          "name": "Westside Hub p14",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9848,
+            "longitude": -75.1623
+          }
+        },
+        {
+          "name": "Eastside Care p14",
+          "address": "400 East Rd, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9929,
+            "longitude": -75.1661
+          }
+        },
+        {
+          "name": "North Annex p14",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9123,
+            "longitude": -75.2086
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p15",
@@ -465,8 +1550,8 @@
       "inNetwork": true,
       "address": "100 Marin Health Dr, San Rafael, CA",
       "coordinate": {
-        "latitude": 37.9701,
-        "longitude": -122.5311
+        "latitude": 39.9828,
+        "longitude": -75.1761
       },
       "languages": [
         "English",
@@ -474,7 +1559,80 @@
       ],
       "nextAvailable": "Tuesday, 3:30 PM",
       "yearsExperience": 17,
-      "bio": "Specializes in managing complex multi-system conditions with evidence-based, whole-person care."
+      "bio": "Specializes in managing complex multi-system conditions with evidence-based, whole-person care.",
+      "locations": [
+        {
+          "name": "Main Hospital p15",
+          "address": "100 Main St, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9437,
+            "longitude": -75.1863
+          }
+        },
+        {
+          "name": "City Clinic p15",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9822,
+            "longitude": -75.1375
+          }
+        },
+        {
+          "name": "Westside Hub p15",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9695,
+            "longitude": -75.1481
+          }
+        },
+        {
+          "name": "Eastside Care p15",
+          "address": "400 East Rd, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9735,
+            "longitude": -75.1488
+          }
+        },
+        {
+          "name": "North Annex p15",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.925,
+            "longitude": -75.2023
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p16",
@@ -487,8 +1645,8 @@
       "inNetwork": true,
       "address": "99 Marina Blvd, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.8037,
-        "longitude": -122.4368
+        "latitude": 39.9953,
+        "longitude": -75.1222
       },
       "languages": [
         "English",
@@ -496,7 +1654,80 @@
       ],
       "nextAvailable": "Wednesday, 9:30 AM",
       "yearsExperience": 8,
-      "bio": "Focuses on restoring mobility and function through individualized rehabilitation programs."
+      "bio": "Focuses on restoring mobility and function through individualized rehabilitation programs.",
+      "locations": [
+        {
+          "name": "Main Hospital p16",
+          "address": "100 Main St, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9426,
+            "longitude": -75.1539
+          }
+        },
+        {
+          "name": "City Clinic p16",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9331,
+            "longitude": -75.1561
+          }
+        },
+        {
+          "name": "Westside Hub p16",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9646,
+            "longitude": -75.1361
+          }
+        },
+        {
+          "name": "Eastside Care p16",
+          "address": "400 East Rd, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9533,
+            "longitude": -75.1536
+          }
+        },
+        {
+          "name": "North Annex p16",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.9425,
+            "longitude": -75.202
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p17",
@@ -509,8 +1740,8 @@
       "inNetwork": true,
       "address": "44 Castro St, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7609,
-        "longitude": -122.435
+        "latitude": 39.9625,
+        "longitude": -75.1376
       },
       "languages": [
         "English",
@@ -518,7 +1749,80 @@
       ],
       "nextAvailable": "Wednesday, 2:00 PM",
       "yearsExperience": 9,
-      "bio": "Focuses on restoring mobility and function through individualized rehabilitation programs."
+      "bio": "Focuses on restoring mobility and function through individualized rehabilitation programs.",
+      "locations": [
+        {
+          "name": "Main Hospital p17",
+          "address": "100 Main St, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9752,
+            "longitude": -75.1802
+          }
+        },
+        {
+          "name": "City Clinic p17",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9866,
+            "longitude": -75.1203
+          }
+        },
+        {
+          "name": "Westside Hub p17",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9217,
+            "longitude": -75.2128
+          }
+        },
+        {
+          "name": "Eastside Care p17",
+          "address": "400 East Rd, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9657,
+            "longitude": -75.1369
+          }
+        },
+        {
+          "name": "North Annex p17",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9284,
+            "longitude": -75.1662
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p18",
@@ -531,8 +1835,8 @@
       "inNetwork": true,
       "address": "600 Potrero Ave, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7501,
-        "longitude": -122.4003
+        "latitude": 39.9518,
+        "longitude": -75.1555
       },
       "languages": [
         "English",
@@ -540,7 +1844,80 @@
       ],
       "nextAvailable": "Thursday, 10:30 AM",
       "yearsExperience": 10,
-      "bio": "Focuses on restoring mobility and function through individualized rehabilitation programs."
+      "bio": "Focuses on restoring mobility and function through individualized rehabilitation programs.",
+      "locations": [
+        {
+          "name": "Main Hospital p18",
+          "address": "100 Main St, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9351,
+            "longitude": -75.196
+          }
+        },
+        {
+          "name": "City Clinic p18",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9758,
+            "longitude": -75.1167
+          }
+        },
+        {
+          "name": "Westside Hub p18",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 40.0005,
+            "longitude": -75.1547
+          }
+        },
+        {
+          "name": "Eastside Care p18",
+          "address": "400 East Rd, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9217,
+            "longitude": -75.1761
+          }
+        },
+        {
+          "name": "North Annex p18",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.913,
+            "longitude": -75.1723
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p19",
@@ -553,8 +1930,8 @@
       "inNetwork": true,
       "address": "2200 Webster St, Oakland, CA",
       "coordinate": {
-        "latitude": 37.8044,
-        "longitude": -122.2712
+        "latitude": 39.9412,
+        "longitude": -75.1453
       },
       "languages": [
         "English",
@@ -562,7 +1939,80 @@
       ],
       "nextAvailable": "Friday, 9:00 AM",
       "yearsExperience": 11,
-      "bio": "Focuses on restoring mobility and function through individualized rehabilitation programs."
+      "bio": "Focuses on restoring mobility and function through individualized rehabilitation programs.",
+      "locations": [
+        {
+          "name": "Main Hospital p19",
+          "address": "100 Main St, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9869,
+            "longitude": -75.1901
+          }
+        },
+        {
+          "name": "City Clinic p19",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 40.0006,
+            "longitude": -75.1877
+          }
+        },
+        {
+          "name": "Westside Hub p19",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9974,
+            "longitude": -75.1773
+          }
+        },
+        {
+          "name": "Eastside Care p19",
+          "address": "400 East Rd, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9878,
+            "longitude": -75.1216
+          }
+        },
+        {
+          "name": "North Annex p19",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.98,
+            "longitude": -75.2004
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p20",
@@ -575,8 +2025,8 @@
       "inNetwork": false,
       "address": "5 Bayfront Dr, San Mateo, CA",
       "coordinate": {
-        "latitude": 37.563,
-        "longitude": -122.3055
+        "latitude": 39.9681,
+        "longitude": -75.1704
       },
       "languages": [
         "English",
@@ -585,7 +2035,80 @@
       ],
       "nextAvailable": null,
       "yearsExperience": 12,
-      "bio": "Focuses on restoring mobility and function through individualized rehabilitation programs."
+      "bio": "Focuses on restoring mobility and function through individualized rehabilitation programs.",
+      "locations": [
+        {
+          "name": "Main Hospital p20",
+          "address": "100 Main St, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9413,
+            "longitude": -75.1904
+          }
+        },
+        {
+          "name": "City Clinic p20",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9149,
+            "longitude": -75.1212
+          }
+        },
+        {
+          "name": "Westside Hub p20",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9578,
+            "longitude": -75.15
+          }
+        },
+        {
+          "name": "Eastside Care p20",
+          "address": "400 East Rd, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9273,
+            "longitude": -75.1797
+          }
+        },
+        {
+          "name": "North Annex p20",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.9937,
+            "longitude": -75.1401
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p21",
@@ -598,15 +2121,88 @@
       "inNetwork": true,
       "address": "10 Union St, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7946,
-        "longitude": -122.4099
+        "latitude": 39.9229,
+        "longitude": -75.1271
       },
       "languages": [
         "English"
       ],
       "nextAvailable": "Tomorrow, 9:00 AM",
       "yearsExperience": 12,
-      "bio": "Provides expert care for skin, hair, and nail conditions with a focus on early detection."
+      "bio": "Provides expert care for skin, hair, and nail conditions with a focus on early detection.",
+      "locations": [
+        {
+          "name": "Main Hospital p21",
+          "address": "100 Main St, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9985,
+            "longitude": -75.1303
+          }
+        },
+        {
+          "name": "City Clinic p21",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9107,
+            "longitude": -75.1553
+          }
+        },
+        {
+          "name": "Westside Hub p21",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9532,
+            "longitude": -75.1945
+          }
+        },
+        {
+          "name": "Eastside Care p21",
+          "address": "400 East Rd, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9249,
+            "longitude": -75.162
+          }
+        },
+        {
+          "name": "North Annex p21",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9545,
+            "longitude": -75.2111
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p22",
@@ -619,15 +2215,88 @@
       "inNetwork": true,
       "address": "180 Haight St, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7692,
-        "longitude": -122.4481
+        "latitude": 39.9479,
+        "longitude": -75.1682
       },
       "languages": [
         "English"
       ],
       "nextAvailable": "Tomorrow, 2:30 PM",
       "yearsExperience": 13,
-      "bio": "Provides expert care for skin, hair, and nail conditions with a focus on early detection."
+      "bio": "Provides expert care for skin, hair, and nail conditions with a focus on early detection.",
+      "locations": [
+        {
+          "name": "Main Hospital p22",
+          "address": "100 Main St, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9249,
+            "longitude": -75.214
+          }
+        },
+        {
+          "name": "City Clinic p22",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.967,
+            "longitude": -75.188
+          }
+        },
+        {
+          "name": "Westside Hub p22",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9248,
+            "longitude": -75.1848
+          }
+        },
+        {
+          "name": "Eastside Care p22",
+          "address": "400 East Rd, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9093,
+            "longitude": -75.1181
+          }
+        },
+        {
+          "name": "North Annex p22",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9201,
+            "longitude": -75.1792
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p23",
@@ -640,15 +2309,88 @@
       "inNetwork": true,
       "address": "909 Hyde St, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7849,
-        "longitude": -122.4184
+        "latitude": 39.9572,
+        "longitude": -75.1962
       },
       "languages": [
         "English"
       ],
       "nextAvailable": "Monday, 10:00 AM",
       "yearsExperience": 14,
-      "bio": "Provides expert care for skin, hair, and nail conditions with a focus on early detection."
+      "bio": "Provides expert care for skin, hair, and nail conditions with a focus on early detection.",
+      "locations": [
+        {
+          "name": "Main Hospital p23",
+          "address": "100 Main St, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9253,
+            "longitude": -75.2084
+          }
+        },
+        {
+          "name": "City Clinic p23",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9791,
+            "longitude": -75.1696
+          }
+        },
+        {
+          "name": "Westside Hub p23",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9653,
+            "longitude": -75.1305
+          }
+        },
+        {
+          "name": "Eastside Care p23",
+          "address": "400 East Rd, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9114,
+            "longitude": -75.1565
+          }
+        },
+        {
+          "name": "North Annex p23",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9951,
+            "longitude": -75.1223
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p24",
@@ -661,8 +2403,8 @@
       "inNetwork": false,
       "address": "3500 MacArthur Blvd, Oakland, CA",
       "coordinate": {
-        "latitude": 37.7799,
-        "longitude": -122.2102
+        "latitude": 39.9055,
+        "longitude": -75.1574
       },
       "languages": [
         "English",
@@ -670,7 +2412,80 @@
       ],
       "nextAvailable": "Tuesday, 11:00 AM",
       "yearsExperience": 15,
-      "bio": "Provides expert care for skin, hair, and nail conditions with a focus on early detection."
+      "bio": "Provides expert care for skin, hair, and nail conditions with a focus on early detection.",
+      "locations": [
+        {
+          "name": "Main Hospital p24",
+          "address": "100 Main St, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9332,
+            "longitude": -75.2045
+          }
+        },
+        {
+          "name": "City Clinic p24",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.925,
+            "longitude": -75.1758
+          }
+        },
+        {
+          "name": "Westside Hub p24",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.9651,
+            "longitude": -75.1572
+          }
+        },
+        {
+          "name": "Eastside Care p24",
+          "address": "400 East Rd, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9898,
+            "longitude": -75.1836
+          }
+        },
+        {
+          "name": "North Annex p24",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9922,
+            "longitude": -75.153
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p25",
@@ -683,8 +2498,8 @@
       "inNetwork": true,
       "address": "700 El Camino Real, San Mateo, CA",
       "coordinate": {
-        "latitude": 37.563,
-        "longitude": -122.3155
+        "latitude": 39.9256,
+        "longitude": -75.1157
       },
       "languages": [
         "English",
@@ -692,7 +2507,80 @@
       ],
       "nextAvailable": "Tuesday, 3:30 PM",
       "yearsExperience": 16,
-      "bio": "Provides expert care for skin, hair, and nail conditions with a focus on early detection."
+      "bio": "Provides expert care for skin, hair, and nail conditions with a focus on early detection.",
+      "locations": [
+        {
+          "name": "Main Hospital p25",
+          "address": "100 Main St, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9577,
+            "longitude": -75.2117
+          }
+        },
+        {
+          "name": "City Clinic p25",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.9965,
+            "longitude": -75.1565
+          }
+        },
+        {
+          "name": "Westside Hub p25",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9706,
+            "longitude": -75.1601
+          }
+        },
+        {
+          "name": "Eastside Care p25",
+          "address": "400 East Rd, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9331,
+            "longitude": -75.2117
+          }
+        },
+        {
+          "name": "North Annex p25",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9687,
+            "longitude": -75.2039
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p26",
@@ -705,8 +2593,8 @@
       "inNetwork": true,
       "address": "55 Civic Center Dr, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7793,
-        "longitude": -122.4193
+        "latitude": 39.9829,
+        "longitude": -75.1522
       },
       "languages": [
         "English",
@@ -714,7 +2602,80 @@
       ],
       "nextAvailable": "Wednesday, 9:30 AM",
       "yearsExperience": 18,
-      "bio": "Specializes in musculoskeletal conditions, joint replacement, and sports-related injuries."
+      "bio": "Specializes in musculoskeletal conditions, joint replacement, and sports-related injuries.",
+      "locations": [
+        {
+          "name": "Main Hospital p26",
+          "address": "100 Main St, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9731,
+            "longitude": -75.1853
+          }
+        },
+        {
+          "name": "City Clinic p26",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9372,
+            "longitude": -75.155
+          }
+        },
+        {
+          "name": "Westside Hub p26",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9028,
+            "longitude": -75.1253
+          }
+        },
+        {
+          "name": "Eastside Care p26",
+          "address": "400 East Rd, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9479,
+            "longitude": -75.1687
+          }
+        },
+        {
+          "name": "North Annex p26",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9707,
+            "longitude": -75.1581
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p27",
@@ -727,8 +2688,8 @@
       "inNetwork": true,
       "address": "200 Irving St, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7638,
-        "longitude": -122.466
+        "latitude": 39.9673,
+        "longitude": -75.1506
       },
       "languages": [
         "English",
@@ -736,7 +2697,80 @@
       ],
       "nextAvailable": "Wednesday, 2:00 PM",
       "yearsExperience": 19,
-      "bio": "Specializes in musculoskeletal conditions, joint replacement, and sports-related injuries."
+      "bio": "Specializes in musculoskeletal conditions, joint replacement, and sports-related injuries.",
+      "locations": [
+        {
+          "name": "Main Hospital p27",
+          "address": "100 Main St, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9655,
+            "longitude": -75.1857
+          }
+        },
+        {
+          "name": "City Clinic p27",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9448,
+            "longitude": -75.202
+          }
+        },
+        {
+          "name": "Westside Hub p27",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 40.0026,
+            "longitude": -75.1363
+          }
+        },
+        {
+          "name": "Eastside Care p27",
+          "address": "400 East Rd, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9966,
+            "longitude": -75.1269
+          }
+        },
+        {
+          "name": "North Annex p27",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9097,
+            "longitude": -75.1684
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p28",
@@ -749,8 +2783,8 @@
       "inNetwork": true,
       "address": "1 Fruitvale Ave, Oakland, CA",
       "coordinate": {
-        "latitude": 37.7749,
-        "longitude": -122.2242
+        "latitude": 39.977,
+        "longitude": -75.1871
       },
       "languages": [
         "English",
@@ -758,7 +2792,80 @@
       ],
       "nextAvailable": "Thursday, 10:30 AM",
       "yearsExperience": 20,
-      "bio": "Specializes in musculoskeletal conditions, joint replacement, and sports-related injuries."
+      "bio": "Specializes in musculoskeletal conditions, joint replacement, and sports-related injuries.",
+      "locations": [
+        {
+          "name": "Main Hospital p28",
+          "address": "100 Main St, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9381,
+            "longitude": -75.1269
+          }
+        },
+        {
+          "name": "City Clinic p28",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.959,
+            "longitude": -75.1235
+          }
+        },
+        {
+          "name": "Westside Hub p28",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9984,
+            "longitude": -75.1417
+          }
+        },
+        {
+          "name": "Eastside Care p28",
+          "address": "400 East Rd, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9046,
+            "longitude": -75.2062
+          }
+        },
+        {
+          "name": "North Annex p28",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.98,
+            "longitude": -75.2034
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p29",
@@ -771,8 +2878,8 @@
       "inNetwork": true,
       "address": "450 30th St, Oakland, CA",
       "coordinate": {
-        "latitude": 37.8044,
-        "longitude": -122.2312
+        "latitude": 39.9616,
+        "longitude": -75.1407
       },
       "languages": [
         "English",
@@ -780,7 +2887,80 @@
       ],
       "nextAvailable": "Friday, 9:00 AM",
       "yearsExperience": 21,
-      "bio": "Specializes in musculoskeletal conditions, joint replacement, and sports-related injuries."
+      "bio": "Specializes in musculoskeletal conditions, joint replacement, and sports-related injuries.",
+      "locations": [
+        {
+          "name": "Main Hospital p29",
+          "address": "100 Main St, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.907,
+            "longitude": -75.2018
+          }
+        },
+        {
+          "name": "City Clinic p29",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.937,
+            "longitude": -75.2056
+          }
+        },
+        {
+          "name": "Westside Hub p29",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9961,
+            "longitude": -75.1692
+          }
+        },
+        {
+          "name": "Eastside Care p29",
+          "address": "400 East Rd, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9804,
+            "longitude": -75.191
+          }
+        },
+        {
+          "name": "North Annex p29",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9501,
+            "longitude": -75.194
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p30",
@@ -793,8 +2973,8 @@
       "inNetwork": false,
       "address": "100 Hospital Cir, San Leandro, CA",
       "coordinate": {
-        "latitude": 37.7249,
-        "longitude": -122.1561
+        "latitude": 39.9584,
+        "longitude": -75.1508
       },
       "languages": [
         "English",
@@ -803,7 +2983,80 @@
       ],
       "nextAvailable": null,
       "yearsExperience": 22,
-      "bio": "Specializes in musculoskeletal conditions, joint replacement, and sports-related injuries."
+      "bio": "Specializes in musculoskeletal conditions, joint replacement, and sports-related injuries.",
+      "locations": [
+        {
+          "name": "Main Hospital p30",
+          "address": "100 Main St, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9842,
+            "longitude": -75.1903
+          }
+        },
+        {
+          "name": "City Clinic p30",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9362,
+            "longitude": -75.1609
+          }
+        },
+        {
+          "name": "Westside Hub p30",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9739,
+            "longitude": -75.1561
+          }
+        },
+        {
+          "name": "Eastside Care p30",
+          "address": "400 East Rd, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9123,
+            "longitude": -75.1364
+          }
+        },
+        {
+          "name": "North Annex p30",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9256,
+            "longitude": -75.2019
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p31",
@@ -816,15 +3069,88 @@
       "inNetwork": true,
       "address": "505 Parnassus Ave, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7626,
-        "longitude": -122.4584
+        "latitude": 39.9293,
+        "longitude": -75.1232
       },
       "languages": [
         "English"
       ],
       "nextAvailable": "Tomorrow, 9:00 AM",
       "yearsExperience": 15,
-      "bio": "Diagnoses and manages disorders of the brain, spinal cord, and peripheral nervous system."
+      "bio": "Diagnoses and manages disorders of the brain, spinal cord, and peripheral nervous system.",
+      "locations": [
+        {
+          "name": "Main Hospital p31",
+          "address": "100 Main St, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9944,
+            "longitude": -75.2004
+          }
+        },
+        {
+          "name": "City Clinic p31",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9753,
+            "longitude": -75.1642
+          }
+        },
+        {
+          "name": "Westside Hub p31",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9929,
+            "longitude": -75.1823
+          }
+        },
+        {
+          "name": "Eastside Care p31",
+          "address": "400 East Rd, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9836,
+            "longitude": -75.1331
+          }
+        },
+        {
+          "name": "North Annex p31",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9221,
+            "longitude": -75.1589
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p32",
@@ -837,15 +3163,88 @@
       "inNetwork": true,
       "address": "2100 Webster St, Oakland, CA",
       "coordinate": {
-        "latitude": 37.8044,
-        "longitude": -122.3312
+        "latitude": 39.9154,
+        "longitude": -75.2029
       },
       "languages": [
         "English"
       ],
       "nextAvailable": "Tomorrow, 2:30 PM",
       "yearsExperience": 16,
-      "bio": "Diagnoses and manages disorders of the brain, spinal cord, and peripheral nervous system."
+      "bio": "Diagnoses and manages disorders of the brain, spinal cord, and peripheral nervous system.",
+      "locations": [
+        {
+          "name": "Main Hospital p32",
+          "address": "100 Main St, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9938,
+            "longitude": -75.1723
+          }
+        },
+        {
+          "name": "City Clinic p32",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9863,
+            "longitude": -75.1861
+          }
+        },
+        {
+          "name": "Westside Hub p32",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.971,
+            "longitude": -75.1501
+          }
+        },
+        {
+          "name": "Eastside Care p32",
+          "address": "400 East Rd, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.927,
+            "longitude": -75.1893
+          }
+        },
+        {
+          "name": "North Annex p32",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9567,
+            "longitude": -75.1519
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p33",
@@ -858,15 +3257,88 @@
       "inNetwork": true,
       "address": "3801 Howe St, Oakland, CA",
       "coordinate": {
-        "latitude": 37.821,
-        "longitude": -122.2562
+        "latitude": 39.9218,
+        "longitude": -75.2122
       },
       "languages": [
         "English"
       ],
       "nextAvailable": "Monday, 10:00 AM",
       "yearsExperience": 17,
-      "bio": "Diagnoses and manages disorders of the brain, spinal cord, and peripheral nervous system."
+      "bio": "Diagnoses and manages disorders of the brain, spinal cord, and peripheral nervous system.",
+      "locations": [
+        {
+          "name": "Main Hospital p33",
+          "address": "100 Main St, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9302,
+            "longitude": -75.1861
+          }
+        },
+        {
+          "name": "City Clinic p33",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9879,
+            "longitude": -75.208
+          }
+        },
+        {
+          "name": "Westside Hub p33",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9727,
+            "longitude": -75.214
+          }
+        },
+        {
+          "name": "Eastside Care p33",
+          "address": "400 East Rd, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9109,
+            "longitude": -75.1756
+          }
+        },
+        {
+          "name": "North Annex p33",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9167,
+            "longitude": -75.1466
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p34",
@@ -879,8 +3351,8 @@
       "inNetwork": true,
       "address": "1650 Los Gamos Dr, San Rafael, CA",
       "coordinate": {
-        "latitude": 37.9701,
-        "longitude": -122.5011
+        "latitude": 39.9779,
+        "longitude": -75.1675
       },
       "languages": [
         "English",
@@ -888,7 +3360,80 @@
       ],
       "nextAvailable": "Tuesday, 11:00 AM",
       "yearsExperience": 18,
-      "bio": "Diagnoses and manages disorders of the brain, spinal cord, and peripheral nervous system."
+      "bio": "Diagnoses and manages disorders of the brain, spinal cord, and peripheral nervous system.",
+      "locations": [
+        {
+          "name": "Main Hospital p34",
+          "address": "100 Main St, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9284,
+            "longitude": -75.1764
+          }
+        },
+        {
+          "name": "City Clinic p34",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9918,
+            "longitude": -75.1932
+          }
+        },
+        {
+          "name": "Westside Hub p34",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.925,
+            "longitude": -75.1886
+          }
+        },
+        {
+          "name": "Eastside Care p34",
+          "address": "400 East Rd, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9147,
+            "longitude": -75.2122
+          }
+        },
+        {
+          "name": "North Annex p34",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9073,
+            "longitude": -75.1498
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p35",
@@ -901,8 +3446,8 @@
       "inNetwork": false,
       "address": "200 Hospital Pkwy, San Leandro, CA",
       "coordinate": {
-        "latitude": 37.6688,
-        "longitude": -122.1508
+        "latitude": 39.9623,
+        "longitude": -75.1396
       },
       "languages": [
         "English",
@@ -910,7 +3455,80 @@
       ],
       "nextAvailable": "Tuesday, 3:30 PM",
       "yearsExperience": 19,
-      "bio": "Diagnoses and manages disorders of the brain, spinal cord, and peripheral nervous system."
+      "bio": "Diagnoses and manages disorders of the brain, spinal cord, and peripheral nervous system.",
+      "locations": [
+        {
+          "name": "Main Hospital p35",
+          "address": "100 Main St, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9146,
+            "longitude": -75.1601
+          }
+        },
+        {
+          "name": "City Clinic p35",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9307,
+            "longitude": -75.125
+          }
+        },
+        {
+          "name": "Westside Hub p35",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.979,
+            "longitude": -75.1321
+          }
+        },
+        {
+          "name": "Eastside Care p35",
+          "address": "400 East Rd, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9348,
+            "longitude": -75.1402
+          }
+        },
+        {
+          "name": "North Annex p35",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9527,
+            "longitude": -75.2114
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p36",
@@ -923,8 +3541,8 @@
       "inNetwork": true,
       "address": "1 Geary Blvd, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7876,
-        "longitude": -122.4088
+        "latitude": 39.9294,
+        "longitude": -75.21
       },
       "languages": [
         "English",
@@ -932,7 +3550,80 @@
       ],
       "nextAvailable": "Wednesday, 9:30 AM",
       "yearsExperience": 10,
-      "bio": "Expert in digestive health, including endoscopy, liver disease, and inflammatory bowel conditions."
+      "bio": "Expert in digestive health, including endoscopy, liver disease, and inflammatory bowel conditions.",
+      "locations": [
+        {
+          "name": "Main Hospital p36",
+          "address": "100 Main St, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9591,
+            "longitude": -75.2081
+          }
+        },
+        {
+          "name": "City Clinic p36",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9986,
+            "longitude": -75.1695
+          }
+        },
+        {
+          "name": "Westside Hub p36",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9208,
+            "longitude": -75.1172
+          }
+        },
+        {
+          "name": "Eastside Care p36",
+          "address": "400 East Rd, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9842,
+            "longitude": -75.1806
+          }
+        },
+        {
+          "name": "North Annex p36",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9943,
+            "longitude": -75.1582
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p37",
@@ -945,8 +3636,8 @@
       "inNetwork": true,
       "address": "300 Lakeshore Ave, Oakland, CA",
       "coordinate": {
-        "latitude": 37.8044,
-        "longitude": -122.2912
+        "latitude": 39.903,
+        "longitude": -75.1764
       },
       "languages": [
         "English",
@@ -954,7 +3645,80 @@
       ],
       "nextAvailable": "Wednesday, 2:00 PM",
       "yearsExperience": 11,
-      "bio": "Expert in digestive health, including endoscopy, liver disease, and inflammatory bowel conditions."
+      "bio": "Expert in digestive health, including endoscopy, liver disease, and inflammatory bowel conditions.",
+      "locations": [
+        {
+          "name": "Main Hospital p37",
+          "address": "100 Main St, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9858,
+            "longitude": -75.1255
+          }
+        },
+        {
+          "name": "City Clinic p37",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.97,
+            "longitude": -75.1446
+          }
+        },
+        {
+          "name": "Westside Hub p37",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9311,
+            "longitude": -75.1748
+          }
+        },
+        {
+          "name": "Eastside Care p37",
+          "address": "400 East Rd, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9055,
+            "longitude": -75.2148
+          }
+        },
+        {
+          "name": "North Annex p37",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9103,
+            "longitude": -75.1632
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p38",
@@ -967,8 +3731,8 @@
       "inNetwork": true,
       "address": "2100 Powell St, Emeryville, CA",
       "coordinate": {
-        "latitude": 37.831,
-        "longitude": -122.2913
+        "latitude": 39.9031,
+        "longitude": -75.1863
       },
       "languages": [
         "English",
@@ -976,7 +3740,80 @@
       ],
       "nextAvailable": "Thursday, 10:30 AM",
       "yearsExperience": 12,
-      "bio": "Expert in digestive health, including endoscopy, liver disease, and inflammatory bowel conditions."
+      "bio": "Expert in digestive health, including endoscopy, liver disease, and inflammatory bowel conditions.",
+      "locations": [
+        {
+          "name": "Main Hospital p38",
+          "address": "100 Main St, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.992,
+            "longitude": -75.1732
+          }
+        },
+        {
+          "name": "City Clinic p38",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.932,
+            "longitude": -75.1729
+          }
+        },
+        {
+          "name": "Westside Hub p38",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9198,
+            "longitude": -75.2069
+          }
+        },
+        {
+          "name": "Eastside Care p38",
+          "address": "400 East Rd, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9715,
+            "longitude": -75.2127
+          }
+        },
+        {
+          "name": "North Annex p38",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.9281,
+            "longitude": -75.1973
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p39",
@@ -989,8 +3826,8 @@
       "inNetwork": true,
       "address": "1 Hillsdale Blvd, San Mateo, CA",
       "coordinate": {
-        "latitude": 37.5985,
-        "longitude": -122.3369
+        "latitude": 39.9945,
+        "longitude": -75.2108
       },
       "languages": [
         "English",
@@ -998,7 +3835,80 @@
       ],
       "nextAvailable": "Friday, 9:00 AM",
       "yearsExperience": 13,
-      "bio": "Expert in digestive health, including endoscopy, liver disease, and inflammatory bowel conditions."
+      "bio": "Expert in digestive health, including endoscopy, liver disease, and inflammatory bowel conditions.",
+      "locations": [
+        {
+          "name": "Main Hospital p39",
+          "address": "100 Main St, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.973,
+            "longitude": -75.1476
+          }
+        },
+        {
+          "name": "City Clinic p39",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9352,
+            "longitude": -75.2018
+          }
+        },
+        {
+          "name": "Westside Hub p39",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.9529,
+            "longitude": -75.2009
+          }
+        },
+        {
+          "name": "Eastside Care p39",
+          "address": "400 East Rd, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 40.0018,
+            "longitude": -75.1452
+          }
+        },
+        {
+          "name": "North Annex p39",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9428,
+            "longitude": -75.1702
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p40",
@@ -1011,8 +3921,8 @@
       "inNetwork": false,
       "address": "27400 Hesperian Blvd, Hayward, CA",
       "coordinate": {
-        "latitude": 37.6688,
-        "longitude": -122.0808
+        "latitude": 39.9315,
+        "longitude": -75.2098
       },
       "languages": [
         "English",
@@ -1021,7 +3931,80 @@
       ],
       "nextAvailable": null,
       "yearsExperience": 14,
-      "bio": "Expert in digestive health, including endoscopy, liver disease, and inflammatory bowel conditions."
+      "bio": "Expert in digestive health, including endoscopy, liver disease, and inflammatory bowel conditions.",
+      "locations": [
+        {
+          "name": "Main Hospital p40",
+          "address": "100 Main St, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.968,
+            "longitude": -75.1575
+          }
+        },
+        {
+          "name": "City Clinic p40",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9162,
+            "longitude": -75.1592
+          }
+        },
+        {
+          "name": "Westside Hub p40",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.913,
+            "longitude": -75.1314
+          }
+        },
+        {
+          "name": "Eastside Care p40",
+          "address": "400 East Rd, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9899,
+            "longitude": -75.1379
+          }
+        },
+        {
+          "name": "North Annex p40",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9296,
+            "longitude": -75.1216
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p41",
@@ -1034,15 +4017,88 @@
       "inNetwork": true,
       "address": "775 Sacramento St, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7928,
-        "longitude": -122.4059
+        "latitude": 39.9159,
+        "longitude": -75.2031
       },
       "languages": [
         "English"
       ],
       "nextAvailable": "Tomorrow, 9:00 AM",
       "yearsExperience": 9,
-      "bio": "Provides compassionate mental health care with evidence-based therapies and medication management."
+      "bio": "Provides compassionate mental health care with evidence-based therapies and medication management.",
+      "locations": [
+        {
+          "name": "Main Hospital p41",
+          "address": "100 Main St, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9816,
+            "longitude": -75.1307
+          }
+        },
+        {
+          "name": "City Clinic p41",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9238,
+            "longitude": -75.2036
+          }
+        },
+        {
+          "name": "Westside Hub p41",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9584,
+            "longitude": -75.1225
+          }
+        },
+        {
+          "name": "Eastside Care p41",
+          "address": "400 East Rd, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9985,
+            "longitude": -75.1454
+          }
+        },
+        {
+          "name": "North Annex p41",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9816,
+            "longitude": -75.143
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p42",
@@ -1055,15 +4111,88 @@
       "inNetwork": true,
       "address": "501 Duboce Ave, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7692,
-        "longitude": -122.4281
+        "latitude": 39.9156,
+        "longitude": -75.1607
       },
       "languages": [
         "English"
       ],
       "nextAvailable": "Tomorrow, 2:30 PM",
       "yearsExperience": 10,
-      "bio": "Provides compassionate mental health care with evidence-based therapies and medication management."
+      "bio": "Provides compassionate mental health care with evidence-based therapies and medication management.",
+      "locations": [
+        {
+          "name": "Main Hospital p42",
+          "address": "100 Main St, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9184,
+            "longitude": -75.1977
+          }
+        },
+        {
+          "name": "City Clinic p42",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9104,
+            "longitude": -75.1454
+          }
+        },
+        {
+          "name": "Westside Hub p42",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9094,
+            "longitude": -75.1967
+          }
+        },
+        {
+          "name": "Eastside Care p42",
+          "address": "400 East Rd, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9895,
+            "longitude": -75.1579
+          }
+        },
+        {
+          "name": "North Annex p42",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9283,
+            "longitude": -75.1617
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p43",
@@ -1076,15 +4205,88 @@
       "inNetwork": true,
       "address": "450 30th Ave, Oakland, CA",
       "coordinate": {
-        "latitude": 37.8044,
-        "longitude": -122.2412
+        "latitude": 39.9248,
+        "longitude": -75.1981
       },
       "languages": [
         "English"
       ],
       "nextAvailable": "Monday, 10:00 AM",
       "yearsExperience": 11,
-      "bio": "Provides compassionate mental health care with evidence-based therapies and medication management."
+      "bio": "Provides compassionate mental health care with evidence-based therapies and medication management.",
+      "locations": [
+        {
+          "name": "Main Hospital p43",
+          "address": "100 Main St, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9872,
+            "longitude": -75.2138
+          }
+        },
+        {
+          "name": "City Clinic p43",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9546,
+            "longitude": -75.1995
+          }
+        },
+        {
+          "name": "Westside Hub p43",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9843,
+            "longitude": -75.1712
+          }
+        },
+        {
+          "name": "Eastside Care p43",
+          "address": "400 East Rd, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9871,
+            "longitude": -75.15
+          }
+        },
+        {
+          "name": "North Annex p43",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.985,
+            "longitude": -75.1813
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p44",
@@ -1097,8 +4299,8 @@
       "inNetwork": true,
       "address": "99 Montecito Ave, Oakland, CA",
       "coordinate": {
-        "latitude": 37.821,
-        "longitude": -122.2212
+        "latitude": 39.9417,
+        "longitude": -75.1957
       },
       "languages": [
         "English",
@@ -1106,7 +4308,80 @@
       ],
       "nextAvailable": "Tuesday, 11:00 AM",
       "yearsExperience": 12,
-      "bio": "Provides compassionate mental health care with evidence-based therapies and medication management."
+      "bio": "Provides compassionate mental health care with evidence-based therapies and medication management.",
+      "locations": [
+        {
+          "name": "Main Hospital p44",
+          "address": "100 Main St, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.913,
+            "longitude": -75.1392
+          }
+        },
+        {
+          "name": "City Clinic p44",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9936,
+            "longitude": -75.192
+          }
+        },
+        {
+          "name": "Westside Hub p44",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0109",
+          "coordinate": {
+            "latitude": 39.9404,
+            "longitude": -75.1185
+          }
+        },
+        {
+          "name": "Eastside Care p44",
+          "address": "400 East Rd, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.9478,
+            "longitude": -75.211
+          }
+        },
+        {
+          "name": "North Annex p44",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.956,
+            "longitude": -75.1876
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p45",
@@ -1119,8 +4394,8 @@
       "inNetwork": true,
       "address": "400 Medical Ctr Dr, Walnut Creek, CA",
       "coordinate": {
-        "latitude": 37.9101,
-        "longitude": -122.0652
+        "latitude": 39.9063,
+        "longitude": -75.158
       },
       "languages": [
         "English",
@@ -1128,7 +4403,80 @@
       ],
       "nextAvailable": "Tuesday, 3:30 PM",
       "yearsExperience": 13,
-      "bio": "Provides compassionate mental health care with evidence-based therapies and medication management."
+      "bio": "Provides compassionate mental health care with evidence-based therapies and medication management.",
+      "locations": [
+        {
+          "name": "Main Hospital p45",
+          "address": "100 Main St, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9741,
+            "longitude": -75.1308
+          }
+        },
+        {
+          "name": "City Clinic p45",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 40.0002,
+            "longitude": -75.1191
+          }
+        },
+        {
+          "name": "Westside Hub p45",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9476,
+            "longitude": -75.1924
+          }
+        },
+        {
+          "name": "Eastside Care p45",
+          "address": "400 East Rd, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9055,
+            "longitude": -75.1391
+          }
+        },
+        {
+          "name": "North Annex p45",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9981,
+            "longitude": -75.1366
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p46",
@@ -1141,8 +4489,8 @@
       "inNetwork": true,
       "address": "490 Post St, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7888,
-        "longitude": -122.4113
+        "latitude": 39.9553,
+        "longitude": -75.1304
       },
       "languages": [
         "English",
@@ -1150,7 +4498,80 @@
       ],
       "nextAvailable": "Wednesday, 9:30 AM",
       "yearsExperience": 14,
-      "bio": "Dedicated to preserving and restoring vision through advanced surgical and non-surgical treatments."
+      "bio": "Dedicated to preserving and restoring vision through advanced surgical and non-surgical treatments.",
+      "locations": [
+        {
+          "name": "Main Hospital p46",
+          "address": "100 Main St, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9468,
+            "longitude": -75.1155
+          }
+        },
+        {
+          "name": "City Clinic p46",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9598,
+            "longitude": -75.1997
+          }
+        },
+        {
+          "name": "Westside Hub p46",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9061,
+            "longitude": -75.1279
+          }
+        },
+        {
+          "name": "Eastside Care p46",
+          "address": "400 East Rd, CA",
+          "phone": "555-0103",
+          "coordinate": {
+            "latitude": 39.9762,
+            "longitude": -75.1769
+          }
+        },
+        {
+          "name": "North Annex p46",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.96,
+            "longitude": -75.191
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p47",
@@ -1163,8 +4584,8 @@
       "inNetwork": true,
       "address": "2299 Post St, San Francisco, CA",
       "coordinate": {
-        "latitude": 37.7862,
-        "longitude": -122.4502
+        "latitude": 39.9222,
+        "longitude": -75.1606
       },
       "languages": [
         "English",
@@ -1172,7 +4593,80 @@
       ],
       "nextAvailable": "Wednesday, 2:00 PM",
       "yearsExperience": 15,
-      "bio": "Dedicated to preserving and restoring vision through advanced surgical and non-surgical treatments."
+      "bio": "Dedicated to preserving and restoring vision through advanced surgical and non-surgical treatments.",
+      "locations": [
+        {
+          "name": "Main Hospital p47",
+          "address": "100 Main St, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9039,
+            "longitude": -75.2125
+          }
+        },
+        {
+          "name": "City Clinic p47",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9923,
+            "longitude": -75.1596
+          }
+        },
+        {
+          "name": "Westside Hub p47",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9908,
+            "longitude": -75.1596
+          }
+        },
+        {
+          "name": "Eastside Care p47",
+          "address": "400 East Rd, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9439,
+            "longitude": -75.1907
+          }
+        },
+        {
+          "name": "North Annex p47",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0107",
+          "coordinate": {
+            "latitude": 39.9319,
+            "longitude": -75.1728
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p48",
@@ -1185,8 +4679,8 @@
       "inNetwork": true,
       "address": "8888 MacArthur Blvd, Oakland, CA",
       "coordinate": {
-        "latitude": 37.7749,
-        "longitude": -122.2142
+        "latitude": 39.9899,
+        "longitude": -75.1956
       },
       "languages": [
         "English",
@@ -1194,7 +4688,80 @@
       ],
       "nextAvailable": "Thursday, 10:30 AM",
       "yearsExperience": 16,
-      "bio": "Dedicated to preserving and restoring vision through advanced surgical and non-surgical treatments."
+      "bio": "Dedicated to preserving and restoring vision through advanced surgical and non-surgical treatments.",
+      "locations": [
+        {
+          "name": "Main Hospital p48",
+          "address": "100 Main St, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9377,
+            "longitude": -75.1242
+          }
+        },
+        {
+          "name": "City Clinic p48",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9245,
+            "longitude": -75.1408
+          }
+        },
+        {
+          "name": "Westside Hub p48",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9539,
+            "longitude": -75.167
+          }
+        },
+        {
+          "name": "Eastside Care p48",
+          "address": "400 East Rd, CA",
+          "phone": "555-0100",
+          "coordinate": {
+            "latitude": 39.9634,
+            "longitude": -75.1433
+          }
+        },
+        {
+          "name": "North Annex p48",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9119,
+            "longitude": -75.1589
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p49",
@@ -1207,8 +4774,8 @@
       "inNetwork": true,
       "address": "101 South B St, San Mateo, CA",
       "coordinate": {
-        "latitude": 37.573,
-        "longitude": -122.3255
+        "latitude": 39.9133,
+        "longitude": -75.1847
       },
       "languages": [
         "English",
@@ -1216,7 +4783,80 @@
       ],
       "nextAvailable": "Friday, 9:00 AM",
       "yearsExperience": 17,
-      "bio": "Dedicated to preserving and restoring vision through advanced surgical and non-surgical treatments."
+      "bio": "Dedicated to preserving and restoring vision through advanced surgical and non-surgical treatments.",
+      "locations": [
+        {
+          "name": "Main Hospital p49",
+          "address": "100 Main St, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9242,
+            "longitude": -75.1549
+          }
+        },
+        {
+          "name": "City Clinic p49",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9904,
+            "longitude": -75.213
+          }
+        },
+        {
+          "name": "Westside Hub p49",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0102",
+          "coordinate": {
+            "latitude": 39.9468,
+            "longitude": -75.1454
+          }
+        },
+        {
+          "name": "Eastside Care p49",
+          "address": "400 East Rd, CA",
+          "phone": "555-0105",
+          "coordinate": {
+            "latitude": 39.9561,
+            "longitude": -75.2024
+          }
+        },
+        {
+          "name": "North Annex p49",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.907,
+            "longitude": -75.1598
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     },
     {
       "id": "p50",
@@ -1229,8 +4869,8 @@
       "inNetwork": false,
       "address": "2500 Mowry Ave, Fremont, CA",
       "coordinate": {
-        "latitude": 37.5485,
-        "longitude": -121.9886
+        "latitude": 39.9891,
+        "longitude": -75.2017
       },
       "languages": [
         "English",
@@ -1239,7 +4879,80 @@
       ],
       "nextAvailable": null,
       "yearsExperience": 18,
-      "bio": "Dedicated to preserving and restoring vision through advanced surgical and non-surgical treatments."
+      "bio": "Dedicated to preserving and restoring vision through advanced surgical and non-surgical treatments.",
+      "locations": [
+        {
+          "name": "Main Hospital p50",
+          "address": "100 Main St, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.9717,
+            "longitude": -75.201
+          }
+        },
+        {
+          "name": "City Clinic p50",
+          "address": "200 Center Ave, CA",
+          "phone": "555-0108",
+          "coordinate": {
+            "latitude": 39.9629,
+            "longitude": -75.1863
+          }
+        },
+        {
+          "name": "Westside Hub p50",
+          "address": "300 West Blvd, CA",
+          "phone": "555-0104",
+          "coordinate": {
+            "latitude": 39.9964,
+            "longitude": -75.1691
+          }
+        },
+        {
+          "name": "Eastside Care p50",
+          "address": "400 East Rd, CA",
+          "phone": "555-0106",
+          "coordinate": {
+            "latitude": 39.927,
+            "longitude": -75.1618
+          }
+        },
+        {
+          "name": "North Annex p50",
+          "address": "500 North Pkwy, CA",
+          "phone": "555-0101",
+          "coordinate": {
+            "latitude": 39.9791,
+            "longitude": -75.1472
+          }
+        }
+      ],
+      "reviews": [
+        {
+          "initials": "JD",
+          "bg": "#c6e7ff",
+          "name": "John Doe",
+          "ago": "1 week ago",
+          "stars": 5,
+          "text": "Great doctor, very helpful and attentive."
+        },
+        {
+          "initials": "AS",
+          "bg": "#d3e4ff",
+          "name": "Alice Smith",
+          "ago": "2 weeks ago",
+          "stars": 4,
+          "text": "Good experience, highly recommended."
+        },
+        {
+          "initials": "BW",
+          "bg": "#ffdbc8",
+          "name": "Bob Wilson",
+          "ago": "1 month ago",
+          "stars": 5,
+          "text": "Very professional and caring."
+        }
+      ]
     }
   ],
   "benefits": {

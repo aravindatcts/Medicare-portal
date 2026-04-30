@@ -72,6 +72,15 @@ const NavItemSchema = z.object({
   icon: z.string(),
 });
 
+const ReviewItemSchema = z.object({
+  initials: z.string(),
+  bg: z.string(),
+  name: z.string(),
+  ago: z.string(),
+  stars: z.number(),
+  text: z.string(),
+});
+
 const ProviderSchema = z.object({
   id: z.string(),
   name: z.string(),
@@ -83,10 +92,17 @@ const ProviderSchema = z.object({
   inNetwork: z.boolean(),
   address: z.string(),
   coordinate: z.object({ latitude: z.number(), longitude: z.number() }),
+  locations: z.array(z.object({
+    name: z.string(),
+    address: z.string(),
+    phone: z.string(),
+    coordinate: z.object({ latitude: z.number(), longitude: z.number() })
+  })).optional(),
   languages: z.array(z.string()).optional(),
   nextAvailable: z.string().nullable().optional(),
   yearsExperience: z.number().optional(),
   bio: z.string().optional(),
+  reviews: z.array(ReviewItemSchema).optional(),
 });
 
 const BenefitsSchema = z.object({
@@ -124,27 +140,41 @@ const ClaimSchema = z.object({
   journey: z.array(z.object({ step: z.string(), date: z.string(), complete: z.boolean() })),
 });
 
-// ── Fetch helper ─────────────────────────────────────────────────────────────
+// ── HTTP client ───────────────────────────────────────────────────────────────
+// The mobile app injects an Axios instance (apps/mobile/src/services/http.ts)
+// with auth interceptors. Web uses native fetch as a fallback.
 
-const BASE_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3001';
+let _axiosClient: { get: (url: string) => Promise<{ data: unknown }> } | null = null;
+// Default base URL — override before first query with setBaseUrl() (web) or
+// setHttpClient() (mobile, which carries the base URL inside the Axios instance).
+let _baseUrl: string =
+  (typeof process !== 'undefined' ? process.env?.EXPO_PUBLIC_API_URL : undefined) ??
+  'http://localhost:3001';
 
-async function fetchJson<S extends z.ZodTypeAny>(path: string, schema: S): Promise<z.infer<S>> {
-  const res = await fetch(`${BASE_URL}${path}`);
-  if (!res.ok) {
-    throw new Error(`Server error ${res.status} on ${path}`);
-  }
-  const data = await res.json();
-  return schema.parse(data);
+/** Inject a pre-configured Axios (or compatible) instance. Mobile uses this. */
+export function setHttpClient(client: { get: (url: string) => Promise<{ data: unknown }> }) {
+  _axiosClient = client;
 }
 
-const ReviewItemSchema = z.object({
-  initials: z.string(),
-  bg: z.string(),
-  name: z.string(),
-  ago: z.string(),
-  stars: z.number(),
-  text: z.string(),
-});
+/** Override the base URL used by the native fetch fallback. Web uses this. */
+export function setBaseUrl(url: string) {
+  _baseUrl = url;
+}
+
+async function fetchJson<S extends z.ZodTypeAny>(path: string, schema: S): Promise<z.infer<S>> {
+  let data: unknown;
+
+  if (_axiosClient) {
+    const response = await _axiosClient.get(path);
+    data = response.data;
+  } else {
+    const res = await fetch(`${_baseUrl}${path}`);
+    if (!res.ok) throw new Error(`Server error ${res.status} on ${path}`);
+    data = await res.json();
+  }
+
+  return schema.parse(data);
+}
 
 const PrescriptionMedSchema = z.object({
   name: z.string(),
