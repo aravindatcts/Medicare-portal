@@ -14,26 +14,12 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
 import { ProviderAvatar } from '../../components/ProviderAvatar';
-import { useProvider } from '@medicare/shared';
+import { Colors, useProvider } from '@medicare/shared';
+import { Skeleton } from '@medicare/ui';
 import type { ProviderDetailScreenProps } from '../../navigation/types';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
-const C = {
-  primary: '#003461',
-  primaryContainer: '#004b87',
-  secondary: '#00658d',
-  secondaryContainer: '#41befd',
-  onSecondaryContainer: '#004b69',
-  tertiary: '#572500',
-  surface: '#f4f5f7',
-  surfaceLowest: '#ffffff',
-  outlineVariant: '#e2e5ec',
-  onSurface: '#191c1d',
-  onSurfaceVariant: '#424750',
-  white: '#ffffff',
-  accent: '#ffb951',
-};
 
 function StarRow({ count, size = 14 }: { count: number; size?: number }) {
   return (
@@ -43,7 +29,7 @@ function StarRow({ count, size = 14 }: { count: number; size?: number }) {
           key={i}
           name={i < count ? 'star' : 'star-outline'}
           size={size}
-          color={C.accent}
+          color={'#ffb951'}
         />
       ))}
     </View>
@@ -62,11 +48,28 @@ export default function ProviderDetailScreen({ navigation, route }: ProviderDeta
   if (isLoading || !provider) {
     return (
       <View style={[styles.root, { paddingTop: insets.top }]}>
+        {/* Top Nav */}
         <View style={styles.topNav}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <MaterialCommunityIcons name="arrow-left" size={24} color={C.primary} />
+            <MaterialCommunityIcons name="arrow-left" size={24} color={Colors.primary} />
           </TouchableOpacity>
         </View>
+
+        {/* Header Skeleton */}
+        <View style={styles.profileInfo}>
+          <Skeleton style={{ width: 84, height: 84, borderRadius: 42, marginBottom: 16 }} />
+          <Skeleton style={{ width: 180, height: 24, borderRadius: 12, marginBottom: 8 }} />
+          <Skeleton style={{ width: 120, height: 16, borderRadius: 8 }} />
+        </View>
+
+        {/* Content Skeleton */}
+        <ScrollView style={styles.scrollArea} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+          <Skeleton style={{ width: 140, height: 20, borderRadius: 10, marginTop: 16, marginBottom: 16 }} />
+          <Skeleton style={{ width: '100%', height: 100, borderRadius: 16, marginBottom: 32 }} />
+          
+          <Skeleton style={{ width: 160, height: 20, borderRadius: 10, marginBottom: 16 }} />
+          <Skeleton style={{ width: '100%', height: 180, borderRadius: 16 }} />
+        </ScrollView>
       </View>
     );
   }
@@ -129,11 +132,11 @@ export default function ProviderDetailScreen({ navigation, route }: ProviderDeta
       <Animated.View style={[styles.stableHeader, { paddingBottom: headerPaddingBottom }]}>
         <View style={styles.topNav}>
           <TouchableOpacity onPress={() => navigation.goBack()} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
-            <MaterialCommunityIcons name="arrow-left" size={24} color={C.primary} />
+            <MaterialCommunityIcons name="arrow-left" size={24} color={Colors.primary} />
           </TouchableOpacity>
           <Text style={styles.navTitle}>Provider Profile</Text>
           <TouchableOpacity hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
-            <MaterialCommunityIcons name="bell-outline" size={24} color={C.primary} />
+            <MaterialCommunityIcons name="bell-outline" size={24} color={Colors.primary} />
           </TouchableOpacity>
         </View>
 
@@ -142,7 +145,7 @@ export default function ProviderDetailScreen({ navigation, route }: ProviderDeta
             <ProviderAvatar name={provider.name} category={provider.category} photoUrl={provider.photo} size={84} />
             {provider.inNetwork && (
               <View style={styles.networkPill}>
-                <MaterialCommunityIcons name="check-decagram" size={10} color={C.white} />
+                <MaterialCommunityIcons name="check-decagram" size={10} color={Colors.white} />
                 <Text style={styles.networkPillText}>IN-NETWORK</Text>
               </View>
             )}
@@ -179,7 +182,7 @@ export default function ProviderDetailScreen({ navigation, route }: ProviderDeta
         <View style={styles.smartMatchCard}>
           <View style={styles.smartHeader}>
             <View style={styles.smartIconWrap}>
-              <MaterialCommunityIcons name="auto-fix" size={18} color={C.secondaryContainer} />
+              <MaterialCommunityIcons name="auto-fix" size={18} color={Colors.secondaryContainer} />
             </View>
             <Text style={styles.smartTitle}>Smart Match</Text>
           </View>
@@ -190,7 +193,7 @@ export default function ProviderDetailScreen({ navigation, route }: ProviderDeta
           <View style={styles.smartFeatures}>
             {[`Expert in ${provider.specialty}`, 'Accepts your Primary Plan', 'On-site care coordination'].map((item) => (
               <View key={item} style={styles.smartFeatureItem}>
-                <MaterialCommunityIcons name="check-circle-outline" size={18} color={C.secondaryContainer} />
+                <MaterialCommunityIcons name="check-circle-outline" size={18} color={Colors.secondaryContainer} />
                 <Text style={styles.smartFeatureText}>{item}</Text>
               </View>
             ))}
@@ -244,7 +247,7 @@ export default function ProviderDetailScreen({ navigation, route }: ProviderDeta
             ].map((amenity, i) => (
               <View key={i} style={styles.amenityItem}>
                 <View style={styles.amenityIconWrap}>
-                  <MaterialCommunityIcons name={amenity.icon as any} size={16} color={C.primary} />
+                  <MaterialCommunityIcons name={amenity.icon as any} size={16} color={Colors.primary} />
                 </View>
                 <Text style={styles.amenityLabel}>{amenity.label}</Text>
               </View>
@@ -256,7 +259,7 @@ export default function ProviderDetailScreen({ navigation, route }: ProviderDeta
               <Text style={styles.btnBookText}>Book</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnCall} onPress={() => handleCall(selectedLocation.phone)}>
-              <MaterialCommunityIcons name="phone" size={16} color={C.primary} />
+              <MaterialCommunityIcons name="phone" size={16} color={Colors.primary} />
               <Text style={styles.btnCallText}>Call</Text>
             </TouchableOpacity>
             <TouchableOpacity 
@@ -267,7 +270,7 @@ export default function ProviderDetailScreen({ navigation, route }: ProviderDeta
                 selectedLocation.name
               )}
             >
-              <MaterialCommunityIcons name="directions" size={16} color={C.primary} />
+              <MaterialCommunityIcons name="directions" size={16} color={Colors.primary} />
               <Text style={styles.btnCallText}>Directions</Text>
             </TouchableOpacity>
           </View>
@@ -288,7 +291,7 @@ export default function ProviderDetailScreen({ navigation, route }: ProviderDeta
               pitchEnabled={false}
               rotateEnabled={false}
             >
-              <Marker coordinate={selectedLocation.coordinate} pinColor={C.primary} />
+              <Marker coordinate={selectedLocation.coordinate} pinColor={Colors.primary} />
             </MapView>
           </View>
         </View>
@@ -299,7 +302,7 @@ export default function ProviderDetailScreen({ navigation, route }: ProviderDeta
             <View style={styles.reviewsHeaderRow}>
               <Text style={styles.sectionHeadingNoMargin}>Patient Reviews</Text>
               <View style={styles.ratingSummary}>
-                <MaterialCommunityIcons name="star-outline" size={16} color={C.accent} />
+                <MaterialCommunityIcons name="star-outline" size={16} color={'#ffb951'} />
                 <Text style={styles.ratingSummaryScore}>{provider.rating.toFixed(1)}</Text>
                 <Text style={styles.ratingSummaryCount}>({providerReviews.length} reviews)</Text>
               </View>
@@ -328,10 +331,10 @@ export default function ProviderDetailScreen({ navigation, route }: ProviderDeta
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: C.surfaceLowest }, 
+  root: { flex: 1, backgroundColor: Colors.white }, 
   
   stableHeader: {
-    backgroundColor: C.surfaceLowest,
+    backgroundColor: Colors.white,
     paddingBottom: 16,
   },
   topNav: {
@@ -344,7 +347,7 @@ const styles = StyleSheet.create({
   navTitle: {
     fontSize: 20,
     fontWeight: '800',
-    color: C.primary,
+    color: Colors.primary,
   },
   profileInfo: {
     alignItems: 'center',
@@ -366,18 +369,18 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     borderRadius: 12,
     borderWidth: 2,
-    borderColor: C.white,
+    borderColor: Colors.white,
     gap: 4,
   },
   networkPillText: {
-    color: C.white,
+    color: Colors.white,
     fontSize: 9,
     fontWeight: '800',
   },
   providerName: {
     fontSize: 24,
     fontWeight: '800',
-    color: C.primary,
+    color: Colors.primary,
     marginBottom: 4,
   },
   specialtyText: {
@@ -388,12 +391,12 @@ const styles = StyleSheet.create({
   },
   networkText: {
     fontSize: 12,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
   },
 
   scrollArea: {
     flex: 1,
-    backgroundColor: C.surface,
+    backgroundColor: Colors.surfaceContainerLow,
   },
   scrollContent: {
     paddingTop: 24,
@@ -402,24 +405,24 @@ const styles = StyleSheet.create({
   sectionHeading: {
     fontSize: 16,
     fontWeight: '700',
-    color: C.primary,
+    color: Colors.primary,
     marginBottom: 12,
     paddingHorizontal: 16,
   },
   sectionHeadingNoMargin: {
     fontSize: 16,
     fontWeight: '700',
-    color: C.primary,
+    color: Colors.primary,
   },
   
   card: {
-    backgroundColor: C.white,
+    backgroundColor: Colors.white,
     borderRadius: 16,
     padding: 20,
     marginBottom: 24,
     marginHorizontal: 16,
     borderWidth: 1,
-    borderColor: C.outlineVariant,
+    borderColor: Colors.borderLight,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.04,
@@ -428,17 +431,17 @@ const styles = StyleSheet.create({
   },
   bioText: {
     fontSize: 14,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     lineHeight: 22,
   },
 
   smartMatchCard: {
-    backgroundColor: C.primary,
+    backgroundColor: Colors.primary,
     borderRadius: 16,
     padding: 20,
     marginBottom: 24,
     marginHorizontal: 16,
-    shadowColor: C.primary,
+    shadowColor: Colors.primary,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 10,
@@ -461,7 +464,7 @@ const styles = StyleSheet.create({
   smartTitle: {
     fontSize: 16,
     fontWeight: '700',
-    color: C.white,
+    color: Colors.white,
   },
   smartDesc: {
     fontSize: 13,
@@ -480,7 +483,7 @@ const styles = StyleSheet.create({
   },
   smartFeatureText: {
     fontSize: 12,
-    color: C.white,
+    color: Colors.white,
   },
   confidenceBarContainer: {
     marginTop: 8,
@@ -493,7 +496,7 @@ const styles = StyleSheet.create({
   },
   confidenceFill: {
     height: '100%',
-    backgroundColor: C.secondaryContainer,
+    backgroundColor: Colors.secondaryContainer,
     borderRadius: 3,
   },
   confidenceText: {
@@ -513,21 +516,21 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 16,
     borderRadius: 20,
-    backgroundColor: C.white,
+    backgroundColor: Colors.white,
     borderWidth: 1,
-    borderColor: C.outlineVariant,
+    borderColor: Colors.borderLight,
   },
   tabButtonActive: {
     backgroundColor: '#e6f3f8',
-    borderColor: C.primary,
+    borderColor: Colors.primary,
   },
   tabText: {
     fontSize: 13,
     fontWeight: '600',
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
   },
   tabTextActive: {
-    color: C.primary,
+    color: Colors.primary,
     fontWeight: '800',
   },
 
@@ -538,12 +541,12 @@ const styles = StyleSheet.create({
   officeName: {
     fontSize: 14,
     fontWeight: '700',
-    color: C.primary,
+    color: Colors.primary,
     marginBottom: 4,
   },
   officeAddress: {
     fontSize: 13,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     marginBottom: 16,
     lineHeight: 18,
     height: 36,
@@ -572,7 +575,7 @@ const styles = StyleSheet.create({
   amenityLabel: {
     fontSize: 8,
     fontWeight: '800',
-    color: C.primary,
+    color: Colors.primary,
     textAlign: 'center',
   },
   actionButtonsRow: {
@@ -582,7 +585,7 @@ const styles = StyleSheet.create({
   },
   btnBook: {
     flex: 1,
-    backgroundColor: C.primary,
+    backgroundColor: Colors.primary,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -590,7 +593,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   btnBookText: {
-    color: C.white,
+    color: Colors.white,
     fontSize: 13,
     fontWeight: '700',
   },
@@ -605,7 +608,7 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   btnCallText: {
-    color: C.primary,
+    color: Colors.primary,
     fontSize: 13,
     fontWeight: '700',
   },
@@ -633,24 +636,24 @@ const styles = StyleSheet.create({
   ratingSummaryScore: {
     fontSize: 14,
     fontWeight: '800',
-    color: C.primary,
+    color: Colors.primary,
   },
   ratingSummaryCount: {
     fontSize: 12,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
   },
   reviewCard: {
-    backgroundColor: C.white,
+    backgroundColor: Colors.white,
     borderRadius: 12,
     padding: 16,
     marginBottom: 12,
     marginHorizontal: 16,
     borderLeftWidth: 4,
-    borderLeftColor: C.secondary,
+    borderLeftColor: Colors.secondary,
     borderTopWidth: 1,
     borderRightWidth: 1,
     borderBottomWidth: 1,
-    borderColor: C.outlineVariant,
+    borderColor: Colors.borderLight,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.03,
@@ -666,11 +669,11 @@ const styles = StyleSheet.create({
   reviewerName: {
     fontSize: 13,
     fontWeight: '700',
-    color: C.primary,
+    color: Colors.primary,
   },
   reviewCardText: {
     fontSize: 13,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     fontStyle: 'italic',
     lineHeight: 20,
   },
@@ -679,7 +682,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
   },
   seeAllText: {
-    color: C.secondary,
+    color: Colors.secondary,
     fontSize: 14,
     fontWeight: '700',
   },

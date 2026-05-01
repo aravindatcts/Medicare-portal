@@ -11,12 +11,17 @@ import {
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import WelcomeSection from '../../components/WelcomeSection';
-import AiConcierge from '../../components/AiConcierge';
-import NextBestAction from '../../components/NextBestAction';
-import DigitalIdCard from '../../components/DigitalIdCard';
-import QuickActions from '../../components/QuickActions';
-import PrimaryCare from '../../components/PrimaryCare';
+import {
+  WelcomeSection,
+  AiConcierge,
+  NextBestAction,
+  DigitalIdCard,
+  QuickActions,
+  PrimaryCare,
+  PlanInformation,
+} from '../../components/dashboard';
+import TopBar from '../../components/TopBar';
+import flags from '../../config/featureFlags';
 import type { TabParamList } from '../../navigation/types';
 import type { DashboardScreenProps } from '../../navigation/types';
 
@@ -31,29 +36,7 @@ export default function DashboardScreen(_props: DashboardScreenProps) {
     <SafeAreaView style={styles.root}>
       <StatusBar barStyle="dark-content" backgroundColor="#f8f9fa" />
 
-      {/* Top App Bar */}
-      <View style={styles.topBar}>
-        <View style={styles.logoRow}>
-          <MaterialCommunityIcons name="account-circle-outline" size={28} color="#003461" />
-          <Text style={styles.appName}>AmeriHealth Caritas</Text>
-        </View>
-        <View style={styles.headerActions}>
-          <TouchableOpacity
-            style={styles.iconButton}
-            accessibilityLabel="Notifications"
-            accessibilityRole="button"
-          >
-            <MaterialCommunityIcons name="bell-outline" size={24} color="#003461" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.iconButton}
-            accessibilityLabel="Settings"
-            accessibilityRole="button"
-          >
-            <MaterialCommunityIcons name="cog-outline" size={24} color="#003461" />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <TopBar />
 
       <ScrollView
         style={styles.scroll}
@@ -61,8 +44,9 @@ export default function DashboardScreen(_props: DashboardScreenProps) {
         contentContainerStyle={styles.scrollContent}
       >
         <WelcomeSection />
-        <AiConcierge />
+        {flags.AI_CONCIERGE && <AiConcierge />}
         <NextBestAction />
+        <PlanInformation onNavigate={() => navigateToTab('Benefits')} />
         <PrimaryCare onNavigate={() => navigateToTab('FindCare')} />
         <DigitalIdCard />
         <QuickActions onNavigate={(route) => {

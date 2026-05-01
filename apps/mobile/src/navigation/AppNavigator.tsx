@@ -17,7 +17,7 @@ const ClaimsStack = createNativeStackNavigator<ClaimsStackParamList>();
 
 function FindCareNavigator() {
   return (
-    <FindCareStack.Navigator screenOptions={{ headerShown: false }}>
+    <FindCareStack.Navigator screenOptions={{ headerShown: false, animation: 'slide_from_right' }}>
       <FindCareStack.Screen name="FindCareList" component={FindCareScreen} />
       <FindCareStack.Screen name="ProviderDetail" component={ProviderDetailScreen} />
     </FindCareStack.Navigator>
@@ -26,7 +26,7 @@ function FindCareNavigator() {
 
 function ClaimsNavigator() {
   return (
-    <ClaimsStack.Navigator screenOptions={{ headerShown: false }}>
+    <ClaimsStack.Navigator screenOptions={{ headerShown: false, animation: 'slide_from_right' }}>
       <ClaimsStack.Screen name="ClaimsList" component={ClaimsScreen} />
       <ClaimsStack.Screen name="ClaimDetail" component={ClaimDetailScreen} />
     </ClaimsStack.Navigator>
@@ -37,7 +37,7 @@ export default function AppNavigator() {
   return (
     <Tab.Navigator
       tabBar={(props) => <BottomNav {...props} />}
-      screenOptions={{ headerShown: false, lazy: true }}
+      screenOptions={{ headerShown: false, lazy: false }}
     >
       <Tab.Screen name="Dashboard" component={DashboardScreen} />
       <Tab.Screen name="Claims" component={ClaimsNavigator} />

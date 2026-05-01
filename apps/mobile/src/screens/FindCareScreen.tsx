@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -9,36 +9,25 @@ import {
   Dimensions,
   Switch,
   Animated,
+  LayoutAnimation,
+  Platform,
+  UIManager,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import MapView, { Marker, Circle, PROVIDER_DEFAULT } from 'react-native-maps';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ProviderAvatar } from '../components/ProviderAvatar';
 import { SmartFiltersModal, FilterState } from '../components/SmartFiltersModal';
-import { useProviders } from '@medicare/shared';
+import { Colors, useProviders } from '@medicare/shared';
 import type { ProviderData } from '@medicare/shared';
 import type { FindCareScreenProps } from '../navigation/types';
 
 const { height: SCREEN_H } = Dimensions.get('window');
 
-const C = {
-  primary: '#003461',
-  primaryContainer: '#004b87',
-  secondary: '#00658d',
-  secondaryContainer: '#41befd',
-  onSecondaryContainer: '#004b69',
-  tertiary: '#572500',
-  surface: '#f8f9fa',
-  surfaceLowest: '#ffffff',
-  surfaceLow: '#f3f4f5',
-  surfaceHigh: '#e7e8e9',
-  surfaceHighest: '#e1e3e4',
-  outlineVariant: '#c2c6d1',
-  onSurface: '#191c1d',
-  onSurfaceVariant: '#424750',
-  white: '#ffffff',
-  outline: '#727781',
-};
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
+
 
 const MAP_REGION = {
   latitude: 39.9526,
@@ -77,13 +66,13 @@ function SmartMatchCard({
     <View style={styles.smartCard}>
       {/* SMART MATCH tab */}
       <View style={styles.smartBadge}>
-        <MaterialCommunityIcons name="check-decagram" size={11} color={C.secondaryContainer} />
+        <MaterialCommunityIcons name="check-decagram" size={11} color={Colors.secondaryContainer} />
         <Text style={styles.smartBadgeText}>SMART MATCH</Text>
       </View>
 
       <View style={styles.cardRow}>
         <View style={styles.avatarWrap}>
-          <ProviderAvatar name={provider.name} category={provider.category} size={64} />
+          <ProviderAvatar name={provider.name} category={provider.category} photoUrl={provider.photo} size={64} />
         </View>
         <View style={styles.cardInfo}>
           <View style={styles.nameRow}>
@@ -95,15 +84,21 @@ function SmartMatchCard({
             )}
           </View>
           <View style={styles.specialtyRow}>
-            <MaterialCommunityIcons name="medical-bag" size={13} color={C.secondaryContainer} />
+            <MaterialCommunityIcons name="medical-bag" size={13} color={Colors.secondaryContainer} />
             <Text style={styles.smartSpecialtyText} numberOfLines={1}>
               {provider.specialty}
               {provider.yearsExperience != null ? ` · ${provider.yearsExperience} yrs exp` : ''}
             </Text>
           </View>
+          <View style={styles.specialtyRow}>
+            <MaterialCommunityIcons name="map-marker-outline" size={13} color={Colors.secondaryContainer} />
+            <Text style={styles.smartSpecialtyText} numberOfLines={1}>
+              {provider.address}
+            </Text>
+          </View>
           <View style={styles.metaRow}>
             <View style={styles.metaItem}>
-              <MaterialCommunityIcons name="star" size={12} color={C.secondaryContainer} />
+              <MaterialCommunityIcons name="star" size={12} color={Colors.secondaryContainer} />
               <Text style={styles.smartMetaRating}>{provider.rating.toFixed(1)}</Text>
             </View>
             <View style={styles.metaItem}>
@@ -147,7 +142,7 @@ function ProviderCard({
       <ArcMotif />
       <View style={styles.cardRow}>
         <View style={styles.avatarWrap}>
-          <ProviderAvatar name={provider.name} category={provider.category} size={64} />
+          <ProviderAvatar name={provider.name} category={provider.category} photoUrl={provider.photo} size={64} />
         </View>
         <View style={styles.cardInfo}>
           <View style={styles.nameRow}>
@@ -161,21 +156,27 @@ function ProviderCard({
             )}
           </View>
           <View style={styles.specialtyRow}>
-            <MaterialCommunityIcons name="medical-bag" size={13} color={C.secondary} />
+            <MaterialCommunityIcons name="medical-bag" size={13} color={Colors.secondary} />
             <Text style={styles.specialtyText} numberOfLines={1}>
               {provider.specialty}
               {bilingual ? ' • Bilingual' : ''}
             </Text>
           </View>
+          <View style={styles.specialtyRow}>
+            <MaterialCommunityIcons name="map-marker-outline" size={13} color={Colors.outline} />
+            <Text style={styles.addressText} numberOfLines={1}>
+              {provider.address}
+            </Text>
+          </View>
           <View style={styles.metaRow}>
             <View style={styles.metaItem}>
-              <MaterialCommunityIcons name="star" size={12} color={C.tertiary} />
+              <MaterialCommunityIcons name="star" size={12} color={Colors.tertiary} />
               <Text style={styles.metaRating}>
                 {provider.rating.toFixed(1)} ({reviewNum})
               </Text>
             </View>
             <View style={styles.metaItem}>
-              <MaterialCommunityIcons name="navigation" size={12} color={C.outline} />
+              <MaterialCommunityIcons name="navigation" size={12} color={Colors.outline} />
               <Text style={styles.metaDistance}>{provider.distance.toFixed(1)} mi</Text>
             </View>
           </View>
@@ -212,6 +213,8 @@ function SkeletonCard() {
   );
 }
 
+import TopBar from '../components/TopBar';
+
 // ─── Main Screen ──────────────────────────────────────────────────────────────
 export default function FindCareScreen({ navigation }: FindCareScreenProps) {
   const insets = useSafeAreaInsets();
@@ -222,6 +225,34 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
   
   const [isFilterModalVisible, setIsFilterModalVisible] = useState(false);
   const [filters, setFilters] = useState<FilterState>({ category: 'All' });
+  
+  // Animation state for the map pin selection
+  const slideAnim = useRef(new Animated.Value(100)).current;
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const [displayProvider, setDisplayProvider] = useState<ProviderData | null>(null);
+
+  const [isSearchMinimized, setIsSearchMinimized] = useState(false);
+
+  const toggleMinimize = (minimize: boolean) => {
+    if (isSearchMinimized !== minimize) {
+      LayoutAnimation.configureNext({
+        duration: 400,
+        create: { type: LayoutAnimation.Types.spring, property: LayoutAnimation.Properties.opacity, springDamping: 0.8 },
+        update: { type: LayoutAnimation.Types.spring, springDamping: 0.8 },
+        delete: { type: LayoutAnimation.Types.spring, property: LayoutAnimation.Properties.opacity, springDamping: 0.8 },
+      });
+      setIsSearchMinimized(minimize);
+    }
+  };
+
+  const handleScroll = (e: any) => {
+    const y = e.nativeEvent.contentOffset.y;
+    if (y > 40 && !isSearchMinimized) {
+      toggleMinimize(true);
+    } else if (y <= 0 && isSearchMinimized) {
+      toggleMinimize(false);
+    }
+  };
 
   // ── Data layer: mirrors web FindCare.tsx exactly ──────────────────────────
   // Fetch ALL providers with no server-side params; all filtering is client-side.
@@ -246,7 +277,8 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
           p.name.toLowerCase().includes(q) ||
           p.specialty.toLowerCase().includes(q) ||
           p.category.toLowerCase().includes(q) ||
-          p.address.toLowerCase().includes(q),
+          p.address.toLowerCase().includes(q) ||
+          (p.locations && p.locations.some(loc => loc.address.toLowerCase().includes(q))),
       );
     }
 
@@ -283,6 +315,40 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
     return filteredProviders.find(p => p.id === selectedProviderId) || null;
   }, [filteredProviders, selectedProviderId]);
 
+  useEffect(() => {
+    if (selectedProvider) {
+      setDisplayProvider(selectedProvider);
+      Animated.parallel([
+        Animated.spring(slideAnim, {
+          toValue: 0,
+          friction: 7,
+          tension: 60,
+          useNativeDriver: true,
+        }),
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true,
+        })
+      ]).start();
+    } else {
+      Animated.parallel([
+        Animated.timing(slideAnim, {
+          toValue: 100,
+          duration: 150,
+          useNativeDriver: true,
+        }),
+        Animated.timing(fadeAnim, {
+          toValue: 0,
+          duration: 150,
+          useNativeDriver: true,
+        })
+      ]).start(({ finished }) => {
+        if (finished) setDisplayProvider(null);
+      });
+    }
+  }, [selectedProvider, slideAnim, fadeAnim]);
+
   function navigateToDetail(provider: ProviderData) {
     navigation.navigate('ProviderDetail', {
       providerId: provider.id,
@@ -292,7 +358,7 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
 
   return (
     <View style={[styles.root, { paddingTop: insets.top }]}>
-
+      <TopBar />
       {/* ══ Fixed header — hero + map + controls (never scrolls) ════════════ */}
       <View style={styles.stableHeader}>
         <Text style={styles.navTitle}>Find Care</Text>
@@ -300,10 +366,12 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
       </View>
       <View>
         {/* ── Hero ─────────────────────────────────────────── */}
-        <View style={styles.heroCard}>
+        <View style={[styles.heroCard, isSearchMinimized && { padding: 16, paddingTop: 16 }]}>
           <View style={styles.heroGlow} />
-          <Text style={styles.heroTitle}>How can we help you{'\n'}feel better today?</Text>
-          <View style={styles.searchBar}>
+          {!isSearchMinimized && (
+            <Text style={styles.heroTitle}>How can we help you{'\n'}feel better today?</Text>
+          )}
+          <View style={[styles.searchBar, isSearchMinimized && { marginBottom: 0 }]}>
             <MaterialCommunityIcons name="auto-fix" size={18} color="rgba(255,255,255,0.55)" style={styles.searchIcon} />
             <TextInput
               style={styles.searchInput}
@@ -311,6 +379,7 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
               placeholderTextColor="rgba(255,255,255,0.45)"
               value={query}
               onChangeText={setQuery}
+              onFocus={() => toggleMinimize(false)}
               returnKeyType="search"
               selectionColor="rgba(255,255,255,0.7)"
             />
@@ -318,25 +387,27 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
               <Text style={styles.askAiText}>Ask AI</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.suggestRow}>
-            <Text style={styles.suggestLabel}>Try:</Text>
-            {['"Senior cardiology"', '"Spanish therapists"'].map((chip) => (
-              <TouchableOpacity
-                key={chip}
-                style={styles.suggestChip}
-                onPress={() => setQuery(chip.replace(/"/g, ''))}
-                activeOpacity={0.7}
-              >
-                <Text style={styles.suggestChipText}>{chip}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
+          {!isSearchMinimized && (
+            <View style={styles.suggestRow}>
+              <Text style={styles.suggestLabel}>Try:</Text>
+              {['"Senior cardiology"', '"Spanish therapists"'].map((chip) => (
+                <TouchableOpacity
+                  key={chip}
+                  style={styles.suggestChip}
+                  onPress={() => setQuery(chip.replace(/"/g, ''))}
+                  activeOpacity={0.7}
+                >
+                  <Text style={styles.suggestChipText}>{chip}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          )}
         </View>
 
         {/* ── Controls bar ─────────────────────────────────── */}
         <View style={styles.controlsBar}>
           <TouchableOpacity style={styles.filtersBtn} activeOpacity={0.85} onPress={() => setIsFilterModalVisible(true)}>
-            <MaterialCommunityIcons name="tune-variant" size={16} color={C.secondary} />
+            <MaterialCommunityIcons name="tune-variant" size={16} color={Colors.secondary} />
             <Text style={styles.filtersBtnText}>Filters</Text>
             {activeFiltersCount > 0 && (
               <View style={styles.filtersBadge}>
@@ -351,21 +422,21 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
               style={[styles.viewToggleBtn, viewMode === 'list' && styles.viewToggleBtnActive]} 
               onPress={() => setViewMode('list')}
             >
-              <MaterialCommunityIcons name="format-list-bulleted" size={16} color={viewMode === 'list' ? C.white : C.onSurfaceVariant} />
+              <MaterialCommunityIcons name="format-list-bulleted" size={16} color={viewMode === 'list' ? Colors.white : Colors.onSurfaceVariant} />
               <Text style={[styles.viewToggleText, viewMode === 'list' && styles.viewToggleTextActive]}>List</Text>
             </TouchableOpacity>
             <TouchableOpacity 
               style={[styles.viewToggleBtn, viewMode === 'map' && styles.viewToggleBtnActive]} 
               onPress={() => setViewMode('map')}
             >
-              <MaterialCommunityIcons name="map-outline" size={16} color={viewMode === 'map' ? C.white : C.onSurfaceVariant} />
+              <MaterialCommunityIcons name="map-outline" size={16} color={viewMode === 'map' ? Colors.white : Colors.onSurfaceVariant} />
               <Text style={[styles.viewToggleText, viewMode === 'map' && styles.viewToggleTextActive]}>Map</Text>
             </TouchableOpacity>
           </View>
 
           <TouchableOpacity style={styles.sortBtn} onPress={() => setSortIndex((i) => (i + 1) % SORT_OPTIONS.length)} activeOpacity={0.8}>
             <Text style={styles.sortBtnText}>{SORT_OPTIONS[sortIndex]}</Text>
-            <MaterialCommunityIcons name="chevron-down" size={14} color={C.primary} />
+            <MaterialCommunityIcons name="chevron-down" size={14} color={Colors.primary} />
           </TouchableOpacity>
         </View>
       </View>
@@ -379,7 +450,13 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
             initialRegion={MAP_REGION}
             showsUserLocation={false}
             showsMyLocationButton={false}
-            onPress={() => setSelectedProviderId(null)}
+            onPanDrag={() => {
+              if (!isSearchMinimized) toggleMinimize(true);
+            }}
+            onPress={() => {
+              setSelectedProviderId(null);
+              if (!isSearchMinimized) toggleMinimize(true);
+            }}
           >
             {/* Member Home Location */}
             <Marker coordinate={MEMBER_ADDRESS} zIndex={100} tracksViewChanges={false}>
@@ -387,9 +464,9 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
                 width: 18, 
                 height: 18, 
                 borderRadius: 9, 
-                backgroundColor: C.primary,
+                backgroundColor: Colors.primary,
                 borderWidth: 3, 
-                borderColor: C.white,
+                borderColor: Colors.white,
                 shadowColor: '#000', 
                 shadowOpacity: 0.3, 
                 shadowRadius: 4, 
@@ -413,7 +490,7 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
               <Marker
                 key={p.id}
                 coordinate={p.coordinate}
-                pinColor={p.inNetwork ? C.primary : C.secondary}
+                pinColor={p.inNetwork ? Colors.primary : Colors.secondary}
                 onPress={(e) => {
                   e.stopPropagation();
                   setSelectedProviderId(p.id);
@@ -425,16 +502,25 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
           <View style={styles.mapControlsFloat}>
             {(['crosshairs-gps', 'plus', 'minus'] as const).map((icon) => (
               <TouchableOpacity key={icon} style={styles.mapCtrlBtn} activeOpacity={0.85}>
-                <MaterialCommunityIcons name={icon} size={20} color={C.primary} />
+                <MaterialCommunityIcons name={icon} size={20} color={Colors.primary} />
               </TouchableOpacity>
             ))}
           </View>
 
-          {selectedProvider && (
-            <View style={styles.floatingProviderCard}>
-              <ProviderCard provider={selectedProvider} onPress={() => navigateToDetail(selectedProvider)} />
-            </View>
-          )}
+          <Animated.View 
+            style={[
+              styles.floatingProviderCard, 
+              { 
+                transform: [{ translateY: slideAnim }],
+                opacity: fadeAnim,
+                pointerEvents: selectedProvider ? 'auto' : 'none'
+              }
+            ]}
+          >
+            {displayProvider && (
+              <ProviderCard provider={displayProvider} onPress={() => navigateToDetail(displayProvider)} />
+            )}
+          </Animated.View>
         </View>
       ) : (
         <ScrollView
@@ -443,6 +529,7 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
           contentContainerStyle={styles.listContent}
           keyboardShouldPersistTaps="handled"
           scrollEventThrottle={16}
+          onScroll={handleScroll}
         >
         <View style={styles.listSection}>
           {isLoading ? (
@@ -453,8 +540,8 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
             </>
           ) : activeFiltersCount === 0 ? (
             <View style={styles.emptyWrap}>
-              <MaterialCommunityIcons name="magnify" size={48} color={C.outlineVariant} />
-              <Text style={[styles.emptyTitle, { color: C.onSurfaceVariant, marginTop: 16 }]}>Search to find care</Text>
+              <MaterialCommunityIcons name="magnify" size={48} color={Colors.outlineVariant} />
+              <Text style={[styles.emptyTitle, { color: Colors.onSurfaceVariant, marginTop: 16 }]}>Search to find care</Text>
               <Text style={styles.emptySub}>Enter a provider name, specialty, or use filters to discover healthcare options near you.</Text>
             </View>
           ) : (
@@ -472,7 +559,7 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
 
               {filteredProviders.length === 0 ? (
                 <View style={styles.emptyWrap}>
-                  <MaterialCommunityIcons name="account-search-outline" size={48} color={C.onSurfaceVariant} />
+                  <MaterialCommunityIcons name="account-search-outline" size={48} color={Colors.onSurfaceVariant} />
                   <Text style={styles.emptyTitle}>No providers found</Text>
                   <Text style={styles.emptySub}>Try a different search term or clear the field.</Text>
                 </View>
@@ -503,7 +590,7 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
 
 // ─── Styles ───────────────────────────────────────────────────────────────────
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: C.surface },
+  root: { flex: 1, backgroundColor: Colors.surface },
   stableHeader: {
     paddingHorizontal: 16,
     paddingBottom: 8,
@@ -512,12 +599,12 @@ const styles = StyleSheet.create({
   navTitle: {
     fontSize: 28,
     fontWeight: '800',
-    color: C.primary,
+    color: Colors.primary,
     letterSpacing: -0.5,
   },
   pageSubtitle: {
     fontSize: 13,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     marginTop: 2,
   },
   list: { flex: 1 },
@@ -525,13 +612,13 @@ const styles = StyleSheet.create({
 
   // ── Hero
   heroCard: {
-    backgroundColor: C.primary,
+    backgroundColor: Colors.primary,
     marginHorizontal: 16,
     marginTop: 8,
     borderRadius: 24,
     padding: 24,
     overflow: 'hidden',
-    shadowColor: C.primary,
+    shadowColor: Colors.primary,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.25,
     shadowRadius: 20,
@@ -549,7 +636,7 @@ const styles = StyleSheet.create({
   heroTitle: {
     fontSize: 24,
     fontWeight: '800',
-    color: C.white,
+    color: Colors.white,
     letterSpacing: -0.3,
     lineHeight: 32,
     marginBottom: 16,
@@ -566,19 +653,19 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 14,
-    color: C.white,
+    color: Colors.white,
     fontWeight: '500',
     paddingVertical: 0,
   },
   askAiBtn: {
-    backgroundColor: C.secondaryContainer,
+    backgroundColor: Colors.secondaryContainer,
     borderRadius: 10,
     paddingHorizontal: 16,
     paddingVertical: 8,
     marginRight: 6,
   },
   askAiText: {
-    color: C.onSecondaryContainer,
+    color: Colors.onSecondaryContainer,
     fontWeight: '700',
     fontSize: 13,
   },
@@ -622,7 +709,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 12,
-    backgroundColor: C.surfaceLowest,
+    backgroundColor: Colors.white,
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',
@@ -636,7 +723,7 @@ const styles = StyleSheet.create({
   controlsBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: C.surfaceLowest,
+    backgroundColor: Colors.white,
     paddingHorizontal: 16,
     paddingVertical: 12,
     gap: 8,
@@ -645,14 +732,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-    backgroundColor: C.surfaceHigh,
+    backgroundColor: Colors.surfaceContainerHigh,
     borderRadius: 12,
     paddingHorizontal: 14,
     paddingVertical: 8,
   },
-  filtersBtnText: { fontSize: 14, fontWeight: '700', color: C.primary },
+  filtersBtnText: { fontSize: 14, fontWeight: '700', color: Colors.primary },
   filtersBadge: {
-    backgroundColor: C.primary,
+    backgroundColor: Colors.primary,
     borderRadius: 99,
     minWidth: 18,
     height: 18,
@@ -660,29 +747,29 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 4,
   },
-  filtersBadgeText: { color: C.white, fontSize: 10, fontWeight: '800' },
-  divider: { width: 1, height: 28, backgroundColor: `${C.outlineVariant}60` },
-  viewToggleGroup: { flexDirection: 'row', backgroundColor: C.surfaceHigh, borderRadius: 10, padding: 4 },
+  filtersBadgeText: { color: Colors.white, fontSize: 10, fontWeight: '800' },
+  divider: { width: 1, height: 28, backgroundColor: `${Colors.outlineVariant}60` },
+  viewToggleGroup: { flexDirection: 'row', backgroundColor: Colors.surfaceContainerHigh, borderRadius: 10, padding: 4 },
   viewToggleBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 8 },
-  viewToggleBtnActive: { backgroundColor: C.primary },
-  viewToggleText: { fontSize: 12, fontWeight: '700', color: C.onSurfaceVariant },
-  viewToggleTextActive: { color: C.white },
+  viewToggleBtnActive: { backgroundColor: Colors.primary },
+  viewToggleText: { fontSize: 12, fontWeight: '700', color: Colors.onSurfaceVariant },
+  viewToggleTextActive: { color: Colors.white },
   sortBtn: { flexDirection: 'row', alignItems: 'center', gap: 2, marginLeft: 'auto' },
-  sortBtnText: { fontSize: 14, fontWeight: '700', color: C.primary },
+  sortBtnText: { fontSize: 14, fontWeight: '700', color: Colors.primary },
 
   // ── Provider list
   listSection: { paddingHorizontal: 16, paddingTop: 16, gap: 14 },
   sectionLabel: {
     fontSize: 13,
     fontWeight: '800',
-    color: C.primary,
+    color: Colors.primary,
     letterSpacing: 0.2,
     marginBottom: 10,
   },
   countLabel: {
     fontSize: 11,
     fontWeight: '700',
-    color: C.outline,
+    color: Colors.outline,
     textTransform: 'uppercase',
     letterSpacing: 1.2,
     marginBottom: 2,
@@ -691,11 +778,11 @@ const styles = StyleSheet.create({
 
   // ── Smart Match card
   smartCard: {
-    backgroundColor: C.primary,
+    backgroundColor: Colors.primary,
     borderRadius: 32,
     padding: 20,
     overflow: 'hidden',
-    shadowColor: C.primary,
+    shadowColor: Colors.primary,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.25,
     shadowRadius: 16,
@@ -718,13 +805,13 @@ const styles = StyleSheet.create({
   smartBadgeText: {
     fontSize: 9,
     fontWeight: '900',
-    color: C.secondaryContainer,
+    color: Colors.secondaryContainer,
     letterSpacing: 0.8,
   },
   smartProviderName: {
     fontSize: 17,
     fontWeight: '800',
-    color: C.white,
+    color: Colors.white,
     flexShrink: 1,
   },
   smartSpecialtyText: {
@@ -733,7 +820,7 @@ const styles = StyleSheet.create({
     color: 'rgba(255,255,255,0.75)',
     flex: 1,
   },
-  smartMetaRating: { fontSize: 11, fontWeight: '700', color: C.secondaryContainer },
+  smartMetaRating: { fontSize: 11, fontWeight: '700', color: Colors.secondaryContainer },
   smartMetaDistance: { fontSize: 11, fontWeight: '600', color: 'rgba(255,255,255,0.6)' },
   confidenceRow: {
     flexDirection: 'row',
@@ -752,7 +839,7 @@ const styles = StyleSheet.create({
   confidenceFill: {
     height: '100%',
     borderRadius: 3,
-    backgroundColor: C.secondaryContainer,
+    backgroundColor: Colors.secondaryContainer,
   },
   confidenceLabel: {
     fontSize: 10,
@@ -768,15 +855,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 14,
   },
-  smartViewBtnText: { color: C.white, fontSize: 13, fontWeight: '700', letterSpacing: 0.2 },
+  smartViewBtnText: { color: Colors.white, fontSize: 13, fontWeight: '700', letterSpacing: 0.2 },
 
   // ── Regular provider card
   card: {
-    backgroundColor: C.surfaceLowest,
+    backgroundColor: Colors.white,
     borderRadius: 32,
     padding: 20,
     overflow: 'hidden',
-    shadowColor: C.primary,
+    shadowColor: Colors.primary,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.08,
     shadowRadius: 12,
@@ -802,7 +889,7 @@ const styles = StyleSheet.create({
   },
   cardInfo: { flex: 1, gap: 4 },
   nameRow: { flexDirection: 'row', alignItems: 'center', gap: 6, flexWrap: 'wrap' },
-  providerName: { fontSize: 17, fontWeight: '800', color: C.primary, flexShrink: 1 },
+  providerName: { fontSize: 17, fontWeight: '800', color: Colors.primary, flexShrink: 1 },
   networkBadge: {
     backgroundColor: 'rgba(0,101,141,0.1)',
     paddingHorizontal: 8,
@@ -812,33 +899,34 @@ const styles = StyleSheet.create({
   networkBadgeText: {
     fontSize: 8,
     fontWeight: '900',
-    color: C.secondary,
+    color: Colors.secondary,
     letterSpacing: 0.5,
     textTransform: 'uppercase',
   },
   specialtyRow: { flexDirection: 'row', alignItems: 'center', gap: 5 },
-  specialtyText: { fontSize: 12, fontWeight: '600', color: C.onSurfaceVariant, flex: 1 },
+  specialtyText: { fontSize: 12, fontWeight: '600', color: Colors.onSurfaceVariant, flex: 1 },
+  addressText: { fontSize: 11, fontWeight: '500', color: Colors.onSurfaceVariant, flex: 1 },
   metaRow: { flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 2 },
   metaItem: { flexDirection: 'row', alignItems: 'center', gap: 3 },
-  metaRating: { fontSize: 11, fontWeight: '700', color: C.tertiary },
-  metaDistance: { fontSize: 11, fontWeight: '600', color: C.outline },
+  metaRating: { fontSize: 11, fontWeight: '700', color: Colors.tertiary },
+  metaDistance: { fontSize: 11, fontWeight: '600', color: Colors.outline },
   viewBtn: {
-    backgroundColor: C.primaryContainer,
+    backgroundColor: Colors.primaryContainer,
     borderRadius: 12,
     paddingVertical: 13,
     alignItems: 'center',
     marginTop: 16,
   },
-  viewBtnText: { color: C.white, fontSize: 13, fontWeight: '700', letterSpacing: 0.2 },
+  viewBtnText: { color: Colors.white, fontSize: 13, fontWeight: '700', letterSpacing: 0.2 },
 
   // ── Skeleton
   skeletonCard: { flexDirection: 'row', gap: 16, alignItems: 'flex-start' },
-  skeletonAvatar: { width: 64, height: 64, borderRadius: 32, backgroundColor: C.surfaceHigh, flexShrink: 0 },
+  skeletonAvatar: { width: 64, height: 64, borderRadius: 32, backgroundColor: Colors.surfaceContainerHigh, flexShrink: 0 },
   skeletonLines: { flex: 1, paddingTop: 8 },
-  skeletonLine: { height: 12, borderRadius: 6, backgroundColor: C.surfaceHigh },
+  skeletonLine: { height: 12, borderRadius: 6, backgroundColor: Colors.surfaceContainerHigh },
 
   // ── Empty state
   emptyWrap: { alignItems: 'center', paddingVertical: 40, paddingHorizontal: 24, gap: 10 },
-  emptyTitle: { fontSize: 17, fontWeight: '700', color: C.primary, textAlign: 'center' },
-  emptySub: { fontSize: 13, color: C.onSurfaceVariant, textAlign: 'center', lineHeight: 20 },
+  emptyTitle: { fontSize: 17, fontWeight: '700', color: Colors.primary, textAlign: 'center' },
+  emptySub: { fontSize: 13, color: Colors.onSurfaceVariant, textAlign: 'center', lineHeight: 20 },
 });

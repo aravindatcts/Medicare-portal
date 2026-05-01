@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useRecentActivity, Colors } from '@medicare/shared';
+import { Colors, Shadows } from '@medicare/shared';
+import { useRecentActivity } from '@medicare/shared';
+import { SectionTitle } from '../ui';
 
 const ICON_MAP: Record<string, React.ComponentProps<typeof MaterialCommunityIcons>['name']> = {
   'check-circle': 'check-circle',
@@ -13,12 +15,7 @@ const RecentActivity: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.sectionTitle}>Recent Activity</Text>
-        <TouchableOpacity>
-          <Text style={styles.seeAll}>See All</Text>
-        </TouchableOpacity>
-      </View>
+      <SectionTitle title="Recent Activity" action="See All" />
 
       <View style={styles.list}>
         {items.map((item, idx) => (
@@ -55,31 +52,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginBottom: 16,
   },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 12,
-  },
-  sectionTitle: {
-    fontSize: 17,
-    fontWeight: '700',
-    color: Colors.textPrimary,
-  },
-  seeAll: {
-    fontSize: 13,
-    color: Colors.skyBlue,
-    fontWeight: '600',
-  },
   list: {
     backgroundColor: Colors.bgCard,
     borderRadius: 14,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.06,
-    shadowRadius: 6,
-    elevation: 2,
     overflow: 'hidden',
+    ...Shadows.light,
   },
   item: {
     flexDirection: 'row',

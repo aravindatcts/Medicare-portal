@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { useWellnessWisdom, Colors } from '@medicare/shared';
+import { Colors, Shadows } from '@medicare/shared';
+import { useWellnessWisdom } from '@medicare/shared';
+import { SectionTitle } from '../ui';
 
 export default function WellnessWisdom() {
   const { data } = useWellnessWisdom();
@@ -9,7 +11,7 @@ export default function WellnessWisdom() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.sectionTitle}>Wellness Wisdom</Text>
+      <SectionTitle title="Wellness Wisdom" />
 
       <View style={styles.card}>
         <View style={styles.imageContainer}>
@@ -37,18 +39,12 @@ const styles = StyleSheet.create({
     marginTop: 32,
     marginBottom: 20,
   },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: Colors.navyDark,
-    marginBottom: 16,
-  },
   card: {
     backgroundColor: Colors.white,
     borderRadius: 16,
     overflow: 'hidden',
+    ...Shadows.card,
     shadowColor: Colors.navyDark,
-    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.05,
     shadowRadius: 10,
     elevation: 3,

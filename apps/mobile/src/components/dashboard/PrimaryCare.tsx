@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Colors, Shadows } from '@medicare/shared';
 import { useProviders } from '@medicare/shared';
-import LoadingSkeleton from './LoadingSkeleton';
+import LoadingSkeleton from '../LoadingSkeleton';
+import { SectionTitle } from '../ui';
 
 interface Props {
   onNavigate?: (route: string) => void;
@@ -15,7 +17,7 @@ const PrimaryCare: React.FC<Props> = ({ onNavigate }) => {
   if (isLoading || !pcp) {
     return (
       <View style={styles.container}>
-        <Text style={styles.sectionTitle}>Your Care Team</Text>
+        <SectionTitle title="Your Care Team" />
         <LoadingSkeleton style={{ width: '100%', height: 200, borderRadius: 32 }} />
       </View>
     );
@@ -23,49 +25,44 @@ const PrimaryCare: React.FC<Props> = ({ onNavigate }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.sectionTitle}>Your Care Team</Text>
-      
+      <SectionTitle title="Your Care Team" />
+
       <View style={styles.card}>
         <View style={styles.cardTop}>
           <View style={styles.imageContainer}>
-            <Image
-              source={{ uri: pcp.photo }}
-              style={styles.doctorImage}
-            />
+            <Image source={{ uri: pcp.photo }} style={styles.doctorImage} />
             <View style={styles.onlineBadge} />
           </View>
-          
+
           <View style={styles.doctorDetails}>
             <View style={styles.pcpBadge}>
               <Text style={styles.pcpBadgeText}>Primary Care Provider</Text>
             </View>
-            
             <Text style={styles.doctorName}>{pcp.name}</Text>
-            
             <View style={styles.specialtyRow}>
-              <MaterialCommunityIcons name="medical-bag" size={18} color="#003461" />
+              <MaterialCommunityIcons name="medical-bag" size={18} color={Colors.blueLight} />
               <Text style={styles.specialty}>{pcp.specialty}</Text>
             </View>
           </View>
         </View>
 
         <View style={styles.actionRow}>
-          <TouchableOpacity 
-            style={styles.primaryButton} 
+          <TouchableOpacity
+            style={styles.actionButton}
             activeOpacity={0.8}
             onPress={() => onNavigate?.('provider-detail')}
           >
-            <MaterialCommunityIcons name="eye-outline" size={18} color="#ffffff" />
-            <Text style={styles.primaryButtonText}>View Details</Text>
+            <MaterialCommunityIcons name="eye-outline" size={18} color={Colors.primary} />
+            <Text style={styles.actionButtonText}>View Details</Text>
           </TouchableOpacity>
-          
-          <TouchableOpacity 
-            style={styles.secondaryButton} 
+
+          <TouchableOpacity
+            style={styles.actionButton}
             activeOpacity={0.8}
             onPress={() => onNavigate?.('find-care')}
           >
-            <MaterialCommunityIcons name="sync" size={18} color="#003461" />
-            <Text style={styles.secondaryButtonText}>Change PCP</Text>
+            <MaterialCommunityIcons name="sync" size={18} color={Colors.primary} />
+            <Text style={styles.actionButtonText}>Change PCP</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -78,24 +75,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginBottom: 16,
   },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: '900',
-    color: '#003461',
-    marginBottom: 16,
-    paddingHorizontal: 4,
-  },
   card: {
-    backgroundColor: '#ffffff',
+    backgroundColor: Colors.primary,
     borderRadius: 32,
     overflow: 'hidden',
-    shadowColor: '#003461',
-    shadowOffset: { width: 0, height: 20 },
-    shadowOpacity: 0.12,
-    shadowRadius: 50,
-    elevation: 6,
-    borderColor: 'rgba(25, 28, 29, 0.05)',
-    borderWidth: 1,
+    ...Shadows.elevated,
   },
   cardTop: {
     padding: 24,
@@ -105,10 +89,8 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     position: 'relative',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
+    ...Shadows.light,
     shadowOpacity: 0.1,
-    shadowRadius: 8,
     elevation: 3,
   },
   doctorImage: {
@@ -116,25 +98,25 @@ const styles = StyleSheet.create({
     height: 96,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: 'rgba(25, 28, 29, 0.1)',
-    backgroundColor: '#f3f4f5',
+    borderColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: Colors.surfaceContainerLow,
   },
   onlineBadge: {
     position: 'absolute',
     bottom: -8,
     right: -8,
-    backgroundColor: '#22c55e',
+    backgroundColor: Colors.green,
     width: 20,
     height: 20,
     borderRadius: 10,
     borderWidth: 4,
-    borderColor: '#ffffff',
+    borderColor: Colors.primary,
   },
   doctorDetails: {
     flex: 1,
   },
   pcpBadge: {
-    backgroundColor: 'rgba(0, 52, 97, 0.1)',
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 6,
@@ -142,17 +124,17 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   pcpBadgeText: {
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: '800',
-    color: '#003461',
+    color: Colors.secondaryContainer,
     textTransform: 'uppercase',
     letterSpacing: 1,
   },
   doctorName: {
-    fontSize: 24,
-    fontWeight: '900',
-    color: '#003461',
-    lineHeight: 28,
+    fontSize: 20,
+    fontWeight: '800',
+    color: Colors.white,
+    lineHeight: 24,
   },
   specialtyRow: {
     flexDirection: 'row',
@@ -161,52 +143,33 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   specialty: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '600',
-    color: '#424750',
+    color: Colors.blueLight,
   },
   actionRow: {
     flexDirection: 'row',
     paddingHorizontal: 24,
-    paddingBottom: 24,
+    paddingVertical: 16,
     gap: 16,
+    backgroundColor: Colors.white,
   },
-  primaryButton: {
+  actionButton: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 14,
-    borderRadius: 12,
-    backgroundColor: '#003461',
-    gap: 8,
-    shadowColor: '#003461',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 3,
+    paddingVertical: 12,
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: Colors.borderLight,
+    backgroundColor: Colors.white,
+    gap: 6,
   },
-  primaryButtonText: {
-    color: '#ffffff',
+  actionButtonText: {
+    color: Colors.primary,
     fontWeight: '700',
-    fontSize: 14,
-  },
-  secondaryButton: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 14,
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: 'rgba(0, 52, 97, 0.2)',
-    backgroundColor: 'transparent',
-    gap: 8,
-  },
-  secondaryButtonText: {
-    color: '#003461',
-    fontWeight: '700',
-    fontSize: 14,
+    fontSize: 12,
   },
 });
 

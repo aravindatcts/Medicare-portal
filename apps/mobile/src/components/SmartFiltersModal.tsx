@@ -6,25 +6,10 @@ import {
   TouchableOpacity,
   Modal,
   ScrollView,
-  SafeAreaView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
-const C = {
-  primary: '#003461',
-  primaryContainer: '#004b87',
-  secondary: '#00658d',
-  secondaryContainer: '#41befd',
-  tertiary: '#572500',
-  surface: '#f8f9fa',
-  surfaceLowest: '#ffffff',
-  surfaceLow: '#f3f4f5',
-  onSurface: '#191c1d',
-  onSurfaceVariant: '#424750',
-  white: '#ffffff',
-  outline: '#727781',
-  outlineVariant: '#c2c6d1',
-};
+import { Colors } from '@medicare/shared';
 
 export type FilterState = {
   category: string;
@@ -42,12 +27,12 @@ interface SmartFiltersModalProps {
 }
 
 const CATEGORIES = [
-  { id: 'All', label: 'All Specialties', icon: 'medical-bag' },
-  { id: 'Family Medicine', label: 'Family Medicine', icon: 'stethoscope' },
-  { id: 'Cardiology', label: 'Cardiology', icon: 'heart-pulse' },
-  { id: 'Pediatrics', label: 'Pediatrics', icon: 'baby-face-outline' },
-  { id: 'Internal Medicine', label: 'Internal Medicine', icon: 'pill' },
-  { id: 'OBGYN', label: 'OBGYN', icon: 'gender-female' },
+  { id: 'All',              label: 'All Specialties',    icon: 'medical-bag' },
+  { id: 'Family Medicine',  label: 'Family Medicine',    icon: 'stethoscope' },
+  { id: 'Cardiology',       label: 'Cardiology',         icon: 'heart-pulse' },
+  { id: 'Pediatrics',       label: 'Pediatrics',         icon: 'baby-face-outline' },
+  { id: 'Internal Medicine',label: 'Internal Medicine',  icon: 'pill' },
+  { id: 'OBGYN',            label: 'OBGYN',              icon: 'gender-female' },
 ];
 
 const LANGUAGES = ['English', 'Spanish', 'Mandarin'];
@@ -60,37 +45,34 @@ export function SmartFiltersModal({
 }: SmartFiltersModalProps) {
   const [filters, setFilters] = useState<FilterState>(initialFilters);
 
-  // Sync state when modal opens
   useEffect(() => {
-    if (visible) {
-      setFilters(initialFilters);
-    }
+    if (visible) setFilters(initialFilters);
   }, [visible, initialFilters]);
 
   const updateFilter = (key: keyof FilterState, value: any) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
   };
 
-  const clearAll = () => {
-    setFilters({ category: 'All' });
-  };
+  const clearAll = () => setFilters({ category: 'All' });
 
   return (
     <Modal visible={visible} animationType="slide" presentationStyle="pageSheet" onRequestClose={onClose}>
       <SafeAreaView style={styles.root}>
+
         {/* Header */}
         <View style={styles.header}>
           <TouchableOpacity style={styles.backBtn} onPress={onClose} activeOpacity={0.8}>
-            <MaterialCommunityIcons name="arrow-left" size={24} color={C.primary} />
+            <MaterialCommunityIcons name="arrow-left" size={24} color={Colors.primary} />
             <Text style={styles.headerTitle}>Find Care</Text>
           </TouchableOpacity>
           <View style={styles.avatar}>
-            <MaterialCommunityIcons name="account" size={16} color={C.white} />
+            <MaterialCommunityIcons name="account" size={16} color={Colors.white} />
           </View>
         </View>
 
         <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-          {/* Title Area */}
+
+          {/* Title */}
           <View style={styles.titleArea}>
             <Text style={styles.mainTitle}>Smart Filters</Text>
             <Text style={styles.subtitle}>Tailor your search for the perfect care partner.</Text>
@@ -117,13 +99,13 @@ export function SmartFiltersModal({
                     activeOpacity={0.7}
                   >
                     <View style={styles.radioIconWrap}>
-                      <MaterialCommunityIcons name={cat.icon as any} size={18} color={C.primary} />
+                      <MaterialCommunityIcons name={cat.icon as any} size={18} color={Colors.primary} />
                     </View>
                     <Text style={styles.radioLabel}>{cat.label}</Text>
                     <MaterialCommunityIcons
                       name={isSelected ? 'radiobox-marked' : 'radiobox-blank'}
                       size={24}
-                      color={isSelected ? C.primary : C.outlineVariant}
+                      color={isSelected ? Colors.primary : Colors.outlineVariant}
                     />
                   </TouchableOpacity>
                 );
@@ -138,25 +120,24 @@ export function SmartFiltersModal({
               Save on costs by choosing providers within your Aura Wellness network.
             </Text>
             <View style={styles.networkCards}>
-              <TouchableOpacity
-                style={[styles.networkCard, filters.inNetwork === true ? styles.networkCardActive : styles.networkCardInactive]}
-                onPress={() => updateFilter('inNetwork', filters.inNetwork === true ? undefined : true)}
-                activeOpacity={0.8}
-              >
-                <MaterialCommunityIcons name="shield-check-outline" size={20} color={filters.inNetwork === true ? C.white : C.primary} />
-                <Text style={[styles.networkTitle, filters.inNetwork === true && { color: C.white }]}>In-Network</Text>
-                <Text style={[styles.networkSub, filters.inNetwork === true && { color: 'rgba(255,255,255,0.7)' }]}>Highest coverage</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={[styles.networkCard, filters.inNetwork === false ? styles.networkCardActive : styles.networkCardInactive]}
-                onPress={() => updateFilter('inNetwork', filters.inNetwork === false ? undefined : false)}
-                activeOpacity={0.8}
-              >
-                <MaterialCommunityIcons name="wallet-outline" size={20} color={filters.inNetwork === false ? C.white : C.primary} />
-                <Text style={[styles.networkTitle, filters.inNetwork === false && { color: C.white }]}>Out-of-Network</Text>
-                <Text style={[styles.networkSub, filters.inNetwork === false && { color: 'rgba(255,255,255,0.7)' }]}>Standard rates apply</Text>
-              </TouchableOpacity>
+              {[
+                { value: true,  icon: 'shield-check-outline', label: 'In-Network',     sub: 'Highest coverage' },
+                { value: false, icon: 'wallet-outline',        label: 'Out-of-Network', sub: 'Standard rates apply' },
+              ].map(({ value, icon, label, sub }) => {
+                const active = filters.inNetwork === value;
+                return (
+                  <TouchableOpacity
+                    key={label}
+                    style={[styles.networkCard, active ? styles.networkCardActive : styles.networkCardInactive]}
+                    onPress={() => updateFilter('inNetwork', active ? undefined : value)}
+                    activeOpacity={0.8}
+                  >
+                    <MaterialCommunityIcons name={icon as any} size={20} color={active ? Colors.white : Colors.primary} />
+                    <Text style={[styles.networkTitle, active && styles.networkTitleActive]}>{label}</Text>
+                    <Text style={[styles.networkSub, active && styles.networkSubActive]}>{sub}</Text>
+                  </TouchableOpacity>
+                );
+              })}
             </View>
           </View>
 
@@ -217,7 +198,7 @@ export function SmartFiltersModal({
                     <MaterialCommunityIcons
                       name={isSelected ? 'radiobox-marked' : 'radiobox-blank'}
                       size={24}
-                      color={isSelected ? C.primary : C.outlineVariant}
+                      color={isSelected ? Colors.primary : Colors.outlineVariant}
                     />
                     <Text style={styles.radioLabel}>{rating}+ Stars</Text>
                     <View style={styles.starsRow}>
@@ -226,7 +207,7 @@ export function SmartFiltersModal({
                           key={star}
                           name={star <= rating ? 'star' : 'star-outline'}
                           size={14}
-                          color={C.tertiary}
+                          color={Colors.tertiary}
                         />
                       ))}
                     </View>
@@ -239,7 +220,7 @@ export function SmartFiltersModal({
           <View style={{ height: 40 }} />
         </ScrollView>
 
-        {/* Footer Actions */}
+        {/* Footer */}
         <View style={styles.footer}>
           <TouchableOpacity style={styles.clearBtn} onPress={clearAll}>
             <Text style={styles.clearBtnText}>Clear All</Text>
@@ -254,7 +235,7 @@ export function SmartFiltersModal({
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: C.surface },
+  root: { flex: 1, backgroundColor: Colors.surface },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -263,32 +244,32 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0,0,0,0.05)',
-    backgroundColor: C.white,
+    backgroundColor: Colors.white,
   },
   backBtn: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  headerTitle: { fontSize: 18, fontWeight: '700', color: C.primary },
+  headerTitle: { fontSize: 18, fontWeight: '700', color: Colors.primary },
   avatar: {
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: C.primary,
+    backgroundColor: Colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
   },
   scroll: { flex: 1 },
   scrollContent: { padding: 24, paddingBottom: 40 },
   titleArea: { marginBottom: 32 },
-  mainTitle: { fontSize: 28, fontWeight: '800', color: C.primary, marginBottom: 8 },
-  subtitle: { fontSize: 14, color: C.onSurfaceVariant, lineHeight: 20 },
-  
+  mainTitle: { fontSize: 28, fontWeight: '800', color: Colors.primary, marginBottom: 8 },
+  subtitle: { fontSize: 14, color: Colors.onSurfaceVariant, lineHeight: 20 },
+
   section: { marginBottom: 32 },
   sectionHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 12 },
-  sectionTitle: { fontSize: 16, fontWeight: '700', color: C.primary, marginBottom: 8 },
-  sectionSubtitle: { fontSize: 13, color: C.onSurfaceVariant, lineHeight: 18, marginBottom: 16 },
-  clearText: { fontSize: 13, color: C.secondary, fontWeight: '600', marginBottom: 8 },
-  
+  sectionTitle: { fontSize: 16, fontWeight: '700', color: Colors.primary, marginBottom: 8 },
+  sectionSubtitle: { fontSize: 13, color: Colors.onSurfaceVariant, lineHeight: 18, marginBottom: 16 },
+  clearText: { fontSize: 13, color: Colors.secondary, fontWeight: '600', marginBottom: 8 },
+
   cardGroup: {
-    backgroundColor: C.surfaceLowest,
+    backgroundColor: Colors.surfaceContainerLowest,
     borderRadius: 16,
     overflow: 'hidden',
     borderWidth: 1,
@@ -307,61 +288,63 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 8,
-    backgroundColor: C.surfaceLow,
+    backgroundColor: Colors.surfaceContainerLow,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  radioLabel: { flex: 1, fontSize: 14, color: C.onSurface, fontWeight: '500' },
+  radioLabel: { flex: 1, fontSize: 14, color: Colors.onSurface, fontWeight: '500' },
   starsRow: { flexDirection: 'row', gap: 2 },
-  
+
   networkCards: { gap: 12 },
-  networkCard: {
-    padding: 20,
-    borderRadius: 16,
-    gap: 8,
-  },
+  networkCard: { padding: 20, borderRadius: 16, gap: 8 },
   networkCardInactive: {
-    backgroundColor: C.surfaceLowest,
+    backgroundColor: Colors.surfaceContainerLowest,
     borderWidth: 1,
     borderColor: 'rgba(0,0,0,0.05)',
   },
-  networkCardActive: {
-    backgroundColor: C.primary,
-  },
-  networkTitle: { fontSize: 16, fontWeight: '700', color: C.primary },
-  networkSub: { fontSize: 12, color: C.onSurfaceVariant },
+  networkCardActive: { backgroundColor: Colors.primary },
+  networkTitle: { fontSize: 16, fontWeight: '700', color: Colors.primary },
+  networkTitleActive: { color: Colors.white },
+  networkSub: { fontSize: 12, color: Colors.onSurfaceVariant },
+  networkSubActive: { color: 'rgba(255,255,255,0.7)' },
 
   chipGroup: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   chip: {
-    backgroundColor: C.surfaceLowest,
+    backgroundColor: Colors.surfaceContainerLowest,
     paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 24,
     borderWidth: 1,
     borderColor: 'rgba(0,0,0,0.05)',
   },
-  chipActive: { backgroundColor: C.white, borderColor: C.primary, borderWidth: 2, paddingHorizontal: 19, paddingVertical: 11 },
-  chipText: { fontSize: 14, color: C.onSurfaceVariant, fontWeight: '500' },
-  chipTextActive: { color: C.primary, fontWeight: '700' },
+  chipActive: {
+    backgroundColor: Colors.white,
+    borderColor: Colors.primary,
+    borderWidth: 2,
+    paddingHorizontal: 19,
+    paddingVertical: 11,
+  },
+  chipText: { fontSize: 14, color: Colors.onSurfaceVariant, fontWeight: '500' },
+  chipTextActive: { color: Colors.primary, fontWeight: '700' },
 
   footer: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 20,
     paddingBottom: 30,
-    backgroundColor: C.white,
+    backgroundColor: Colors.white,
     borderTopWidth: 1,
     borderTopColor: 'rgba(0,0,0,0.05)',
     gap: 16,
   },
   clearBtn: { paddingVertical: 16, paddingHorizontal: 16 },
-  clearBtnText: { fontSize: 15, fontWeight: '700', color: C.primary },
+  clearBtnText: { fontSize: 15, fontWeight: '700', color: Colors.primary },
   applyBtn: {
     flex: 1,
-    backgroundColor: C.primary,
+    backgroundColor: Colors.primary,
     paddingVertical: 16,
     borderRadius: 12,
     alignItems: 'center',
   },
-  applyBtnText: { color: C.white, fontSize: 16, fontWeight: '700' },
+  applyBtnText: { color: Colors.white, fontSize: 16, fontWeight: '700' },
 });

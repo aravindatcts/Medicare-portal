@@ -1,14 +1,15 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { usePlan, Colors } from '@medicare/shared';
+import { Colors, Shadows } from '@medicare/shared';
+import { usePlan } from '@medicare/shared';
 
 const PlanSummary: React.FC = () => {
   const { data } = usePlan();
 
   if (!data) return null;
 
-  const topCopays = data.copays.slice(0, 2);
+  const topCopays    = data.copays.slice(0, 2);
   const bottomCopays = data.copays.slice(2);
 
   return (
@@ -64,8 +65,7 @@ const styles = StyleSheet.create({
     padding: 20,
     marginHorizontal: 16,
     marginBottom: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    ...Shadows.light,
     shadowOpacity: 0.07,
     shadowRadius: 8,
     elevation: 3,

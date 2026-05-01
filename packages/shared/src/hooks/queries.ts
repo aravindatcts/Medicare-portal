@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+
 import {
   getHero,
   getMember,
@@ -46,11 +47,11 @@ export const useNavigation = () =>
 export const useBenefits = () =>
   useQuery({ queryKey: ['benefits'], queryFn: getBenefits, staleTime: STALE });
 
-export const useClaims = () =>
-  useQuery({ queryKey: ['claims'], queryFn: getClaims, staleTime: 0 });
+export const useClaims = (options: { enabled?: boolean } = {}) =>
+  useQuery({ queryKey: ['claims'], queryFn: getClaims, staleTime: 0, enabled: options.enabled ?? true });
 
-export const useClaim = (id: string) =>
-  useQuery({ queryKey: ['claim', id], queryFn: () => getClaim(id), staleTime: STALE, enabled: !!id });
+export const useClaim = (id: string, options: { initialData?: () => any; initialDataUpdatedAt?: () => number | undefined } = {}) =>
+  useQuery({ queryKey: ['claim', id], queryFn: () => getClaim(id), staleTime: STALE, enabled: !!id, ...options });
 
 export const useProvider = (id: string) =>
   useQuery({ queryKey: ['provider', id], queryFn: () => getProvider(id), staleTime: STALE, enabled: !!id });

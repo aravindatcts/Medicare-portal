@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Colors, useMember } from '@medicare/shared';
+import { Colors, Shadows } from '@medicare/shared';
+import { useMember } from '@medicare/shared';
 
 const MemberCard: React.FC = () => {
   const { data } = useMember();
@@ -55,13 +56,12 @@ const MemberCard: React.FC = () => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#003A70', // Match design dark blue
+    backgroundColor: Colors.primaryDark,
     borderRadius: 24,
     padding: 24,
     marginHorizontal: 16,
     marginBottom: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
+    ...Shadows.light,
     shadowOpacity: 0.15,
     shadowRadius: 12,
     elevation: 6,
@@ -149,8 +149,8 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   walletButton: {
-    backgroundColor: '#000000', // Apple wallet black
-    flex: 1.5, // make it slightly larger to fit text
+    backgroundColor: '#000000',
+    flex: 1.5,
     borderColor: '#333',
     borderWidth: 1,
   },

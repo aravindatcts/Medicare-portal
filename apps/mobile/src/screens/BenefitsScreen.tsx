@@ -10,29 +10,15 @@ import {
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useBenefits, useMember } from '@medicare/shared';
+import { Colors, useBenefits, useMember } from '@medicare/shared';
 import type { BenefitBreakdownItem, CostItem } from '@medicare/shared';
 import LoadingSkeleton from '../components/LoadingSkeleton';
 
-const C = {
-  primary: '#003461',
-  primaryContainer: '#004b87',
-  secondary: '#00658d',
-  secondaryContainer: '#41befd',
-  tertiary: '#572500',
-  bgLight: '#f0f4f8',
-  surface: '#ffffff',
-  surfaceVariant: '#e8eef4',
-  onPrimary: '#ffffff',
-  onSurface: '#1a2a3a',
-  onSurfaceVariant: '#4a6175',
-  shadow: 'rgba(0,52,97,0.10)',
-};
 
 function HeroCoverageCard({ planName, memberId }: { planName: string; memberId: string }) {
   return (
     <LinearGradient
-      colors={[C.primaryContainer, C.primary]}
+      colors={[Colors.primaryContainer, Colors.primary]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={styles.heroCard}
@@ -42,7 +28,7 @@ function HeroCoverageCard({ planName, memberId }: { planName: string; memberId: 
 
       {/* Active Coverage badge */}
       <View style={styles.activeBadge}>
-        <MaterialCommunityIcons name="shield-check" size={12} color={C.primary} />
+        <MaterialCommunityIcons name="shield-check" size={12} color={Colors.primary} />
         <Text style={styles.activeBadgeText}>Active Coverage</Text>
       </View>
 
@@ -50,7 +36,7 @@ function HeroCoverageCard({ planName, memberId }: { planName: string; memberId: 
       <Text style={styles.heroMemberId}>Member ID: {memberId}</Text>
 
       <TouchableOpacity style={styles.heroButton}>
-        <MaterialCommunityIcons name="card-account-details-outline" size={16} color={C.onPrimary} />
+        <MaterialCommunityIcons name="card-account-details-outline" size={16} color={Colors.white} />
         <Text style={styles.heroButtonText}>View Digital ID Card</Text>
       </TouchableOpacity>
     </LinearGradient>
@@ -89,7 +75,7 @@ function BreakdownCard({ item }: { item: BenefitBreakdownItem }) {
               <MaterialCommunityIcons
                 name={item.icon as any}
                 size={20}
-                color={C.secondary}
+                color={Colors.secondary}
               />
             </View>
             <View>
@@ -113,7 +99,7 @@ function BreakdownCard({ item }: { item: BenefitBreakdownItem }) {
   return (
     <View style={styles.compactCard}>
       <View style={styles.iconBadgeSmall}>
-        <MaterialCommunityIcons name={item.icon as any} size={18} color={C.secondary} />
+        <MaterialCommunityIcons name={item.icon as any} size={18} color={Colors.secondary} />
       </View>
       <View style={styles.compactCardBody}>
         <Text style={styles.breakdownTitle}>{item.title}</Text>
@@ -141,12 +127,14 @@ function WellnessCard({ imageUrl, title, body }: { imageUrl: string; title: stri
         <Text style={styles.wellnessBody}>{body}</Text>
         <TouchableOpacity style={styles.wellnessButton}>
           <Text style={styles.wellnessButtonText}>Get Started</Text>
-          <MaterialCommunityIcons name="arrow-right" size={16} color={C.onPrimary} />
+          <MaterialCommunityIcons name="arrow-right" size={16} color={Colors.white} />
         </TouchableOpacity>
       </LinearGradient>
     </View>
   );
 }
+
+import TopBar from '../components/TopBar';
 
 const BenefitsScreen: React.FC = () => {
   const insets = useSafeAreaInsets();
@@ -156,6 +144,7 @@ const BenefitsScreen: React.FC = () => {
   if (isLoading || !benefits) {
     return (
       <View style={[styles.root, { paddingTop: insets.top }]}>
+        <TopBar />
         <View style={styles.stableHeader}>
           <Text style={styles.navTitle}>Your Benefits</Text>
           <Text style={styles.pageSubtitle}>Maximize your health coverage.</Text>
@@ -177,6 +166,7 @@ const BenefitsScreen: React.FC = () => {
 
   return (
     <View style={[styles.root, { paddingTop: insets.top }]}>
+      <TopBar />
       <View style={styles.stableHeader}>
         <Text style={styles.navTitle}>Your Benefits</Text>
         <Text style={styles.pageSubtitle}>Maximize your health coverage.</Text>
@@ -222,9 +212,9 @@ const BenefitsScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: C.bgLight },
+  root: { flex: 1, backgroundColor: Colors.background },
   stableHeader: {
-    backgroundColor: C.bgLight,
+    backgroundColor: Colors.background,
     paddingHorizontal: 16,
     paddingBottom: 16,
     paddingTop: 8,
@@ -232,18 +222,18 @@ const styles = StyleSheet.create({
   navTitle: {
     fontSize: 28,
     fontWeight: '800',
-    color: C.primary,
+    color: Colors.primary,
     letterSpacing: -0.5,
   },
   pageSubtitle: {
     fontSize: 13,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     marginTop: 2,
   },
-  scroll: { flex: 1, backgroundColor: C.bgLight },
+  scroll: { flex: 1, backgroundColor: Colors.background },
   scrollContent: { paddingHorizontal: 16, paddingTop: 4 },
 
-  loader: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: C.bgLight },
+  loader: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: Colors.background },
 
   // Hero Card
   heroCard: {
@@ -253,7 +243,7 @@ const styles = StyleSheet.create({
     padding: 24,
     marginBottom: 20,
     overflow: 'hidden',
-    shadowColor: C.primary,
+    shadowColor: Colors.primary,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.3,
     shadowRadius: 16,
@@ -272,7 +262,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
-    backgroundColor: C.secondaryContainer,
+    backgroundColor: Colors.secondaryContainer,
     alignSelf: 'flex-start',
     paddingHorizontal: 10,
     paddingVertical: 4,
@@ -282,13 +272,13 @@ const styles = StyleSheet.create({
   activeBadgeText: {
     fontSize: 11,
     fontWeight: '700',
-    color: C.primary,
+    color: Colors.primary,
     letterSpacing: 0.5,
   },
   heroPlanName: {
     fontSize: 22,
     fontWeight: '800',
-    color: C.onPrimary,
+    color: Colors.white,
     marginBottom: 4,
   },
   heroMemberId: {
@@ -311,26 +301,26 @@ const styles = StyleSheet.create({
   heroButtonText: {
     fontSize: 13,
     fontWeight: '600',
-    color: C.onPrimary,
+    color: Colors.white,
   },
 
   // Section titles
   sectionTitle: {
     fontSize: 17,
     fontWeight: '700',
-    color: C.onSurface,
+    color: Colors.onSurface,
     marginBottom: 12,
     marginTop: 4,
   },
 
   // Cost Cards
   costCard: {
-    backgroundColor: C.surface,
+    backgroundColor: Colors.white,
     borderRadius: 16,
     borderTopRightRadius: 28,
     padding: 16,
     marginBottom: 10,
-    shadowColor: C.shadow,
+    shadowColor: 'rgba(0,52,97,0.10)',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 1,
     shadowRadius: 12,
@@ -341,33 +331,33 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 10,
   },
-  costLabel: { fontSize: 14, fontWeight: '600', color: C.onSurface },
-  costPct: { fontSize: 14, fontWeight: '700', color: C.secondary },
+  costLabel: { fontSize: 14, fontWeight: '600', color: Colors.onSurface },
+  costPct: { fontSize: 14, fontWeight: '700', color: Colors.secondary },
   progressTrack: {
     height: 8,
-    backgroundColor: C.surfaceVariant,
+    backgroundColor: Colors.surfaceContainerHigh,
     borderRadius: 4,
     overflow: 'hidden',
     marginBottom: 8,
   },
   progressFill: {
     height: 8,
-    backgroundColor: C.secondary,
+    backgroundColor: Colors.secondary,
     borderRadius: 4,
   },
   costAmounts: { flexDirection: 'row', justifyContent: 'space-between' },
-  costSpent: { fontSize: 12, color: C.secondary, fontWeight: '600' },
-  costTotal: { fontSize: 12, color: C.onSurfaceVariant },
+  costSpent: { fontSize: 12, color: Colors.secondary, fontWeight: '600' },
+  costTotal: { fontSize: 12, color: Colors.onSurfaceVariant },
 
   // Featured card
   featuredCard: {
     flexDirection: 'row',
-    backgroundColor: C.surface,
+    backgroundColor: Colors.white,
     borderRadius: 16,
     borderTopRightRadius: 32,
     marginBottom: 10,
     overflow: 'hidden',
-    shadowColor: C.shadow,
+    shadowColor: 'rgba(0,52,97,0.10)',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 1,
     shadowRadius: 12,
@@ -375,7 +365,7 @@ const styles = StyleSheet.create({
   },
   featuredAccent: {
     width: 4,
-    backgroundColor: C.secondary,
+    backgroundColor: Colors.secondary,
   },
   featuredContent: {
     flex: 1,
@@ -391,34 +381,34 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 12,
-    backgroundColor: C.surfaceVariant,
+    backgroundColor: Colors.surfaceContainerHigh,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  breakdownTitle: { fontSize: 14, fontWeight: '700', color: C.onSurface },
-  breakdownSubtitle: { fontSize: 12, color: C.onSurfaceVariant, marginTop: 1 },
+  breakdownTitle: { fontSize: 14, fontWeight: '700', color: Colors.onSurface },
+  breakdownSubtitle: { fontSize: 12, color: Colors.onSurfaceVariant, marginTop: 1 },
   lineItemsContainer: { gap: 8 },
   lineItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 6,
     borderTopWidth: 1,
-    borderTopColor: C.surfaceVariant,
+    borderTopColor: Colors.surfaceContainerHigh,
   },
-  lineItemLabel: { fontSize: 13, color: C.onSurfaceVariant },
-  lineItemValue: { fontSize: 13, fontWeight: '600', color: C.secondary },
+  lineItemLabel: { fontSize: 13, color: Colors.onSurfaceVariant },
+  lineItemValue: { fontSize: 13, fontWeight: '600', color: Colors.secondary },
 
   // Compact grid
   compactGrid: { gap: 10, marginBottom: 20 },
   compactCard: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    backgroundColor: C.surface,
+    backgroundColor: Colors.white,
     borderRadius: 16,
     borderBottomLeftRadius: 28,
     padding: 14,
     gap: 12,
-    shadowColor: C.shadow,
+    shadowColor: 'rgba(0,52,97,0.10)',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 1,
     shadowRadius: 8,
@@ -428,7 +418,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 10,
-    backgroundColor: C.surfaceVariant,
+    backgroundColor: Colors.surfaceContainerHigh,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 2,
@@ -439,8 +429,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 6,
   },
-  lineItemLabelSm: { fontSize: 12, color: C.onSurfaceVariant },
-  lineItemValueSm: { fontSize: 12, fontWeight: '600', color: C.secondary },
+  lineItemLabelSm: { fontSize: 12, color: Colors.onSurfaceVariant },
+  lineItemValueSm: { fontSize: 12, fontWeight: '600', color: Colors.secondary },
 
   // Wellness Card
   wellnessCard: {
@@ -449,7 +439,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 48,
     overflow: 'hidden',
     marginBottom: 8,
-    shadowColor: C.primary,
+    shadowColor: Colors.primary,
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.2,
     shadowRadius: 14,
@@ -466,7 +456,7 @@ const styles = StyleSheet.create({
   wellnessTitle: {
     fontSize: 18,
     fontWeight: '800',
-    color: C.onPrimary,
+    color: Colors.white,
     marginBottom: 4,
   },
   wellnessBody: {
@@ -490,7 +480,7 @@ const styles = StyleSheet.create({
   wellnessButtonText: {
     fontSize: 13,
     fontWeight: '600',
-    color: C.onPrimary,
+    color: Colors.white,
   },
 });
 

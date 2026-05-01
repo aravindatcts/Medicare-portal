@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useActionAlert, Colors } from '@medicare/shared';
+import { Colors, Radius, Spacing, FontSize } from '@medicare/shared';
+import { useActionAlert } from '@medicare/shared';
 
 const ICON_MAP: Record<string, React.ComponentProps<typeof MaterialCommunityIcons>['name']> = {
   bell: 'bell',
@@ -39,10 +40,10 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal: 16,
-    marginBottom: 16,
-    borderRadius: 14,
-    padding: 16,
+    marginHorizontal: Spacing.md,
+    marginBottom: Spacing.md,
+    borderRadius: Radius.md,
+    padding: Spacing.md,
     gap: 12,
   },
   iconWrap: {
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontSize: 14,
+    fontSize: FontSize.sm,
     fontWeight: '700',
     color: Colors.white,
     marginBottom: 2,

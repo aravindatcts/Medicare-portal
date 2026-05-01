@@ -2,19 +2,10 @@ import React from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useClaims } from '@medicare/shared';
+import { Colors, useClaims } from '@medicare/shared';
 import LoadingSkeleton from '../components/LoadingSkeleton';
-import ClaimsFilterModal from '../components/ClaimsFilterModal';
+import { ClaimsFilterModal } from '../components/claims';
 
-const C = {
-  primary: '#003461',
-  secondary: '#00658d',
-  bgLight: '#f8f9fa',
-  white: '#ffffff',
-  onSurface: '#1a2a3a',
-  onSurfaceVariant: '#4a6175',
-  outline: '#e2e5ec',
-};
 
 const getStatusStyles = (status: string) => {
   switch (status.toUpperCase()) {
@@ -95,6 +86,8 @@ function ClaimCard({ claim }: { claim: any }) {
   );
 }
 
+import TopBar from '../components/TopBar';
+
 export default function ClaimsScreen({ navigation }: any) {
   const insets = useSafeAreaInsets();
   const { data: claims, isLoading } = useClaims();
@@ -142,6 +135,7 @@ export default function ClaimsScreen({ navigation }: any) {
 
   return (
     <View style={[styles.root, { paddingTop: insets.top }]}>
+      <TopBar />
       <View style={styles.stableHeader}>
         <Text style={styles.navTitle}>Claims</Text>
         <Text style={styles.pageSubtitle}>Your Medical History</Text>
@@ -150,7 +144,7 @@ export default function ClaimsScreen({ navigation }: any) {
       <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
 
         <TouchableOpacity style={styles.filterBtn} onPress={() => setIsFilterVisible(true)}>
-          <MaterialCommunityIcons name="tune-vertical" size={18} color={C.white} />
+          <MaterialCommunityIcons name="tune-vertical" size={18} color={Colors.white} />
           <Text style={styles.filterBtnText}>SMART FILTER</Text>
         </TouchableOpacity>
 
@@ -161,9 +155,9 @@ export default function ClaimsScreen({ navigation }: any) {
           </View>
         ) : displayedClaims.length === 0 ? (
           <View style={{ padding: 40, alignItems: 'center' }}>
-            <MaterialCommunityIcons name="file-search-outline" size={48} color={C.outline} />
-            <Text style={{ marginTop: 16, fontSize: 16, fontWeight: '700', color: C.onSurfaceVariant }}>No claims found</Text>
-            <Text style={{ marginTop: 8, fontSize: 13, color: C.onSurfaceVariant, textAlign: 'center' }}>Try adjusting your filters to see more results.</Text>
+            <MaterialCommunityIcons name="file-search-outline" size={48} color={Colors.borderLight} />
+            <Text style={{ marginTop: 16, fontSize: 16, fontWeight: '700', color: Colors.onSurfaceVariant }}>No claims found</Text>
+            <Text style={{ marginTop: 8, fontSize: 13, color: Colors.onSurfaceVariant, textAlign: 'center' }}>Try adjusting your filters to see more results.</Text>
           </View>
         ) : (
           <View style={styles.claimsList}>
@@ -183,7 +177,7 @@ export default function ClaimsScreen({ navigation }: any) {
               onPress={() => setCurrentPage(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
             >
-              <MaterialCommunityIcons name="chevron-left" size={20} color={C.onSurface} />
+              <MaterialCommunityIcons name="chevron-left" size={20} color={Colors.onSurface} />
             </TouchableOpacity>
             
             {Array.from({ length: totalPages }).map((_, idx) => {
@@ -205,7 +199,7 @@ export default function ClaimsScreen({ navigation }: any) {
               onPress={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
               disabled={currentPage === totalPages}
             >
-              <MaterialCommunityIcons name="chevron-right" size={20} color={C.onSurface} />
+              <MaterialCommunityIcons name="chevron-right" size={20} color={Colors.onSurface} />
             </TouchableOpacity>
           </View>
         )}
@@ -221,9 +215,9 @@ export default function ClaimsScreen({ navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: C.bgLight },
+  root: { flex: 1, backgroundColor: Colors.background },
   stableHeader: {
-    backgroundColor: C.bgLight,
+    backgroundColor: Colors.background,
     paddingHorizontal: 16,
     paddingBottom: 16,
     paddingTop: 8,
@@ -231,19 +225,19 @@ const styles = StyleSheet.create({
   navTitle: {
     fontSize: 28,
     fontWeight: '800',
-    color: C.primary,
+    color: Colors.primary,
     letterSpacing: -0.5,
   },
   pageSubtitle: {
     fontSize: 14,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     lineHeight: 20,
     marginTop: 2,
   },
   scroll: { flex: 1 },
   scrollContent: { paddingHorizontal: 16, paddingTop: 24, paddingBottom: 40 },
   filterBtn: {
-    backgroundColor: C.primary,
+    backgroundColor: Colors.primary,
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'flex-start',
@@ -254,7 +248,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   filterBtnText: {
-    color: C.white,
+    color: Colors.white,
     fontSize: 12,
     fontWeight: '700',
     letterSpacing: 0.5,
@@ -263,7 +257,7 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   card: {
-    backgroundColor: C.white,
+    backgroundColor: Colors.white,
     borderRadius: 16,
     padding: 20,
     shadowColor: '#000',
@@ -296,7 +290,7 @@ const styles = StyleSheet.create({
   claimId: {
     fontSize: 11,
     fontWeight: '700',
-    color: C.primary,
+    color: Colors.primary,
     letterSpacing: 1,
     marginTop: 4,
   },
@@ -313,7 +307,7 @@ const styles = StyleSheet.create({
   providerName: {
     fontSize: 18,
     fontWeight: '700',
-    color: C.primary,
+    color: Colors.primary,
     lineHeight: 24,
     paddingRight: 10,
   },
@@ -327,18 +321,18 @@ const styles = StyleSheet.create({
   },
   footerLabel: {
     fontSize: 11,
-    color: C.onSurfaceVariant,
+    color: Colors.onSurfaceVariant,
     marginBottom: 4,
   },
   footerValue: {
     fontSize: 14,
     fontWeight: '600',
-    color: C.primary,
+    color: Colors.primary,
   },
   amountValue: {
     fontSize: 20,
     fontWeight: '800',
-    color: C.primary,
+    color: Colors.primary,
   },
   pagination: {
     flexDirection: 'row',
@@ -356,16 +350,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   pageBtnActive: {
-    backgroundColor: C.primary,
+    backgroundColor: Colors.primary,
   },
   pageText: {
     fontSize: 14,
     fontWeight: '600',
-    color: C.onSurface,
+    color: Colors.onSurface,
   },
   pageTextActive: {
     fontSize: 14,
     fontWeight: '700',
-    color: C.white,
+    color: Colors.white,
   },
 });

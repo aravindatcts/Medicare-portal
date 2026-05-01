@@ -15,6 +15,7 @@ export const Colors = {
   secondary:              '#00658d',
   onSecondary:            '#ffffff',
   secondaryContainer:     '#41befd',
+  secondaryFixed:         '#c6e7ff',
   onSecondaryContainer:   '#004b69',
 
   tertiary:               '#572500',
@@ -83,6 +84,19 @@ export const Colors = {
   // ── Plan logo badge ───────────────────────────────────────────────────────
   logoBadgeBg:        '#EFF6FF',
   logoBadgeText:      '#1D4ED8',
+
+  // ── Tinted action icon backgrounds ────────────────────────────────────────
+  primaryBg:          '#EEF5FF',   // ultra-light primary (claims/primary icon box)
+  secondaryBg:        '#E6F8FA',   // ultra-light secondary (Rx/secondary icon box)
+  tertiaryBg:         '#FCF3EB',   // ultra-light tertiary (records/tertiary icon box)
+
+  // ── Extended dark variants ────────────────────────────────────────────────
+  primaryDark:        '#003A70',   // darker primary for dark card backgrounds
+  blueLight:          '#BFDBFE',   // light blue text on dark primary surfaces
+
+  // ── Status: success green ─────────────────────────────────────────────────
+  successBg:          '#E6F4EA',   // light green badge background
+  greenText:          '#1E8E3E',   // dark green text on success badges
 } as const;
 
 // ── Spacing scale (4px base) ──────────────────────────────────────────────────

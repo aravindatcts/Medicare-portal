@@ -2,7 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Colors, useHero } from '@medicare/shared';
+import { Colors, Shadows, FontSize } from '@medicare/shared';
+import { useHero } from '@medicare/shared';
 
 const HeroBanner: React.FC = () => {
   const { data } = useHero();
@@ -40,8 +41,7 @@ const styles = StyleSheet.create({
     padding: 16,
     marginHorizontal: 16,
     marginBottom: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    ...Shadows.light,
     shadowOpacity: 0.1,
     shadowRadius: 8,
     elevation: 4,
@@ -76,13 +76,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   heading: {
-    fontSize: 16,
+    fontSize: FontSize.md,
     fontWeight: '700',
     color: Colors.white,
     marginBottom: 4,
   },
   subtext: {
-    fontSize: 13,
+    fontSize: FontSize.sm,
     color: 'rgba(255,255,255,0.7)',
   },
   icon: {

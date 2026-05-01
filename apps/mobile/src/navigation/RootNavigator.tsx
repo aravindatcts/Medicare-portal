@@ -23,7 +23,7 @@ export default function RootNavigator() {
 
   return (
     <NavigationContainer linking={linking}>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator screenOptions={{ headerShown: false, animation: 'fade' }}>
         {isAuthenticated ? (
           <Stack.Screen name="App" component={AppNavigator} />
         ) : (

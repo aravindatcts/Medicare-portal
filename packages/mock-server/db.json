@@ -221,9 +221,9 @@
       "category": "Primary Care",
       "rating": 4.9,
       "distance": 0.8,
-      "photo": "https://lh3.googleusercontent.com/aida-public/AB6AXuDpNp6vDOItN01NDYvZkb2zA0Yuf9RVccyys6XecLpA88VvYr-1oMLTLlFmyLybLtiYqNXC-ok3xeijXFAtAr92DPaIP1KmHndVWkOOiY1nbBqOQxrZByjLvU97pzIXsJl8MX-V3hLY77KlCfcOZ21NAB4Y_c_fqA3CpsR5y9SM2FYZY17rRWH5sxAgekM7Wlh5g_kA1Gj-Pk_8mbpi-2ZfUJV6ownb_rRONsuyMPOlDw_5bOrD4yz2gHKtMWDJqNQ2W8JtVhBAUITT",
+      "photo": "https://picsum.photos/seed/p1/200/200",
       "inNetwork": true,
-      "address": "100 Health Way, San Francisco, CA",
+      "address": "714 Walnut St, Philadelphia, PA 19107",
       "coordinate": {
         "latitude": 39.913,
         "longitude": -75.1834
@@ -231,7 +231,7 @@
       "locations": [
         {
           "name": "City Center Health Pavilion",
-          "address": "1200 Medical Plaza, Suite 400\nPhiladelphia, PA 19104",
+          "address": "523 Market St, Philadelphia, PA 19107",
           "phone": "215-555-0101",
           "coordinate": {
             "latitude": 39.9268,
@@ -240,7 +240,7 @@
         },
         {
           "name": "Westside Wellness Clinic",
-          "address": "4000 Market St, Suite 200\nPhiladelphia, PA 19104",
+          "address": "703 Walnut St, Philadelphia, PA 19107",
           "phone": "215-555-0102",
           "coordinate": {
             "latitude": 40.0006,
@@ -249,7 +249,7 @@
         },
         {
           "name": "North Broad Medical Hub",
-          "address": "1500 N Broad St\nPhiladelphia, PA 19121",
+          "address": "604 South St, Philadelphia, PA 19146",
           "phone": "215-555-0103",
           "coordinate": {
             "latitude": 39.9901,
@@ -258,7 +258,7 @@
         },
         {
           "name": "South Philly Care Center",
-          "address": "1900 S Broad St\nPhiladelphia, PA 19145",
+          "address": "870 Broad St, Philadelphia, PA 19146",
           "phone": "215-555-0104",
           "coordinate": {
             "latitude": 39.9909,
@@ -267,7 +267,7 @@
         },
         {
           "name": "Main Line Health Associates",
-          "address": "100 E Lancaster Ave\nWynnewood, PA 19096",
+          "address": "595 Market St, Philadelphia, PA 19104",
           "phone": "610-555-0105",
           "coordinate": {
             "latitude": 39.9175,
@@ -315,9 +315,9 @@
       "category": "Primary Care",
       "rating": 4.7,
       "distance": 1.5,
-      "photo": "https://i.pravatar.cc/100?img=3",
+      "photo": "https://picsum.photos/seed/p2/200/200",
       "inNetwork": true,
-      "address": "245 Wellness Blvd, San Francisco, CA",
+      "address": "642 Broad St, Philadelphia, PA 19147",
       "coordinate": {
         "latitude": 40.0016,
         "longitude": -75.1776
@@ -331,7 +331,7 @@
       "locations": [
         {
           "name": "Main Hospital p2",
-          "address": "100 Main St, CA",
+          "address": "427 Chestnut St, Philadelphia, PA 19123",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9038,
@@ -340,7 +340,7 @@
         },
         {
           "name": "City Clinic p2",
-          "address": "200 Center Ave, CA",
+          "address": "291 Walnut St, Philadelphia, PA 19104",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9374,
@@ -349,7 +349,7 @@
         },
         {
           "name": "Westside Hub p2",
-          "address": "300 West Blvd, CA",
+          "address": "742 Arch St, Philadelphia, PA 19107",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9565,
@@ -358,7 +358,7 @@
         },
         {
           "name": "Eastside Care p2",
-          "address": "400 East Rd, CA",
+          "address": "593 Chestnut St, Philadelphia, PA 19123",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9482,
@@ -367,7 +367,7 @@
         },
         {
           "name": "North Annex p2",
-          "address": "500 North Pkwy, CA",
+          "address": "956 Arch St, Philadelphia, PA 19146",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9234,
@@ -409,9 +409,9 @@
       "category": "Primary Care",
       "rating": 4.6,
       "distance": 3.2,
-      "photo": "https://i.pravatar.cc/100?img=36",
+      "photo": "https://picsum.photos/seed/p3/200/200",
       "inNetwork": true,
-      "address": "500 Sunset Ave, San Francisco, CA",
+      "address": "547 Arch St, Philadelphia, PA 19123",
       "coordinate": {
         "latitude": 39.9209,
         "longitude": -75.1832
@@ -425,7 +425,7 @@
       "locations": [
         {
           "name": "Main Hospital p3",
-          "address": "100 Main St, CA",
+          "address": "722 Arch St, Philadelphia, PA 19123",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 40.0005,
@@ -434,7 +434,7 @@
         },
         {
           "name": "City Clinic p3",
-          "address": "200 Center Ave, CA",
+          "address": "403 Market St, Philadelphia, PA 19104",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9974,
@@ -443,7 +443,7 @@
         },
         {
           "name": "Westside Hub p3",
-          "address": "300 West Blvd, CA",
+          "address": "684 Chestnut St, Philadelphia, PA 19107",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9859,
@@ -452,7 +452,7 @@
         },
         {
           "name": "Eastside Care p3",
-          "address": "400 East Rd, CA",
+          "address": "551 Broad St, Philadelphia, PA 19147",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9053,
@@ -461,7 +461,7 @@
         },
         {
           "name": "North Annex p3",
-          "address": "500 North Pkwy, CA",
+          "address": "984 South St, Philadelphia, PA 19104",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9076,
@@ -503,9 +503,9 @@
       "category": "Primary Care",
       "rating": 4.5,
       "distance": 6.1,
-      "photo": "https://i.pravatar.cc/100?img=5",
+      "photo": "https://picsum.photos/seed/p4/200/200",
       "inNetwork": false,
-      "address": "88 Bay Street, Oakland, CA",
+      "address": "214 South St, Philadelphia, PA 19147",
       "coordinate": {
         "latitude": 39.9326,
         "longitude": -75.1421
@@ -520,7 +520,7 @@
       "locations": [
         {
           "name": "Main Hospital p4",
-          "address": "100 Main St, CA",
+          "address": "516 Market St, Philadelphia, PA 19102",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9491,
@@ -529,7 +529,7 @@
         },
         {
           "name": "City Clinic p4",
-          "address": "200 Center Ave, CA",
+          "address": "540 Chestnut St, Philadelphia, PA 19107",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9887,
@@ -538,7 +538,7 @@
         },
         {
           "name": "Westside Hub p4",
-          "address": "300 West Blvd, CA",
+          "address": "243 Arch St, Philadelphia, PA 19102",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9081,
@@ -547,7 +547,7 @@
         },
         {
           "name": "Eastside Care p4",
-          "address": "400 East Rd, CA",
+          "address": "829 Chestnut St, Philadelphia, PA 19146",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9196,
@@ -556,7 +556,7 @@
         },
         {
           "name": "North Annex p4",
-          "address": "500 North Pkwy, CA",
+          "address": "711 Broad St, Philadelphia, PA 19146",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.9772,
@@ -600,7 +600,7 @@
       "distance": 11.4,
       "photo": "https://i.pravatar.cc/100?img=40",
       "inNetwork": true,
-      "address": "200 Wellness Pkwy, San Mateo, CA",
+      "address": "197 Broad St, Philadelphia, PA 19123",
       "coordinate": {
         "latitude": 39.9676,
         "longitude": -75.1347
@@ -615,7 +615,7 @@
       "locations": [
         {
           "name": "Main Hospital p5",
-          "address": "100 Main St, CA",
+          "address": "294 Market St, Philadelphia, PA 19146",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9166,
@@ -624,7 +624,7 @@
         },
         {
           "name": "City Clinic p5",
-          "address": "200 Center Ave, CA",
+          "address": "305 Broad St, Philadelphia, PA 19147",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.925,
@@ -633,7 +633,7 @@
         },
         {
           "name": "Westside Hub p5",
-          "address": "300 West Blvd, CA",
+          "address": "899 Walnut St, Philadelphia, PA 19147",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9258,
@@ -642,7 +642,7 @@
         },
         {
           "name": "Eastside Care p5",
-          "address": "400 East Rd, CA",
+          "address": "990 Chestnut St, Philadelphia, PA 19107",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.9462,
@@ -651,7 +651,7 @@
         },
         {
           "name": "North Annex p5",
-          "address": "500 North Pkwy, CA",
+          "address": "929 South St, Philadelphia, PA 19123",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.987,
@@ -693,9 +693,9 @@
       "category": "Cardiology",
       "rating": 4.8,
       "distance": 2.5,
-      "photo": "https://i.pravatar.cc/100?img=7",
+      "photo": "https://picsum.photos/seed/p6/200/200",
       "inNetwork": true,
-      "address": "12 Heart Center Plaza, San Francisco, CA",
+      "address": "155 Walnut St, Philadelphia, PA 19123",
       "coordinate": {
         "latitude": 39.9819,
         "longitude": -75.21
@@ -710,7 +710,7 @@
       "locations": [
         {
           "name": "Main Hospital p6",
-          "address": "100 Main St, CA",
+          "address": "453 Market St, Philadelphia, PA 19123",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9386,
@@ -719,7 +719,7 @@
         },
         {
           "name": "City Clinic p6",
-          "address": "200 Center Ave, CA",
+          "address": "519 Arch St, Philadelphia, PA 19102",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9429,
@@ -728,7 +728,7 @@
         },
         {
           "name": "Westside Hub p6",
-          "address": "300 West Blvd, CA",
+          "address": "378 Arch St, Philadelphia, PA 19102",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9225,
@@ -737,7 +737,7 @@
         },
         {
           "name": "Eastside Care p6",
-          "address": "400 East Rd, CA",
+          "address": "663 Broad St, Philadelphia, PA 19146",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9789,
@@ -746,7 +746,7 @@
         },
         {
           "name": "North Annex p6",
-          "address": "500 North Pkwy, CA",
+          "address": "695 South St, Philadelphia, PA 19147",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.91,
@@ -788,9 +788,9 @@
       "category": "Cardiology",
       "rating": 4.6,
       "distance": 4.8,
-      "photo": "https://i.pravatar.cc/100?img=9",
+      "photo": "https://picsum.photos/seed/p7/200/200",
       "inNetwork": true,
-      "address": "450 Medical Center Dr, San Francisco, CA",
+      "address": "145 South St, Philadelphia, PA 19147",
       "coordinate": {
         "latitude": 39.9311,
         "longitude": -75.197
@@ -805,7 +805,7 @@
       "locations": [
         {
           "name": "Main Hospital p7",
-          "address": "100 Main St, CA",
+          "address": "663 Arch St, Philadelphia, PA 19104",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.937,
@@ -814,7 +814,7 @@
         },
         {
           "name": "City Clinic p7",
-          "address": "200 Center Ave, CA",
+          "address": "872 Chestnut St, Philadelphia, PA 19147",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9956,
@@ -823,7 +823,7 @@
         },
         {
           "name": "Westside Hub p7",
-          "address": "300 West Blvd, CA",
+          "address": "864 South St, Philadelphia, PA 19123",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9736,
@@ -832,7 +832,7 @@
         },
         {
           "name": "Eastside Care p7",
-          "address": "400 East Rd, CA",
+          "address": "284 Broad St, Philadelphia, PA 19104",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9605,
@@ -841,7 +841,7 @@
         },
         {
           "name": "North Annex p7",
-          "address": "500 North Pkwy, CA",
+          "address": "192 Chestnut St, Philadelphia, PA 19147",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9404,
@@ -885,7 +885,7 @@
       "distance": 7.3,
       "photo": "https://i.pravatar.cc/100?img=44",
       "inNetwork": true,
-      "address": "1 Hospital Way, Sausalito, CA",
+      "address": "573 Walnut St, Philadelphia, PA 19146",
       "coordinate": {
         "latitude": 39.9474,
         "longitude": -75.215
@@ -900,7 +900,7 @@
       "locations": [
         {
           "name": "Main Hospital p8",
-          "address": "100 Main St, CA",
+          "address": "479 Chestnut St, Philadelphia, PA 19102",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9157,
@@ -909,7 +909,7 @@
         },
         {
           "name": "City Clinic p8",
-          "address": "200 Center Ave, CA",
+          "address": "431 Arch St, Philadelphia, PA 19147",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.967,
@@ -918,7 +918,7 @@
         },
         {
           "name": "Westside Hub p8",
-          "address": "300 West Blvd, CA",
+          "address": "126 Market St, Philadelphia, PA 19146",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9791,
@@ -927,7 +927,7 @@
         },
         {
           "name": "Eastside Care p8",
-          "address": "400 East Rd, CA",
+          "address": "750 Arch St, Philadelphia, PA 19107",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9944,
@@ -936,7 +936,7 @@
         },
         {
           "name": "North Annex p8",
-          "address": "500 North Pkwy, CA",
+          "address": "402 Market St, Philadelphia, PA 19147",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9328,
@@ -980,7 +980,7 @@
       "distance": 13.2,
       "photo": "https://i.pravatar.cc/100?img=11",
       "inNetwork": false,
-      "address": "567 Grand Ave, Oakland, CA",
+      "address": "526 Broad St, Philadelphia, PA 19147",
       "coordinate": {
         "latitude": 39.9215,
         "longitude": -75.2099
@@ -995,7 +995,7 @@
       "locations": [
         {
           "name": "Main Hospital p9",
-          "address": "100 Main St, CA",
+          "address": "507 Market St, Philadelphia, PA 19102",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9684,
@@ -1004,7 +1004,7 @@
         },
         {
           "name": "City Clinic p9",
-          "address": "200 Center Ave, CA",
+          "address": "443 Broad St, Philadelphia, PA 19107",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9434,
@@ -1013,7 +1013,7 @@
         },
         {
           "name": "Westside Hub p9",
-          "address": "300 West Blvd, CA",
+          "address": "380 Arch St, Philadelphia, PA 19146",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9668,
@@ -1022,7 +1022,7 @@
         },
         {
           "name": "Eastside Care p9",
-          "address": "400 East Rd, CA",
+          "address": "587 Broad St, Philadelphia, PA 19123",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9741,
@@ -1031,7 +1031,7 @@
         },
         {
           "name": "North Annex p9",
-          "address": "500 North Pkwy, CA",
+          "address": "313 Chestnut St, Philadelphia, PA 19107",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.9354,
@@ -1075,7 +1075,7 @@
       "distance": 18.6,
       "photo": "https://i.pravatar.cc/100?img=47",
       "inNetwork": true,
-      "address": "890 Medical Way, San Mateo, CA",
+      "address": "713 Walnut St, Philadelphia, PA 19147",
       "coordinate": {
         "latitude": 39.933,
         "longitude": -75.1625
@@ -1091,7 +1091,7 @@
       "locations": [
         {
           "name": "Main Hospital p10",
-          "address": "100 Main St, CA",
+          "address": "206 Chestnut St, Philadelphia, PA 19146",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9891,
@@ -1100,7 +1100,7 @@
         },
         {
           "name": "City Clinic p10",
-          "address": "200 Center Ave, CA",
+          "address": "172 Chestnut St, Philadelphia, PA 19147",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9379,
@@ -1109,7 +1109,7 @@
         },
         {
           "name": "Westside Hub p10",
-          "address": "300 West Blvd, CA",
+          "address": "350 Market St, Philadelphia, PA 19147",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9676,
@@ -1118,7 +1118,7 @@
         },
         {
           "name": "Eastside Care p10",
-          "address": "400 East Rd, CA",
+          "address": "562 Broad St, Philadelphia, PA 19123",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9414,
@@ -1127,7 +1127,7 @@
         },
         {
           "name": "North Annex p10",
-          "address": "500 North Pkwy, CA",
+          "address": "214 South St, Philadelphia, PA 19146",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9626,
@@ -1171,7 +1171,7 @@
       "distance": 1.9,
       "photo": "https://i.pravatar.cc/100?img=48",
       "inNetwork": true,
-      "address": "333 Pacific Heights Rd, San Francisco, CA",
+      "address": "513 Broad St, Philadelphia, PA 19104",
       "coordinate": {
         "latitude": 39.9368,
         "longitude": -75.1512
@@ -1185,7 +1185,7 @@
       "locations": [
         {
           "name": "Main Hospital p11",
-          "address": "100 Main St, CA",
+          "address": "437 Market St, Philadelphia, PA 19146",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 40.0003,
@@ -1194,7 +1194,7 @@
         },
         {
           "name": "City Clinic p11",
-          "address": "200 Center Ave, CA",
+          "address": "380 South St, Philadelphia, PA 19123",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9685,
@@ -1203,7 +1203,7 @@
         },
         {
           "name": "Westside Hub p11",
-          "address": "300 West Blvd, CA",
+          "address": "688 Chestnut St, Philadelphia, PA 19107",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9939,
@@ -1212,7 +1212,7 @@
         },
         {
           "name": "Eastside Care p11",
-          "address": "400 East Rd, CA",
+          "address": "613 Broad St, Philadelphia, PA 19104",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9567,
@@ -1221,7 +1221,7 @@
         },
         {
           "name": "North Annex p11",
-          "address": "500 North Pkwy, CA",
+          "address": "821 Arch St, Philadelphia, PA 19146",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9686,
@@ -1265,7 +1265,7 @@
       "distance": 3.7,
       "photo": "https://i.pravatar.cc/100?img=13",
       "inNetwork": true,
-      "address": "700 Mission St, San Francisco, CA",
+      "address": "295 Walnut St, Philadelphia, PA 19147",
       "coordinate": {
         "latitude": 39.9775,
         "longitude": -75.1688
@@ -1279,7 +1279,7 @@
       "locations": [
         {
           "name": "Main Hospital p12",
-          "address": "100 Main St, CA",
+          "address": "251 South St, Philadelphia, PA 19102",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.9441,
@@ -1288,7 +1288,7 @@
         },
         {
           "name": "City Clinic p12",
-          "address": "200 Center Ave, CA",
+          "address": "892 Arch St, Philadelphia, PA 19107",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.9912,
@@ -1297,7 +1297,7 @@
         },
         {
           "name": "Westside Hub p12",
-          "address": "300 West Blvd, CA",
+          "address": "432 Arch St, Philadelphia, PA 19104",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 40.0018,
@@ -1306,7 +1306,7 @@
         },
         {
           "name": "Eastside Care p12",
-          "address": "400 East Rd, CA",
+          "address": "668 Walnut St, Philadelphia, PA 19107",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9356,
@@ -1315,7 +1315,7 @@
         },
         {
           "name": "North Annex p12",
-          "address": "500 North Pkwy, CA",
+          "address": "158 Walnut St, Philadelphia, PA 19104",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9952,
@@ -1359,7 +1359,7 @@
       "distance": 5.5,
       "photo": "https://i.pravatar.cc/100?img=50",
       "inNetwork": true,
-      "address": "221 Noe Valley Blvd, San Francisco, CA",
+      "address": "593 Arch St, Philadelphia, PA 19123",
       "coordinate": {
         "latitude": 39.9563,
         "longitude": -75.2088
@@ -1373,7 +1373,7 @@
       "locations": [
         {
           "name": "Main Hospital p13",
-          "address": "100 Main St, CA",
+          "address": "252 Walnut St, Philadelphia, PA 19104",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9308,
@@ -1382,7 +1382,7 @@
         },
         {
           "name": "City Clinic p13",
-          "address": "200 Center Ave, CA",
+          "address": "626 Broad St, Philadelphia, PA 19104",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9161,
@@ -1391,7 +1391,7 @@
         },
         {
           "name": "Westside Hub p13",
-          "address": "300 West Blvd, CA",
+          "address": "671 Chestnut St, Philadelphia, PA 19146",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9064,
@@ -1400,7 +1400,7 @@
         },
         {
           "name": "Eastside Care p13",
-          "address": "400 East Rd, CA",
+          "address": "696 Market St, Philadelphia, PA 19146",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9485,
@@ -1409,7 +1409,7 @@
         },
         {
           "name": "North Annex p13",
-          "address": "500 North Pkwy, CA",
+          "address": "345 Walnut St, Philadelphia, PA 19102",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.9395,
@@ -1453,7 +1453,7 @@
       "distance": 9.8,
       "photo": "https://i.pravatar.cc/100?img=15",
       "inNetwork": false,
-      "address": "450 Foothill Blvd, Oakland, CA",
+      "address": "348 Market St, Philadelphia, PA 19102",
       "coordinate": {
         "latitude": 39.9676,
         "longitude": -75.1887
@@ -1468,7 +1468,7 @@
       "locations": [
         {
           "name": "Main Hospital p14",
-          "address": "100 Main St, CA",
+          "address": "538 Walnut St, Philadelphia, PA 19123",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9771,
@@ -1477,7 +1477,7 @@
         },
         {
           "name": "City Clinic p14",
-          "address": "200 Center Ave, CA",
+          "address": "737 Broad St, Philadelphia, PA 19102",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.95,
@@ -1486,7 +1486,7 @@
         },
         {
           "name": "Westside Hub p14",
-          "address": "300 West Blvd, CA",
+          "address": "873 South St, Philadelphia, PA 19147",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9848,
@@ -1495,7 +1495,7 @@
         },
         {
           "name": "Eastside Care p14",
-          "address": "400 East Rd, CA",
+          "address": "681 Chestnut St, Philadelphia, PA 19147",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9929,
@@ -1504,7 +1504,7 @@
         },
         {
           "name": "North Annex p14",
-          "address": "500 North Pkwy, CA",
+          "address": "227 Arch St, Philadelphia, PA 19146",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9123,
@@ -1548,7 +1548,7 @@
       "distance": 15.3,
       "photo": "https://i.pravatar.cc/100?img=52",
       "inNetwork": true,
-      "address": "100 Marin Health Dr, San Rafael, CA",
+      "address": "454 Chestnut St, Philadelphia, PA 19146",
       "coordinate": {
         "latitude": 39.9828,
         "longitude": -75.1761
@@ -1563,7 +1563,7 @@
       "locations": [
         {
           "name": "Main Hospital p15",
-          "address": "100 Main St, CA",
+          "address": "644 Arch St, Philadelphia, PA 19102",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9437,
@@ -1572,7 +1572,7 @@
         },
         {
           "name": "City Clinic p15",
-          "address": "200 Center Ave, CA",
+          "address": "670 Broad St, Philadelphia, PA 19147",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9822,
@@ -1581,7 +1581,7 @@
         },
         {
           "name": "Westside Hub p15",
-          "address": "300 West Blvd, CA",
+          "address": "910 Broad St, Philadelphia, PA 19102",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9695,
@@ -1590,7 +1590,7 @@
         },
         {
           "name": "Eastside Care p15",
-          "address": "400 East Rd, CA",
+          "address": "581 Chestnut St, Philadelphia, PA 19147",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9735,
@@ -1599,7 +1599,7 @@
         },
         {
           "name": "North Annex p15",
-          "address": "500 North Pkwy, CA",
+          "address": "182 Walnut St, Philadelphia, PA 19102",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.925,
@@ -1643,7 +1643,7 @@
       "distance": 1.2,
       "photo": "https://i.pravatar.cc/100?img=17",
       "inNetwork": true,
-      "address": "99 Marina Blvd, San Francisco, CA",
+      "address": "126 South St, Philadelphia, PA 19107",
       "coordinate": {
         "latitude": 39.9953,
         "longitude": -75.1222
@@ -1658,7 +1658,7 @@
       "locations": [
         {
           "name": "Main Hospital p16",
-          "address": "100 Main St, CA",
+          "address": "548 Broad St, Philadelphia, PA 19104",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9426,
@@ -1667,7 +1667,7 @@
         },
         {
           "name": "City Clinic p16",
-          "address": "200 Center Ave, CA",
+          "address": "307 South St, Philadelphia, PA 19102",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9331,
@@ -1676,7 +1676,7 @@
         },
         {
           "name": "Westside Hub p16",
-          "address": "300 West Blvd, CA",
+          "address": "910 Arch St, Philadelphia, PA 19102",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9646,
@@ -1685,7 +1685,7 @@
         },
         {
           "name": "Eastside Care p16",
-          "address": "400 East Rd, CA",
+          "address": "296 Broad St, Philadelphia, PA 19147",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9533,
@@ -1694,7 +1694,7 @@
         },
         {
           "name": "North Annex p16",
-          "address": "500 North Pkwy, CA",
+          "address": "517 Arch St, Philadelphia, PA 19102",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.9425,
@@ -1738,7 +1738,7 @@
       "distance": 2.8,
       "photo": "https://i.pravatar.cc/100?img=53",
       "inNetwork": true,
-      "address": "44 Castro St, San Francisco, CA",
+      "address": "393 Chestnut St, Philadelphia, PA 19102",
       "coordinate": {
         "latitude": 39.9625,
         "longitude": -75.1376
@@ -1753,7 +1753,7 @@
       "locations": [
         {
           "name": "Main Hospital p17",
-          "address": "100 Main St, CA",
+          "address": "253 South St, Philadelphia, PA 19102",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9752,
@@ -1762,7 +1762,7 @@
         },
         {
           "name": "City Clinic p17",
-          "address": "200 Center Ave, CA",
+          "address": "747 Arch St, Philadelphia, PA 19104",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9866,
@@ -1771,7 +1771,7 @@
         },
         {
           "name": "Westside Hub p17",
-          "address": "300 West Blvd, CA",
+          "address": "885 Broad St, Philadelphia, PA 19107",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9217,
@@ -1780,7 +1780,7 @@
         },
         {
           "name": "Eastside Care p17",
-          "address": "400 East Rd, CA",
+          "address": "991 Arch St, Philadelphia, PA 19102",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9657,
@@ -1789,7 +1789,7 @@
         },
         {
           "name": "North Annex p17",
-          "address": "500 North Pkwy, CA",
+          "address": "270 Broad St, Philadelphia, PA 19102",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9284,
@@ -1833,7 +1833,7 @@
       "distance": 4.4,
       "photo": "https://i.pravatar.cc/100?img=19",
       "inNetwork": true,
-      "address": "600 Potrero Ave, San Francisco, CA",
+      "address": "641 Arch St, Philadelphia, PA 19107",
       "coordinate": {
         "latitude": 39.9518,
         "longitude": -75.1555
@@ -1848,7 +1848,7 @@
       "locations": [
         {
           "name": "Main Hospital p18",
-          "address": "100 Main St, CA",
+          "address": "885 Market St, Philadelphia, PA 19102",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9351,
@@ -1857,7 +1857,7 @@
         },
         {
           "name": "City Clinic p18",
-          "address": "200 Center Ave, CA",
+          "address": "243 Market St, Philadelphia, PA 19146",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9758,
@@ -1866,7 +1866,7 @@
         },
         {
           "name": "Westside Hub p18",
-          "address": "300 West Blvd, CA",
+          "address": "536 Chestnut St, Philadelphia, PA 19107",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 40.0005,
@@ -1875,7 +1875,7 @@
         },
         {
           "name": "Eastside Care p18",
-          "address": "400 East Rd, CA",
+          "address": "474 South St, Philadelphia, PA 19146",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9217,
@@ -1884,7 +1884,7 @@
         },
         {
           "name": "North Annex p18",
-          "address": "500 North Pkwy, CA",
+          "address": "905 Arch St, Philadelphia, PA 19107",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.913,
@@ -1928,7 +1928,7 @@
       "distance": 8.1,
       "photo": "https://i.pravatar.cc/100?img=55",
       "inNetwork": true,
-      "address": "2200 Webster St, Oakland, CA",
+      "address": "766 Broad St, Philadelphia, PA 19123",
       "coordinate": {
         "latitude": 39.9412,
         "longitude": -75.1453
@@ -1943,7 +1943,7 @@
       "locations": [
         {
           "name": "Main Hospital p19",
-          "address": "100 Main St, CA",
+          "address": "645 Walnut St, Philadelphia, PA 19146",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9869,
@@ -1952,7 +1952,7 @@
         },
         {
           "name": "City Clinic p19",
-          "address": "200 Center Ave, CA",
+          "address": "531 Broad St, Philadelphia, PA 19147",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 40.0006,
@@ -1961,7 +1961,7 @@
         },
         {
           "name": "Westside Hub p19",
-          "address": "300 West Blvd, CA",
+          "address": "882 South St, Philadelphia, PA 19146",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9974,
@@ -1970,7 +1970,7 @@
         },
         {
           "name": "Eastside Care p19",
-          "address": "400 East Rd, CA",
+          "address": "607 Walnut St, Philadelphia, PA 19104",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9878,
@@ -1979,7 +1979,7 @@
         },
         {
           "name": "North Annex p19",
-          "address": "500 North Pkwy, CA",
+          "address": "735 Arch St, Philadelphia, PA 19147",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.98,
@@ -2023,7 +2023,7 @@
       "distance": 16.7,
       "photo": "https://i.pravatar.cc/100?img=21",
       "inNetwork": false,
-      "address": "5 Bayfront Dr, San Mateo, CA",
+      "address": "654 Walnut St, Philadelphia, PA 19102",
       "coordinate": {
         "latitude": 39.9681,
         "longitude": -75.1704
@@ -2039,7 +2039,7 @@
       "locations": [
         {
           "name": "Main Hospital p20",
-          "address": "100 Main St, CA",
+          "address": "709 Arch St, Philadelphia, PA 19102",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9413,
@@ -2048,7 +2048,7 @@
         },
         {
           "name": "City Clinic p20",
-          "address": "200 Center Ave, CA",
+          "address": "972 South St, Philadelphia, PA 19102",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9149,
@@ -2057,7 +2057,7 @@
         },
         {
           "name": "Westside Hub p20",
-          "address": "300 West Blvd, CA",
+          "address": "312 Broad St, Philadelphia, PA 19146",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9578,
@@ -2066,7 +2066,7 @@
         },
         {
           "name": "Eastside Care p20",
-          "address": "400 East Rd, CA",
+          "address": "863 Arch St, Philadelphia, PA 19123",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9273,
@@ -2075,7 +2075,7 @@
         },
         {
           "name": "North Annex p20",
-          "address": "500 North Pkwy, CA",
+          "address": "415 Arch St, Philadelphia, PA 19102",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.9937,
@@ -2119,7 +2119,7 @@
       "distance": 0.6,
       "photo": "https://i.pravatar.cc/100?img=56",
       "inNetwork": true,
-      "address": "10 Union St, San Francisco, CA",
+      "address": "226 Market St, Philadelphia, PA 19146",
       "coordinate": {
         "latitude": 39.9229,
         "longitude": -75.1271
@@ -2133,7 +2133,7 @@
       "locations": [
         {
           "name": "Main Hospital p21",
-          "address": "100 Main St, CA",
+          "address": "447 Chestnut St, Philadelphia, PA 19104",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9985,
@@ -2142,7 +2142,7 @@
         },
         {
           "name": "City Clinic p21",
-          "address": "200 Center Ave, CA",
+          "address": "300 Chestnut St, Philadelphia, PA 19123",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9107,
@@ -2151,7 +2151,7 @@
         },
         {
           "name": "Westside Hub p21",
-          "address": "300 West Blvd, CA",
+          "address": "835 Arch St, Philadelphia, PA 19146",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9532,
@@ -2160,7 +2160,7 @@
         },
         {
           "name": "Eastside Care p21",
-          "address": "400 East Rd, CA",
+          "address": "752 Chestnut St, Philadelphia, PA 19146",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9249,
@@ -2169,7 +2169,7 @@
         },
         {
           "name": "North Annex p21",
-          "address": "500 North Pkwy, CA",
+          "address": "298 Arch St, Philadelphia, PA 19146",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9545,
@@ -2213,7 +2213,7 @@
       "distance": 3.1,
       "photo": "https://i.pravatar.cc/100?img=23",
       "inNetwork": true,
-      "address": "180 Haight St, San Francisco, CA",
+      "address": "612 Broad St, Philadelphia, PA 19123",
       "coordinate": {
         "latitude": 39.9479,
         "longitude": -75.1682
@@ -2227,7 +2227,7 @@
       "locations": [
         {
           "name": "Main Hospital p22",
-          "address": "100 Main St, CA",
+          "address": "344 Market St, Philadelphia, PA 19147",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9249,
@@ -2236,7 +2236,7 @@
         },
         {
           "name": "City Clinic p22",
-          "address": "200 Center Ave, CA",
+          "address": "597 Broad St, Philadelphia, PA 19102",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.967,
@@ -2245,7 +2245,7 @@
         },
         {
           "name": "Westside Hub p22",
-          "address": "300 West Blvd, CA",
+          "address": "128 Arch St, Philadelphia, PA 19102",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9248,
@@ -2254,7 +2254,7 @@
         },
         {
           "name": "Eastside Care p22",
-          "address": "400 East Rd, CA",
+          "address": "140 Broad St, Philadelphia, PA 19102",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9093,
@@ -2263,7 +2263,7 @@
         },
         {
           "name": "North Annex p22",
-          "address": "500 North Pkwy, CA",
+          "address": "664 Walnut St, Philadelphia, PA 19104",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9201,
@@ -2307,7 +2307,7 @@
       "distance": 5.8,
       "photo": "https://i.pravatar.cc/100?img=58",
       "inNetwork": true,
-      "address": "909 Hyde St, San Francisco, CA",
+      "address": "822 Arch St, Philadelphia, PA 19146",
       "coordinate": {
         "latitude": 39.9572,
         "longitude": -75.1962
@@ -2321,7 +2321,7 @@
       "locations": [
         {
           "name": "Main Hospital p23",
-          "address": "100 Main St, CA",
+          "address": "974 Broad St, Philadelphia, PA 19102",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9253,
@@ -2330,7 +2330,7 @@
         },
         {
           "name": "City Clinic p23",
-          "address": "200 Center Ave, CA",
+          "address": "436 Arch St, Philadelphia, PA 19104",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9791,
@@ -2339,7 +2339,7 @@
         },
         {
           "name": "Westside Hub p23",
-          "address": "300 West Blvd, CA",
+          "address": "362 Walnut St, Philadelphia, PA 19123",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9653,
@@ -2348,7 +2348,7 @@
         },
         {
           "name": "Eastside Care p23",
-          "address": "400 East Rd, CA",
+          "address": "528 Chestnut St, Philadelphia, PA 19102",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9114,
@@ -2357,7 +2357,7 @@
         },
         {
           "name": "North Annex p23",
-          "address": "500 North Pkwy, CA",
+          "address": "475 Arch St, Philadelphia, PA 19147",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9951,
@@ -2401,7 +2401,7 @@
       "distance": 10.4,
       "photo": "https://i.pravatar.cc/100?img=25",
       "inNetwork": false,
-      "address": "3500 MacArthur Blvd, Oakland, CA",
+      "address": "976 Walnut St, Philadelphia, PA 19146",
       "coordinate": {
         "latitude": 39.9055,
         "longitude": -75.1574
@@ -2416,7 +2416,7 @@
       "locations": [
         {
           "name": "Main Hospital p24",
-          "address": "100 Main St, CA",
+          "address": "656 South St, Philadelphia, PA 19123",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9332,
@@ -2425,7 +2425,7 @@
         },
         {
           "name": "City Clinic p24",
-          "address": "200 Center Ave, CA",
+          "address": "137 South St, Philadelphia, PA 19104",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.925,
@@ -2434,7 +2434,7 @@
         },
         {
           "name": "Westside Hub p24",
-          "address": "300 West Blvd, CA",
+          "address": "598 Walnut St, Philadelphia, PA 19104",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.9651,
@@ -2443,7 +2443,7 @@
         },
         {
           "name": "Eastside Care p24",
-          "address": "400 East Rd, CA",
+          "address": "328 Walnut St, Philadelphia, PA 19102",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9898,
@@ -2452,7 +2452,7 @@
         },
         {
           "name": "North Annex p24",
-          "address": "500 North Pkwy, CA",
+          "address": "884 South St, Philadelphia, PA 19123",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9922,
@@ -2496,7 +2496,7 @@
       "distance": 22.5,
       "photo": "https://i.pravatar.cc/100?img=60",
       "inNetwork": true,
-      "address": "700 El Camino Real, San Mateo, CA",
+      "address": "728 Arch St, Philadelphia, PA 19102",
       "coordinate": {
         "latitude": 39.9256,
         "longitude": -75.1157
@@ -2511,7 +2511,7 @@
       "locations": [
         {
           "name": "Main Hospital p25",
-          "address": "100 Main St, CA",
+          "address": "307 Broad St, Philadelphia, PA 19123",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9577,
@@ -2520,7 +2520,7 @@
         },
         {
           "name": "City Clinic p25",
-          "address": "200 Center Ave, CA",
+          "address": "595 Walnut St, Philadelphia, PA 19123",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.9965,
@@ -2529,7 +2529,7 @@
         },
         {
           "name": "Westside Hub p25",
-          "address": "300 West Blvd, CA",
+          "address": "581 Walnut St, Philadelphia, PA 19104",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9706,
@@ -2538,7 +2538,7 @@
         },
         {
           "name": "Eastside Care p25",
-          "address": "400 East Rd, CA",
+          "address": "525 Arch St, Philadelphia, PA 19107",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9331,
@@ -2547,7 +2547,7 @@
         },
         {
           "name": "North Annex p25",
-          "address": "500 North Pkwy, CA",
+          "address": "287 Chestnut St, Philadelphia, PA 19147",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9687,
@@ -2591,7 +2591,7 @@
       "distance": 1.7,
       "photo": "https://i.pravatar.cc/100?img=27",
       "inNetwork": true,
-      "address": "55 Civic Center Dr, San Francisco, CA",
+      "address": "389 South St, Philadelphia, PA 19147",
       "coordinate": {
         "latitude": 39.9829,
         "longitude": -75.1522
@@ -2606,7 +2606,7 @@
       "locations": [
         {
           "name": "Main Hospital p26",
-          "address": "100 Main St, CA",
+          "address": "239 Broad St, Philadelphia, PA 19104",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9731,
@@ -2615,7 +2615,7 @@
         },
         {
           "name": "City Clinic p26",
-          "address": "200 Center Ave, CA",
+          "address": "197 Market St, Philadelphia, PA 19146",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9372,
@@ -2624,7 +2624,7 @@
         },
         {
           "name": "Westside Hub p26",
-          "address": "300 West Blvd, CA",
+          "address": "613 South St, Philadelphia, PA 19104",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9028,
@@ -2633,7 +2633,7 @@
         },
         {
           "name": "Eastside Care p26",
-          "address": "400 East Rd, CA",
+          "address": "431 Chestnut St, Philadelphia, PA 19102",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9479,
@@ -2642,7 +2642,7 @@
         },
         {
           "name": "North Annex p26",
-          "address": "500 North Pkwy, CA",
+          "address": "368 Walnut St, Philadelphia, PA 19107",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9707,
@@ -2686,7 +2686,7 @@
       "distance": 4.2,
       "photo": "https://i.pravatar.cc/100?img=61",
       "inNetwork": true,
-      "address": "200 Irving St, San Francisco, CA",
+      "address": "514 South St, Philadelphia, PA 19146",
       "coordinate": {
         "latitude": 39.9673,
         "longitude": -75.1506
@@ -2701,7 +2701,7 @@
       "locations": [
         {
           "name": "Main Hospital p27",
-          "address": "100 Main St, CA",
+          "address": "461 Market St, Philadelphia, PA 19107",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9655,
@@ -2710,7 +2710,7 @@
         },
         {
           "name": "City Clinic p27",
-          "address": "200 Center Ave, CA",
+          "address": "747 Market St, Philadelphia, PA 19123",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9448,
@@ -2719,7 +2719,7 @@
         },
         {
           "name": "Westside Hub p27",
-          "address": "300 West Blvd, CA",
+          "address": "630 Chestnut St, Philadelphia, PA 19147",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 40.0026,
@@ -2728,7 +2728,7 @@
         },
         {
           "name": "Eastside Care p27",
-          "address": "400 East Rd, CA",
+          "address": "383 Walnut St, Philadelphia, PA 19104",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9966,
@@ -2737,7 +2737,7 @@
         },
         {
           "name": "North Annex p27",
-          "address": "500 North Pkwy, CA",
+          "address": "377 Walnut St, Philadelphia, PA 19146",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9097,
@@ -2781,7 +2781,7 @@
       "distance": 7.9,
       "photo": "https://i.pravatar.cc/100?img=29",
       "inNetwork": true,
-      "address": "1 Fruitvale Ave, Oakland, CA",
+      "address": "914 Broad St, Philadelphia, PA 19107",
       "coordinate": {
         "latitude": 39.977,
         "longitude": -75.1871
@@ -2796,7 +2796,7 @@
       "locations": [
         {
           "name": "Main Hospital p28",
-          "address": "100 Main St, CA",
+          "address": "222 Broad St, Philadelphia, PA 19107",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9381,
@@ -2805,7 +2805,7 @@
         },
         {
           "name": "City Clinic p28",
-          "address": "200 Center Ave, CA",
+          "address": "529 Chestnut St, Philadelphia, PA 19104",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.959,
@@ -2814,7 +2814,7 @@
         },
         {
           "name": "Westside Hub p28",
-          "address": "300 West Blvd, CA",
+          "address": "728 Broad St, Philadelphia, PA 19104",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9984,
@@ -2823,7 +2823,7 @@
         },
         {
           "name": "Eastside Care p28",
-          "address": "400 East Rd, CA",
+          "address": "636 Broad St, Philadelphia, PA 19104",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9046,
@@ -2832,7 +2832,7 @@
         },
         {
           "name": "North Annex p28",
-          "address": "500 North Pkwy, CA",
+          "address": "893 Market St, Philadelphia, PA 19104",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.98,
@@ -2876,7 +2876,7 @@
       "distance": 12.6,
       "photo": "https://i.pravatar.cc/100?img=63",
       "inNetwork": true,
-      "address": "450 30th St, Oakland, CA",
+      "address": "206 Walnut St, Philadelphia, PA 19147",
       "coordinate": {
         "latitude": 39.9616,
         "longitude": -75.1407
@@ -2891,7 +2891,7 @@
       "locations": [
         {
           "name": "Main Hospital p29",
-          "address": "100 Main St, CA",
+          "address": "249 Market St, Philadelphia, PA 19102",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.907,
@@ -2900,7 +2900,7 @@
         },
         {
           "name": "City Clinic p29",
-          "address": "200 Center Ave, CA",
+          "address": "867 Walnut St, Philadelphia, PA 19102",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.937,
@@ -2909,7 +2909,7 @@
         },
         {
           "name": "Westside Hub p29",
-          "address": "300 West Blvd, CA",
+          "address": "351 Chestnut St, Philadelphia, PA 19123",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9961,
@@ -2918,7 +2918,7 @@
         },
         {
           "name": "Eastside Care p29",
-          "address": "400 East Rd, CA",
+          "address": "369 Arch St, Philadelphia, PA 19146",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9804,
@@ -2927,7 +2927,7 @@
         },
         {
           "name": "North Annex p29",
-          "address": "500 North Pkwy, CA",
+          "address": "702 Arch St, Philadelphia, PA 19147",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9501,
@@ -2971,7 +2971,7 @@
       "distance": 19.3,
       "photo": "https://i.pravatar.cc/100?img=31",
       "inNetwork": false,
-      "address": "100 Hospital Cir, San Leandro, CA",
+      "address": "555 Market St, Philadelphia, PA 19102",
       "coordinate": {
         "latitude": 39.9584,
         "longitude": -75.1508
@@ -2987,7 +2987,7 @@
       "locations": [
         {
           "name": "Main Hospital p30",
-          "address": "100 Main St, CA",
+          "address": "232 Market St, Philadelphia, PA 19123",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9842,
@@ -2996,7 +2996,7 @@
         },
         {
           "name": "City Clinic p30",
-          "address": "200 Center Ave, CA",
+          "address": "973 Market St, Philadelphia, PA 19146",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9362,
@@ -3005,7 +3005,7 @@
         },
         {
           "name": "Westside Hub p30",
-          "address": "300 West Blvd, CA",
+          "address": "738 Arch St, Philadelphia, PA 19147",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9739,
@@ -3014,7 +3014,7 @@
         },
         {
           "name": "Eastside Care p30",
-          "address": "400 East Rd, CA",
+          "address": "347 South St, Philadelphia, PA 19104",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9123,
@@ -3023,7 +3023,7 @@
         },
         {
           "name": "North Annex p30",
-          "address": "500 North Pkwy, CA",
+          "address": "839 Walnut St, Philadelphia, PA 19123",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9256,
@@ -3067,7 +3067,7 @@
       "distance": 2.3,
       "photo": "https://i.pravatar.cc/100?img=64",
       "inNetwork": true,
-      "address": "505 Parnassus Ave, San Francisco, CA",
+      "address": "250 Broad St, Philadelphia, PA 19146",
       "coordinate": {
         "latitude": 39.9293,
         "longitude": -75.1232
@@ -3081,7 +3081,7 @@
       "locations": [
         {
           "name": "Main Hospital p31",
-          "address": "100 Main St, CA",
+          "address": "440 Walnut St, Philadelphia, PA 19123",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9944,
@@ -3090,7 +3090,7 @@
         },
         {
           "name": "City Clinic p31",
-          "address": "200 Center Ave, CA",
+          "address": "724 South St, Philadelphia, PA 19102",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9753,
@@ -3099,7 +3099,7 @@
         },
         {
           "name": "Westside Hub p31",
-          "address": "300 West Blvd, CA",
+          "address": "201 Market St, Philadelphia, PA 19146",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9929,
@@ -3108,7 +3108,7 @@
         },
         {
           "name": "Eastside Care p31",
-          "address": "400 East Rd, CA",
+          "address": "727 Arch St, Philadelphia, PA 19123",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9836,
@@ -3117,7 +3117,7 @@
         },
         {
           "name": "North Annex p31",
-          "address": "500 North Pkwy, CA",
+          "address": "236 South St, Philadelphia, PA 19104",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9221,
@@ -3161,7 +3161,7 @@
       "distance": 4.9,
       "photo": "https://i.pravatar.cc/100?img=33",
       "inNetwork": true,
-      "address": "2100 Webster St, Oakland, CA",
+      "address": "606 Walnut St, Philadelphia, PA 19147",
       "coordinate": {
         "latitude": 39.9154,
         "longitude": -75.2029
@@ -3175,7 +3175,7 @@
       "locations": [
         {
           "name": "Main Hospital p32",
-          "address": "100 Main St, CA",
+          "address": "621 Broad St, Philadelphia, PA 19107",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9938,
@@ -3184,7 +3184,7 @@
         },
         {
           "name": "City Clinic p32",
-          "address": "200 Center Ave, CA",
+          "address": "572 Broad St, Philadelphia, PA 19104",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9863,
@@ -3193,7 +3193,7 @@
         },
         {
           "name": "Westside Hub p32",
-          "address": "300 West Blvd, CA",
+          "address": "533 Arch St, Philadelphia, PA 19147",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.971,
@@ -3202,7 +3202,7 @@
         },
         {
           "name": "Eastside Care p32",
-          "address": "400 East Rd, CA",
+          "address": "331 Walnut St, Philadelphia, PA 19107",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.927,
@@ -3211,7 +3211,7 @@
         },
         {
           "name": "North Annex p32",
-          "address": "500 North Pkwy, CA",
+          "address": "411 Walnut St, Philadelphia, PA 19104",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9567,
@@ -3255,7 +3255,7 @@
       "distance": 8.6,
       "photo": "https://i.pravatar.cc/100?img=65",
       "inNetwork": true,
-      "address": "3801 Howe St, Oakland, CA",
+      "address": "967 South St, Philadelphia, PA 19102",
       "coordinate": {
         "latitude": 39.9218,
         "longitude": -75.2122
@@ -3269,7 +3269,7 @@
       "locations": [
         {
           "name": "Main Hospital p33",
-          "address": "100 Main St, CA",
+          "address": "475 Walnut St, Philadelphia, PA 19123",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9302,
@@ -3278,7 +3278,7 @@
         },
         {
           "name": "City Clinic p33",
-          "address": "200 Center Ave, CA",
+          "address": "219 Walnut St, Philadelphia, PA 19104",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9879,
@@ -3287,7 +3287,7 @@
         },
         {
           "name": "Westside Hub p33",
-          "address": "300 West Blvd, CA",
+          "address": "174 Arch St, Philadelphia, PA 19123",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9727,
@@ -3296,7 +3296,7 @@
         },
         {
           "name": "Eastside Care p33",
-          "address": "400 East Rd, CA",
+          "address": "174 Chestnut St, Philadelphia, PA 19123",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9109,
@@ -3305,7 +3305,7 @@
         },
         {
           "name": "North Annex p33",
-          "address": "500 North Pkwy, CA",
+          "address": "478 Broad St, Philadelphia, PA 19123",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9167,
@@ -3349,7 +3349,7 @@
       "distance": 14.1,
       "photo": "https://i.pravatar.cc/100?img=35",
       "inNetwork": true,
-      "address": "1650 Los Gamos Dr, San Rafael, CA",
+      "address": "919 Chestnut St, Philadelphia, PA 19146",
       "coordinate": {
         "latitude": 39.9779,
         "longitude": -75.1675
@@ -3364,7 +3364,7 @@
       "locations": [
         {
           "name": "Main Hospital p34",
-          "address": "100 Main St, CA",
+          "address": "398 Broad St, Philadelphia, PA 19102",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9284,
@@ -3373,7 +3373,7 @@
         },
         {
           "name": "City Clinic p34",
-          "address": "200 Center Ave, CA",
+          "address": "109 Arch St, Philadelphia, PA 19147",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9918,
@@ -3382,7 +3382,7 @@
         },
         {
           "name": "Westside Hub p34",
-          "address": "300 West Blvd, CA",
+          "address": "707 South St, Philadelphia, PA 19123",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.925,
@@ -3391,7 +3391,7 @@
         },
         {
           "name": "Eastside Care p34",
-          "address": "400 East Rd, CA",
+          "address": "369 Arch St, Philadelphia, PA 19102",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9147,
@@ -3400,7 +3400,7 @@
         },
         {
           "name": "North Annex p34",
-          "address": "500 North Pkwy, CA",
+          "address": "122 South St, Philadelphia, PA 19147",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9073,
@@ -3444,7 +3444,7 @@
       "distance": 21.8,
       "photo": "https://i.pravatar.cc/100?img=66",
       "inNetwork": false,
-      "address": "200 Hospital Pkwy, San Leandro, CA",
+      "address": "809 Arch St, Philadelphia, PA 19104",
       "coordinate": {
         "latitude": 39.9623,
         "longitude": -75.1396
@@ -3459,7 +3459,7 @@
       "locations": [
         {
           "name": "Main Hospital p35",
-          "address": "100 Main St, CA",
+          "address": "187 Chestnut St, Philadelphia, PA 19107",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9146,
@@ -3468,7 +3468,7 @@
         },
         {
           "name": "City Clinic p35",
-          "address": "200 Center Ave, CA",
+          "address": "490 Market St, Philadelphia, PA 19102",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9307,
@@ -3477,7 +3477,7 @@
         },
         {
           "name": "Westside Hub p35",
-          "address": "300 West Blvd, CA",
+          "address": "445 Walnut St, Philadelphia, PA 19102",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.979,
@@ -3486,7 +3486,7 @@
         },
         {
           "name": "Eastside Care p35",
-          "address": "400 East Rd, CA",
+          "address": "568 Market St, Philadelphia, PA 19102",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9348,
@@ -3495,7 +3495,7 @@
         },
         {
           "name": "North Annex p35",
-          "address": "500 North Pkwy, CA",
+          "address": "652 Market St, Philadelphia, PA 19147",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9527,
@@ -3539,7 +3539,7 @@
       "distance": 3.4,
       "photo": "https://i.pravatar.cc/100?img=2",
       "inNetwork": true,
-      "address": "1 Geary Blvd, San Francisco, CA",
+      "address": "652 Chestnut St, Philadelphia, PA 19123",
       "coordinate": {
         "latitude": 39.9294,
         "longitude": -75.21
@@ -3554,7 +3554,7 @@
       "locations": [
         {
           "name": "Main Hospital p36",
-          "address": "100 Main St, CA",
+          "address": "633 South St, Philadelphia, PA 19147",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9591,
@@ -3563,7 +3563,7 @@
         },
         {
           "name": "City Clinic p36",
-          "address": "200 Center Ave, CA",
+          "address": "666 Broad St, Philadelphia, PA 19107",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9986,
@@ -3572,7 +3572,7 @@
         },
         {
           "name": "Westside Hub p36",
-          "address": "300 West Blvd, CA",
+          "address": "946 Arch St, Philadelphia, PA 19104",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9208,
@@ -3581,7 +3581,7 @@
         },
         {
           "name": "Eastside Care p36",
-          "address": "400 East Rd, CA",
+          "address": "512 South St, Philadelphia, PA 19147",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9842,
@@ -3590,7 +3590,7 @@
         },
         {
           "name": "North Annex p36",
-          "address": "500 North Pkwy, CA",
+          "address": "872 Broad St, Philadelphia, PA 19146",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9943,
@@ -3634,7 +3634,7 @@
       "distance": 5.2,
       "photo": "https://i.pravatar.cc/100?img=67",
       "inNetwork": true,
-      "address": "300 Lakeshore Ave, Oakland, CA",
+      "address": "213 Market St, Philadelphia, PA 19107",
       "coordinate": {
         "latitude": 39.903,
         "longitude": -75.1764
@@ -3649,7 +3649,7 @@
       "locations": [
         {
           "name": "Main Hospital p37",
-          "address": "100 Main St, CA",
+          "address": "671 Walnut St, Philadelphia, PA 19107",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9858,
@@ -3658,7 +3658,7 @@
         },
         {
           "name": "City Clinic p37",
-          "address": "200 Center Ave, CA",
+          "address": "850 Walnut St, Philadelphia, PA 19123",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.97,
@@ -3667,7 +3667,7 @@
         },
         {
           "name": "Westside Hub p37",
-          "address": "300 West Blvd, CA",
+          "address": "459 Chestnut St, Philadelphia, PA 19123",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9311,
@@ -3676,7 +3676,7 @@
         },
         {
           "name": "Eastside Care p37",
-          "address": "400 East Rd, CA",
+          "address": "941 Market St, Philadelphia, PA 19147",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9055,
@@ -3685,7 +3685,7 @@
         },
         {
           "name": "North Annex p37",
-          "address": "500 North Pkwy, CA",
+          "address": "599 Walnut St, Philadelphia, PA 19123",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9103,
@@ -3729,7 +3729,7 @@
       "distance": 9.3,
       "photo": "https://i.pravatar.cc/100?img=4",
       "inNetwork": true,
-      "address": "2100 Powell St, Emeryville, CA",
+      "address": "128 Arch St, Philadelphia, PA 19146",
       "coordinate": {
         "latitude": 39.9031,
         "longitude": -75.1863
@@ -3744,7 +3744,7 @@
       "locations": [
         {
           "name": "Main Hospital p38",
-          "address": "100 Main St, CA",
+          "address": "139 Market St, Philadelphia, PA 19123",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.992,
@@ -3753,7 +3753,7 @@
         },
         {
           "name": "City Clinic p38",
-          "address": "200 Center Ave, CA",
+          "address": "201 Chestnut St, Philadelphia, PA 19104",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.932,
@@ -3762,7 +3762,7 @@
         },
         {
           "name": "Westside Hub p38",
-          "address": "300 West Blvd, CA",
+          "address": "594 Broad St, Philadelphia, PA 19102",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9198,
@@ -3771,7 +3771,7 @@
         },
         {
           "name": "Eastside Care p38",
-          "address": "400 East Rd, CA",
+          "address": "371 Chestnut St, Philadelphia, PA 19102",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9715,
@@ -3780,7 +3780,7 @@
         },
         {
           "name": "North Annex p38",
-          "address": "500 North Pkwy, CA",
+          "address": "785 Arch St, Philadelphia, PA 19146",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.9281,
@@ -3824,7 +3824,7 @@
       "distance": 15.7,
       "photo": "https://i.pravatar.cc/100?img=68",
       "inNetwork": true,
-      "address": "1 Hillsdale Blvd, San Mateo, CA",
+      "address": "469 Market St, Philadelphia, PA 19107",
       "coordinate": {
         "latitude": 39.9945,
         "longitude": -75.2108
@@ -3839,7 +3839,7 @@
       "locations": [
         {
           "name": "Main Hospital p39",
-          "address": "100 Main St, CA",
+          "address": "797 Broad St, Philadelphia, PA 19146",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.973,
@@ -3848,7 +3848,7 @@
         },
         {
           "name": "City Clinic p39",
-          "address": "200 Center Ave, CA",
+          "address": "579 Walnut St, Philadelphia, PA 19147",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9352,
@@ -3857,7 +3857,7 @@
         },
         {
           "name": "Westside Hub p39",
-          "address": "300 West Blvd, CA",
+          "address": "107 South St, Philadelphia, PA 19107",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.9529,
@@ -3866,7 +3866,7 @@
         },
         {
           "name": "Eastside Care p39",
-          "address": "400 East Rd, CA",
+          "address": "611 South St, Philadelphia, PA 19107",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 40.0018,
@@ -3875,7 +3875,7 @@
         },
         {
           "name": "North Annex p39",
-          "address": "500 North Pkwy, CA",
+          "address": "498 South St, Philadelphia, PA 19147",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9428,
@@ -3919,7 +3919,7 @@
       "distance": 23.1,
       "photo": "https://i.pravatar.cc/100?img=6",
       "inNetwork": false,
-      "address": "27400 Hesperian Blvd, Hayward, CA",
+      "address": "927 Chestnut St, Philadelphia, PA 19147",
       "coordinate": {
         "latitude": 39.9315,
         "longitude": -75.2098
@@ -3935,7 +3935,7 @@
       "locations": [
         {
           "name": "Main Hospital p40",
-          "address": "100 Main St, CA",
+          "address": "410 Arch St, Philadelphia, PA 19147",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.968,
@@ -3944,7 +3944,7 @@
         },
         {
           "name": "City Clinic p40",
-          "address": "200 Center Ave, CA",
+          "address": "316 Broad St, Philadelphia, PA 19107",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9162,
@@ -3953,7 +3953,7 @@
         },
         {
           "name": "Westside Hub p40",
-          "address": "300 West Blvd, CA",
+          "address": "206 Broad St, Philadelphia, PA 19102",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.913,
@@ -3962,7 +3962,7 @@
         },
         {
           "name": "Eastside Care p40",
-          "address": "400 East Rd, CA",
+          "address": "224 Market St, Philadelphia, PA 19146",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9899,
@@ -3971,7 +3971,7 @@
         },
         {
           "name": "North Annex p40",
-          "address": "500 North Pkwy, CA",
+          "address": "919 Walnut St, Philadelphia, PA 19107",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9296,
@@ -4015,7 +4015,7 @@
       "distance": 1.4,
       "photo": "https://i.pravatar.cc/100?img=69",
       "inNetwork": true,
-      "address": "775 Sacramento St, San Francisco, CA",
+      "address": "663 Market St, Philadelphia, PA 19104",
       "coordinate": {
         "latitude": 39.9159,
         "longitude": -75.2031
@@ -4029,7 +4029,7 @@
       "locations": [
         {
           "name": "Main Hospital p41",
-          "address": "100 Main St, CA",
+          "address": "310 Chestnut St, Philadelphia, PA 19102",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9816,
@@ -4038,7 +4038,7 @@
         },
         {
           "name": "City Clinic p41",
-          "address": "200 Center Ave, CA",
+          "address": "331 Broad St, Philadelphia, PA 19102",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9238,
@@ -4047,7 +4047,7 @@
         },
         {
           "name": "Westside Hub p41",
-          "address": "300 West Blvd, CA",
+          "address": "266 Arch St, Philadelphia, PA 19107",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9584,
@@ -4056,7 +4056,7 @@
         },
         {
           "name": "Eastside Care p41",
-          "address": "400 East Rd, CA",
+          "address": "217 Arch St, Philadelphia, PA 19102",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9985,
@@ -4065,7 +4065,7 @@
         },
         {
           "name": "North Annex p41",
-          "address": "500 North Pkwy, CA",
+          "address": "954 Broad St, Philadelphia, PA 19104",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9816,
@@ -4109,7 +4109,7 @@
       "distance": 3.8,
       "photo": "https://i.pravatar.cc/100?img=8",
       "inNetwork": true,
-      "address": "501 Duboce Ave, San Francisco, CA",
+      "address": "460 Market St, Philadelphia, PA 19147",
       "coordinate": {
         "latitude": 39.9156,
         "longitude": -75.1607
@@ -4123,7 +4123,7 @@
       "locations": [
         {
           "name": "Main Hospital p42",
-          "address": "100 Main St, CA",
+          "address": "683 Broad St, Philadelphia, PA 19146",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9184,
@@ -4132,7 +4132,7 @@
         },
         {
           "name": "City Clinic p42",
-          "address": "200 Center Ave, CA",
+          "address": "711 Walnut St, Philadelphia, PA 19123",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9104,
@@ -4141,7 +4141,7 @@
         },
         {
           "name": "Westside Hub p42",
-          "address": "300 West Blvd, CA",
+          "address": "488 South St, Philadelphia, PA 19147",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9094,
@@ -4150,7 +4150,7 @@
         },
         {
           "name": "Eastside Care p42",
-          "address": "400 East Rd, CA",
+          "address": "968 Arch St, Philadelphia, PA 19146",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9895,
@@ -4159,7 +4159,7 @@
         },
         {
           "name": "North Annex p42",
-          "address": "500 North Pkwy, CA",
+          "address": "872 Walnut St, Philadelphia, PA 19102",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9283,
@@ -4203,7 +4203,7 @@
       "distance": 6.5,
       "photo": "https://i.pravatar.cc/100?img=70",
       "inNetwork": true,
-      "address": "450 30th Ave, Oakland, CA",
+      "address": "696 Chestnut St, Philadelphia, PA 19123",
       "coordinate": {
         "latitude": 39.9248,
         "longitude": -75.1981
@@ -4217,7 +4217,7 @@
       "locations": [
         {
           "name": "Main Hospital p43",
-          "address": "100 Main St, CA",
+          "address": "885 Chestnut St, Philadelphia, PA 19146",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9872,
@@ -4226,7 +4226,7 @@
         },
         {
           "name": "City Clinic p43",
-          "address": "200 Center Ave, CA",
+          "address": "232 Broad St, Philadelphia, PA 19147",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9546,
@@ -4235,7 +4235,7 @@
         },
         {
           "name": "Westside Hub p43",
-          "address": "300 West Blvd, CA",
+          "address": "693 Walnut St, Philadelphia, PA 19107",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9843,
@@ -4244,7 +4244,7 @@
         },
         {
           "name": "Eastside Care p43",
-          "address": "400 East Rd, CA",
+          "address": "655 Walnut St, Philadelphia, PA 19104",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9871,
@@ -4253,7 +4253,7 @@
         },
         {
           "name": "North Annex p43",
-          "address": "500 North Pkwy, CA",
+          "address": "859 Market St, Philadelphia, PA 19123",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.985,
@@ -4297,7 +4297,7 @@
       "distance": 11.9,
       "photo": "https://i.pravatar.cc/100?img=10",
       "inNetwork": true,
-      "address": "99 Montecito Ave, Oakland, CA",
+      "address": "715 Arch St, Philadelphia, PA 19102",
       "coordinate": {
         "latitude": 39.9417,
         "longitude": -75.1957
@@ -4312,7 +4312,7 @@
       "locations": [
         {
           "name": "Main Hospital p44",
-          "address": "100 Main St, CA",
+          "address": "967 South St, Philadelphia, PA 19104",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.913,
@@ -4321,7 +4321,7 @@
         },
         {
           "name": "City Clinic p44",
-          "address": "200 Center Ave, CA",
+          "address": "217 Broad St, Philadelphia, PA 19147",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9936,
@@ -4330,7 +4330,7 @@
         },
         {
           "name": "Westside Hub p44",
-          "address": "300 West Blvd, CA",
+          "address": "637 Broad St, Philadelphia, PA 19102",
           "phone": "555-0109",
           "coordinate": {
             "latitude": 39.9404,
@@ -4339,7 +4339,7 @@
         },
         {
           "name": "Eastside Care p44",
-          "address": "400 East Rd, CA",
+          "address": "509 Walnut St, Philadelphia, PA 19102",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.9478,
@@ -4348,7 +4348,7 @@
         },
         {
           "name": "North Annex p44",
-          "address": "500 North Pkwy, CA",
+          "address": "607 Broad St, Philadelphia, PA 19102",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.956,
@@ -4392,7 +4392,7 @@
       "distance": 20.2,
       "photo": "https://i.pravatar.cc/100?img=12",
       "inNetwork": true,
-      "address": "400 Medical Ctr Dr, Walnut Creek, CA",
+      "address": "314 South St, Philadelphia, PA 19146",
       "coordinate": {
         "latitude": 39.9063,
         "longitude": -75.158
@@ -4407,7 +4407,7 @@
       "locations": [
         {
           "name": "Main Hospital p45",
-          "address": "100 Main St, CA",
+          "address": "667 Arch St, Philadelphia, PA 19146",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9741,
@@ -4416,7 +4416,7 @@
         },
         {
           "name": "City Clinic p45",
-          "address": "200 Center Ave, CA",
+          "address": "690 Broad St, Philadelphia, PA 19123",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 40.0002,
@@ -4425,7 +4425,7 @@
         },
         {
           "name": "Westside Hub p45",
-          "address": "300 West Blvd, CA",
+          "address": "275 Broad St, Philadelphia, PA 19146",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9476,
@@ -4434,7 +4434,7 @@
         },
         {
           "name": "Eastside Care p45",
-          "address": "400 East Rd, CA",
+          "address": "364 Broad St, Philadelphia, PA 19107",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9055,
@@ -4443,7 +4443,7 @@
         },
         {
           "name": "North Annex p45",
-          "address": "500 North Pkwy, CA",
+          "address": "228 Market St, Philadelphia, PA 19147",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9981,
@@ -4487,7 +4487,7 @@
       "distance": 2.1,
       "photo": "https://i.pravatar.cc/100?img=14",
       "inNetwork": true,
-      "address": "490 Post St, San Francisco, CA",
+      "address": "959 South St, Philadelphia, PA 19147",
       "coordinate": {
         "latitude": 39.9553,
         "longitude": -75.1304
@@ -4502,7 +4502,7 @@
       "locations": [
         {
           "name": "Main Hospital p46",
-          "address": "100 Main St, CA",
+          "address": "727 Chestnut St, Philadelphia, PA 19102",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9468,
@@ -4511,7 +4511,7 @@
         },
         {
           "name": "City Clinic p46",
-          "address": "200 Center Ave, CA",
+          "address": "634 South St, Philadelphia, PA 19147",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9598,
@@ -4520,7 +4520,7 @@
         },
         {
           "name": "Westside Hub p46",
-          "address": "300 West Blvd, CA",
+          "address": "577 South St, Philadelphia, PA 19146",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9061,
@@ -4529,7 +4529,7 @@
         },
         {
           "name": "Eastside Care p46",
-          "address": "400 East Rd, CA",
+          "address": "211 Arch St, Philadelphia, PA 19104",
           "phone": "555-0103",
           "coordinate": {
             "latitude": 39.9762,
@@ -4538,7 +4538,7 @@
         },
         {
           "name": "North Annex p46",
-          "address": "500 North Pkwy, CA",
+          "address": "848 Chestnut St, Philadelphia, PA 19102",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.96,
@@ -4582,7 +4582,7 @@
       "distance": 4.6,
       "photo": "https://i.pravatar.cc/100?img=16",
       "inNetwork": true,
-      "address": "2299 Post St, San Francisco, CA",
+      "address": "846 Broad St, Philadelphia, PA 19107",
       "coordinate": {
         "latitude": 39.9222,
         "longitude": -75.1606
@@ -4597,7 +4597,7 @@
       "locations": [
         {
           "name": "Main Hospital p47",
-          "address": "100 Main St, CA",
+          "address": "575 South St, Philadelphia, PA 19104",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9039,
@@ -4606,7 +4606,7 @@
         },
         {
           "name": "City Clinic p47",
-          "address": "200 Center Ave, CA",
+          "address": "744 Arch St, Philadelphia, PA 19107",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9923,
@@ -4615,7 +4615,7 @@
         },
         {
           "name": "Westside Hub p47",
-          "address": "300 West Blvd, CA",
+          "address": "651 Broad St, Philadelphia, PA 19102",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9908,
@@ -4624,7 +4624,7 @@
         },
         {
           "name": "Eastside Care p47",
-          "address": "400 East Rd, CA",
+          "address": "734 Walnut St, Philadelphia, PA 19102",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9439,
@@ -4633,7 +4633,7 @@
         },
         {
           "name": "North Annex p47",
-          "address": "500 North Pkwy, CA",
+          "address": "564 Chestnut St, Philadelphia, PA 19146",
           "phone": "555-0107",
           "coordinate": {
             "latitude": 39.9319,
@@ -4677,7 +4677,7 @@
       "distance": 7.2,
       "photo": "https://i.pravatar.cc/100?img=18",
       "inNetwork": true,
-      "address": "8888 MacArthur Blvd, Oakland, CA",
+      "address": "250 Chestnut St, Philadelphia, PA 19147",
       "coordinate": {
         "latitude": 39.9899,
         "longitude": -75.1956
@@ -4692,7 +4692,7 @@
       "locations": [
         {
           "name": "Main Hospital p48",
-          "address": "100 Main St, CA",
+          "address": "297 Chestnut St, Philadelphia, PA 19107",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9377,
@@ -4701,7 +4701,7 @@
         },
         {
           "name": "City Clinic p48",
-          "address": "200 Center Ave, CA",
+          "address": "756 Walnut St, Philadelphia, PA 19123",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9245,
@@ -4710,7 +4710,7 @@
         },
         {
           "name": "Westside Hub p48",
-          "address": "300 West Blvd, CA",
+          "address": "477 Chestnut St, Philadelphia, PA 19107",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9539,
@@ -4719,7 +4719,7 @@
         },
         {
           "name": "Eastside Care p48",
-          "address": "400 East Rd, CA",
+          "address": "845 Chestnut St, Philadelphia, PA 19146",
           "phone": "555-0100",
           "coordinate": {
             "latitude": 39.9634,
@@ -4728,7 +4728,7 @@
         },
         {
           "name": "North Annex p48",
-          "address": "500 North Pkwy, CA",
+          "address": "771 Walnut St, Philadelphia, PA 19147",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9119,
@@ -4772,7 +4772,7 @@
       "distance": 13.8,
       "photo": "https://i.pravatar.cc/100?img=20",
       "inNetwork": true,
-      "address": "101 South B St, San Mateo, CA",
+      "address": "793 Arch St, Philadelphia, PA 19104",
       "coordinate": {
         "latitude": 39.9133,
         "longitude": -75.1847
@@ -4787,7 +4787,7 @@
       "locations": [
         {
           "name": "Main Hospital p49",
-          "address": "100 Main St, CA",
+          "address": "695 Walnut St, Philadelphia, PA 19102",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9242,
@@ -4796,7 +4796,7 @@
         },
         {
           "name": "City Clinic p49",
-          "address": "200 Center Ave, CA",
+          "address": "475 Arch St, Philadelphia, PA 19102",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9904,
@@ -4805,7 +4805,7 @@
         },
         {
           "name": "Westside Hub p49",
-          "address": "300 West Blvd, CA",
+          "address": "329 Arch St, Philadelphia, PA 19102",
           "phone": "555-0102",
           "coordinate": {
             "latitude": 39.9468,
@@ -4814,7 +4814,7 @@
         },
         {
           "name": "Eastside Care p49",
-          "address": "400 East Rd, CA",
+          "address": "119 Walnut St, Philadelphia, PA 19123",
           "phone": "555-0105",
           "coordinate": {
             "latitude": 39.9561,
@@ -4823,7 +4823,7 @@
         },
         {
           "name": "North Annex p49",
-          "address": "500 North Pkwy, CA",
+          "address": "659 Arch St, Philadelphia, PA 19147",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.907,
@@ -4867,7 +4867,7 @@
       "distance": 17.5,
       "photo": "https://i.pravatar.cc/100?img=22",
       "inNetwork": false,
-      "address": "2500 Mowry Ave, Fremont, CA",
+      "address": "767 South St, Philadelphia, PA 19102",
       "coordinate": {
         "latitude": 39.9891,
         "longitude": -75.2017
@@ -4883,7 +4883,7 @@
       "locations": [
         {
           "name": "Main Hospital p50",
-          "address": "100 Main St, CA",
+          "address": "661 Chestnut St, Philadelphia, PA 19102",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.9717,
@@ -4892,7 +4892,7 @@
         },
         {
           "name": "City Clinic p50",
-          "address": "200 Center Ave, CA",
+          "address": "822 South St, Philadelphia, PA 19146",
           "phone": "555-0108",
           "coordinate": {
             "latitude": 39.9629,
@@ -4901,7 +4901,7 @@
         },
         {
           "name": "Westside Hub p50",
-          "address": "300 West Blvd, CA",
+          "address": "554 Arch St, Philadelphia, PA 19123",
           "phone": "555-0104",
           "coordinate": {
             "latitude": 39.9964,
@@ -4910,7 +4910,7 @@
         },
         {
           "name": "Eastside Care p50",
-          "address": "400 East Rd, CA",
+          "address": "299 South St, Philadelphia, PA 19107",
           "phone": "555-0106",
           "coordinate": {
             "latitude": 39.927,
@@ -4919,7 +4919,7 @@
         },
         {
           "name": "North Annex p50",
-          "address": "500 North Pkwy, CA",
+          "address": "870 Market St, Philadelphia, PA 19107",
           "phone": "555-0101",
           "coordinate": {
             "latitude": 39.9791,

@@ -51,5 +51,5 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.skyBlue,
     borderRadius: 10,
   },
-  btnText: { color: '#fff', fontWeight: '700', fontSize: 14 },
+  btnText: { color: Colors.white, fontWeight: '700', fontSize: 14 },
 });

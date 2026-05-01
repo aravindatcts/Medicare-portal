@@ -1,35 +1,33 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Colors, usePlan } from '@medicare/shared';
+import { Colors, Shadows } from '@medicare/shared';
+import { usePlan } from '@medicare/shared';
+import { Badge } from '../ui';
+
+const TABS = ['H', 'D', 'V'];
 
 const HealthCoverage: React.FC = () => {
   const { data } = usePlan();
   const [activeTab, setActiveTab] = useState('H');
 
-  const tabs = ['H', 'D', 'V'];
-
   return (
     <View style={styles.container}>
       <View style={styles.tabsContainer}>
-        {tabs.map((tab) => (
+        {TABS.map((tab) => (
           <TouchableOpacity
             key={tab}
             style={[styles.tabButton, activeTab === tab && styles.tabButtonActive]}
             onPress={() => setActiveTab(tab)}
             activeOpacity={0.8}
           >
-            <Text style={[styles.tabText, activeTab === tab && styles.tabTextActive]}>
-              {tab}
-            </Text>
+            <Text style={[styles.tabText, activeTab === tab && styles.tabTextActive]}>{tab}</Text>
           </TouchableOpacity>
         ))}
       </View>
 
       <View style={styles.headerRow}>
         <Text style={styles.title}>Health Coverage</Text>
-        <View style={styles.activeBadge}>
-          <Text style={styles.activeBadgeText}>ACTIVE</Text>
-        </View>
+        <Badge label="ACTIVE" bg={Colors.primaryFixed} color={Colors.navyDark} />
       </View>
 
       <View style={styles.cardsRow}>
@@ -93,24 +91,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 16,
+    gap: 12,
   },
   title: {
     fontSize: 16,
     fontWeight: '700',
     color: Colors.navyDark,
-    marginRight: 12,
-  },
-  activeBadge: {
-    backgroundColor: '#DDF0FF', // light blue background
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 12,
-  },
-  activeBadgeText: {
-    fontSize: 10,
-    fontWeight: '700',
-    color: Colors.navyDark,
-    letterSpacing: 0.5,
   },
   cardsRow: {
     flexDirection: 'row',
@@ -121,11 +107,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     padding: 16,
     borderRadius: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    elevation: 2,
+    ...Shadows.light,
   },
   cardLabel: {
     fontSize: 10,

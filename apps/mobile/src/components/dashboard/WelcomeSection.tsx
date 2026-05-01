@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Colors, FontSize, Spacing } from '@medicare/shared';
 import { useWelcomeSection } from '@medicare/shared';
-import LoadingSkeleton from './LoadingSkeleton';
-import { Colors } from '@medicare/shared';
+import LoadingSkeleton from '../LoadingSkeleton';
 
 const WelcomeSection: React.FC = () => {
   const { greeting, firstName, subtitle, isLoading } = useWelcomeSection();
@@ -18,7 +18,7 @@ const WelcomeSection: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{greeting}, {firstName}.</Text>
+      <Text style={styles.title}>{greeting}, {firstName}</Text>
       <Text style={styles.subtitle}>{subtitle}</Text>
     </View>
   );
@@ -26,19 +26,19 @@ const WelcomeSection: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
-    marginBottom: 20,
+    paddingHorizontal: Spacing.md + 4,
+    marginBottom: Spacing.md + 4,
     marginTop: 10,
   },
   title: {
-    fontSize: 28,
+    fontSize: FontSize.xxl,
     fontWeight: '800',
     color: Colors.primary,
     marginBottom: 4,
     letterSpacing: -0.5,
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: FontSize.sm + 1,
     fontWeight: '500',
     color: Colors.onSurfaceVariant,
   },

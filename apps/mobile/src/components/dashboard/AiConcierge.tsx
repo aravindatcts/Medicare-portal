@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Colors, Shadows } from '@medicare/shared';
 import { useHero } from '@medicare/shared';
-import LoadingSkeleton from './LoadingSkeleton';
+import LoadingSkeleton from '../LoadingSkeleton';
+import { IconCircle } from '../ui';
 
 const AiConcierge: React.FC = () => {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
   const { data, isLoading } = useHero();
 
   if (isLoading || !data) {
@@ -15,21 +17,29 @@ const AiConcierge: React.FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <TouchableOpacity 
-          style={[styles.headerRow, !isExpanded && styles.headerRowCollapsed]} 
-          activeOpacity={0.8} 
+        <TouchableOpacity
+          style={[styles.headerRow, !isExpanded && styles.headerRowCollapsed]}
+          activeOpacity={0.8}
           onPress={() => setIsExpanded(!isExpanded)}
         >
           <View style={styles.leftGroup}>
-            <View style={styles.iconCircle}>
-              <MaterialCommunityIcons name="robot-outline" size={20} color="#004b69" />
-            </View>
+            <IconCircle
+              icon="robot-outline"
+              size={40}
+              iconSize={20}
+              bg={Colors.secondaryContainer}
+              color={Colors.onSecondaryContainer}
+            />
             <View style={styles.textGroup}>
               <Text style={styles.title}>{data.heading}</Text>
               <Text style={styles.subtitle}>{data.subtext}</Text>
             </View>
           </View>
-          <MaterialCommunityIcons name={isExpanded ? 'chevron-up' : 'chevron-down'} size={24} color="rgba(255,255,255,0.7)" />
+          <MaterialCommunityIcons
+            name={isExpanded ? 'chevron-up' : 'chevron-down'}
+            size={24}
+            color="rgba(255,255,255,0.7)"
+          />
         </TouchableOpacity>
 
         {isExpanded && (
@@ -57,17 +67,13 @@ const AiConcierge: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#003461', // primary
+    backgroundColor: Colors.primary,
     borderRadius: 16,
     marginHorizontal: 20,
     marginBottom: 16,
-    shadowColor: '#003461',
-    shadowOffset: { width: 0, height: 12 },
-    shadowOpacity: 0.35,
-    shadowRadius: 16,
-    elevation: 8,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.15)',
+    ...Shadows.deep,
   },
   content: {
     padding: 16,
@@ -91,23 +97,14 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingRight: 8,
   },
-  iconCircle: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#41befd', // secondary-container
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
-  },
   title: {
-    color: '#ffffff',
+    color: Colors.white,
     fontWeight: '700',
     fontSize: 15,
     marginBottom: 2,
   },
   subtitle: {
-    color: '#bfdbfe', // blue-200 equivalent
+    color: Colors.blueLight,
     fontSize: 11,
   },
   messageBox: {
@@ -117,7 +114,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   messageText: {
-    color: '#ffffff',
+    color: Colors.white,
     fontSize: 14,
     lineHeight: 20,
   },
@@ -127,27 +124,27 @@ const styles = StyleSheet.create({
   },
   actionButtonSecondary: {
     flex: 1,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    borderColor: 'rgba(255,255,255,0.1)',
+    backgroundColor: 'transparent',
+    borderColor: 'rgba(255,255,255,0.8)',
     borderWidth: 1,
     borderRadius: 8,
     paddingVertical: 8,
     alignItems: 'center',
   },
   actionButtonSecondaryText: {
-    color: '#ffffff',
+    color: Colors.white,
     fontSize: 12,
     fontWeight: '700',
   },
   actionButtonPrimary: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: Colors.white,
     borderRadius: 8,
     paddingVertical: 8,
     alignItems: 'center',
   },
   actionButtonPrimaryText: {
-    color: '#003461',
+    color: Colors.primary,
     fontSize: 12,
     fontWeight: '700',
   },

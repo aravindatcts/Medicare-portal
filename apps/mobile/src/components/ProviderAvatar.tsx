@@ -48,40 +48,7 @@ export function ProviderAvatar({ name, category, photoUrl, size = 64 }: Provider
   return (
     <View style={[styles.wrapper, { width: size, height: size, borderRadius: radius }]}>
       <View style={[styles.root, { width: size, height: size, borderRadius: radius }]}>
-        {photoUrl ? (
-          <Image source={{ uri: photoUrl }} style={{ width: size, height: size, borderRadius: radius }} />
-        ) : (
-          <>
-            <LinearGradient
-              colors={colors}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={StyleSheet.absoluteFill}
-            />
-
-            <View style={[
-              styles.bubble,
-              {
-                width: size * 0.65, height: size * 0.65,
-                borderRadius: size * 0.325,
-                top: -size * 0.18, right: -size * 0.18,
-              },
-            ]} />
-            <View style={[
-              styles.bubble,
-              {
-                width: size * 0.5, height: size * 0.5,
-                borderRadius: size * 0.25,
-                bottom: -size * 0.12, left: -size * 0.12,
-                backgroundColor: 'rgba(255,255,255,0.05)',
-              },
-            ]} />
-
-            <Text style={[styles.initials, { fontSize, lineHeight: fontSize * 1.2 }]}>
-              {initials}
-            </Text>
-          </>
-        )}
+                  <Image source={require('../assets/doctor_icons/male_doctor.png')} style={{ width: size, height: size, borderRadius: radius }} />
       </View>
 
       {/* Specialty icon badge — bottom-right */}

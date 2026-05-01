@@ -9,6 +9,11 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json());
 
+// Simulate realistic network latency
+app.use((_req, _res, next) => {
+  setTimeout(() => next(), 300);
+});
+
 const dbPath = path.join(__dirname, 'db.json');
 
 let _db: ReturnType<typeof JSON.parse> | null = null;
