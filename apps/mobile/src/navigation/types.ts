@@ -7,7 +7,15 @@ import type { CompositeScreenProps } from '@react-navigation/native';
 
 export type RootStackParamList = {
   Auth: NavigatorScreenParams<AuthStackParamList>;
-  App: NavigatorScreenParams<TabParamList>;
+  App: NavigatorScreenParams<AppStackParamList>;
+};
+
+// ── App stack (tabs + modal-style screens above tabs) ────────────────────────
+
+export type AppStackParamList = {
+  TabHome: NavigatorScreenParams<TabParamList>;
+  Notifications: undefined;
+  Settings: undefined;
 };
 
 // ── Auth stack ───────────────────────────────────────────────────────────────

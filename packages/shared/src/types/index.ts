@@ -197,6 +197,37 @@ export interface PrescriptionsData {
   active: ActivePrescription[];
 }
 
+export type CommunicationPreference = 'paper' | 'electronic';
+
+export interface SettingsMember {
+  name: string;
+  memberId: string;
+  address: string;
+  phone: string;
+}
+
+export interface SettingsPreferences {
+  language: string;
+  communicationPreference: CommunicationPreference;
+  eobPreference: CommunicationPreference;
+}
+
+export interface SettingsData {
+  member: SettingsMember;
+  preferences: SettingsPreferences;
+}
+
+export type NotificationType = 'wellness' | 'appointment' | 'claim' | 'security' | 'prescription';
+
+export interface NotificationItem {
+  id: string;
+  type: NotificationType;
+  title: string;
+  body: string;
+  timestamp: string; // ISO 8601
+  read: boolean;
+}
+
 export interface DashboardData {
   hero: HeroData;
   member: MemberData;

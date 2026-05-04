@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import {
   getHero,
@@ -16,6 +16,11 @@ import {
   getClaim,
   getReviews,
   getPrescriptions,
+  getNotifications,
+  markNotificationRead,
+  getSettings,
+  patchSettingsMember,
+  patchSettingsPreferences,
 } from '../services/dashboardService';
 
 const STALE = 5 * 60 * 1000; // 5 minutes
@@ -61,6 +66,36 @@ export const useReviews = () =>
 
 export const usePrescriptions = () =>
   useQuery({ queryKey: ['prescriptions'], queryFn: getPrescriptions, staleTime: STALE });
+
+export const useNotifications = () =>
+  useQuery({ queryKey: ['notifications'], queryFn: getNotifications, staleTime: STALE });
+
+export const useSettings = () =>
+  useQuery({ queryKey: ['settings'], queryFn: getSettings, staleTime: STALE });
+
+export const useUpdateSettingsMember = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: patchSettingsMember,
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['settings'] }),
+  });
+};
+
+export const useUpdateSettingsPreferences = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: patchSettingsPreferences,
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['settings'] }),
+  });
+};
+
+export const useMarkNotificationRead = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: markNotificationRead,
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['notifications'] }),
+  });
+};
 
 export const useProviders = (
   params: { category?: string; maxDistance?: number; name?: string } = {},

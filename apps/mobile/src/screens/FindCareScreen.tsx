@@ -1,8 +1,8 @@
-import React, { useState, useMemo, useRef, useEffect } from 'react';
+import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
-  ScrollView,
+  FlatList,
   TextInput,
   TouchableOpacity,
   StyleSheet,
@@ -14,7 +14,7 @@ import {
   UIManager,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import MapView, { Marker, Circle, PROVIDER_DEFAULT } from 'react-native-maps';
+import MapView, { Marker, Circle, PROVIDER_GOOGLE, PROVIDER_DEFAULT } from 'react-native-maps';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ProviderAvatar } from '../components/ProviderAvatar';
 import { SmartFiltersModal, FilterState } from '../components/SmartFiltersModal';
@@ -127,7 +127,7 @@ function SmartMatchCard({
 }
 
 // ─── Provider Card ────────────────────────────────────────────────────────────
-function ProviderCard({
+const ProviderCard = React.memo(function ProviderCard({
   provider,
   onPress,
 }: {
@@ -188,7 +188,7 @@ function ProviderCard({
       </TouchableOpacity>
     </View>
   );
-}
+});
 
 // ─── Skeleton card ────────────────────────────────────────────────────────────
 function SkeletonCard() {
@@ -219,13 +219,13 @@ import TopBar from '../components/TopBar';
 export default function FindCareScreen({ navigation }: FindCareScreenProps) {
   const insets = useSafeAreaInsets();
   const [query, setQuery] = useState('');
-  const [viewMode, setViewMode] = useState<'list'|'map'>('list');
+  const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
   const [sortIndex, setSortIndex] = useState(0);
   const [selectedProviderId, setSelectedProviderId] = useState<string | null>(null);
-  
+
   const [isFilterModalVisible, setIsFilterModalVisible] = useState(false);
   const [filters, setFilters] = useState<FilterState>({ category: 'All' });
-  
+
   // Animation state for the map pin selection
   const slideAnim = useRef(new Animated.Value(100)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -303,7 +303,7 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
     return result;
   }, [allProviders, smartMatch, query, sortIndex, filters]);
 
-  const activeFiltersCount = 
+  const activeFiltersCount =
     (query.trim().length > 0 ? 1 : 0) +
     (filters.category !== 'All' ? 1 : 0) +
     (filters.inNetwork !== undefined ? 1 : 0) +
@@ -355,6 +355,57 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
       providerName: provider.name,
     });
   }
+
+  const renderItem = useCallback(({ item }: { item: ProviderData }) => (
+    <ProviderCard provider={item} onPress={() => navigateToDetail(item)} />
+  ), []);
+
+  const keyExtractor = useCallback((item: ProviderData) => item.id, []);
+
+  const listHeader = useMemo(() => {
+    if (!activeFiltersCount || isLoading) return null;
+    return (
+      <>
+        {smartMatch && (
+          <View style={styles.listHeaderSection}>
+            <Text style={styles.sectionLabel}>Smart Match For You</Text>
+            <SmartMatchCard provider={smartMatch} onPress={() => navigateToDetail(smartMatch)} />
+          </View>
+        )}
+        <Text style={styles.countLabel}>
+          {filteredProviders.length} Provider{filteredProviders.length !== 1 ? 's' : ''} near you
+        </Text>
+      </>
+    );
+  }, [activeFiltersCount, isLoading, smartMatch, filteredProviders.length]);
+
+  const listEmpty = useMemo(() => {
+    if (isLoading) {
+      return (
+        <View style={styles.listSection}>
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+        </View>
+      );
+    }
+    if (!activeFiltersCount) {
+      return (
+        <View style={styles.emptyWrap}>
+          <MaterialCommunityIcons name="magnify" size={48} color={Colors.outlineVariant} />
+          <Text style={[styles.emptyTitle, { color: Colors.onSurfaceVariant, marginTop: 16 }]}>Search to find care</Text>
+          <Text style={styles.emptySub}>Enter a provider name, specialty, or use filters to discover healthcare options near you.</Text>
+        </View>
+      );
+    }
+    return (
+      <View style={styles.emptyWrap}>
+        <MaterialCommunityIcons name="account-search-outline" size={48} color={Colors.onSurfaceVariant} />
+        <Text style={styles.emptyTitle}>No providers found</Text>
+        <Text style={styles.emptySub}>Try a different search term or clear the field.</Text>
+      </View>
+    );
+  }, [isLoading, activeFiltersCount]);
 
   return (
     <View style={[styles.root, { paddingTop: insets.top }]}>
@@ -416,17 +467,17 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
             )}
           </TouchableOpacity>
           <View style={styles.divider} />
-          
+
           <View style={styles.viewToggleGroup}>
-            <TouchableOpacity 
-              style={[styles.viewToggleBtn, viewMode === 'list' && styles.viewToggleBtnActive]} 
+            <TouchableOpacity
+              style={[styles.viewToggleBtn, viewMode === 'list' && styles.viewToggleBtnActive]}
               onPress={() => setViewMode('list')}
             >
               <MaterialCommunityIcons name="format-list-bulleted" size={16} color={viewMode === 'list' ? Colors.white : Colors.onSurfaceVariant} />
               <Text style={[styles.viewToggleText, viewMode === 'list' && styles.viewToggleTextActive]}>List</Text>
             </TouchableOpacity>
-            <TouchableOpacity 
-              style={[styles.viewToggleBtn, viewMode === 'map' && styles.viewToggleBtnActive]} 
+            <TouchableOpacity
+              style={[styles.viewToggleBtn, viewMode === 'map' && styles.viewToggleBtnActive]}
               onPress={() => setViewMode('map')}
             >
               <MaterialCommunityIcons name="map-outline" size={16} color={viewMode === 'map' ? Colors.white : Colors.onSurfaceVariant} />
@@ -445,7 +496,7 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
       {viewMode === 'map' ? (
         <View style={styles.fullMapSection}>
           <MapView
-            provider={PROVIDER_DEFAULT}
+            provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : PROVIDER_DEFAULT}
             style={styles.map}
             initialRegion={MAP_REGION}
             showsUserLocation={false}
@@ -461,16 +512,16 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
             {/* Member Home Location */}
             <Marker coordinate={MEMBER_ADDRESS} zIndex={100} tracksViewChanges={false}>
               <View style={{
-                width: 18, 
-                height: 18, 
-                borderRadius: 9, 
+                width: 18,
+                height: 18,
+                borderRadius: 9,
                 backgroundColor: Colors.primary,
-                borderWidth: 3, 
+                borderWidth: 3,
                 borderColor: Colors.white,
-                shadowColor: '#000', 
-                shadowOpacity: 0.3, 
-                shadowRadius: 4, 
-                shadowOffset: { width: 0, height: 2 }, 
+                shadowColor: '#000',
+                shadowOpacity: 0.3,
+                shadowRadius: 4,
+                shadowOffset: { width: 0, height: 2 },
                 elevation: 5
               }} />
             </Marker>
@@ -498,7 +549,7 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
               />
             ))}
           </MapView>
-          
+
           <View style={styles.mapControlsFloat}>
             {(['crosshairs-gps', 'plus', 'minus'] as const).map((icon) => (
               <TouchableOpacity key={icon} style={styles.mapCtrlBtn} activeOpacity={0.85}>
@@ -507,10 +558,10 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
             ))}
           </View>
 
-          <Animated.View 
+          <Animated.View
             style={[
-              styles.floatingProviderCard, 
-              { 
+              styles.floatingProviderCard,
+              {
                 transform: [{ translateY: slideAnim }],
                 opacity: fadeAnim,
                 pointerEvents: selectedProvider ? 'auto' : 'none'
@@ -523,56 +574,22 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
           </Animated.View>
         </View>
       ) : (
-        <ScrollView
+        <FlatList
           style={styles.list}
-          showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.listContent}
+          data={isLoading || !activeFiltersCount ? [] : filteredProviders}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          ListHeaderComponent={listHeader}
+          ListEmptyComponent={listEmpty}
+          ListFooterComponent={<View style={{ height: 100 }} />}
+          ItemSeparatorComponent={() => <View style={{ height: 14 }} />}
+          showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
           scrollEventThrottle={16}
           onScroll={handleScroll}
-        >
-        <View style={styles.listSection}>
-          {isLoading ? (
-            <>
-              <SkeletonCard />
-              <SkeletonCard />
-              <SkeletonCard />
-            </>
-          ) : activeFiltersCount === 0 ? (
-            <View style={styles.emptyWrap}>
-              <MaterialCommunityIcons name="magnify" size={48} color={Colors.outlineVariant} />
-              <Text style={[styles.emptyTitle, { color: Colors.onSurfaceVariant, marginTop: 16 }]}>Search to find care</Text>
-              <Text style={styles.emptySub}>Enter a provider name, specialty, or use filters to discover healthcare options near you.</Text>
-            </View>
-          ) : (
-            <>
-              {smartMatch && (
-                <View>
-                  <Text style={styles.sectionLabel}>Smart Match For You</Text>
-                  <SmartMatchCard provider={smartMatch} onPress={() => navigateToDetail(smartMatch)} />
-                </View>
-              )}
-
-              <Text style={styles.countLabel}>
-                {filteredProviders.length} Provider{filteredProviders.length !== 1 ? 's' : ''} near you
-              </Text>
-
-              {filteredProviders.length === 0 ? (
-                <View style={styles.emptyWrap}>
-                  <MaterialCommunityIcons name="account-search-outline" size={48} color={Colors.onSurfaceVariant} />
-                  <Text style={styles.emptyTitle}>No providers found</Text>
-                  <Text style={styles.emptySub}>Try a different search term or clear the field.</Text>
-                </View>
-              ) : (
-                filteredProviders.map((p) => (
-                  <ProviderCard key={p.id} provider={p} onPress={() => navigateToDetail(p)} />
-                ))
-              )}
-            </>
-          )}
-        </View>
-        <View style={{ height: 100 }} />
-      </ScrollView>
+          removeClippedSubviews
+        />
       )}
 
       <SmartFiltersModal
@@ -608,7 +625,8 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   list: { flex: 1 },
-  listContent: { paddingBottom: 8 },
+  listContent: { paddingHorizontal: 16, paddingTop: 16, paddingBottom: 8 },
+  listHeaderSection: { marginBottom: 14 },
 
   // ── Hero
   heroCard: {
@@ -684,8 +702,6 @@ const styles = StyleSheet.create({
   },
   suggestChipText: { fontSize: 11, color: 'rgba(255,255,255,0.85)', fontWeight: '500' },
 
-  suggestChipText: { fontSize: 11, color: 'rgba(255,255,255,0.85)', fontWeight: '500' },
-
   // ── Map
   fullMapSection: {
     flex: 1,
@@ -758,7 +774,7 @@ const styles = StyleSheet.create({
   sortBtnText: { fontSize: 14, fontWeight: '700', color: Colors.primary },
 
   // ── Provider list
-  listSection: { paddingHorizontal: 16, paddingTop: 16, gap: 14 },
+  listSection: { paddingTop: 8 },
   sectionLabel: {
     fontSize: 13,
     fontWeight: '800',

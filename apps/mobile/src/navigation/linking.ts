@@ -7,15 +7,21 @@ export const linking: LinkingOptions<RootStackParamList> = {
     screens: {
       App: {
         screens: {
-          Dashboard: 'dashboard',
-          FindCare: {
+          TabHome: {
             screens: {
-              FindCareList: 'find-care',
-              ProviderDetail: 'provider/:providerId',
+              Dashboard: 'dashboard',
+              FindCare: {
+                screens: {
+                  FindCareList: 'find-care',
+                  ProviderDetail: 'provider/:providerId',
+                },
+              },
+              Benefits: 'benefits',
+              Prescriptions: 'prescriptions',
             },
           },
-          Benefits: 'benefits',
-          Prescriptions: 'prescriptions',
+          Notifications: 'notifications',
+          Settings: 'settings',
         },
       },
       Auth: {

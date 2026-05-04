@@ -82,6 +82,45 @@ app.get('/providers/:id', (req, res) => {
   res.json(provider);
 });
 
+app.get('/settings', (_req, res) => {
+  res.json(getDb().settings);
+});
+
+app.patch('/settings/member', (req, res) => {
+  const db = getDb();
+  db.settings.member = { ...db.settings.member, ...req.body };
+  fs.promises.writeFile(dbPath, JSON.stringify(db, null, 2)).catch(() => {});
+  res.json(db.settings.member);
+});
+
+app.patch('/settings/preferences', (req, res) => {
+  const db = getDb();
+  db.settings.preferences = { ...db.settings.preferences, ...req.body };
+  fs.promises.writeFile(dbPath, JSON.stringify(db, null, 2)).catch(() => {});
+  res.json(db.settings.preferences);
+});
+
+app.patch('/notifications/:id/read', (req, res) => {
+  const db = getDb();
+  const notif = (db.notifications ?? []).find((n: any) => n.id === req.params.id);
+  if (!notif) return res.status(404).json({ error: 'Not found' });
+  notif.read = true;
+  fs.promises.writeFile(dbPath, JSON.stringify(db, null, 2)).catch(() => {});
+  res.json({ id: notif.id, read: true });
+});
+
+app.get('/notifications', (_req, res) => {
+  const raw: any[] = getDb().notifications ?? [];
+  const now = new Date();
+  const result = raw.map(({ daysAgo = 0, hour = 9, minute = 0, ...rest }) => {
+    const ts = new Date(now);
+    ts.setDate(ts.getDate() - daysAgo);
+    ts.setHours(hour, minute, 0, 0);
+    return { ...rest, timestamp: ts.toISOString() };
+  });
+  res.json(result);
+});
+
 app.get('/providers', (req, res) => {
   let providers: any[] = getDb().providers;
   const { category, maxDistance, name } = req.query;
@@ -100,8 +139,19 @@ app.get('/providers', (req, res) => {
   res.json(providers);
 });
 
-app.listen(PORT, () => {
-  console.log(`\n✅  Mock server running at http://localhost:${PORT}\n`);
+app.listen(PORT, '0.0.0.0', () => {
+  const { networkInterfaces } = require('os');
+  const nets = networkInterfaces();
+  let lanIp = 'unknown';
+  for (const iface of Object.values(nets) as any[]) {
+    for (const net of iface) {
+      if (net.family === 'IPv4' && !net.internal) { lanIp = net.address; break; }
+    }
+    if (lanIp !== 'unknown') break;
+  }
+  console.log(`\n✅  Mock server running`);
+  console.log(`   iOS  → http://localhost:${PORT}`);
+  console.log(`   Android / physical device → http://${lanIp}:${PORT}\n`);
   console.log('  GET /hero');
   console.log('  GET /member');
   console.log('  GET /plan');
@@ -115,5 +165,7 @@ app.listen(PORT, () => {
   console.log('  GET /claims/:id');
   console.log('  GET /providers?category=&maxDistance=&name=');
   console.log('  GET /reviews');
-  console.log('  GET /prescriptions\n');
+  console.log('  GET /prescriptions');
+  console.log('  GET /notifications');
+  console.log('  PATCH /notifications/:id/read\n');
 });

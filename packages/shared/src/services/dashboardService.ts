@@ -144,7 +144,10 @@ const ClaimSchema = z.object({
 // The mobile app injects an Axios instance (apps/mobile/src/services/http.ts)
 // with auth interceptors. Web uses native fetch as a fallback.
 
-let _axiosClient: { get: (url: string) => Promise<{ data: unknown }> } | null = null;
+let _axiosClient: {
+  get: (url: string) => Promise<{ data: unknown }>;
+  patch: (url: string, data?: unknown) => Promise<{ data: unknown }>;
+} | null = null;
 // Default base URL — override before first query with setBaseUrl() (web) or
 // setHttpClient() (mobile, which carries the base URL inside the Axios instance).
 let _baseUrl: string =
@@ -152,7 +155,10 @@ let _baseUrl: string =
   'http://localhost:3001';
 
 /** Inject a pre-configured Axios (or compatible) instance. Mobile uses this. */
-export function setHttpClient(client: { get: (url: string) => Promise<{ data: unknown }> }) {
+export function setHttpClient(client: {
+  get: (url: string) => Promise<{ data: unknown }>;
+  patch: (url: string, data?: unknown) => Promise<{ data: unknown }>;
+}) {
   _axiosClient = client;
 }
 
@@ -169,6 +175,25 @@ async function fetchJson<S extends z.ZodTypeAny>(path: string, schema: S): Promi
     data = response.data;
   } else {
     const res = await fetch(`${_baseUrl}${path}`);
+    if (!res.ok) throw new Error(`Server error ${res.status} on ${path}`);
+    data = await res.json();
+  }
+
+  return schema.parse(data);
+}
+
+async function patchJson<S extends z.ZodTypeAny>(path: string, body: unknown, schema: S): Promise<z.infer<S>> {
+  let data: unknown;
+
+  if (_axiosClient) {
+    const response = await _axiosClient.patch(path, body);
+    data = response.data;
+  } else {
+    const res = await fetch(`${_baseUrl}${path}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
     if (!res.ok) throw new Error(`Server error ${res.status} on ${path}`);
     data = await res.json();
   }
@@ -197,6 +222,15 @@ const PrescriptionsSchema = z.object({
   active: z.array(ActivePrescriptionSchema),
 });
 
+const NotificationSchema = z.object({
+  id: z.string(),
+  type: z.enum(['wellness', 'appointment', 'claim', 'security', 'prescription']),
+  title: z.string(),
+  body: z.string(),
+  timestamp: z.string(),
+  read: z.boolean(),
+});
+
 // ── Exports ───────────────────────────────────────────────────────────────────
 
 export const getHero = () => fetchJson('/hero', HeroSchema);
@@ -215,6 +249,37 @@ export const getClaim = (id: string) => fetchJson(`/claims/${id}`, ClaimSchema);
 export const getProvider = (id: string) => fetchJson(`/providers/${id}`, ProviderSchema);
 export const getReviews = () => fetchJson('/reviews', z.array(ReviewItemSchema));
 export const getPrescriptions = () => fetchJson('/prescriptions', PrescriptionsSchema);
+
+export const getNotifications = () => fetchJson('/notifications', z.array(NotificationSchema));
+
+export const markNotificationRead = (id: string) =>
+  patchJson(`/notifications/${id}/read`, {}, z.object({ id: z.string(), read: z.boolean() }));
+
+const SettingsMemberSchema = z.object({
+  name: z.string(),
+  memberId: z.string(),
+  address: z.string(),
+  phone: z.string(),
+});
+
+const SettingsPreferencesSchema = z.object({
+  language: z.string(),
+  communicationPreference: z.enum(['paper', 'electronic']),
+  eobPreference: z.enum(['paper', 'electronic']),
+});
+
+const SettingsSchema = z.object({
+  member: SettingsMemberSchema,
+  preferences: SettingsPreferencesSchema,
+});
+
+export const getSettings = () => fetchJson('/settings', SettingsSchema);
+
+export const patchSettingsMember = (body: Partial<z.infer<typeof SettingsMemberSchema>>) =>
+  patchJson('/settings/member', body, SettingsMemberSchema);
+
+export const patchSettingsPreferences = (body: Partial<z.infer<typeof SettingsPreferencesSchema>>) =>
+  patchJson('/settings/preferences', body, SettingsPreferencesSchema);
 
 export const getProviders = (params: {
   category?: string;

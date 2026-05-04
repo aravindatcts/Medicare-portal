@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE, PROVIDER_DEFAULT } from 'react-native-maps';
 import { ProviderAvatar } from '../../components/ProviderAvatar';
 import { Colors, useProvider } from '@medicare/shared';
 import { Skeleton } from '@medicare/ui';
@@ -278,7 +278,7 @@ export default function ProviderDetailScreen({ navigation, route }: ProviderDeta
           <View style={styles.mapSnippetWrap}>
             <MapView
               key={`${selectedLocation.coordinate.latitude}-${selectedLocation.coordinate.longitude}`}
-              provider={PROVIDER_DEFAULT}
+              provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : PROVIDER_DEFAULT}
               style={StyleSheet.absoluteFillObject}
               initialRegion={{
                 latitude: selectedLocation.coordinate.latitude,

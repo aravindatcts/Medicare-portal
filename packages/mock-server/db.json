@@ -103,6 +103,19 @@
     "group": "00014",
     "pcn": "MEDADV"
   },
+  "settings": {
+    "member": {
+      "name": "Eleanor Vance",
+      "memberId": "AH-99283-XJ",
+      "address": "482 Oakwood Terrace\nPhiladelphia, PA 19146",
+      "phone": "(215) 555-0198"
+    },
+    "preferences": {
+      "language": "English (US)",
+      "communicationPreference": "electronic",
+      "eobPreference": "electronic"
+    }
+  },
   "plan": {
     "name": "Medicare Advantage Plus",
     "coverageThrough": "Dec 2024",
@@ -5912,5 +5925,147 @@
     "title": "Mindful Eating for Longevity",
     "description": "Discover how shifting your relationship with food can lead to increased energy and mental clarity during your senior years.",
     "buttonText": "Read More"
-  }
+  },
+  "notifications": [
+    {
+      "id": "notif-1",
+      "type": "wellness",
+      "title": "Wellness Tip: Hydration",
+      "body": "Drinking an extra 8oz of water today can improve your energy levels by up to 20%. Try keeping a bottle on your desk as a reminder.",
+      "daysAgo": 0,
+      "hour": 10,
+      "minute": 30,
+      "read": false
+    },
+    {
+      "id": "notif-2",
+      "type": "appointment",
+      "title": "Appointment Reminder",
+      "body": "Your visit with Dr. Aris is scheduled for tomorrow at 2:00 PM at Jefferson Health – Center City. Please remember to fast 8 hours before your visit.",
+      "daysAgo": 0,
+      "hour": 8,
+      "minute": 15,
+      "read": false
+    },
+    {
+      "id": "notif-3",
+      "type": "claim",
+      "title": "Action Required: Missing Information",
+      "body": "Your claim #CLM-2891 for Emergency Room Services needs additional documentation. Please upload the itemized bill within 10 days to avoid denial.",
+      "daysAgo": 0,
+      "hour": 7,
+      "minute": 0,
+      "read": false
+    },
+    {
+      "id": "notif-4",
+      "type": "prescription",
+      "title": "Refill Ready for Pickup",
+      "body": "Your prescription for Lisinopril 10mg is ready at CVS Pharmacy on Chestnut St. It will be held for 7 days before being returned to stock.",
+      "daysAgo": 0,
+      "hour": 6,
+      "minute": 45,
+      "read": false
+    },
+    {
+      "id": "notif-5",
+      "type": "claim",
+      "title": "Claim Processed",
+      "body": "Your claim for the recent lab work at LabCorp has been successfully processed and approved. Insurance paid $184.00. Your responsibility is $15.00.",
+      "daysAgo": 1,
+      "hour": 15,
+      "minute": 45,
+      "read": true
+    },
+    {
+      "id": "notif-6",
+      "type": "wellness",
+      "title": "Annual Checkup Due This Month",
+      "body": "Your annual preventive care visit is due within 30 days. Preventive visits are covered at 100% under your AmeriHealth Caritas plan — no copay required.",
+      "daysAgo": 1,
+      "hour": 9,
+      "minute": 0,
+      "read": false
+    },
+    {
+      "id": "notif-7",
+      "type": "appointment",
+      "title": "Appointment Confirmed",
+      "body": "Your follow-up with Dr. Sarah Jenkins has been confirmed. You will receive a video call link 15 minutes before your visit.",
+      "daysAgo": 1,
+      "hour": 8,
+      "minute": 30,
+      "read": true
+    },
+    {
+      "id": "notif-8",
+      "type": "prescription",
+      "title": "Prescription Expiring Soon",
+      "body": "Your prescription for Metformin 500mg has 1 refill remaining and expires in 2 weeks. Contact Dr. Jenkins to renew it before your supply runs out.",
+      "daysAgo": 3,
+      "hour": 11,
+      "minute": 20,
+      "read": true
+    },
+    {
+      "id": "notif-9",
+      "type": "claim",
+      "title": "Explanation of Benefits Available",
+      "body": "Your EOB for the Cardiology consultation is now available. Total billed: $320.00 — Plan paid: $272.00 — Your share: $48.00.",
+      "daysAgo": 4,
+      "hour": 14,
+      "minute": 0,
+      "read": true
+    },
+    {
+      "id": "notif-10",
+      "type": "wellness",
+      "title": "New Benefit: Free Gym Membership",
+      "body": "As a valued AmeriHealth Caritas member, you now have access to a free Silver&Fit gym membership. Enroll through the Benefits tab to activate your account.",
+      "daysAgo": 5,
+      "hour": 10,
+      "minute": 0,
+      "read": false
+    },
+    {
+      "id": "notif-11",
+      "type": "security",
+      "title": "Password Changed Successfully",
+      "body": "Your account password was recently updated. If you did not make this change, please contact member support immediately at 1-800-521-6867.",
+      "daysAgo": 6,
+      "hour": 15,
+      "minute": 12,
+      "read": true
+    },
+    {
+      "id": "notif-12",
+      "type": "security",
+      "title": "New Device Login Detected",
+      "body": "A sign-in was detected from a new device: Chrome on Windows in Philadelphia, PA. If this was you, no action is needed. If not, reset your password now.",
+      "daysAgo": 11,
+      "hour": 14,
+      "minute": 0,
+      "read": true
+    },
+    {
+      "id": "notif-13",
+      "type": "appointment",
+      "title": "Visit Summary Ready",
+      "body": "Your after-visit summary for your recent Primary Care appointment with Dr. Jenkins is available. Review your care plan, lab orders, and follow-up instructions.",
+      "daysAgo": 16,
+      "hour": 9,
+      "minute": 30,
+      "read": true
+    },
+    {
+      "id": "notif-14",
+      "type": "prescription",
+      "title": "Specialty Pharmacy Order Shipped",
+      "body": "Your Atorvastatin 20mg (90-day supply) has been shipped via USPS Priority Mail and is on its way to your address on file.",
+      "daysAgo": 21,
+      "hour": 13,
+      "minute": 0,
+      "read": true
+    }
+  ]
 }

@@ -1,9 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Colors, FontSize } from '@medicare/shared';
+import type { AppStackParamList } from '../navigation/types';
 
 export default function TopBar() {
+  const navigation = useNavigation<NativeStackNavigationProp<AppStackParamList>>();
+
   return (
     <View style={styles.topBar}>
       <View style={styles.logoRow}>
@@ -11,10 +16,20 @@ export default function TopBar() {
         <Text style={styles.appName}>AmeriHealth Caritas</Text>
       </View>
       <View style={styles.headerActions}>
-        <TouchableOpacity style={styles.iconButton} accessibilityLabel="Notifications" accessibilityRole="button">
+        <TouchableOpacity
+          style={styles.iconButton}
+          accessibilityLabel="Notifications"
+          accessibilityRole="button"
+          onPress={() => navigation.navigate('Notifications')}
+        >
           <MaterialCommunityIcons name="bell-outline" size={24} color={Colors.primary} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconButton} accessibilityLabel="Settings" accessibilityRole="button">
+        <TouchableOpacity
+          style={styles.iconButton}
+          accessibilityLabel="Settings"
+          accessibilityRole="button"
+          onPress={() => navigation.navigate('Settings')}
+        >
           <MaterialCommunityIcons name="cog-outline" size={24} color={Colors.primary} />
         </TouchableOpacity>
       </View>
