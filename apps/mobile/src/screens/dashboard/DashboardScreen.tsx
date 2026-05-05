@@ -35,7 +35,7 @@ export default function DashboardScreen(_props: DashboardScreenProps) {
       <View style={{ paddingTop: insets.top }} />
       <StatusBar barStyle="dark-content" backgroundColor="#f8f9fa" />
 
-      <TopBar />
+      <TopBar showBack={false} />
 
       <ScrollView
         style={styles.scroll}

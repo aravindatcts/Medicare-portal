@@ -1,7 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, LayoutAnimation, Platform, UIManager } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Colors, Radius, Spacing, FontSize, Shadows } from '@medicare/shared';
+
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 export type TimelineEventType = 'diagnosis' | 'lab' | 'visit' | 'immunization';
 
@@ -15,13 +19,15 @@ interface TimelineItemProps {
   status?: 'urgent' | 'completed' | 'pending';
   showDownload?: boolean;
   isRight?: boolean;
+  isExpanded?: boolean;
+  onToggle?: () => void;
 }
 
 const EVENT_CONFIG: Record<TimelineEventType, { icon: any, color: string, label?: string }> = {
-  diagnosis: { icon: 'hospital-box-outline', color: '#2563EB', label: 'DIAGNOSIS' }, // Vibrant Blue
-  lab: { icon: 'test-tube', color: '#3B82F6', label: 'LAB RESULTS' }, // Sky Blue
-  visit: { icon: 'stethoscope', color: '#1D4ED8', label: 'TEST' }, // Darker Vibrant Blue
-  immunization: { icon: 'needle', color: '#0EA5E9', label: 'VACCINATION' }, // Light Blue
+  diagnosis: { icon: 'hospital-box-outline', color: '#1E40AF', label: 'DIAGNOSIS' }, // Deep Blue
+  lab: { icon: 'test-tube', color: '#3B82F6', label: 'LAB RESULTS' }, // Primary Blue
+  visit: { icon: 'stethoscope', color: '#1D4ED8', label: 'TEST' }, // Royal Blue
+  immunization: { icon: 'needle', color: '#60A5FA', label: 'VACCINATION' }, // Soft Blue
 };
 
 const TimelineItem: React.FC<TimelineItemProps> = ({
@@ -33,15 +39,16 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
   status,
   showDownload,
   isRight,
+  isExpanded = false,
+  onToggle,
 }) => {
-  const [isExpanded, setIsExpanded] = React.useState(true);
   const config = EVENT_CONFIG[type];
   
   return (
     <TouchableOpacity 
       style={styles.container} 
       activeOpacity={0.9}
-      onPress={() => setIsExpanded(!isExpanded)}
+      onPress={onToggle}
     >
       {/* Alternating accent bar */}
       <View style={[
