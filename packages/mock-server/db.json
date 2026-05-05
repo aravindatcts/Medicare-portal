@@ -90,10 +90,15 @@
   },
   "hero": {
     "tag": "PERSONALIZED CARE",
-    "heading": "Your Care Concierge is ready to help.",
-    "subtext": "Need help scheduling an appointment or understanding your benefits? Elena is your dedicated specialist.",
-    "ctaLabel": "Call Concierge",
-    "ctaPhone": "tel:+18005551234"
+    "heading": "CariBear is ready to help.",
+    "greeting": "I am CariBear. You haven't set up your PCP yet. Would you like to set one up?",
+    "ctaLabel": "Chat with CariBear",
+    "ctaPhone": "tel:+18005551234",
+    "conciergeMessage": "I noticed you haven't had your annual check-up yet. Would you like me to find a provider near you?",
+    "aiInsight": {
+      "titleSuffix": "your wellness journey is trending positively.",
+      "description": "Based on your recent blood work and visit history, you are up to date on all vital screenings. Your blood glucose management has shown significant stability over the last quarter."
+    }
   },
   "member": {
     "cardLabel": "MEMBER CARD",
@@ -196,7 +201,7 @@
     "iconColor": "#FFFFFF",
     "backgroundColor": "#EA580C",
     "title": "Action Required: Benefit Update",
-    "body": "Your annual benefits have been updated for 2025.",
+    "body": "Your annual benefits have been updated for 2026.",
     "ctaUrl": "#"
   },
   "navigation": [
@@ -5068,6 +5073,51 @@
     }
   },
   "claims": [
+    {
+      "id": "CLM-2024-0892",
+      "provider": "Heart & Vascular Institute",
+      "type": "Cardiology Consultation",
+      "date": "Jan 12, 2024",
+      "status": "Denied",
+      "memberResponsibility": 320.00,
+      "totalBilled": 320.00,
+      "planDiscount": 0,
+      "insurancePaid": 0,
+      "serviceDate": "Jan 12, 2024",
+      "category": "Specialist Services",
+      "doctor": "Dr. James Wilson, MD",
+      "address": "155 Walnut St, Philadelphia, PA 19123",
+      "diagnoses": [
+        {
+          "code": "I10",
+          "title": "Essential (primary) hypertension"
+        }
+      ],
+      "services": [
+        {
+          "code": "99214",
+          "title": "Office Visit",
+          "subtitle": "Complexity: Moderate"
+        }
+      ],
+      "journey": [
+        {
+          "step": "Received",
+          "date": "Jan 13, 2024",
+          "complete": true
+        },
+        {
+          "step": "Review",
+          "date": "Jan 15, 2024",
+          "complete": true
+        },
+        {
+          "step": "Denied",
+          "date": "Jan 18, 2024",
+          "complete": true
+        }
+      ]
+    },
     {
       "id": "CLM-99281-01",
       "provider": "St. Mary's Medical",

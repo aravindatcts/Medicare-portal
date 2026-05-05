@@ -25,8 +25,8 @@ const HeroBanner: React.FC = () => {
             <View style={styles.onlineBadge} />
           </View>
           <View style={styles.textContainer}>
-            <Text style={styles.heading}>{data?.heading || 'Personal Care Concierge'}</Text>
-            <Text style={styles.subtext}>{data?.subtext || 'Elena is online to assist you'}</Text>
+            <Text style={styles.heading}>{data?.heading || 'CariBear is ready to help.'}</Text>
+            <Text style={styles.subtext}>{data?.subtext || 'CariBear is your dedicated AI health companion.'}</Text>
           </View>
           <MaterialCommunityIcons name="swap-vertical" size={24} color={Colors.white} style={styles.icon} />
         </View>

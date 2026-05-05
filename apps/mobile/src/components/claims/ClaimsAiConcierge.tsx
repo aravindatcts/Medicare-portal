@@ -1,22 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Colors, Shadows, Radius, Spacing, FontSize } from '@medicare/shared';
-import { useHero, useMember } from '@medicare/shared';
+import { Colors, Shadows, Radius, Spacing, FontSize, useMember } from '@medicare/shared';
 import { useNavigation } from '@react-navigation/native';
-import LoadingSkeleton from '../LoadingSkeleton';
 
-const HistoryAiConcierge: React.FC = () => {
-  const { data: hero, isLoading: heroLoading } = useHero();
-  const { data: member } = useMember();
+const ClaimsAiConcierge: React.FC = () => {
   const navigation = useNavigation();
+  const { data: member } = useMember();
   const [isMinimized, setIsMinimized] = useState(false);
-
   const firstName = member?.name?.split(' ')[0] || 'there';
-
-  if (heroLoading || !hero?.aiInsight) {
-    return <LoadingSkeleton style={{ marginHorizontal: Spacing.md, marginTop: Spacing.md, marginBottom: Spacing.lg, height: 160, borderRadius: Radius.lg }} />;
-  }
 
   if (isMinimized) {
     return (
@@ -41,7 +33,7 @@ const HistoryAiConcierge: React.FC = () => {
       <View style={styles.header}>
         <View style={styles.aiBadge}>
           <MaterialCommunityIcons name="shimmer" size={14} color={Colors.white} />
-          <Text style={styles.aiBadgeText}>CARIBEAR</Text>
+          <Text style={styles.aiBadgeText}>CARIBEAR AI</Text>
         </View>
         <TouchableOpacity onPress={() => setIsMinimized(true)} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
           <MaterialCommunityIcons name="chevron-up" size={20} color="rgba(255,255,255,0.6)" />
@@ -49,11 +41,11 @@ const HistoryAiConcierge: React.FC = () => {
       </View>
 
       <Text style={styles.title}>
-        {firstName}, {hero.aiInsight.titleSuffix}
+        {firstName}, I noticed one of your claims was rejected.
       </Text>
 
       <Text style={styles.description}>
-        {hero.aiInsight.description}
+        Claim #CLM-2024-0892 for Cardiology services was denied due to missing authorization. Would you like me to help you appeal this or find more information?
       </Text>
 
       <TouchableOpacity 
@@ -61,8 +53,8 @@ const HistoryAiConcierge: React.FC = () => {
         activeOpacity={0.8}
         onPress={() => navigation.navigate('CaribearChat' as any)}
       >
-        <Text style={styles.ctaText}>Full Report</Text>
-        <MaterialCommunityIcons name="trending-up" size={18} color={Colors.primary} />
+        <Text style={styles.ctaText}>Get Help with Claim</Text>
+        <MaterialCommunityIcons name="chat-question-outline" size={18} color={Colors.primary} />
       </TouchableOpacity>
     </View>
   );
@@ -73,8 +65,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#00284d',
     borderRadius: Radius.lg,
     padding: Spacing.lg,
-    marginHorizontal: Spacing.md,
-    marginTop: Spacing.md,
     marginBottom: Spacing.lg,
     ...Shadows.deep,
     shadowOpacity: 0.4,
@@ -113,9 +103,9 @@ const styles = StyleSheet.create({
   },
   title: {
     color: Colors.white,
-    fontSize: FontSize.xl,
+    fontSize: FontSize.lg,
     fontWeight: '700',
-    lineHeight: 28,
+    lineHeight: 24,
     marginBottom: Spacing.md,
   },
   description: {
@@ -142,4 +132,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HistoryAiConcierge;
+export default ClaimsAiConcierge;

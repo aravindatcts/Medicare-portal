@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors, useClaims } from '@medicare/shared';
 import LoadingSkeleton from '../components/LoadingSkeleton';
-import { ClaimsFilterModal } from '../components/claims';
+import { ClaimsFilterModal, ClaimsAiConcierge } from '../components/claims';
 
 
 const getStatusStyles = (status: string) => {
@@ -15,6 +15,9 @@ const getStatusStyles = (status: string) => {
     case 'IN REVIEW':
     case 'PENDING':
       return { bg: '#dbeafe', text: '#1e40af' }; // Blue
+    case 'DENIED':
+    case 'REJECTED':
+      return { bg: '#fee2e2', text: '#991b1b' }; // Red
     default:
       return { bg: '#f1f5f9', text: '#475569' }; // Gray
   }
@@ -171,6 +174,7 @@ export default function ClaimsScreen({ navigation }: any) {
           />
         }
       >
+        <ClaimsAiConcierge />
 
         <TouchableOpacity style={styles.filterBtn} onPress={() => setIsFilterVisible(true)}>
           <MaterialCommunityIcons name="tune-vertical" size={18} color={Colors.white} />

@@ -22,6 +22,7 @@ export const linking: LinkingOptions<RootStackParamList> = {
           },
           Notifications: 'notifications',
           Settings: 'settings',
+          CaribearChat: 'chat',
         },
       },
       Auth: {

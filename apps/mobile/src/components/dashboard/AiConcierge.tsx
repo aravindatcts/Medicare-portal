@@ -1,27 +1,50 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Colors, Shadows } from '@medicare/shared';
-import { useHero } from '@medicare/shared';
+import { useHero, useMember } from '@medicare/shared';
+import { useNavigation } from '@react-navigation/native';
 import LoadingSkeleton from '../LoadingSkeleton';
 import { IconCircle } from '../ui';
 
 const AiConcierge: React.FC = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
   const { data, isLoading } = useHero();
+  const { data: member } = useMember();
+  const navigation = useNavigation();
+  const [isMinimized, setIsMinimized] = useState(false);
+
+  const firstName = member?.name?.split(' ')[0] || 'there';
+  const greetingText = data?.greeting
+    ? `Hi ${firstName}, ${data.greeting}`
+    : `Hi ${firstName}, I am CariBear. You haven't set up your PCP yet. Would you like to set one up?`;
 
   if (isLoading || !data) {
-    return <LoadingSkeleton style={{ marginHorizontal: 20, marginBottom: 16, height: 160, borderRadius: 16 }} />;
+    return <LoadingSkeleton style={{ marginHorizontal: 20, marginBottom: 16, height: 120, borderRadius: 16 }} />;
+  }
+
+  if (isMinimized) {
+    return (
+      <TouchableOpacity 
+        style={[styles.container, styles.minimizedContainer]} 
+        onPress={() => setIsMinimized(false)}
+        activeOpacity={0.9}
+      >
+        <View style={styles.minimizedContent}>
+          <View style={styles.minimizedLeft}>
+            <MaterialCommunityIcons name="robot-outline" size={20} color={Colors.white} />
+            <Text style={styles.minimizedTitle}>CariBear AI is active</Text>
+          </View>
+          <MaterialCommunityIcons name="chevron-down" size={20} color="rgba(255,255,255,0.6)" />
+        </View>
+      </TouchableOpacity>
+    );
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <TouchableOpacity
-          style={[styles.headerRow, !isExpanded && styles.headerRowCollapsed]}
-          activeOpacity={0.8}
-          onPress={() => setIsExpanded(!isExpanded)}
-        >
+        {/* Header */}
+        <View style={styles.headerRow}>
           <View style={styles.leftGroup}>
             <IconCircle
               icon="robot-outline"
@@ -32,34 +55,24 @@ const AiConcierge: React.FC = () => {
             />
             <View style={styles.textGroup}>
               <Text style={styles.title}>{data.heading}</Text>
-              <Text style={styles.subtitle}>{data.subtext}</Text>
+              <Text style={styles.greeting}>{greetingText}</Text>
             </View>
           </View>
-          <MaterialCommunityIcons
-            name={isExpanded ? 'chevron-up' : 'chevron-down'}
-            size={24}
-            color="rgba(255,255,255,0.7)"
-          />
+          <TouchableOpacity onPress={() => setIsMinimized(true)} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+            <MaterialCommunityIcons name="chevron-up" size={20} color="rgba(255,255,255,0.6)" />
+          </TouchableOpacity>
+        </View>
+
+        {/* Tappable input — navigates to chat screen */}
+        <TouchableOpacity
+          style={styles.inputRow}
+          activeOpacity={0.75}
+          onPress={() => navigation.navigate('CaribearChat' as any)}
+        >
+          <MaterialCommunityIcons name="message-outline" size={18} color="rgba(255,255,255,0.5)" />
+          <Text style={styles.inputPlaceholder}>Ask CariBear anything…</Text>
+          <MaterialCommunityIcons name="send" size={18} color={Colors.secondaryContainer} />
         </TouchableOpacity>
-
-        {isExpanded && (
-          <>
-            <View style={styles.messageBox}>
-              <Text style={styles.messageText}>
-                "Hi Arthur! I noticed you haven't had your annual check-up yet. Would you like me to find a provider near you?"
-              </Text>
-            </View>
-
-            <View style={styles.actionsRow}>
-              <TouchableOpacity style={styles.actionButtonSecondary} activeOpacity={0.8}>
-                <Text style={styles.actionButtonSecondaryText}>Find Provider</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.actionButtonPrimary} activeOpacity={0.8}>
-                <Text style={styles.actionButtonPrimaryText}>{data.ctaLabel}</Text>
-              </TouchableOpacity>
-            </View>
-          </>
-        )}
       </View>
     </View>
   );
@@ -82,10 +95,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
-    marginBottom: 16,
+    marginBottom: 14,
   },
-  headerRowCollapsed: {
-    marginBottom: 0,
+  minimizedContainer: {
+    padding: 16,
+  },
+  minimizedContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  minimizedLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  minimizedTitle: {
+    color: Colors.white,
+    fontSize: 14,
+    fontWeight: '600',
   },
   leftGroup: {
     flex: 1,
@@ -95,58 +123,34 @@ const styles = StyleSheet.create({
   },
   textGroup: {
     flex: 1,
-    paddingRight: 8,
+    paddingRight: 4,
   },
   title: {
     color: Colors.white,
     fontWeight: '700',
     fontSize: 15,
-    marginBottom: 2,
+    marginBottom: 4,
   },
-  subtitle: {
+  greeting: {
     color: Colors.blueLight,
-    fontSize: 11,
+    fontSize: 13,
+    lineHeight: 18,
   },
-  messageBox: {
-    backgroundColor: 'rgba(255,255,255,0.1)',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 16,
-  },
-  messageText: {
-    color: Colors.white,
-    fontSize: 14,
-    lineHeight: 20,
-  },
-  actionsRow: {
+  inputRow: {
     flexDirection: 'row',
-    gap: 8,
-  },
-  actionButtonSecondary: {
-    flex: 1,
-    backgroundColor: 'transparent',
-    borderColor: 'rgba(255,255,255,0.8)',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderRadius: 24,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    gap: 10,
     borderWidth: 1,
-    borderRadius: 8,
-    paddingVertical: 8,
-    alignItems: 'center',
+    borderColor: 'rgba(255,255,255,0.15)',
   },
-  actionButtonSecondaryText: {
-    color: Colors.white,
-    fontSize: 12,
-    fontWeight: '700',
-  },
-  actionButtonPrimary: {
+  inputPlaceholder: {
     flex: 1,
-    backgroundColor: Colors.white,
-    borderRadius: 8,
-    paddingVertical: 8,
-    alignItems: 'center',
-  },
-  actionButtonPrimaryText: {
-    color: Colors.primary,
-    fontSize: 12,
-    fontWeight: '700',
+    color: 'rgba(255,255,255,0.45)',
+    fontSize: 14,
   },
 });
 

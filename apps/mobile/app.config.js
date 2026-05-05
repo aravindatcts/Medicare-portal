@@ -9,9 +9,7 @@ module.exports = {
     icon: './assets/icon.png',
     userInterfaceStyle: 'light',
     splash: {
-      image: './assets/splash-icon.png',
-      resizeMode: 'contain',
-      backgroundColor: '#0B1F45',
+      backgroundColor: '#f8f9fa',
     },
     ios: {
       supportsTablet: true,
@@ -21,7 +19,7 @@ module.exports = {
       package: 'com.anonymous.memberportal',
       adaptiveIcon: {
         foregroundImage: './assets/adaptive-icon.png',
-        backgroundColor: '#0B1F45',
+        backgroundColor: '#f8f9fa',
       },
       config: {
         googleMaps: {

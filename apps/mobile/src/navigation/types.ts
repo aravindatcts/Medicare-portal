@@ -17,6 +17,7 @@ export type AppStackParamList = {
   Notifications: undefined;
   Settings: undefined;
   History: undefined;
+  CaribearChat: undefined;
 };
 
 // ── Auth stack ───────────────────────────────────────────────────────────────

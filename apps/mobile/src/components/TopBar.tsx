@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -23,7 +23,13 @@ export default function TopBar({ title, showBack = true, rightElement }: TopBarP
             <MaterialCommunityIcons name="chevron-left" size={32} color={Colors.primary} />
           </TouchableOpacity>
         )}
-        <Text style={styles.title}>{title || 'Member Portal'}</Text>
+        {!showBack && (
+          <Image 
+            source={require('../../assets/icon.png')} 
+            style={styles.headerLogo}
+          />
+        )}
+        <Text style={styles.title}>{title || 'AmeriHealth Caritas'}</Text>
       </View>
       
       <View style={styles.rightSection}>
@@ -78,10 +84,16 @@ const styles = StyleSheet.create({
     marginLeft: -8,
   },
   title: {
-    fontSize: FontSize.lg,
+    fontSize: FontSize.md,
     fontWeight: '800',
     color: Colors.primary,
-    letterSpacing: -0.5,
+    letterSpacing: -0.2,
+  },
+  headerLogo: {
+    width: 28,
+    height: 28,
+    borderRadius: 6,
+    marginRight: 10,
   },
   headerActions: {
     flexDirection: 'row',

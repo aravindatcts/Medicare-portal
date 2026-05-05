@@ -5,9 +5,15 @@ import { z } from 'zod';
 const HeroSchema = z.object({
   tag: z.string(),
   heading: z.string(),
-  subtext: z.string(),
+  subtext: z.string().optional(),
+  greeting: z.string().optional(),
   ctaLabel: z.string(),
   ctaPhone: z.string(),
+  conciergeMessage: z.string().optional(),
+  aiInsight: z.object({
+    titleSuffix: z.string(),
+    description: z.string(),
+  }).optional(),
 });
 
 const MemberSchema = z.object({
