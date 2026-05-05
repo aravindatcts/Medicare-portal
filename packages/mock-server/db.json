@@ -6067,5 +6067,73 @@
       "minute": 0,
       "read": true
     }
+  ],
+  "medicalHistory": [
+    {
+      "id": "mh-1",
+      "category": "Diagnosis",
+      "type": "diagnosis",
+      "title": "Type 2 Diabetes Mellitus",
+      "subtitle": "Dr. Sarah Jenkins • Primary Care",
+      "date": "2024-11-15",
+      "monthLabel": "NOV 2024",
+      "description": "Follow-up evaluation and management plan updated. Chronic management plan initiated with Metformin 500mg.",
+      "status": "urgent"
+    },
+    {
+      "id": "mh-2",
+      "category": "Lab results",
+      "type": "lab",
+      "title": "Comprehensive Blood Work",
+      "subtitle": "City Central Lab",
+      "date": "2024-10-22",
+      "monthLabel": "OCT 2024",
+      "description": "Metabolic panel and lipid profile conducted. Glucose level: 115 mg/dL (High).",
+      "showDownload": true
+    },
+    {
+      "id": "mh-3",
+      "category": "Vaccination",
+      "type": "immunization",
+      "title": "Annual Flu Shot",
+      "subtitle": "CVS Pharmacy",
+      "date": "2024-10-05",
+      "monthLabel": "OCT 2024",
+      "description": "Administered at CVS Pharmacy. Influenza vaccine quadrivalent. No adverse reactions.",
+      "status": "completed"
+    },
+    {
+      "id": "mh-4",
+      "category": "Test",
+      "type": "visit",
+      "title": "Annual Wellness Visit",
+      "subtitle": "Dr. Elena Rodriguez",
+      "date": "2024-10-10",
+      "monthLabel": "OCT 2024",
+      "description": "Annual wellness visit at St. Jude Medical Plaza. Comprehensive physical examination completed.",
+      "notes": "Patient maintains healthy BP. Diet and exercise routine is effective."
+    },
+    {
+      "id": "mh-5",
+      "category": "Lab results",
+      "type": "lab",
+      "title": "HbA1c Test",
+      "subtitle": "LabCorp Philadelphia",
+      "date": "2024-08-12",
+      "monthLabel": "AUG 2024",
+      "description": "HbA1c level: 6.8% (Target: <7.0%). Management plan is effective.",
+      "showDownload": true
+    },
+    {
+      "id": "mh-6",
+      "category": "Diagnosis",
+      "type": "diagnosis",
+      "title": "Hypertension",
+      "subtitle": "Dr. Marcus Thorne",
+      "date": "2024-07-20",
+      "monthLabel": "JUL 2024",
+      "description": "Blood pressure stabilized at 128/82. Continue current medication.",
+      "status": "completed"
+    }
   ]
 }

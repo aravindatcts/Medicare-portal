@@ -82,6 +82,10 @@ app.get('/providers/:id', (req, res) => {
   res.json(provider);
 });
 
+app.get('/medicalHistory', (_req, res) => {
+  res.json(getDb().medicalHistory);
+});
+
 app.get('/settings', (_req, res) => {
   res.json(getDb().settings);
 });
@@ -167,5 +171,6 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log('  GET /reviews');
   console.log('  GET /prescriptions');
   console.log('  GET /notifications');
+  console.log('  GET /medicalHistory');
   console.log('  PATCH /notifications/:id/read\n');
 });
