@@ -8,10 +8,7 @@ const HistorySkeleton: React.FC = () => {
     <View style={styles.container}>
       {[1, 2, 3].map((i) => (
         <View key={i} style={styles.item}>
-          <View style={[
-            styles.accentBar, 
-            i % 2 === 0 ? { right: 0 } : { left: 0 }
-          ]} />
+          <View style={styles.accentBar} />
           <View style={styles.header}>
             <LoadingSkeleton style={styles.icon} />
             <LoadingSkeleton style={styles.title} />
@@ -46,8 +43,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     bottom: 0,
+    left: 0,
     width: 6,
-    backgroundColor: Colors.primary + '30', // Faded blue for skeleton
+    backgroundColor: Colors.primary + '30',
   },
   header: {
     flexDirection: 'row',
@@ -68,19 +66,19 @@ const styles = StyleSheet.create({
   subtitle: {
     height: 14,
     width: '40%',
-    borderRadius: Radius.xs,
+    borderRadius: Radius.sm,
     marginBottom: Spacing.sm,
   },
   description: {
     height: 12,
     width: '90%',
-    borderRadius: Radius.xs,
+    borderRadius: Radius.sm,
     marginBottom: 6,
   },
   descriptionShort: {
     height: 12,
     width: '50%',
-    borderRadius: Radius.xs,
+    borderRadius: Radius.sm,
   },
 });
 

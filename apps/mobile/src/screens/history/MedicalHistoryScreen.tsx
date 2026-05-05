@@ -146,52 +146,44 @@ const MedicalHistoryScreen: React.FC<MedicalHistoryScreenProps> = () => {
 
           {loading ? (
             <HistorySkeleton />
-          ) : (() => {
-            let itemGlobalIndex = 0;
-            return months.map(month => {
-              const isCollapsed = collapsedMonths[month];
-              return (
-                <React.Fragment key={month}>
-                  <TouchableOpacity 
-                    style={styles.monthMarkerContainer} 
-                    activeOpacity={0.7}
-                    onPress={() => toggleMonth(month)}
-                  >
-                    <View style={styles.monthMarker}>
-                      <View style={styles.monthMarkerDot} />
-                      <Text style={styles.monthText}>{month}</Text>
-                      <MaterialCommunityIcons 
-                        name={isCollapsed ? "plus-circle-outline" : "minus-circle-outline"} 
-                        size={16} 
-                        color={Colors.primary} 
-                      />
-                    </View>
-                  </TouchableOpacity>
+          ) : months.map(month => {
+            const isCollapsed = collapsedMonths[month];
+            return (
+              <React.Fragment key={month}>
+                <TouchableOpacity
+                  style={styles.monthMarkerContainer}
+                  activeOpacity={0.7}
+                  onPress={() => toggleMonth(month)}
+                >
+                  <View style={styles.monthMarker}>
+                    <View style={styles.monthMarkerDot} />
+                    <Text style={styles.monthText}>{month}</Text>
+                    <MaterialCommunityIcons
+                      name={isCollapsed ? "plus-circle-outline" : "minus-circle-outline"}
+                      size={16}
+                      color={Colors.primary}
+                    />
+                  </View>
+                </TouchableOpacity>
 
-                  {!isCollapsed && groupedHistory[month].map(item => {
-                    const isRight = itemGlobalIndex % 2 !== 0;
-                    itemGlobalIndex++;
-                    return (
-                      <TimelineItem 
-                        key={item.id}
-                        type={item.type}
-                        title={item.title}
-                        subtitle={item.subtitle}
-                        description={item.description}
-                        status={item.status as any}
-                        showDownload={item.showDownload}
-                        notes={item.notes}
-                        date={item.date}
-                        isRight={isRight}
-                        isExpanded={expandedItems[item.id]}
-                        onToggle={() => toggleItem(item.id)}
-                      />
-                    );
-                  })}
-                </React.Fragment>
-              );
-            });
-          })()}
+                {!isCollapsed && groupedHistory[month].map(item => (
+                  <TimelineItem
+                    key={item.id}
+                    type={item.type}
+                    title={item.title}
+                    subtitle={item.subtitle}
+                    description={item.description}
+                    status={item.status as any}
+                    showDownload={item.showDownload}
+                    notes={item.notes}
+                    date={item.date}
+                    isExpanded={expandedItems[item.id]}
+                    onToggle={() => toggleItem(item.id)}
+                  />
+                ))}
+              </React.Fragment>
+            );
+          })}
         </View>
         
         <View style={{ height: 100 }} />
@@ -264,7 +256,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(59, 130, 246, 0.2)', // Light blue border
     gap: 8,
-    ...Shadows.md,
+    ...Shadows.card,
     shadowColor: Colors.primary,
     shadowOpacity: 0.1,
   },

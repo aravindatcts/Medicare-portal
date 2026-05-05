@@ -6,9 +6,9 @@ import {
   StyleSheet,
   TouchableOpacity,
   StatusBar,
-  ActivityIndicator,
   BackHandler,
   Platform,
+  RefreshControl,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -18,6 +18,7 @@ import { Colors, FontSize, Radius, useNotifications } from '@medicare/shared';
 import type { NotificationItem } from '@medicare/shared';
 import NotificationCard from '../components/notifications/NotificationCard';
 import { groupNotifications } from '../utils/groupNotifications';
+import LoadingSkeleton from '../components/LoadingSkeleton';
 
 function SectionHeader({ label }: { label: string }) {
   return (
@@ -31,6 +32,16 @@ function SectionHeader({ label }: { label: string }) {
 export default function NotificationsScreen() {
   const navigation = useNavigation();
   const { data: serverNotifications, isLoading, isError, refetch } = useNotifications();
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(async () => {
+    setRefreshing(true);
+    try {
+      await refetch();
+    } finally {
+      setRefreshing(false);
+    }
+  }, [refetch]);
 
   // Handle Android hardware back button
   useEffect(() => {
@@ -101,6 +112,14 @@ export default function NotificationsScreen() {
         style={styles.scroll}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor={Colors.primary}
+            colors={[Colors.primary]}
+          />
+        }
       >
         {/* Hero Banner */}
         <LinearGradient
@@ -121,8 +140,10 @@ export default function NotificationsScreen() {
         </LinearGradient>
 
         {isLoading && (
-          <View style={styles.centeredWrap}>
-            <ActivityIndicator size="large" color={Colors.primary} />
+          <View style={styles.skeletonWrap}>
+            <LoadingSkeleton style={styles.skeletonItem} />
+            <LoadingSkeleton style={styles.skeletonItem} />
+            <LoadingSkeleton style={styles.skeletonItem} />
           </View>
         )}
 
@@ -239,6 +260,9 @@ const styles = StyleSheet.create({
     lineHeight: 32,
     letterSpacing: -0.3,
   },
+
+  skeletonWrap: { gap: 12 },
+  skeletonItem: { height: 100, borderRadius: 16 },
 
   centeredWrap: { alignItems: 'center', paddingVertical: 60, gap: 12 },
 

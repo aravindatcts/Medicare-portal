@@ -16,6 +16,7 @@ export type AppStackParamList = {
   TabHome: NavigatorScreenParams<TabParamList>;
   Notifications: undefined;
   Settings: undefined;
+  History: undefined;
 };
 
 // ── Auth stack ───────────────────────────────────────────────────────────────
@@ -52,7 +53,7 @@ export type LoginScreenProps = NativeStackScreenProps<AuthStackParamList, 'Login
 
 export type DashboardScreenProps = CompositeScreenProps<
   BottomTabScreenProps<TabParamList, 'Dashboard'>,
-  NativeStackScreenProps<RootStackParamList>
+  NativeStackScreenProps<AppStackParamList>
 >;
 
 export type FindCareScreenProps = NativeStackScreenProps<FindCareStackParamList, 'FindCareList'>;
@@ -72,10 +73,7 @@ export type PrescriptionsScreenProps = CompositeScreenProps<
   NativeStackScreenProps<RootStackParamList>
 >;
 
-export type MedicalHistoryScreenProps = CompositeScreenProps<
-  BottomTabScreenProps<TabParamList, 'History'>,
-  NativeStackScreenProps<RootStackParamList>
->;
+export type MedicalHistoryScreenProps = NativeStackScreenProps<AppStackParamList, 'History'>;
 
 export type ClaimsListScreenProps = NativeStackScreenProps<ClaimsStackParamList, 'ClaimsList'>;
 

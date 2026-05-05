@@ -18,7 +18,6 @@ interface TimelineItemProps {
   notes?: string;
   status?: 'urgent' | 'completed' | 'pending';
   showDownload?: boolean;
-  isRight?: boolean;
   isExpanded?: boolean;
   onToggle?: () => void;
 }
@@ -38,7 +37,6 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
   notes,
   status,
   showDownload,
-  isRight,
   isExpanded = false,
   onToggle,
 }) => {
@@ -50,11 +48,10 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
       activeOpacity={0.9}
       onPress={onToggle}
     >
-      {/* Alternating accent bar */}
+      {/* Fixed accent bar on left */}
       <View style={[
         styles.accentBar, 
-        { backgroundColor: config.color },
-        isRight ? { right: 0, left: undefined } : { left: 0, right: undefined }
+        { backgroundColor: config.color, left: 0 }
       ]} />
       
       <View style={styles.content}>

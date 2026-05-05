@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, RefreshControl, Platform } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors, useClaims } from '@medicare/shared';
@@ -55,6 +55,9 @@ function ClaimCard({ claim }: { claim: any }) {
       activeOpacity={0.8}
       onPress={() => claim.onPress(claim.id)}
     >
+      {/* Fixed accent bar on left with status color */}
+      <View style={[styles.accentBar, { backgroundColor: statusStyle.text }]} />
+
       <View style={styles.cardHeader}>
         <View style={[styles.iconBox, { backgroundColor: iconStyle.bg }]}>
           <MaterialCommunityIcons name={iconStyle.icon as any} size={24} color={iconStyle.color} />
@@ -68,7 +71,10 @@ function ClaimCard({ claim }: { claim: any }) {
               </Text>
             </View>
           </View>
-          <Text style={styles.providerName}>{claim.provider}</Text>
+          <View style={styles.providerRow}>
+            <Text style={styles.providerName} numberOfLines={1}>{claim.provider}</Text>
+            <MaterialCommunityIcons name="chevron-right" size={20} color={Colors.primary} />
+          </View>
         </View>
       </View>
 
@@ -90,7 +96,18 @@ import TopBar from '../components/TopBar';
 
 export default function ClaimsScreen({ navigation }: any) {
   const insets = useSafeAreaInsets();
-  const { data: claims, isLoading } = useClaims();
+  const { data: claims, isLoading, refetch } = useClaims();
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(async () => {
+    setRefreshing(true);
+    try {
+      await refetch();
+    } finally {
+      setRefreshing(false);
+    }
+  }, [refetch]);
+
   const [isFilterVisible, setIsFilterVisible] = React.useState(false);
   const [activeFilters, setActiveFilters] = React.useState<any>(null);
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -141,7 +158,19 @@ export default function ClaimsScreen({ navigation }: any) {
         <Text style={styles.pageSubtitle}>Your Medical History</Text>
       </View>
 
-      <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+      <ScrollView 
+        style={styles.scroll} 
+        contentContainerStyle={styles.scrollContent} 
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor={Colors.primary}
+            colors={[Colors.primary]}
+          />
+        }
+      >
 
         <TouchableOpacity style={styles.filterBtn} onPress={() => setIsFilterVisible(true)}>
           <MaterialCommunityIcons name="tune-vertical" size={18} color={Colors.white} />
@@ -162,9 +191,9 @@ export default function ClaimsScreen({ navigation }: any) {
         ) : (
           <View style={styles.claimsList}>
             {paginatedClaims.map((claim: any) => (
-              <ClaimCard 
-                key={claim.id} 
-                claim={{...claim, onPress: (id: string) => navigation.navigate('ClaimDetail', { claimId: id })}} 
+              <ClaimCard
+                key={claim.id}
+                claim={{...claim, onPress: (id: string) => navigation.navigate('ClaimDetail', { claimId: id })}}
               />
             ))}
           </View>
@@ -261,15 +290,24 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 20,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.03,
-    shadowRadius: 8,
-    elevation: 2,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.05,
+    shadowRadius: 10,
+    elevation: 3,
+    overflow: Platform.OS === 'ios' ? 'hidden' : 'visible',
+    position: 'relative',
+  },
+  accentBar: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    width: 6,
   },
   cardHeader: {
     flexDirection: 'row',
     gap: 16,
-    marginBottom: 24,
+    marginBottom: 20,
   },
   iconBox: {
     width: 48,
@@ -286,6 +324,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     marginBottom: 4,
+  },
+  providerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 8,
   },
   claimId: {
     fontSize: 11,
@@ -309,7 +353,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: Colors.primary,
     lineHeight: 24,
-    paddingRight: 10,
+    flex: 1,
   },
   cardFooter: {
     flexDirection: 'row',

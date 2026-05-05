@@ -7,7 +7,9 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import type { CompositeNavigationProp } from '@react-navigation/native';
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {
   WelcomeSection,
   AiConcierge,
@@ -19,11 +21,16 @@ import {
 } from '../../components/dashboard';
 import TopBar from '../../components/TopBar';
 import flags from '../../config/featureFlags';
-import type { TabParamList } from '../../navigation/types';
+import type { TabParamList, AppStackParamList } from '../../navigation/types';
 import type { DashboardScreenProps } from '../../navigation/types';
 
+type DashboardNavProp = CompositeNavigationProp<
+  BottomTabNavigationProp<TabParamList>,
+  NativeStackNavigationProp<AppStackParamList>
+>;
+
 export default function DashboardScreen(_props: DashboardScreenProps) {
-  const navigation = useNavigation<BottomTabNavigationProp<TabParamList>>();
+  const navigation = useNavigation<DashboardNavProp>();
   const insets = useSafeAreaInsets();
 
   function navigateToTab(tab: keyof TabParamList) {
@@ -52,7 +59,7 @@ export default function DashboardScreen(_props: DashboardScreenProps) {
           if (route === 'find-care' || route === 'find-doctor') navigateToTab('FindCare');
           else if (route === 'rx' || route === 'refill-rx') navigateToTab('Prescriptions');
           else if (route === 'benefits') navigateToTab('Benefits');
-          else if (route === 'history') navigateToTab('History');
+          else if (route === 'history') navigation.navigate('History');
           else if (route === 'claims') navigateToTab('Claims');
         }} />
         <View style={{ height: 32 }} />
