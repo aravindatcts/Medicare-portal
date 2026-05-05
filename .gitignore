@@ -60,3 +60,6 @@ apps/mobile/test-results/
 apps/mobile/ios/build/
 apps/mobile/android/build/
 apps/mobile/android/app/build/
+
+# Agents
+.agents/
