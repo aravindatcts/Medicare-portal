@@ -1,5 +1,5 @@
 {
-  "name": "@member-portal/mock-server",
+  "name": "@medicare/mock-server",
   "version": "1.0.0",
   "private": true,
   "main": "server.ts",

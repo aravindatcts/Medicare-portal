@@ -1,5 +1,5 @@
 {
-  "name": "@member-portal/ui",
+  "name": "@medicare/ui",
   "version": "1.0.0",
   "main": "index.ts",
   "peerDependencies": {
