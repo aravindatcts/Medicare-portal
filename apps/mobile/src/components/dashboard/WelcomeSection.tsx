@@ -18,7 +18,7 @@ const WelcomeSection: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{greeting}, {firstName}</Text>
+      <Text style={styles.title} testID="member-name">{greeting}, {firstName}</Text>
       <Text style={styles.subtitle}>{subtitle}</Text>
     </View>
   );

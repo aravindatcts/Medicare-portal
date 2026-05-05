@@ -17,16 +17,16 @@ const config: DetoxConfig = {
     'ios.debug': {
       type: 'ios.app',
       binaryPath:
-        'ios/build/Build/Products/Debug-iphonesimulator/MedicareApp.app',
+        'ios/build/Build/Products/Debug-iphonesimulator/AuraWellness.app',
       build:
-        'xcodebuild -workspace ios/MedicareApp.xcworkspace -scheme MedicareApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build',
+        'xcodebuild -workspace ios/AuraWellness.xcworkspace -scheme AuraWellness -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build CODE_SIGNING_ALLOWED=NO',
     },
     'ios.release': {
       type: 'ios.app',
       binaryPath:
-        'ios/build/Build/Products/Release-iphonesimulator/MedicareApp.app',
+        'ios/build/Build/Products/Release-iphonesimulator/AuraWellness.app',
       build:
-        'xcodebuild -workspace ios/MedicareApp.xcworkspace -scheme MedicareApp -configuration Release -sdk iphonesimulator -derivedDataPath ios/build',
+        'xcodebuild -workspace ios/AuraWellness.xcworkspace -scheme AuraWellness -configuration Release -sdk iphonesimulator -derivedDataPath ios/build CODE_SIGNING_ALLOWED=NO',
     },
     'android.debug': {
       type: 'android.apk',
@@ -47,7 +47,7 @@ const config: DetoxConfig = {
   devices: {
     simulator: {
       type: 'ios.simulator',
-      device: { type: 'iPhone 15 Pro' },
+      device: { type: 'iPhone 17 Pro Max' },
     },
     emulator: {
       type: 'android.emulator',

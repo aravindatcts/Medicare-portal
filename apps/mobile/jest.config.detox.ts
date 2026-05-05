@@ -15,9 +15,10 @@ const config: Config = {
     }],
   ],
   verbose: true,
+  testEnvironment: 'detox/runners/jest/testEnvironment',
   preset: 'ts-jest',
   transform: {
-    '^.+\\.tsx?$': ['ts-jest', { tsconfig: 'tsconfig.json' }],
+    '^.+\\.tsx?$': ['ts-jest', { tsconfig: 'e2e/tsconfig.json' }],
   },
 };
 

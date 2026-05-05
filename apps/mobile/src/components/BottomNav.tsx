@@ -5,6 +5,15 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { Colors } from '@medicare/shared';
 
+// Maps route name → stable kebab-case testID slug used by Detox e2e tests.
+const TAB_TEST_IDS: Record<string, string> = {
+  Dashboard:     'tab-dashboard',
+  Claims:        'tab-claims',
+  FindCare:      'tab-find-care',
+  Benefits:      'tab-benefits',
+  Prescriptions: 'tab-prescriptions',
+};
+
 const TAB_CONFIG: Record<
   string,
   { icon: React.ComponentProps<typeof MaterialCommunityIcons>['name']; label: string }
@@ -19,7 +28,7 @@ const TAB_CONFIG: Record<
 export default function BottomNav({ state, navigation }: BottomTabBarProps) {
   const insets = useSafeAreaInsets();
   return (
-    <View style={[styles.container, { paddingBottom: Math.max(insets.bottom, 8) }]}>
+    <View style={[styles.container, { paddingBottom: Math.max(insets.bottom, 8) }]} testID="bottom-tab-bar">
       {state.routes.map((route, index) => {
         const isActive = state.index === index;
         const config = TAB_CONFIG[route.name];
@@ -34,7 +43,7 @@ export default function BottomNav({ state, navigation }: BottomTabBarProps) {
             accessibilityRole="tab"
             accessibilityState={{ selected: isActive }}
             accessibilityLabel={config.label}
-            testID={`tab-${route.name.toLowerCase()}`}
+            testID={TAB_TEST_IDS[route.name] ?? `tab-${route.name.toLowerCase()}`}
           >
             <MaterialCommunityIcons
               name={config.icon}

@@ -13,7 +13,7 @@ export default function ErrorState({
   onRetry,
 }: Props) {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="error-state">
       <MaterialCommunityIcons name="alert-circle-outline" size={40} color={Colors.orange} />
       <Text style={styles.message}>{message}</Text>
       {onRetry && (

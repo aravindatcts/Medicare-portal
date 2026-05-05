@@ -47,12 +47,15 @@ export default function ProviderDetailScreen({ navigation, route }: ProviderDeta
 
   if (isLoading || !provider) {
     return (
-      <View style={[styles.root, { paddingTop: insets.top }]}>
+      <View style={styles.root} accessibilityLabel="provider-detail-screen">
+        <View style={{ paddingTop: insets.top }} />
         {/* Top Nav */}
         <View style={styles.topNav}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <MaterialCommunityIcons name="arrow-left" size={24} color={Colors.primary} />
           </TouchableOpacity>
+          <Text style={styles.navTitle}>Provider Profile</Text>
+          <View style={{ width: 24 }} />
         </View>
 
         {/* Header Skeleton */}
@@ -127,7 +130,8 @@ export default function ProviderDetailScreen({ navigation, route }: ProviderDeta
   const providerReviews = provider.reviews || [];
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
+    <View style={styles.root} accessibilityLabel="provider-detail-screen">
+      <View style={{ paddingTop: insets.top }} />
       {/* ── Stable Header Area ─────────────────────────────── */}
       <Animated.View style={[styles.stableHeader, { paddingBottom: headerPaddingBottom }]}>
         <View style={styles.topNav}>

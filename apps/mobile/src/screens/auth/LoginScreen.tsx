@@ -29,7 +29,7 @@ export default function LoginScreen(_props: LoginScreenProps) {
   }
 
   return (
-    <SafeAreaView style={styles.root}>
+    <SafeAreaView style={styles.root} testID="login-screen">
       <View style={styles.content}>
         {/* Logo */}
         <View style={styles.logoRow}>
@@ -73,6 +73,7 @@ export default function LoginScreen(_props: LoginScreenProps) {
           activeOpacity={0.85}
           accessibilityRole="button"
           accessibilityLabel="Sign in to your account"
+          testID="login-button"
         >
           {loading ? (
             <ActivityIndicator color="#fff" size="small" />

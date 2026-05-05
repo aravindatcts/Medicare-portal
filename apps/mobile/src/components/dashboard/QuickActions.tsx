@@ -11,7 +11,7 @@ interface Props {
 const ACTIONS = [
   { route: 'claims',  icon: 'file-document-outline', label: 'Claims',          bg: Colors.primaryBg,   color: Colors.primary },
   { route: 'rx',      icon: 'pill',                  label: 'Prescription',    bg: Colors.secondaryBg, color: Colors.secondary },
-  { route: 'records', icon: 'medical-bag',            label: 'Health\nRecords', bg: Colors.tertiaryBg,  color: Colors.tertiaryContainer },
+  { route: 'history', icon: 'medical-bag',            label: 'HRA', bg: Colors.tertiaryBg,  color: Colors.tertiaryContainer },
 ] as const;
 
 const QuickActions: React.FC<Props> = ({ onNavigate }) => (

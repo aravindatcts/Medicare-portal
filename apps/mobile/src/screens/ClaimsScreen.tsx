@@ -134,7 +134,7 @@ export default function ClaimsScreen({ navigation }: any) {
   const paginatedClaims = displayedClaims.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
+    <View style={[styles.root, { paddingTop: insets.top }]} testID="claims-screen">
       <TopBar />
       <View style={styles.stableHeader}>
         <Text style={styles.navTitle}>Claims</Text>

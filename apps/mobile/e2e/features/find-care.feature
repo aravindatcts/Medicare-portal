@@ -8,7 +8,8 @@ Feature: Mobile Find Care
     And I navigate to the Find Care screen
 
   Scenario: Find Care screen loads
-    Then I should see the provider search input
+    Then I should see the find care screen
+    And I should see the provider search input
 
   Scenario: Search for a provider
     When I type "cardiology" in the provider search input

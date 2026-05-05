@@ -15,8 +15,10 @@ module.exports = {
     },
     ios: {
       supportsTablet: true,
+      bundleIdentifier: 'com.anonymous.aura-wellness',
     },
     android: {
+      package: 'com.anonymous.aurawellness',
       adaptiveIcon: {
         foregroundImage: './assets/adaptive-icon.png',
         backgroundColor: '#0B1F45',

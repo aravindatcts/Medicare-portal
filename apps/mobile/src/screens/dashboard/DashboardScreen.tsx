@@ -31,7 +31,8 @@ export default function DashboardScreen(_props: DashboardScreenProps) {
   }
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
+    <View style={styles.root} accessibilityLabel="dashboard-screen">
+      <View style={{ paddingTop: insets.top }} />
       <StatusBar barStyle="dark-content" backgroundColor="#f8f9fa" />
 
       <TopBar />
@@ -51,6 +52,8 @@ export default function DashboardScreen(_props: DashboardScreenProps) {
           if (route === 'find-care' || route === 'find-doctor') navigateToTab('FindCare');
           else if (route === 'rx' || route === 'refill-rx') navigateToTab('Prescriptions');
           else if (route === 'benefits') navigateToTab('Benefits');
+          else if (route === 'history') navigateToTab('History');
+          else if (route === 'claims') navigateToTab('Claims');
         }} />
         <View style={{ height: 32 }} />
       </ScrollView>

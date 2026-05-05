@@ -130,15 +130,17 @@ function SmartMatchCard({
 const ProviderCard = React.memo(function ProviderCard({
   provider,
   onPress,
+  testID,
 }: {
   provider: ProviderData;
   onPress: () => void;
+  testID?: string;
 }) {
   const reviewNum = deriveReviewCount(provider);
   const bilingual = provider.languages && provider.languages.length > 1;
 
   return (
-    <View style={styles.card}>
+    <View style={styles.card} testID={testID}>
       <ArcMotif />
       <View style={styles.cardRow}>
         <View style={styles.avatarWrap}>
@@ -183,7 +185,8 @@ const ProviderCard = React.memo(function ProviderCard({
         </View>
       </View>
       <TouchableOpacity style={styles.viewBtn} onPress={onPress} activeOpacity={0.85}
-        accessibilityRole="button" accessibilityLabel={`View details for ${provider.name}`}>
+        accessibilityLabel="View Details Button"
+        accessibilityRole="button">
         <Text style={styles.viewBtnText}>View Details</Text>
       </TouchableOpacity>
     </View>
@@ -356,8 +359,8 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
     });
   }
 
-  const renderItem = useCallback(({ item }: { item: ProviderData }) => (
-    <ProviderCard provider={item} onPress={() => navigateToDetail(item)} />
+  const renderItem = useCallback(({ item, index }: { item: ProviderData; index: number }) => (
+    <ProviderCard provider={item} onPress={() => navigateToDetail(item)} testID={`provider-card-${index}`} />
   ), []);
 
   const keyExtractor = useCallback((item: ProviderData) => item.id, []);
@@ -408,7 +411,8 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
   }, [isLoading, activeFiltersCount]);
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
+    <View style={styles.root} accessibilityLabel="find-care-screen">
+      <View style={{ paddingTop: insets.top }} />
       <TopBar />
       {/* ══ Fixed header — hero + map + controls (never scrolls) ════════════ */}
       <View style={styles.stableHeader}>
@@ -433,6 +437,7 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
               onFocus={() => toggleMinimize(false)}
               returnKeyType="search"
               selectionColor="rgba(255,255,255,0.7)"
+              testID="provider-search-input"
             />
             <TouchableOpacity style={styles.askAiBtn} activeOpacity={0.85}>
               <Text style={styles.askAiText}>Ask AI</Text>
@@ -577,6 +582,7 @@ export default function FindCareScreen({ navigation }: FindCareScreenProps) {
         <FlatList
           style={styles.list}
           contentContainerStyle={styles.listContent}
+          testID="provider-list"
           data={isLoading || !activeFiltersCount ? [] : filteredProviders}
           keyExtractor={keyExtractor}
           renderItem={renderItem}

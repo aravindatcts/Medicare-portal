@@ -11,6 +11,7 @@ import ClaimsScreen from '../screens/ClaimsScreen';
 import ClaimDetailScreen from '../screens/ClaimDetailScreen';
 import NotificationsScreen from '../screens/NotificationsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import MedicalHistoryScreen from '../screens/history/MedicalHistoryScreen';
 import BottomNav from '../components/BottomNav';
 import AppErrorBoundary from '../components/layout/AppErrorBoundary';
 
@@ -36,6 +37,7 @@ const ClaimDetailScreenWrapped = withErrorBoundary(ClaimDetailScreen, 'ClaimDeta
 const DashboardScreenWrapped = withErrorBoundary(DashboardScreen, 'Dashboard');
 const BenefitsScreenWrapped = withErrorBoundary(BenefitsScreen, 'Benefits');
 const PrescriptionsScreenWrapped = withErrorBoundary(PrescriptionsScreen, 'Prescriptions');
+const MedicalHistoryScreenWrapped = withErrorBoundary(MedicalHistoryScreen, 'History');
 const NotificationsScreenWrapped = withErrorBoundary(NotificationsScreen, 'Notifications');
 const SettingsScreenWrapped = withErrorBoundary(SettingsScreen, 'Settings');
 
@@ -84,6 +86,11 @@ export default function AppNavigator() {
       <AppStack.Screen
         name="Settings"
         component={SettingsScreenWrapped}
+        options={{ animation: 'slide_from_right' }}
+      />
+      <AppStack.Screen
+        name="History"
+        component={MedicalHistoryScreenWrapped}
         options={{ animation: 'slide_from_right' }}
       />
     </AppStack.Navigator>

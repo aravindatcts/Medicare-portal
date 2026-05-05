@@ -165,7 +165,7 @@ const BenefitsScreen: React.FC = () => {
   const compact = benefits.breakdown.filter(b => !b.featured);
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
+    <View style={[styles.root, { paddingTop: insets.top }]} testID="benefits-screen">
       <TopBar />
       <View style={styles.stableHeader}>
         <Text style={styles.navTitle}>Your Benefits</Text>

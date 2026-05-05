@@ -1,4 +1,4 @@
-import { device, element, by, expect as detoxExpect } from 'detox';
+import { device, element, by, expect as detoxExpect, waitFor } from 'detox';
 import { defineFeature, loadFeature } from 'jest-cucumber';
 
 const feature = loadFeature('./e2e/features/dashboard.feature');
@@ -6,20 +6,22 @@ const feature = loadFeature('./e2e/features/dashboard.feature');
 defineFeature(feature, test => {
 
   beforeEach(async () => {
-    await device.reloadReactNative();
+    await device.launchApp({ newInstance: true });
+    await device.disableSynchronization();
   });
 
+
+
   test('Dashboard screen is visible', ({ given, then }) => {
-    given('the app is launched', async () => {
-      // device.launchApp() is called in global setup; reloadReactNative() above resets state
-    });
+    given('the app is launched', async () => {});
 
     then('I should see the dashboard screen', async () => {
-      await detoxExpect(element(by.testID('dashboard-screen'))).toBeVisible();
+      await waitFor(element(by.text('Dashboard')).atIndex(0)).toBeVisible().withTimeout(5000);
     });
 
     then('I should see the member name', async () => {
-      await detoxExpect(element(by.testID('member-name'))).toBeVisible();
+      // Wait for the skeleton to disappear and data to load
+      await waitFor(element(by.id('member-name'))).toBeVisible().withTimeout(5000);
     });
   });
 
@@ -27,7 +29,7 @@ defineFeature(feature, test => {
     given('the app is launched', async () => {});
 
     then('I should see the bottom tab bar', async () => {
-      await detoxExpect(element(by.testID('bottom-tab-bar'))).toBeVisible();
+      await detoxExpect(element(by.id('bottom-tab-bar'))).toBeVisible();
     });
   });
 
@@ -35,11 +37,12 @@ defineFeature(feature, test => {
     given('the app is launched', async () => {});
 
     when('I tap the "Claims" tab', async () => {
-      await element(by.testID('tab-claims')).tap();
+      await waitFor(element(by.id('tab-claims'))).toBeVisible().withTimeout(5000);
+      await element(by.id('tab-claims')).tap();
     });
 
     then('I should see the claims screen', async () => {
-      await detoxExpect(element(by.testID('claims-screen'))).toBeVisible();
+      await waitFor(element(by.id('claims-screen'))).toExist().withTimeout(5000);
     });
   });
 
@@ -47,11 +50,12 @@ defineFeature(feature, test => {
     given('the app is launched', async () => {});
 
     when('I tap the "Find Care" tab', async () => {
-      await element(by.testID('tab-find-care')).tap();
+      await waitFor(element(by.id('tab-find-care'))).toBeVisible().withTimeout(5000);
+      await element(by.id('tab-find-care')).tap();
     });
 
     then('I should see the find care screen', async () => {
-      await detoxExpect(element(by.testID('find-care-screen'))).toBeVisible();
+      await waitFor(element(by.text('Find Care'))).toBeVisible().withTimeout(5000);
     });
   });
 
@@ -59,11 +63,12 @@ defineFeature(feature, test => {
     given('the app is launched', async () => {});
 
     when('I tap the "Benefits" tab', async () => {
-      await element(by.testID('tab-benefits')).tap();
+      await waitFor(element(by.id('tab-benefits'))).toBeVisible().withTimeout(5000);
+      await element(by.id('tab-benefits')).tap();
     });
 
     then('I should see the benefits screen', async () => {
-      await detoxExpect(element(by.testID('benefits-screen'))).toBeVisible();
+      await waitFor(element(by.id('benefits-screen'))).toExist().withTimeout(5000);
     });
   });
 

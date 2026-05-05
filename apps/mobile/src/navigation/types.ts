@@ -72,6 +72,11 @@ export type PrescriptionsScreenProps = CompositeScreenProps<
   NativeStackScreenProps<RootStackParamList>
 >;
 
+export type MedicalHistoryScreenProps = CompositeScreenProps<
+  BottomTabScreenProps<TabParamList, 'History'>,
+  NativeStackScreenProps<RootStackParamList>
+>;
+
 export type ClaimsListScreenProps = NativeStackScreenProps<ClaimsStackParamList, 'ClaimsList'>;
 
 export type ClaimDetailScreenProps = NativeStackScreenProps<ClaimsStackParamList, 'ClaimDetail'>;
