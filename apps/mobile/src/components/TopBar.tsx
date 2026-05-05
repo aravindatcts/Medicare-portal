@@ -23,7 +23,7 @@ export default function TopBar({ title, showBack = true, rightElement }: TopBarP
             <MaterialCommunityIcons name="chevron-left" size={32} color={Colors.primary} />
           </TouchableOpacity>
         )}
-        <Text style={styles.title}>{title || 'AmeriHealth Caritas'}</Text>
+        <Text style={styles.title}>{title || 'Member Portal'}</Text>
       </View>
       
       <View style={styles.rightSection}>

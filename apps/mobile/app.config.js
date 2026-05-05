@@ -2,8 +2,8 @@ const IS_DEV = process.env.APP_VARIANT === 'development';
 
 module.exports = {
   expo: {
-    name: IS_DEV ? 'Aura Wellness (Dev)' : 'Aura Wellness',
-    slug: 'aura-wellness',
+    name: IS_DEV ? 'Member Portal (Dev)' : 'Member Portal',
+    slug: 'member-portal',
     version: '1.0.0',
     orientation: 'portrait',
     icon: './assets/icon.png',
@@ -15,10 +15,10 @@ module.exports = {
     },
     ios: {
       supportsTablet: true,
-      bundleIdentifier: 'com.anonymous.aura-wellness',
+      bundleIdentifier: 'com.anonymous.member-portal',
     },
     android: {
-      package: 'com.anonymous.aurawellness',
+      package: 'com.anonymous.memberportal',
       adaptiveIcon: {
         foregroundImage: './assets/adaptive-icon.png',
         backgroundColor: '#0B1F45',

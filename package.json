@@ -9,8 +9,8 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "test:e2e:web": "turbo test:e2e --filter=@medicare/web",
-    "test:e2e:mobile": "turbo test:e2e --filter=@medicare/mobile",
+    "test:e2e:web": "turbo test:e2e --filter=@member-portal/web",
+    "test:e2e:mobile": "turbo test:e2e --filter=@member-portal/mobile",
     "test:e2e": "turbo test:e2e",
     "bdd:story": "npm run dev --workspace=packages/bdd-gen -- story",
     "bdd:playwright": "npm run dev --workspace=packages/bdd-gen -- playwright",

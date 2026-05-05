@@ -97,7 +97,7 @@
   },
   "member": {
     "cardLabel": "MEMBER CARD",
-    "insurerName": "AmeriHealth",
+    "insurerName": "Member Portal",
     "name": "Eleanor Vance",
     "memberId": "982 441 8023",
     "group": "00014",
@@ -117,7 +117,7 @@
     }
   },
   "plan": {
-    "name": "Medicare Advantage Plus",
+    "name": "Member Choice Plus",
     "coverageThrough": "Dec 2024",
     "copays": [
       {
@@ -4969,7 +4969,7 @@
     }
   ],
   "benefits": {
-    "planName": "Medicare Advantage Plus",
+    "planName": "Member Choice Plus",
     "memberId": "AH-982341-01",
     "costs": [
       {
@@ -5981,7 +5981,7 @@
       "id": "notif-6",
       "type": "wellness",
       "title": "Annual Checkup Due This Month",
-      "body": "Your annual preventive care visit is due within 30 days. Preventive visits are covered at 100% under your AmeriHealth Caritas plan — no copay required.",
+      "body": "Your annual preventive care visit is due within 30 days. Preventive visits are covered at 100% under your Member Portal Plan plan — no copay required.",
       "daysAgo": 1,
       "hour": 9,
       "minute": 0,
@@ -6021,7 +6021,7 @@
       "id": "notif-10",
       "type": "wellness",
       "title": "New Benefit: Free Gym Membership",
-      "body": "As a valued AmeriHealth Caritas member, you now have access to a free Silver&Fit gym membership. Enroll through the Benefits tab to activate your account.",
+      "body": "As a valued Member Portal Plan member, you now have access to a free Silver&Fit gym membership. Enroll through the Benefits tab to activate your account.",
       "daysAgo": 5,
       "hour": 10,
       "minute": 0,

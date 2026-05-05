@@ -1,6 +1,6 @@
 // ──────────────────────────────────────────────────────────────────────────────
 // Unified Design Token System — single source of truth for web + mobile
-// Merges Aura Wellness brand palette (mobile) + Material Design 3 (web)
+// Merges Member Portal brand palette (mobile) + Material Design 3 (web)
 // ──────────────────────────────────────────────────────────────────────────────
 
 export const Colors = {
@@ -61,7 +61,7 @@ export const Colors = {
   orangeBg:           '#FFF7ED',
   amber:              '#F59E0B',
 
-  // ── Aura Wellness extended palette (mobile-focused) ───────────────────────
+  // ── Member Portal extended palette (mobile-focused) ───────────────────────
   navyDark:           '#0B1F45',
   navyMid:            '#122158',
   navyLight:          '#1A3072',
