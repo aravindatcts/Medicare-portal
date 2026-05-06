@@ -23,3 +23,8 @@ export async function isBiometricsEnabled() {
   const val = await SecureStore.getItemAsync(BIOMETRICS_ENABLED_KEY);
   return val === 'true';
 }
+
+export async function clearAllData() {
+  await SecureStore.deleteItemAsync(REFRESH_TOKEN_KEY);
+  await SecureStore.deleteItemAsync(BIOMETRICS_ENABLED_KEY);
+}

@@ -28,7 +28,8 @@ import {
 import type { CommunicationPreference, SettingsPreferences } from '@medicare/shared';
 import EditFieldModal from '../components/settings/EditFieldModal';
 import PreferenceToggleRow from '../components/settings/PreferenceToggleRow';
-import { isBiometricsEnabled, setBiometricsEnabled } from '../utils/secureStore';
+import { isBiometricsEnabled, setBiometricsEnabled, clearAllData } from '../utils/secureStore';
+import { useAuthStore } from '../store/auth.store';
 
 type EditingField = 'address' | 'phone' | null;
 
@@ -147,6 +148,30 @@ export default function SettingsScreen() {
       Alert.alert('Error', 'Could not update preference. Please try again.');
     }
   }
+
+  const { logout } = useAuthStore();
+
+  const handleResetData = () => {
+    Alert.alert(
+      'Reset All Data',
+      'This will clear all local tokens, biometrics, and member links. You will be logged out immediately.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { 
+          text: 'Reset', 
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              await clearAllData();
+              logout();
+            } catch (err) {
+              Alert.alert('Error', 'Failed to clear data.');
+            }
+          }
+        }
+      ]
+    );
+  };
 
   const initials = data?.member.name
     .split(' ')
@@ -404,6 +429,17 @@ export default function SettingsScreen() {
               <MaterialCommunityIcons name="logout" size={20} color={Colors.error} />
               <Text style={styles.signOutText}>Sign Out</Text>
             </TouchableOpacity>
+
+            {/* ── DANGER ZONE ─────────────────────────────────────────── */}
+            <SectionLabel label="DANGER ZONE" />
+            <View style={styles.card}>
+              <ActionRow 
+                icon="delete-sweep-outline" 
+                label="Reset All Local App Data" 
+                destructive 
+                onPress={handleResetData}
+              />
+            </View>
 
             <Text style={styles.version}>AmeriHealth Caritas · v1.0.0</Text>
           </>

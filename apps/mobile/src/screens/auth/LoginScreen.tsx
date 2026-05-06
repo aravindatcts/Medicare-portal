@@ -32,11 +32,18 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
 
   const { setTokens, setUser } = useAuthStore();
 
-  const redirectUri = AuthSession.makeRedirectUri();
+  const redirectUri = AuthSession.makeRedirectUri({
+    // Using the Proxy is the most reliable way for Expo Go on Windows 
+    // to capture the redirect and return to your specific project.
+    useProxy: true,
+  });
 
   React.useEffect(() => {
     checkBiometrics();
-    console.log('Login Redirect URI:', redirectUri);
+    console.log('--- NEW PROXY REDIRECT URI ---');
+    console.log('Copy this URL to your Descope Console:');
+    console.log(redirectUri);
+    console.log('------------------------------');
   }, [redirectUri]);
 
   async function checkBiometrics() {
@@ -70,7 +77,11 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
             const { sessionJwt, refreshJwt, user } = exchangeResponse.data as any;
             
             // 4. Check if we need Subscriber ID / SSN
-            const existingSubId = user.customAttributes?.subscriberId;
+            // First check Descope, then fall back to our local persisted AuthStore for the demo
+            const { subscriberId: localSubId, ssn: localSsn } = useAuthStore.getState();
+            const existingSubId = user.customAttributes?.subscriberId || localSubId;
+            const existingSsn = user.customAttributes?.ssn || localSsn;
+
             if (!existingSubId) {
               Alert.alert(
                 'Account Incomplete',
@@ -89,8 +100,8 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
             setUser(
               user.loginIds[0], 
               user.name,
-              user.customAttributes?.subscriberId,
-              user.customAttributes?.ssn
+              existingSubId,
+              existingSsn
             );
           }
         }

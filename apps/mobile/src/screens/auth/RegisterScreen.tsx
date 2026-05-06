@@ -36,7 +36,9 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
     password: '',
   });
 
-  const redirectUri = AuthSession.makeRedirectUri();
+  const redirectUri = AuthSession.makeRedirectUri({
+    useProxy: true,
+  });
 
   useEffect(() => {
     console.log('--- UPDATED REDIRECT URI ---');
