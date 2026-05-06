@@ -11,11 +11,8 @@ import type { RootStackParamList } from './types';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function RootNavigator() {
-  // const { isAuthenticated, isHydrated } = useAuthStore();
-  const isAuthenticated = true;
-  const isHydrated = true;
+  const { isAuthenticated, isHydrated } = useAuthStore();
 
-  /* Bypassing hydration check for E2E testing
   if (!isHydrated) {
     return (
       <View style={styles.splash}>
@@ -23,20 +20,15 @@ export default function RootNavigator() {
       </View>
     );
   }
-  */
 
   return (
     <NavigationContainer linking={linking}>
       <Stack.Navigator screenOptions={{ headerShown: false, animation: 'fade' }}>
-        {/* Bypassing login for E2E testing */}
-        <Stack.Screen name="App" component={AppNavigator} />
-        {/* 
         {isAuthenticated ? (
           <Stack.Screen name="App" component={AppNavigator} />
         ) : (
           <Stack.Screen name="Auth" component={AuthNavigator} />
         )}
-        */}
       </Stack.Navigator>
     </NavigationContainer>
   );

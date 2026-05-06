@@ -24,6 +24,7 @@ export type AppStackParamList = {
 
 export type AuthStackParamList = {
   Login: undefined;
+  Register: undefined;
 };
 
 // ── Main tab navigator ───────────────────────────────────────────────────────
@@ -51,6 +52,7 @@ export type ClaimsStackParamList = {
 // ── Typed screen props ───────────────────────────────────────────────────────
 
 export type LoginScreenProps = NativeStackScreenProps<AuthStackParamList, 'Login'>;
+export type RegisterScreenProps = NativeStackScreenProps<AuthStackParamList, 'Register'>;
 
 export type DashboardScreenProps = CompositeScreenProps<
   BottomTabScreenProps<TabParamList, 'Dashboard'>,

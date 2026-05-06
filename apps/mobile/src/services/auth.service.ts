@@ -14,7 +14,10 @@ const discovery: AuthSession.DiscoveryDocument = {
 };
 
 class AuthService {
-  private redirectUri = AuthSession.makeRedirectUri({ scheme: 'aura-wellness' });
+  private redirectUri = AuthSession.makeRedirectUri({ 
+    scheme: 'medicare-portal',
+    path: 'auth'
+  });
 
   async initiateLogin(): Promise<void> {
     if (!DESCOPE_PROJECT_ID) {
@@ -29,6 +32,9 @@ class AuthService {
       redirectUri: this.redirectUri,
       scopes: ['openid', 'profile', 'email', 'offline_access'],
       usePKCE: true,
+      extraParams: {
+        flow: 'LoginFlow',
+      },
     });
 
     const result = await request.promptAsync(discovery);

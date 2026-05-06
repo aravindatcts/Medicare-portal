@@ -54,7 +54,7 @@ export default function LoginPage() {
           <p className={styles.cardSub}>Sign in or create your member account below.</p>
           <div className={styles.descopeWrap}>
             <Descope
-              flowId="sign-in"
+              flowId="LoginFlow"
               onSuccess={() => navigate('/', { replace: true })}
               onError={(e) => console.error('Auth error', e)}
             />

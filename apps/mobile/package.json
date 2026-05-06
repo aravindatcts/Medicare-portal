@@ -19,6 +19,7 @@
     "build:android:release": "detox build --configuration android.emu.release"
   },
   "dependencies": {
+    "@descope/core-js-sdk": "^2.60.0",
     "@expo/vector-icons": "^15.1.1",
     "@medicare/shared": "*",
     "@react-native-async-storage/async-storage": "^2.2.0",

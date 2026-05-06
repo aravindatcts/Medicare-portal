@@ -16,6 +16,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
+import { authService } from '../services/auth.service';
 import {
   Colors,
   FontSize,
@@ -27,6 +28,7 @@ import {
 import type { CommunicationPreference, SettingsPreferences } from '@medicare/shared';
 import EditFieldModal from '../components/settings/EditFieldModal';
 import PreferenceToggleRow from '../components/settings/PreferenceToggleRow';
+import { isBiometricsEnabled, setBiometricsEnabled } from '../utils/secureStore';
 
 type EditingField = 'address' | 'phone' | null;
 
@@ -96,6 +98,16 @@ export default function SettingsScreen() {
 
   const [editingField, setEditingField] = useState<EditingField>(null);
   const [pushEnabled, setPushEnabled] = useState(true);
+  const [biometricsEnabled, setBiometricsEnabledState] = useState(false);
+
+  useEffect(() => {
+    isBiometricsEnabled().then(setBiometricsEnabledState);
+  }, []);
+
+  async function handleToggleBiometrics(val: boolean) {
+    setBiometricsEnabledState(val);
+    await setBiometricsEnabled(val);
+  }
 
   useEffect(() => {
     if (Platform.OS !== 'android') return;
@@ -145,13 +157,13 @@ export default function SettingsScreen() {
 
   const editingValue =
     editingField === 'address' ? data?.member.address ?? ''
-    : editingField === 'phone' ? data?.member.phone ?? ''
-    : '';
+      : editingField === 'phone' ? data?.member.phone ?? ''
+        : '';
 
   const editingLabel =
     editingField === 'address' ? 'Address'
-    : editingField === 'phone' ? 'Phone Number'
-    : '';
+      : editingField === 'phone' ? 'Phone Number'
+        : '';
 
   return (
     <SafeAreaView style={styles.root}>
@@ -177,7 +189,6 @@ export default function SettingsScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-
         {/* ── Loading ─────────────────────────────────────────────────────── */}
         {isLoading && (
           <View style={styles.centeredWrap}>
@@ -297,6 +308,23 @@ export default function SettingsScreen() {
               )}
             </View>
 
+            {/* ── SECURITY ─────────────────────────────────────────────── */}
+            <SectionLabel label="SECURITY" />
+            <View style={styles.card}>
+              <View style={styles.switchRow}>
+                <View style={styles.iconBox}>
+                  <MaterialCommunityIcons name="face-recognition" size={18} color={Colors.primary} />
+                </View>
+                <Text style={styles.switchLabel}>Biometric Login</Text>
+                <Switch
+                  value={biometricsEnabled}
+                  onValueChange={handleToggleBiometrics}
+                  trackColor={{ false: Colors.surfaceContainerHigh, true: Colors.primaryContainer }}
+                  thumbColor={biometricsEnabled ? Colors.primary : Colors.outline}
+                />
+              </View>
+            </View>
+
             {/* ── NOTIFICATIONS ────────────────────────────────────────── */}
             <SectionLabel label="NOTIFICATIONS" />
             <View style={styles.card}>
@@ -369,7 +397,7 @@ export default function SettingsScreen() {
               onPress={() =>
                 Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
                   { text: 'Cancel', style: 'cancel' },
-                  { text: 'Sign Out', style: 'destructive', onPress: () => {} },
+                  { text: 'Sign Out', style: 'destructive', onPress: () => authService.logout() },
                 ])
               }
             >

@@ -7,11 +7,13 @@ interface AuthState {
   refreshToken: string | null;
   userId: string | null;
   memberName: string | null;
+  subscriberId: string | null;
+  ssn: string | null;
   isAuthenticated: boolean;
   isHydrated: boolean;
 
   setTokens: (access: string, refresh: string) => void;
-  setUser: (id: string, name: string) => void;
+  setUser: (id: string, name: string, subscriberId?: string, ssn?: string) => void;
   logout: () => void;
   setHydrated: () => void;
 }
@@ -23,13 +25,21 @@ export const useAuthStore = create<AuthState>()(
       refreshToken: null,
       userId: null,
       memberName: null,
+      subscriberId: null,
+      ssn: null,
       isAuthenticated: false,
       isHydrated: false,
 
       setTokens: (access, refresh) =>
         set({ accessToken: access, refreshToken: refresh, isAuthenticated: true }),
 
-      setUser: (id, name) => set({ userId: id, memberName: name }),
+      setUser: (id, name, subscriberId, ssn) => 
+        set({ 
+          userId: id, 
+          memberName: name, 
+          subscriberId: subscriberId || null, 
+          ssn: ssn || null 
+        }),
 
       logout: () =>
         set({
@@ -37,6 +47,8 @@ export const useAuthStore = create<AuthState>()(
           refreshToken: null,
           userId: null,
           memberName: null,
+          subscriberId: null,
+          ssn: null,
           isAuthenticated: false,
         }),
 

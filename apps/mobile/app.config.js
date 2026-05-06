@@ -5,6 +5,7 @@ module.exports = {
     name: IS_DEV ? 'Member Portal (Dev)' : 'Member Portal',
     slug: 'member-portal',
     version: '1.0.0',
+    scheme: 'medicare-portal',
     orientation: 'portrait',
     icon: './assets/icon.png',
     userInterfaceStyle: 'light',
@@ -14,6 +15,9 @@ module.exports = {
     ios: {
       supportsTablet: true,
       bundleIdentifier: 'com.anonymous.member-portal',
+      infoPlist: {
+        NSFaceIDUsageDescription: 'Allow Member Portal to use FaceID for secure login.',
+      },
     },
     android: {
       package: 'com.anonymous.memberportal',
@@ -32,6 +36,7 @@ module.exports = {
     },
     plugins: [
       'expo-secure-store',
+      'expo-local-authentication',
       'expo-web-browser',
     ],
   },

@@ -2,7 +2,7 @@ import type { LinkingOptions } from '@react-navigation/native';
 import type { RootStackParamList } from './types';
 
 export const linking: LinkingOptions<RootStackParamList> = {
-  prefixes: ['aura-wellness://', 'https://aura-wellness.app'],
+  prefixes: ['medicare-portal://', 'https://medicare-portal.app'],
   config: {
     screens: {
       App: {
