@@ -5086,11 +5086,13 @@
       "serviceDate": "Jan 12, 2024",
       "category": "Specialist Services",
       "doctor": "Dr. James Wilson, MD",
+      "doctorNpi": "1234567890",
       "address": "155 Walnut St, Philadelphia, PA 19123",
       "diagnoses": [
         {
           "code": "I10",
-          "title": "Essential (primary) hypertension"
+          "title": "Essential (primary) hypertension",
+          "subtitle": "High blood pressure with no identifiable cause"
         }
       ],
       "services": [
