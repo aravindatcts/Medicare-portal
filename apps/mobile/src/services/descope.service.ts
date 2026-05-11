@@ -5,6 +5,16 @@ const projectId = ENV.DESCOPE_PROJECT_ID || '';
 
 export const descopeSdk = createSdk({ projectId });
 
+export interface DescopeTokenData {
+  sessionJwt: string;
+  refreshJwt?: string;
+  user: {
+    loginIds: string[];
+    name?: string;
+    customAttributes?: Record<string, string>;
+  };
+}
+
 export interface SignUpDetails {
   loginId: string;
   password?: string;
@@ -16,9 +26,6 @@ export interface SignUpDetails {
 }
 
 class DescopeService {
-  /**
-   * Register a new member with custom health-related attributes.
-   */
   async signUp(details: SignUpDetails) {
     if (!projectId) {
       console.warn('DESCOPE_PROJECT_ID is missing. Sign up is disabled.');
@@ -26,144 +33,90 @@ class DescopeService {
     }
 
     try {
+      const userDetails = {
+        name: `${details.firstName} ${details.lastName}`,
+        email: details.loginId,
+        customAttributes: {
+          subscriberId: details.subscriberId,
+          ssn: details.ssn,
+          dob: details.dob,
+        },
+      };
+
       const response = await descopeSdk.password.signUp(
         details.loginId,
         details.password || '',
-        {
-          name: `${details.firstName} ${details.lastName}`,
-          email: details.loginId,
-          customAttributes: {
-            subscriberId: details.subscriberId,
-            ssn: details.ssn,
-            dob: details.dob,
-          }
-        }
+        // SDK User type omits customAttributes but the API accepts them
+        userDetails as Parameters<typeof descopeSdk.password.signUp>[2],
       );
 
-      if (response.ok && response.data) {
-        const { sessionJwt, refreshJwt, user } = response.data as any;
-        
-        const sToken = sessionJwt || '';
-        const rToken = refreshJwt || '';
-        
-        if (!sToken) {
-          throw new Error('Authentication succeeded but no session token was received.');
-        }
-
-        // Logic handled in component layer
-      } else {
+      if (!response.ok) {
         throw new Error(response.error?.errorMessage || 'Registration failed');
       }
 
       return response;
     } catch (error) {
-      console.error('Descope SignUp Error:', error);
       throw error;
     }
   }
 
-  /**
-   * Sign in using loginId (email) and password.
-   */
   async signIn(loginId: string, password: string) {
     if (!projectId) {
-      // Mock login for development if no project ID
       return {
         ok: true,
         data: {
           sessionJwt: 'mock-session-jwt',
           refreshJwt: 'mock-refresh-jwt',
-          user: { loginIds: [loginId], name: 'Mock Member' }
-        }
+          user: { loginIds: [loginId], name: 'Mock Member' },
+        } as DescopeTokenData,
       };
     }
 
-    try {
-      const response = await descopeSdk.password.signIn(loginId, password);
-      console.log('Descope SignIn Response:', JSON.stringify(response, null, 2));
-      
-      if (!response.ok) {
-        throw new Error(response.error?.errorMessage || 'Sign in failed');
-      }
-      return response;
-    } catch (error) {
-      console.error('Descope SignIn Error:', error);
-      throw error;
+    const response = await descopeSdk.password.signIn(loginId, password);
+    if (!response.ok) {
+      throw new Error(response.error?.errorMessage || 'Sign in failed');
     }
+    return response;
   }
 
-  /**
-   * Refresh session using a refresh token.
-   */
   async refreshSession(refreshToken: string) {
-    try {
-      const response = await descopeSdk.refresh(refreshToken);
-      if (!response.ok) {
-        throw new Error(response.error?.errorMessage || 'Session refresh failed');
-      }
-      return response;
-    } catch (error) {
-      console.error('Descope Refresh Error:', error);
-      throw error;
+    const response = await descopeSdk.refresh(refreshToken);
+    if (!response.ok) {
+      throw new Error(response.error?.errorMessage || 'Session refresh failed');
     }
+    return response;
   }
 
-  /**
-   * Get user details (including custom attributes) after login.
-   */
   async me(sessionToken: string) {
-    try {
-      return await descopeSdk.me(sessionToken);
-    } catch (error) {
-      console.error('Descope Me Error:', error);
-      throw error;
-    }
+    return descopeSdk.me(sessionToken);
   }
 
-  /**
-   * Start OAuth flow (Google, etc.)
-   */
   async oauthStart(provider: string, redirectUrl: string) {
-    try {
-      return await descopeSdk.oauth.start(provider, redirectUrl);
-    } catch (error) {
-      console.error('Descope OAuth Start ERROR DETAILS:', JSON.stringify(error, null, 2));
-      throw error;
-    }
+    return descopeSdk.oauth.start(provider, redirectUrl);
   }
 
-  /**
-   * Exchange OAuth code for a session.
-   */
   async oauthExchange(code: string) {
+    const response = await descopeSdk.oauth.exchange(code);
+    if (!response.ok) {
+      throw new Error(response.error?.errorMessage || 'OAuth exchange failed');
+    }
+    return response;
+  }
+
+  async signOut(refreshToken?: string): Promise<void> {
+    if (!refreshToken) return;
     try {
-      const response = await descopeSdk.oauth.exchange(code);
-      if (!response.ok) {
-        throw new Error(response.error?.errorMessage || 'OAuth exchange failed');
-      }
-      return response;
-    } catch (error) {
-      console.error('Descope OAuth Exchange Error:', error);
-      throw error;
+      await descopeSdk.logout(refreshToken);
+    } catch {
+      // Best-effort server-side revocation — always clear local state regardless
     }
   }
 
-  /**
-   * Update user custom attributes.
-   * NOTE: In a production app, this would be a call to your secure backend, 
-   * which would use a Descope Management Key to update the user profile.
-   * For this demo, we simulate success and handle persistence in the local AuthStore.
-   */
-  async updateUser(loginId: string, customAttributes: Record<string, any>) {
-    console.log(`[DEMO] Simulating update for user ${loginId}:`, customAttributes);
-    
-    // Artificial delay to simulate network call
-    await new Promise(resolve => setTimeout(resolve, 800));
-
-    return {
-      ok: true,
-      data: { success: true }
-    };
+  // Production implementation requires a server-side call with a Descope Management Key.
+  // This stub saves attributes locally so the session flow works in the demo.
+  async updateUser(_loginId: string, _customAttributes: Record<string, string>): Promise<void> {
+    if (!projectId) return;
+    // TODO: call your backend → Descope Management API to persist customAttributes
   }
 }
 

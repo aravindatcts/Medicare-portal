@@ -16,7 +16,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
-import { authService } from '../services/auth.service';
+import { descopeService } from '../services/descope.service';
 import {
   Colors,
   FontSize,
@@ -149,7 +149,13 @@ export default function SettingsScreen() {
     }
   }
 
-  const { logout } = useAuthStore();
+  const { logout, refreshToken } = useAuthStore();
+
+  async function handleSignOut() {
+    await descopeService.signOut(refreshToken ?? undefined);
+    await clearAllData();
+    logout();
+  }
 
   const handleResetData = () => {
     Alert.alert(
@@ -157,19 +163,18 @@ export default function SettingsScreen() {
       'This will clear all local tokens, biometrics, and member links. You will be logged out immediately.',
       [
         { text: 'Cancel', style: 'cancel' },
-        { 
-          text: 'Reset', 
+        {
+          text: 'Reset',
           style: 'destructive',
           onPress: async () => {
             try {
-              await clearAllData();
-              logout();
-            } catch (err) {
+              await handleSignOut();
+            } catch {
               Alert.alert('Error', 'Failed to clear data.');
             }
-          }
-        }
-      ]
+          },
+        },
+      ],
     );
   };
 
@@ -422,7 +427,7 @@ export default function SettingsScreen() {
               onPress={() =>
                 Alert.alert('Sign Out', 'Are you sure you want to sign out?', [
                   { text: 'Cancel', style: 'cancel' },
-                  { text: 'Sign Out', style: 'destructive', onPress: () => authService.logout() },
+                  { text: 'Sign Out', style: 'destructive', onPress: handleSignOut },
                 ])
               }
             >

@@ -14,7 +14,6 @@ import { PostHogProvider } from 'posthog-react-native';
 import { initSentry, initPostHog } from './src/services/analytics';
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL ?? 'http://localhost:3001';
-const DESCOPE_PROJECT_ID = process.env.EXPO_PUBLIC_DESCOPE_PROJECT_ID ?? '';
 setBaseUrl(API_URL);
 
 initSentry();

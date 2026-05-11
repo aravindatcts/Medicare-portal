@@ -16,12 +16,14 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as LocalAuthentication from 'expo-local-authentication';
 import * as WebBrowser from 'expo-web-browser';
 import * as AuthSession from 'expo-auth-session';
-import { descopeService } from '../../services/descope.service';
+import { descopeService, type DescopeTokenData } from '../../services/descope.service';
 import { useAuthStore } from '../../store/auth.store';
 import { getRefreshToken, isBiometricsEnabled, saveRefreshToken } from '../../utils/secureStore';
 import type { LoginScreenProps } from '../../navigation/types';
 
 WebBrowser.maybeCompleteAuthSession();
+
+const redirectUri = AuthSession.makeRedirectUri({ scheme: 'medicare-portal' });
 
 export default function LoginScreen({ navigation }: LoginScreenProps) {
   const [loading, setLoading] = useState(false);
@@ -30,40 +32,21 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const { setTokens, setUser } = useAuthStore();
-
-  const redirectUri = AuthSession.makeRedirectUri({
-    // Using the Proxy is the most reliable way for Expo Go on Windows 
-    // to capture the redirect and return to your specific project.
-    useProxy: true,
-  });
+  const { setTokens, setUser, subscriberId } = useAuthStore();
 
   React.useEffect(() => {
-    checkBiometrics();
-    console.log('--- NEW PROXY REDIRECT URI ---');
-    console.log('Copy this URL to your Descope Console:');
-    console.log(redirectUri);
-    console.log('------------------------------');
-  }, [redirectUri]);
-
-  async function checkBiometrics() {
-    const hasHardware = await LocalAuthentication.hasHardwareAsync();
-    // Show the button if hardware exists, even if not yet "enrolled" or "enabled"
-    // We will guide the user when they tap it.
-    setBiometricsAvailable(hasHardware);
-  }
+    LocalAuthentication.hasHardwareAsync().then(setBiometricsAvailable);
+  }, []);
 
   async function handleGoogleSSO() {
     setError(null);
     setLoading(true);
     try {
-      // 1. Get OAuth Start URL from Descope
       const response = await descopeService.oauthStart('google', redirectUri);
       if (!response.ok || !response.data?.url) {
         throw new Error(response.error?.errorMessage || 'Failed to start Google SSO');
       }
 
-      // 2. Open Auth Session
       const result = await WebBrowser.openAuthSessionAsync(response.data.url, redirectUri);
 
       if (result.type === 'success' && result.url) {
@@ -71,43 +54,30 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
         const code = url.searchParams.get('code');
 
         if (code) {
-          // 3. Exchange code for tokens
           const exchangeResponse = await descopeService.oauthExchange(code);
           if (exchangeResponse.ok && exchangeResponse.data) {
-            const { sessionJwt, refreshJwt, user } = exchangeResponse.data as any;
-            
-            // 4. Check if we need Subscriber ID / SSN
-            // First check Descope, then fall back to our local persisted AuthStore for the demo
-            const { subscriberId: localSubId, ssn: localSsn } = useAuthStore.getState();
-            const existingSubId = user.customAttributes?.subscriberId || localSubId;
-            const existingSsn = user.customAttributes?.ssn || localSsn;
+            const { sessionJwt, refreshJwt, user } = exchangeResponse.data as unknown as DescopeTokenData;
+
+            // Prefer Descope-persisted subscriber ID, fall back to locally stored one
+            const existingSubId = user.customAttributes?.subscriberId || subscriberId;
 
             if (!existingSubId) {
               Alert.alert(
                 'Account Incomplete',
                 'Please complete your registration first to link your membership.',
-                [{ text: 'Go to Register', onPress: () => navigation.navigate('Register') }]
+                [{ text: 'Go to Register', onPress: () => navigation.navigate('Register') }],
               );
               return;
             }
 
-            // Save for biometrics
-            if (refreshJwt) {
-              await saveRefreshToken(refreshJwt);
-            }
-
-            setTokens(sessionJwt, refreshJwt);
-            setUser(
-              user.loginIds[0], 
-              user.name,
-              existingSubId,
-              existingSsn
-            );
+            if (refreshJwt) await saveRefreshToken(refreshJwt);
+            setTokens(sessionJwt, refreshJwt ?? '');
+            setUser(user.loginIds[0], user.name ?? 'Member', existingSubId);
           }
         }
       }
-    } catch (e: any) {
-      setError(e.message || 'Google Sign-In failed.');
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : 'Google Sign-In failed.');
     } finally {
       setLoading(false);
     }
@@ -122,8 +92,8 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
       if (!enabled || !token) {
         Alert.alert(
           'Biometrics Not Setup',
-          'Please sign in with your email and password first, then enable Biometric Login in the Settings screen.',
-          [{ text: 'OK' }]
+          'Please sign in with your email and password first, then enable Biometric Login in Settings.',
+          [{ text: 'OK' }],
         );
         return;
       }
@@ -132,8 +102,8 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
       if (!isEnrolled) {
         Alert.alert(
           'Not Enrolled',
-          'Please set up FaceID or TouchID in your device system settings first.',
-          [{ text: 'OK' }]
+          'Please set up Face ID or Touch ID in your device settings first.',
+          [{ text: 'OK' }],
         );
         return;
       }
@@ -145,22 +115,18 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
 
       if (result.success) {
         setLoading(true);
-        if (token) {
-          const response = await descopeService.refreshSession(token);
-          if (response.ok && response.data) {
-            const { sessionJwt, refreshJwt, user } = response.data as any;
-            setTokens(sessionJwt, refreshJwt || token);
-            setUser(
-              user?.loginIds?.[0] || 'Member', 
-              user?.name || 'Member',
-              user?.customAttributes?.subscriberId,
-              user?.customAttributes?.ssn
-            );
-            // RootNavigator handles redirect
-          }
+        const response = await descopeService.refreshSession(token);
+        if (response.ok && response.data) {
+          const { sessionJwt, refreshJwt, user } = response.data as unknown as DescopeTokenData;
+          setTokens(sessionJwt, refreshJwt ?? token);
+          setUser(
+            user?.loginIds?.[0] ?? 'Member',
+            user?.name ?? 'Member',
+            user?.customAttributes?.subscriberId,
+          );
         }
       }
-    } catch (e) {
+    } catch {
       setError('Biometric authentication failed.');
     } finally {
       setLoading(false);
@@ -177,28 +143,20 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
     setError(null);
     try {
       const response = await descopeService.signIn(email, password);
-      
+
       if (response.ok && response.data) {
-        const { sessionJwt, refreshJwt, user } = response.data as any;
-        
-        const sToken = sessionJwt || '';
-        const rToken = refreshJwt || '';
-        
-        if (!sToken) {
+        const { sessionJwt, refreshJwt, user } = response.data as unknown as DescopeTokenData;
+
+        if (!sessionJwt) {
           throw new Error('Authentication succeeded but no session token was received.');
         }
 
-        // Save for biometrics
-        if (rToken) {
-          await saveRefreshToken(rToken);
-        }
-
-        setTokens(sToken, rToken);
+        if (refreshJwt) await saveRefreshToken(refreshJwt);
+        setTokens(sessionJwt, refreshJwt ?? '');
         setUser(
-          user?.loginIds?.[0] || email, 
-          user?.name || 'Member',
+          user?.loginIds?.[0] ?? email,
+          user?.name ?? 'Member',
           user?.customAttributes?.subscriberId,
-          user?.customAttributes?.ssn
         );
       } else {
         throw new Error('Invalid response from authentication service');
@@ -214,7 +172,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
     <SafeAreaView style={styles.root} testID="login-screen">
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{ flex: 1 }}
+        style={styles.keyboardView}
       >
         <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
           {/* Logo */}
@@ -231,14 +189,15 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
 
           {/* Form */}
           <View style={styles.form}>
-            {/* Google SSO Button */}
             <TouchableOpacity
               style={[styles.googleBtn, loading && styles.btnDisabled]}
               onPress={handleGoogleSSO}
               disabled={loading}
               activeOpacity={0.8}
+              accessibilityRole="button"
+              accessibilityLabel="Continue with Google"
             >
-              <MaterialCommunityIcons name="google" size={20} color="#003461" style={{ marginRight: 10 }} />
+              <MaterialCommunityIcons name="google" size={20} color="#003461" style={styles.googleIcon} />
               <Text style={styles.googleBtnText}>Continue with Google</Text>
             </TouchableOpacity>
 
@@ -257,6 +216,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
                 onChangeText={setEmail}
                 keyboardType="email-address"
                 autoCapitalize="none"
+                autoCorrect={false}
                 testID="email-input"
               />
             </View>
@@ -269,6 +229,8 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry
+                autoCapitalize="none"
+                autoCorrect={false}
                 testID="password-input"
               />
             </View>
@@ -282,10 +244,12 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
 
             <View style={styles.buttonRow}>
               <TouchableOpacity
-                style={[styles.btn, { flex: 1 }, loading && styles.btnDisabled]}
+                style={[styles.btn, styles.btnFlex, loading && styles.btnDisabled]}
                 onPress={handleSignIn}
                 disabled={loading}
                 activeOpacity={0.85}
+                accessibilityRole="button"
+                accessibilityLabel="Sign in to your account"
                 testID="login-button"
               >
                 {loading ? (
@@ -301,6 +265,8 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
                   onPress={handleBiometricAuth}
                   disabled={loading}
                   activeOpacity={0.7}
+                  accessibilityRole="button"
+                  accessibilityLabel="Sign in with biometrics"
                 >
                   <MaterialCommunityIcons name="face-recognition" size={28} color="#003461" />
                 </TouchableOpacity>
@@ -310,6 +276,8 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
             <TouchableOpacity
               style={styles.registerLink}
               onPress={() => navigation.navigate('Register')}
+              accessibilityRole="button"
+              accessibilityLabel="Register a new account"
             >
               <Text style={styles.registerText}>
                 New user? <Text style={styles.registerTextBold}>Register here</Text>
@@ -339,6 +307,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: '#f8f9fa' },
+  keyboardView: { flex: 1 },
   scroll: { paddingHorizontal: 28, paddingTop: 48, paddingBottom: 40 },
   logoRow: { flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 24 },
   brand: { fontSize: 18, fontWeight: '900', color: '#003461', letterSpacing: -0.3 },
@@ -372,6 +341,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 8,
   },
+  btnFlex: { flex: 1 },
   btnDisabled: { opacity: 0.6 },
   btnText: { color: '#fff', fontSize: 16, fontWeight: '700' },
   googleBtn: {
@@ -389,17 +359,14 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
+  googleIcon: { marginRight: 10 },
   googleBtnText: { color: '#003461', fontSize: 16, fontWeight: '700' },
   dividerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginVertical: 8,
   },
-  dividerLine: {
-    flex: 1,
-    height: 1,
-    backgroundColor: '#e1e3e4',
-  },
+  dividerLine: { flex: 1, height: 1, backgroundColor: '#e1e3e4' },
   dividerText: {
     marginHorizontal: 10,
     fontSize: 10,

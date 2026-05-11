@@ -63,3 +63,6 @@ apps/mobile/android/app/build/
 
 # Agents
 .agents/
+
+# IDE
+.vscode/
