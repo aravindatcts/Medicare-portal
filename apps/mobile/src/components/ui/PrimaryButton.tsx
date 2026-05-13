@@ -1,5 +1,12 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, ViewStyle, StyleProp } from 'react-native';
+import {
+  TouchableOpacity,
+  Text,
+  ActivityIndicator,
+  StyleSheet,
+  ViewStyle,
+  StyleProp,
+} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Colors, Radius, Spacing, FontSize, Shadows } from '@medicare/shared';
 
@@ -8,11 +15,13 @@ type MciName = React.ComponentProps<typeof MaterialCommunityIcons>['name'];
 interface PrimaryButtonProps {
   label: string;
   onPress?: () => void;
-  /** Trailing icon name from MaterialCommunityIcons */
   icon?: MciName;
-  /** solid = filled primary; outline = white + border; ghost = surface bg */
   variant?: 'solid' | 'outline' | 'ghost';
   style?: StyleProp<ViewStyle>;
+  loading?: boolean;
+  disabled?: boolean;
+  accessibilityLabel?: string;
+  testID?: string;
 }
 
 const PrimaryButton: React.FC<PrimaryButtonProps> = ({
@@ -21,17 +30,31 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   icon,
   variant = 'solid',
   style,
+  loading,
+  disabled,
+  accessibilityLabel,
+  testID,
 }) => {
   const iconColor = variant === 'solid' ? Colors.white : Colors.primary;
 
   return (
     <TouchableOpacity
-      style={[styles.base, styles[variant], style]}
+      style={[styles.base, styles[variant], (loading || disabled) && styles.disabled, style]}
       onPress={onPress}
       activeOpacity={0.8}
+      disabled={loading || disabled}
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel ?? label}
+      testID={testID}
     >
-      <Text style={[styles.label, variant !== 'solid' && styles.labelAlt]}>{label}</Text>
-      {icon && <MaterialCommunityIcons name={icon} size={18} color={iconColor} />}
+      {loading ? (
+        <ActivityIndicator size="small" color={variant === 'solid' ? Colors.white : Colors.primary} />
+      ) : (
+        <>
+          <Text style={[styles.label, variant !== 'solid' && styles.labelAlt]}>{label}</Text>
+          {icon && <MaterialCommunityIcons name={icon} size={18} color={iconColor} />}
+        </>
+      )}
     </TouchableOpacity>
   );
 };
@@ -57,6 +80,7 @@ const styles = StyleSheet.create({
   ghost: {
     backgroundColor: Colors.surfaceContainerLow,
   },
+  disabled: { opacity: 0.6 },
   label: {
     fontSize: FontSize.base,
     fontWeight: '700',

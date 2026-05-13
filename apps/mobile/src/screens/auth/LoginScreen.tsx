@@ -4,8 +4,6 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  TextInput,
-  ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -16,9 +14,12 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as LocalAuthentication from 'expo-local-authentication';
 import * as WebBrowser from 'expo-web-browser';
 import * as AuthSession from 'expo-auth-session';
+import { Colors, FontSize, Radius, Spacing } from '@medicare/shared';
 import { descopeService, type DescopeTokenData } from '../../services/descope.service';
 import { useAuthStore } from '../../store/auth.store';
 import { getRefreshToken, isBiometricsEnabled, saveRefreshToken } from '../../utils/secureStore';
+import { FormInput, SocialButton, LabeledDivider, InlineError } from '../../components/atoms';
+import PrimaryButton from '../../components/ui/PrimaryButton';
 import type { LoginScreenProps } from '../../navigation/types';
 
 WebBrowser.maybeCompleteAuthSession();
@@ -52,13 +53,10 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
       if (result.type === 'success' && result.url) {
         const url = new URL(result.url);
         const code = url.searchParams.get('code');
-
         if (code) {
           const exchangeResponse = await descopeService.oauthExchange(code);
           if (exchangeResponse.ok && exchangeResponse.data) {
             const { sessionJwt, refreshJwt, user } = exchangeResponse.data as unknown as DescopeTokenData;
-
-            // Prefer Descope-persisted subscriber ID, fall back to locally stored one
             const existingSubId = user.customAttributes?.subscriberId || subscriberId;
 
             if (!existingSubId) {
@@ -138,26 +136,16 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
       setError('Please enter both email and password.');
       return;
     }
-
     setLoading(true);
     setError(null);
     try {
       const response = await descopeService.signIn(email, password);
-
       if (response.ok && response.data) {
         const { sessionJwt, refreshJwt, user } = response.data as unknown as DescopeTokenData;
-
-        if (!sessionJwt) {
-          throw new Error('Authentication succeeded but no session token was received.');
-        }
-
+        if (!sessionJwt) throw new Error('No session token received.');
         if (refreshJwt) await saveRefreshToken(refreshJwt);
         setTokens(sessionJwt, refreshJwt ?? '');
-        setUser(
-          user?.loginIds?.[0] ?? email,
-          user?.name ?? 'Member',
-          user?.customAttributes?.subscriberId,
-        );
+        setUser(user?.loginIds?.[0] ?? email, user?.name ?? 'Member', user?.customAttributes?.subscriberId);
       } else {
         throw new Error('Invalid response from authentication service');
       }
@@ -170,14 +158,11 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
 
   return (
     <SafeAreaView style={styles.root} testID="login-screen">
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.keyboardView}
-      >
+      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.keyboardView}>
         <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-          {/* Logo */}
+
           <View style={styles.logoRow}>
-            <MaterialCommunityIcons name="shield-check" size={48} color="#003461" />
+            <MaterialCommunityIcons name="shield-check" size={48} color={Colors.primary} />
             <Text style={styles.brand}>AmeriHealth Caritas</Text>
           </View>
 
@@ -187,77 +172,45 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
             and manage your prescriptions.
           </Text>
 
-          {/* Form */}
           <View style={styles.form}>
-            <TouchableOpacity
-              style={[styles.googleBtn, loading && styles.btnDisabled]}
-              onPress={handleGoogleSSO}
-              disabled={loading}
-              activeOpacity={0.8}
-              accessibilityRole="button"
-              accessibilityLabel="Continue with Google"
-            >
-              <MaterialCommunityIcons name="google" size={20} color="#003461" style={styles.googleIcon} />
-              <Text style={styles.googleBtnText}>Continue with Google</Text>
-            </TouchableOpacity>
+            <SocialButton provider="google" onPress={handleGoogleSSO} loading={loading} />
 
-            <View style={styles.dividerContainer}>
-              <View style={styles.dividerLine} />
-              <Text style={styles.dividerText}>OR SIGN IN WITH EMAIL</Text>
-              <View style={styles.dividerLine} />
-            </View>
+            <LabeledDivider label="OR SIGN IN WITH EMAIL" />
 
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>Email Address</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="john.doe@example.com"
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
-                autoCapitalize="none"
-                autoCorrect={false}
-                testID="email-input"
-              />
-            </View>
+            <FormInput
+              label="Email Address"
+              value={email}
+              onChangeText={setEmail}
+              placeholder="john.doe@example.com"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+              testID="email-input"
+            />
 
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>Password</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="••••••••"
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry
-                autoCapitalize="none"
-                autoCorrect={false}
-                testID="password-input"
-              />
-            </View>
+            <FormInput
+              label="Password"
+              value={password}
+              onChangeText={setPassword}
+              placeholder="••••••••"
+              secureTextEntry
+              autoCapitalize="none"
+              autoCorrect={false}
+              testID="password-input"
+            />
 
-            {error && (
-              <View style={styles.errorBox}>
-                <MaterialCommunityIcons name="alert-circle-outline" size={16} color="#ba1a1a" />
-                <Text style={styles.errorText}>{error}</Text>
-              </View>
-            )}
+            <InlineError message={error} />
 
             <View style={styles.buttonRow}>
-              <TouchableOpacity
-                style={[styles.btn, styles.btnFlex, loading && styles.btnDisabled]}
+              <PrimaryButton
+                label="Sign In"
                 onPress={handleSignIn}
+                loading={loading}
                 disabled={loading}
-                activeOpacity={0.85}
-                accessibilityRole="button"
                 accessibilityLabel="Sign in to your account"
                 testID="login-button"
-              >
-                {loading ? (
-                  <ActivityIndicator color="#fff" size="small" />
-                ) : (
-                  <Text style={styles.btnText}>Sign In</Text>
-                )}
-              </TouchableOpacity>
+                style={styles.btnFlex}
+              />
 
               {biometricsAvailable && (
                 <TouchableOpacity
@@ -268,7 +221,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
                   accessibilityRole="button"
                   accessibilityLabel="Sign in with biometrics"
                 >
-                  <MaterialCommunityIcons name="face-recognition" size={28} color="#003461" />
+                  <MaterialCommunityIcons name="face-recognition" size={28} color={Colors.primary} />
                 </TouchableOpacity>
               )}
             </View>
@@ -285,18 +238,18 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
             </TouchableOpacity>
           </View>
 
-          {/* Trust badges */}
           <View style={styles.trustGrid}>
             {[
               { icon: 'lock-outline', label: 'HIPAA-compliant' },
               { icon: 'two-factor-authentication', label: 'Two-factor auth' },
             ].map(({ icon, label }) => (
               <View key={label} style={styles.trustItem}>
-                <MaterialCommunityIcons name={icon as any} size={14} color="#00658d" />
+                <MaterialCommunityIcons name={icon as any} size={14} color={Colors.secondary} />
                 <Text style={styles.trustLabel}>{label}</Text>
               </View>
             ))}
           </View>
+
         </ScrollView>
       </KeyboardAvoidingView>
 
@@ -306,100 +259,41 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: '#f8f9fa' },
+  root: { flex: 1, backgroundColor: Colors.background },
   keyboardView: { flex: 1 },
-  scroll: { paddingHorizontal: 28, paddingTop: 48, paddingBottom: 40 },
-  logoRow: { flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 24 },
-  brand: { fontSize: 18, fontWeight: '900', color: '#003461', letterSpacing: -0.3 },
-  heading: { fontSize: 34, fontWeight: '900', color: '#003461', lineHeight: 40, marginBottom: 12 },
-  subtext: { fontSize: 15, color: '#424750', lineHeight: 22, marginBottom: 32 },
-  form: { gap: 20 },
-  inputGroup: { gap: 8 },
-  label: { fontSize: 14, fontWeight: '700', color: '#003461' },
-  input: {
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#e1e3e4',
-    borderRadius: 12,
-    padding: 16,
-    fontSize: 16,
-    color: '#1a1c1e',
-  },
-  errorBox: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    backgroundColor: '#ffdad6',
-    padding: 12,
-    borderRadius: 8,
-  },
-  errorText: { fontSize: 13, color: '#ba1a1a', flex: 1 },
-  btn: {
-    backgroundColor: '#003461',
-    borderRadius: 12,
-    paddingVertical: 16,
-    alignItems: 'center',
-    marginTop: 8,
-  },
+  scroll: { paddingHorizontal: Spacing.lg + 4, paddingTop: Spacing.xxl, paddingBottom: Spacing.xl },
+  logoRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.sm + 4, marginBottom: Spacing.lg },
+  brand: { fontSize: FontSize.lg, fontWeight: '900', color: Colors.primary, letterSpacing: -0.3 },
+  heading: { fontSize: FontSize.display, fontWeight: '900', color: Colors.primary, lineHeight: 40, marginBottom: Spacing.sm + 4 },
+  subtext: { fontSize: FontSize.base, color: Colors.onSurfaceVariant, lineHeight: 22, marginBottom: Spacing.xl },
+  form: { gap: Spacing.lg + 4 },
+  buttonRow: { flexDirection: 'row', gap: Spacing.sm + 4, marginTop: Spacing.sm },
   btnFlex: { flex: 1 },
-  btnDisabled: { opacity: 0.6 },
-  btnText: { color: '#fff', fontSize: 16, fontWeight: '700' },
-  googleBtn: {
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#e1e3e4',
-    borderRadius: 12,
-    paddingVertical: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  googleIcon: { marginRight: 10 },
-  googleBtnText: { color: '#003461', fontSize: 16, fontWeight: '700' },
-  dividerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 8,
-  },
-  dividerLine: { flex: 1, height: 1, backgroundColor: '#e1e3e4' },
-  dividerText: {
-    marginHorizontal: 10,
-    fontSize: 10,
-    fontWeight: '800',
-    color: '#98a2b3',
-    letterSpacing: 1.5,
-  },
-  buttonRow: { flexDirection: 'row', gap: 12, marginTop: 8 },
   biometricBtn: {
     width: 56,
     height: 56,
-    borderRadius: 12,
+    borderRadius: Radius.md,
     borderWidth: 1,
-    borderColor: '#003461',
+    borderColor: Colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: Colors.surfaceContainerLowest,
   },
-  registerLink: { alignItems: 'center', marginTop: 8 },
-  registerText: { fontSize: 14, color: '#424750' },
-  registerTextBold: { color: '#003461', fontWeight: '700' },
-  trustGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginTop: 40 },
+  registerLink: { alignItems: 'center', marginTop: Spacing.sm },
+  registerText: { fontSize: FontSize.sm, color: Colors.onSurfaceVariant },
+  registerTextBold: { color: Colors.primary, fontWeight: '700' },
+  trustGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.sm + 2, marginTop: Spacing.xl + Spacing.md },
   trustItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
-    backgroundColor: '#fff',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 20,
+    gap: Spacing.sm - 2,
+    backgroundColor: Colors.surfaceContainerLowest,
+    paddingHorizontal: Spacing.sm + 4,
+    paddingVertical: Spacing.sm,
+    borderRadius: Radius.full,
     borderWidth: 1,
-    borderColor: '#e1e3e4',
+    borderColor: Colors.surfaceContainerHighest,
   },
-  trustLabel: { fontSize: 11, fontWeight: '600', color: '#424750' },
-  footer: { textAlign: 'center', color: '#727781', fontSize: 13, paddingBottom: 24 },
+  trustLabel: { fontSize: FontSize.xs, fontWeight: '600', color: Colors.onSurfaceVariant },
+  footer: { textAlign: 'center', color: Colors.outline, fontSize: FontSize.sm, paddingBottom: Spacing.lg },
 });

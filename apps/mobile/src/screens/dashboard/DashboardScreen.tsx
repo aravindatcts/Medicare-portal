@@ -10,17 +10,9 @@ import { useNavigation } from '@react-navigation/native';
 import type { CompositeNavigationProp } from '@react-navigation/native';
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import {
-  WelcomeSection,
-  AiConcierge,
-  NextBestAction,
-  DigitalIdCard,
-  QuickActions,
-  PrimaryCare,
-  PlanInformation,
-} from '../../components/dashboard';
+import { useCmsPage, useMember } from '@medicare/shared';
+import { CmsRenderer } from '../../cms/CmsRenderer';
 import TopBar from '../../components/TopBar';
-import flags from '../../config/featureFlags';
 import type { TabParamList, AppStackParamList } from '../../navigation/types';
 import type { DashboardScreenProps } from '../../navigation/types';
 
@@ -32,6 +24,9 @@ type DashboardNavProp = CompositeNavigationProp<
 export default function DashboardScreen(_props: DashboardScreenProps) {
   const navigation = useNavigation<DashboardNavProp>();
   const insets = useSafeAreaInsets();
+
+  const { data: cmsPage } = useCmsPage('dashboard');
+  const { data: member, isLoading: memberLoading } = useMember();
 
   function navigateToTab(tab: keyof TabParamList) {
     navigation.navigate(tab as any);
@@ -49,20 +44,21 @@ export default function DashboardScreen(_props: DashboardScreenProps) {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        <WelcomeSection />
-        {flags.AI_CONCIERGE && <AiConcierge />}
-        <NextBestAction />
-        <PlanInformation onNavigate={() => navigateToTab('Benefits')} />
-        <PrimaryCare onNavigate={() => navigateToTab('FindCare')} />
-        <DigitalIdCard />
-        <QuickActions onNavigate={(route) => {
-          if (route === 'find-care' || route === 'find-doctor') navigateToTab('FindCare');
-          else if (route === 'rx' || route === 'refill-rx') navigateToTab('Prescriptions');
-          else if (route === 'benefits') navigateToTab('Benefits');
-          else if (route === 'history') navigation.navigate('History');
-          else if (route === 'claims') navigateToTab('Claims');
-        }} />
-        <View style={{ height: 32 }} />
+        <CmsRenderer 
+          blocks={cmsPage?.blocks || []} 
+          context={{ 
+            member, 
+            memberLoading,
+            onNavigate: (route: string) => {
+              if (route === 'find-care' || route === 'find-doctor') navigateToTab('FindCare');
+              else if (route === 'rx' || route === 'refill-rx') navigateToTab('Prescriptions');
+              else if (route === 'benefits') navigateToTab('Benefits');
+              else if (route === 'history') navigation.navigate('History' as any);
+              else if (route === 'claims') navigateToTab('Claims');
+            }
+          }} 
+        />
+<View style={{ height: 32 }} />
       </ScrollView>
     </View>
   );

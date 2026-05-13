@@ -1,145 +1,18 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Colors, useBenefits, useMember } from '@medicare/shared';
-import type { BenefitBreakdownItem, CostItem } from '@medicare/shared';
+import { Colors, useBenefits, useMember, useCmsPage } from '@medicare/shared';
 import LoadingSkeleton from '../components/LoadingSkeleton';
-
-
-function HeroCoverageCard({ planName, memberId }: { planName: string; memberId: string }) {
-  return (
-    <LinearGradient
-      colors={[Colors.primaryContainer, Colors.primary]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-      style={styles.heroCard}
-    >
-      {/* Glassmorphism decoration circle */}
-      <View style={styles.heroDecorCircle} />
-
-      {/* Active Coverage badge */}
-      <View style={styles.activeBadge}>
-        <MaterialCommunityIcons name="shield-check" size={12} color={Colors.primary} />
-        <Text style={styles.activeBadgeText}>Active Coverage</Text>
-      </View>
-
-      <Text style={styles.heroPlanName}>{planName}</Text>
-      <Text style={styles.heroMemberId}>Member ID: {memberId}</Text>
-
-      <TouchableOpacity style={styles.heroButton}>
-        <MaterialCommunityIcons name="card-account-details-outline" size={16} color={Colors.white} />
-        <Text style={styles.heroButtonText}>View Digital ID Card</Text>
-      </TouchableOpacity>
-    </LinearGradient>
-  );
-}
-
-function CostCard({ item }: { item: CostItem }) {
-  const pct = Math.min(item.spent / item.total, 1);
-  const pctLabel = Math.round(pct * 100);
-
-  return (
-    <View style={styles.costCard}>
-      <View style={styles.costHeader}>
-        <Text style={styles.costLabel}>{item.label}</Text>
-        <Text style={styles.costPct}>{pctLabel}%</Text>
-      </View>
-      <View style={styles.progressTrack}>
-        <View style={[styles.progressFill, { width: `${pctLabel}%` }]} />
-      </View>
-      <View style={styles.costAmounts}>
-        <Text style={styles.costSpent}>${item.spent.toLocaleString()} spent</Text>
-        <Text style={styles.costTotal}>of ${item.total.toLocaleString()}</Text>
-      </View>
-    </View>
-  );
-}
-
-function BreakdownCard({ item }: { item: BenefitBreakdownItem }) {
-  if (item.featured) {
-    return (
-      <View style={styles.featuredCard}>
-        <View style={styles.featuredAccent} />
-        <View style={styles.featuredContent}>
-          <View style={styles.breakdownIconRow}>
-            <View style={styles.iconBadge}>
-              <MaterialCommunityIcons
-                name={item.icon as any}
-                size={20}
-                color={Colors.secondary}
-              />
-            </View>
-            <View>
-              <Text style={styles.breakdownTitle}>{item.title}</Text>
-              <Text style={styles.breakdownSubtitle}>{item.subtitle}</Text>
-            </View>
-          </View>
-          <View style={styles.lineItemsContainer}>
-            {item.lineItems.map((li, idx) => (
-              <View key={idx} style={styles.lineItem}>
-                <Text style={styles.lineItemLabel}>{li.label}</Text>
-                <Text style={styles.lineItemValue}>{li.value}</Text>
-              </View>
-            ))}
-          </View>
-        </View>
-      </View>
-    );
-  }
-
-  return (
-    <View style={styles.compactCard}>
-      <View style={styles.iconBadgeSmall}>
-        <MaterialCommunityIcons name={item.icon as any} size={18} color={Colors.secondary} />
-      </View>
-      <View style={styles.compactCardBody}>
-        <Text style={styles.breakdownTitle}>{item.title}</Text>
-        <Text style={styles.breakdownSubtitle}>{item.subtitle}</Text>
-        {item.lineItems.map((li, idx) => (
-          <View key={idx} style={styles.lineItemCompact}>
-            <Text style={styles.lineItemLabelSm}>{li.label}</Text>
-            <Text style={styles.lineItemValueSm}>{li.value}</Text>
-          </View>
-        ))}
-      </View>
-    </View>
-  );
-}
-
-function WellnessCard({ imageUrl, title, body }: { imageUrl: string; title: string; body: string }) {
-  return (
-    <View style={styles.wellnessCard}>
-      <Image source={{ uri: imageUrl }} style={styles.wellnessImage} resizeMode="cover" />
-      <LinearGradient
-        colors={['transparent', 'rgba(0,52,97,0.85)']}
-        style={styles.wellnessOverlay}
-      >
-        <Text style={styles.wellnessTitle}>{title}</Text>
-        <Text style={styles.wellnessBody}>{body}</Text>
-        <TouchableOpacity style={styles.wellnessButton}>
-          <Text style={styles.wellnessButtonText}>Get Started</Text>
-          <MaterialCommunityIcons name="arrow-right" size={16} color={Colors.white} />
-        </TouchableOpacity>
-      </LinearGradient>
-    </View>
-  );
-}
-
 import TopBar from '../components/TopBar';
+import { CmsRenderer } from '../cms/CmsRenderer';
 
 const BenefitsScreen: React.FC = () => {
   const insets = useSafeAreaInsets();
-  const { data: benefits, isLoading } = useBenefits();
-  const { data: member } = useMember();
+  const { data: benefits, isLoading: benefitsLoading } = useBenefits();
+  const { data: member, isLoading: memberLoading } = useMember();
+  const { data: cmsPage, isLoading: cmsLoading } = useCmsPage('benefits');
+  
+  const isLoading = benefitsLoading || memberLoading || cmsLoading;
 
   if (isLoading || !benefits) {
     return (
@@ -153,16 +26,10 @@ const BenefitsScreen: React.FC = () => {
           <LoadingSkeleton style={{ height: 180, borderRadius: 20, borderTopRightRadius: 48, borderBottomLeftRadius: 48, marginBottom: 20 }} />
           <LoadingSkeleton style={{ width: 140, height: 24, marginBottom: 12, borderRadius: 4 }} />
           <LoadingSkeleton style={{ height: 110, borderRadius: 16, marginBottom: 10, borderTopRightRadius: 28 }} />
-          <LoadingSkeleton style={{ height: 110, borderRadius: 16, marginBottom: 20, borderTopRightRadius: 28 }} />
-          <LoadingSkeleton style={{ width: 160, height: 24, marginBottom: 12, borderRadius: 4 }} />
-          <LoadingSkeleton style={{ height: 140, borderRadius: 16, marginBottom: 10, borderTopRightRadius: 32 }} />
         </View>
       </View>
     );
   }
-
-  const featured = benefits.breakdown.find(b => b.featured);
-  const compact = benefits.breakdown.filter(b => !b.featured);
 
   return (
     <View style={[styles.root, { paddingTop: insets.top }]} testID="benefits-screen">
@@ -176,40 +43,16 @@ const BenefitsScreen: React.FC = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        {/* Hero Coverage Card */}
-      <HeroCoverageCard
-        planName={benefits.planName}
-        memberId={member ? `AH-${member.memberId.replace(/\s/g, '').slice(0, 6)}-01` : benefits.memberId}
-      />
-
-      {/* Know Your Costs */}
-      <Text style={styles.sectionTitle}>Know Your Costs</Text>
-      {benefits.costs.map((c, i) => (
-        <CostCard key={i} item={c} />
-      ))}
-
-      {/* Benefits Breakdown */}
-      <Text style={styles.sectionTitle}>Benefits Breakdown</Text>
-      {featured && <BreakdownCard item={featured} />}
-      <View style={styles.compactGrid}>
-        {compact.map(item => (
-          <BreakdownCard key={item.id} item={item} />
-        ))}
-      </View>
-
-      {/* Wellness Rewards */}
-      <Text style={styles.sectionTitle}>Wellness Rewards</Text>
-      <WellnessCard
-        imageUrl={benefits.wellness.imageUrl}
-        title={benefits.wellness.title}
-        body={benefits.wellness.body}
-      />
-
-      <View style={{ height: 24 }} />
+        <CmsRenderer 
+          blocks={cmsPage?.blocks || []} 
+          context={{ member, benefits }} 
+        />
+        <View style={{ height: 24 }} />
       </ScrollView>
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: Colors.background },

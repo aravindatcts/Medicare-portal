@@ -173,7 +173,7 @@ export function setBaseUrl(url: string) {
   _baseUrl = url;
 }
 
-async function fetchJson<S extends z.ZodTypeAny>(path: string, schema: S): Promise<z.infer<S>> {
+export async function fetchJson<S extends z.ZodTypeAny>(path: string, schema: S): Promise<z.infer<S>> {
   let data: unknown;
 
   if (_axiosClient) {

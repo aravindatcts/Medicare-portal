@@ -5,8 +5,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-  TextInput,
-  ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
   Alert,
@@ -15,9 +13,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import * as AuthSession from 'expo-auth-session';
+import { Colors, FontSize, Spacing } from '@medicare/shared';
 import { descopeService, type DescopeTokenData } from '../../services/descope.service';
 import { useAuthStore } from '../../store/auth.store';
 import { saveRefreshToken } from '../../utils/secureStore';
+import { FormInput, SocialButton, LabeledDivider } from '../../components/atoms';
+import PrimaryButton from '../../components/ui/PrimaryButton';
 import type { RegisterScreenProps } from '../../navigation/types';
 
 WebBrowser.maybeCompleteAuthSession();
@@ -57,11 +58,9 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
       }
 
       const result = await WebBrowser.openAuthSessionAsync(response.data.url, redirectUri);
-
       if (result.type === 'success' && result.url) {
         const url = new URL(result.url);
         const code = url.searchParams.get('code');
-
         if (code) {
           const exchangeResponse = await descopeService.oauthExchange(code);
           if (exchangeResponse.ok && exchangeResponse.data) {
@@ -90,7 +89,6 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
       Alert.alert('Required Fields', 'Please fill in Email, Password, and Subscriber ID.');
       return;
     }
-
     setLoading(true);
     try {
       await descopeService.signUp({
@@ -102,7 +100,6 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
         ssn: form.ssn,
         dob: form.dob,
       });
-
       Alert.alert(
         'Registration Successful',
         'Your account has been created. You can now sign in.',
@@ -120,20 +117,17 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
       Alert.alert('Required Fields', 'Please provide both Subscriber ID and SSN.');
       return;
     }
-
     if (!oauthData) {
       Alert.alert('Error', 'Session expired. Please try signing in with Google again.');
       setStep('sso');
       return;
     }
-
     setLoading(true);
     try {
       await descopeService.updateUser(oauthData.user.loginIds[0], {
         subscriberId: form.subscriberId,
         ssn: form.ssn,
       });
-
       if (oauthData.refreshJwt) await saveRefreshToken(oauthData.refreshJwt);
       setTokens(oauthData.sessionJwt, oauthData.refreshJwt ?? '');
       setUser(oauthData.user.loginIds[0], oauthData.user.name ?? 'Member', form.subscriberId);
@@ -147,12 +141,9 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
 
   return (
     <SafeAreaView style={styles.root}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.keyboardView}
-      >
+      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.keyboardView}>
         <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-          {/* Header */}
+
           <View style={styles.header}>
             <TouchableOpacity
               onPress={() => navigation.goBack()}
@@ -160,7 +151,7 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
               accessibilityRole="button"
               accessibilityLabel="Go back"
             >
-              <MaterialCommunityIcons name="arrow-left" size={24} color="#003461" />
+              <MaterialCommunityIcons name="arrow-left" size={24} color={Colors.primary} />
             </TouchableOpacity>
             <Text style={styles.title}>
               {step === 'sso' ? 'Create Account' : 'Verify Membership'}
@@ -174,117 +165,86 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
 
           {step === 'sso' ? (
             <View style={styles.form}>
-              <TouchableOpacity
-                style={[styles.googleBtn, loading && styles.btnDisabled]}
-                onPress={handleGoogleSSO}
-                disabled={loading}
-                accessibilityRole="button"
-                accessibilityLabel="Continue with Google"
-              >
-                <MaterialCommunityIcons name="google" size={20} color="#003461" style={styles.googleIcon} />
-                <Text style={styles.googleBtnText}>Continue with Google</Text>
-              </TouchableOpacity>
+              <SocialButton provider="google" onPress={handleGoogleSSO} loading={loading} />
 
-              <View style={styles.dividerContainer}>
-                <View style={styles.dividerLine} />
-                <Text style={styles.dividerText}>OR REGISTER MANUALLY</Text>
-                <View style={styles.dividerLine} />
-              </View>
+              <LabeledDivider label="OR REGISTER MANUALLY" />
 
               <View style={styles.row}>
-                <View style={[styles.inputGroup, styles.flex]}>
-                  <Text style={styles.label}>First Name</Text>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="John"
+                <View style={styles.flex}>
+                  <FormInput
+                    label="First Name"
                     value={form.firstName}
                     onChangeText={v => updateForm('firstName', v)}
+                    placeholder="John"
                   />
                 </View>
-                <View style={[styles.inputGroup, styles.flex]}>
-                  <Text style={styles.label}>Last Name</Text>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Doe"
+                <View style={styles.flex}>
+                  <FormInput
+                    label="Last Name"
                     value={form.lastName}
                     onChangeText={v => updateForm('lastName', v)}
+                    placeholder="Doe"
                   />
                 </View>
               </View>
 
-              <View style={styles.inputGroup}>
-                <Text style={styles.label}>Subscriber ID</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="123456789"
-                  value={form.subscriberId}
-                  onChangeText={v => updateForm('subscriberId', v)}
-                  keyboardType="numeric"
-                />
-              </View>
+              <FormInput
+                label="Subscriber ID"
+                value={form.subscriberId}
+                onChangeText={v => updateForm('subscriberId', v)}
+                placeholder="123456789"
+                keyboardType="numeric"
+              />
 
               <View style={styles.row}>
-                <View style={[styles.inputGroup, styles.flex]}>
-                  <Text style={styles.label}>SSN (Last 4)</Text>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="1234"
+                <View style={styles.flex}>
+                  <FormInput
+                    label="SSN (Last 4)"
                     value={form.ssn}
                     onChangeText={v => updateForm('ssn', v)}
+                    placeholder="1234"
                     keyboardType="numeric"
                     maxLength={4}
                   />
                 </View>
-                <View style={[styles.inputGroup, styles.flex]}>
-                  <Text style={styles.label}>Date of Birth</Text>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="MM/DD/YYYY"
+                <View style={styles.flex}>
+                  <FormInput
+                    label="Date of Birth"
                     value={form.dob}
                     onChangeText={v => updateForm('dob', v)}
+                    placeholder="MM/DD/YYYY"
                   />
                 </View>
               </View>
 
-              <View style={styles.inputGroup}>
-                <Text style={styles.label}>Email Address</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="john.doe@example.com"
-                  value={form.email}
-                  onChangeText={v => updateForm('email', v)}
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                />
-              </View>
+              <FormInput
+                label="Email Address"
+                value={form.email}
+                onChangeText={v => updateForm('email', v)}
+                placeholder="john.doe@example.com"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+              />
 
-              <View style={styles.inputGroup}>
-                <Text style={styles.label}>Password</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="••••••••"
-                  value={form.password}
-                  onChangeText={v => updateForm('password', v)}
-                  secureTextEntry
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                />
-              </View>
+              <FormInput
+                label="Password"
+                value={form.password}
+                onChangeText={v => updateForm('password', v)}
+                placeholder="••••••••"
+                secureTextEntry
+                autoCapitalize="none"
+                autoCorrect={false}
+              />
 
-              <TouchableOpacity
-                style={[styles.submitBtn, loading && styles.btnDisabled]}
+              <PrimaryButton
+                label="Register Account"
                 onPress={handleManualRegister}
+                loading={loading}
                 disabled={loading}
-                accessibilityRole="button"
                 accessibilityLabel="Register account"
-              >
-                {loading ? (
-                  <ActivityIndicator color="#fff" />
-                ) : (
-                  <Text style={styles.submitBtnText}>Register Account</Text>
-                )}
-              </TouchableOpacity>
+                style={styles.submitBtn}
+              />
 
               <TouchableOpacity
                 style={styles.loginLink}
@@ -299,44 +259,32 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
             </View>
           ) : (
             <View style={styles.form}>
-              <View style={styles.inputGroup}>
-                <Text style={styles.label}>Subscriber ID</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="123456789"
-                  value={form.subscriberId}
-                  onChangeText={v => updateForm('subscriberId', v)}
-                  keyboardType="numeric"
-                />
-              </View>
-
-              <View style={styles.inputGroup}>
-                <Text style={styles.label}>SSN (Last 4)</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="1234"
-                  value={form.ssn}
-                  onChangeText={v => updateForm('ssn', v)}
-                  keyboardType="numeric"
-                  maxLength={4}
-                />
-              </View>
-
-              <TouchableOpacity
-                style={[styles.submitBtn, loading && styles.btnDisabled]}
+              <FormInput
+                label="Subscriber ID"
+                value={form.subscriberId}
+                onChangeText={v => updateForm('subscriberId', v)}
+                placeholder="123456789"
+                keyboardType="numeric"
+              />
+              <FormInput
+                label="SSN (Last 4)"
+                value={form.ssn}
+                onChangeText={v => updateForm('ssn', v)}
+                placeholder="1234"
+                keyboardType="numeric"
+                maxLength={4}
+              />
+              <PrimaryButton
+                label="Complete Registration"
                 onPress={handleSaveAttributes}
+                loading={loading}
                 disabled={loading}
-                accessibilityRole="button"
                 accessibilityLabel="Complete registration"
-              >
-                {loading ? (
-                  <ActivityIndicator color="#fff" />
-                ) : (
-                  <Text style={styles.submitBtnText}>Complete Registration</Text>
-                )}
-              </TouchableOpacity>
+                style={styles.submitBtn}
+              />
             </View>
           )}
+
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -344,63 +292,18 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: '#f8f9fa' },
+  root: { flex: 1, backgroundColor: Colors.background },
   keyboardView: { flex: 1 },
   flex: { flex: 1 },
-  scroll: { padding: 24, paddingBottom: 60 },
-  header: { marginBottom: 32 },
-  backBtn: { marginBottom: 16, width: 40, height: 40, justifyContent: 'center' },
-  title: { fontSize: 28, fontWeight: '800', color: '#003461', marginBottom: 8 },
-  subtitle: { fontSize: 16, color: '#424750', lineHeight: 22 },
-  form: { gap: 16 },
-  row: { flexDirection: 'row', gap: 12 },
-  inputGroup: { gap: 8 },
-  label: { fontSize: 14, fontWeight: '700', color: '#003461' },
-  input: {
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#e1e3e4',
-    borderRadius: 12,
-    padding: 14,
-    fontSize: 16,
-    color: '#1a1c1e',
-  },
-  submitBtn: {
-    backgroundColor: '#003461',
-    borderRadius: 12,
-    paddingVertical: 16,
-    alignItems: 'center',
-    marginTop: 12,
-  },
-  googleBtn: {
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#e1e3e4',
-    borderRadius: 12,
-    paddingVertical: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  googleIcon: { marginRight: 10 },
-  googleBtnText: { color: '#003461', fontSize: 16, fontWeight: '700' },
-  submitBtnText: { color: '#fff', fontSize: 16, fontWeight: '700' },
-  btnDisabled: { opacity: 0.6 },
-  dividerContainer: { flexDirection: 'row', alignItems: 'center', marginVertical: 16 },
-  dividerLine: { flex: 1, height: 1, backgroundColor: '#e1e3e4' },
-  dividerText: {
-    marginHorizontal: 10,
-    fontSize: 12,
-    fontWeight: '700',
-    color: '#98a2b3',
-    letterSpacing: 1,
-  },
-  loginLink: { marginTop: 16, alignItems: 'center' },
-  loginLinkText: { fontSize: 14, color: '#424750' },
-  loginLinkBold: { color: '#003461', fontWeight: '700' },
+  scroll: { padding: Spacing.lg, paddingBottom: Spacing.xl + Spacing.md },
+  header: { marginBottom: Spacing.xl },
+  backBtn: { marginBottom: Spacing.md, width: 40, height: 40, justifyContent: 'center' },
+  title: { fontSize: FontSize.xxl, fontWeight: '800', color: Colors.primary, marginBottom: Spacing.sm },
+  subtitle: { fontSize: FontSize.md, color: Colors.onSurfaceVariant, lineHeight: 22 },
+  form: { gap: Spacing.md },
+  row: { flexDirection: 'row', gap: Spacing.sm + 4 },
+  submitBtn: { marginTop: Spacing.sm + 4 },
+  loginLink: { marginTop: Spacing.md, alignItems: 'center' },
+  loginLinkText: { fontSize: FontSize.sm, color: Colors.onSurfaceVariant },
+  loginLinkBold: { color: Colors.primary, fontWeight: '700' },
 });

@@ -26,6 +26,12 @@ app.get('/hero', (_req, res) => {
   res.json(getDb().hero);
 });
 
+app.get('/cms/pages/:id', (req, res) => {
+  const page = getDb().cmsPages?.find((p: any) => p.id === req.params.id);
+  if (!page) return res.status(404).json({ error: 'Page not found' });
+  res.json(page);
+});
+
 app.get('/member', (_req, res) => {
   res.json(getDb().member);
 });

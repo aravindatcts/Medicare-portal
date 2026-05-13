@@ -18,6 +18,7 @@ export type AppStackParamList = {
   Settings: undefined;
   History: undefined;
   CaribearChat: undefined;
+  Hra: undefined;
 };
 
 // ── Auth stack ───────────────────────────────────────────────────────────────

@@ -21,6 +21,8 @@ const Claims         = lazy(() => import('./pages/Claims.tsx'))
 const ClaimDetails   = lazy(() => import('./pages/ClaimDetails.tsx'))
 const SubmitClaim    = lazy(() => import('./pages/SubmitClaim.tsx'))
 const ProviderDetail = lazy(() => import('./pages/ProviderDetail.tsx'))
+const Hra            = lazy(() => import('./pages/Hra.tsx'))
+const Settings       = lazy(() => import('./pages/Settings.tsx'))
 
 const queryClient = new QueryClient()
 
@@ -57,6 +59,8 @@ createRoot(document.getElementById('root')!).render(
               <Route path="claims" element={<Page><Claims /></Page>} />
               <Route path="claims/:id" element={<Page><ClaimDetails /></Page>} />
               <Route path="claims/submit" element={<Page><SubmitClaim /></Page>} />
+              <Route path="hra" element={<Page><Hra /></Page>} />
+              <Route path="settings" element={<Page><Settings /></Page>} />
             </Route>
           </Routes>
         </BrowserRouter>

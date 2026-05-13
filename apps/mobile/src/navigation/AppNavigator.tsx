@@ -13,6 +13,7 @@ import NotificationsScreen from '../screens/NotificationsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import MedicalHistoryScreen from '../screens/history/MedicalHistoryScreen';
 import CaribearChatScreen from '../screens/CaribearChatScreen';
+import HraScreen from '../screens/HraScreen';
 import BottomNav from '../components/BottomNav';
 import AppErrorBoundary from '../components/layout/AppErrorBoundary';
 
@@ -42,6 +43,7 @@ const MedicalHistoryScreenWrapped = withErrorBoundary(MedicalHistoryScreen, 'His
 const NotificationsScreenWrapped = withErrorBoundary(NotificationsScreen, 'Notifications');
 const SettingsScreenWrapped = withErrorBoundary(SettingsScreen, 'Settings');
 const CaribearChatScreenWrapped = withErrorBoundary(CaribearChatScreen, 'CaribearChat');
+const HraScreenWrapped = withErrorBoundary(HraScreen, 'Hra');
 
 function FindCareNavigator() {
   return (
@@ -99,6 +101,11 @@ export default function AppNavigator() {
         name="CaribearChat"
         component={CaribearChatScreenWrapped}
         options={{ animation: 'slide_from_bottom' }}
+      />
+      <AppStack.Screen
+        name="Hra"
+        component={HraScreenWrapped}
+        options={{ animation: 'slide_from_right' }}
       />
     </AppStack.Navigator>
   );

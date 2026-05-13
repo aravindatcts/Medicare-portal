@@ -62,6 +62,8 @@ export default function TopNav() {
             { label: 'Find Care', path: '/find-care' },
             { label: 'Benefits', path: '/benefits' },
             { label: 'Prescriptions', path: '/prescriptions' },
+            { label: 'Health Assessment', path: '/hra' },
+            { label: 'Settings', path: '/settings' },
           ].map(({ label, path, hasMenu }) => (
             hasMenu ? (
               <div

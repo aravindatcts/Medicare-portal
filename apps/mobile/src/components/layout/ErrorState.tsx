@@ -1,20 +1,24 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Colors } from '@medicare/shared';
+import { Colors, FontSize, Radius, Spacing } from '@medicare/shared';
+
+type MciName = React.ComponentProps<typeof MaterialCommunityIcons>['name'];
 
 interface Props {
   message?: string;
+  icon?: MciName;
   onRetry?: () => void;
 }
 
 export default function ErrorState({
   message = 'Something went wrong.',
+  icon = 'alert-circle-outline',
   onRetry,
 }: Props) {
   return (
     <View style={styles.container} testID="error-state">
-      <MaterialCommunityIcons name="alert-circle-outline" size={40} color={Colors.orange} />
+      <MaterialCommunityIcons name={icon} size={48} color={Colors.outlineVariant} />
       <Text style={styles.message}>{message}</Text>
       {onRetry && (
         <TouchableOpacity
@@ -35,21 +39,21 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 32,
-    gap: 12,
+    padding: Spacing.xl,
+    gap: Spacing.sm + 4,
   },
   message: {
-    fontSize: 15,
+    fontSize: FontSize.base,
     color: Colors.textSecondary,
     textAlign: 'center',
     lineHeight: 22,
   },
   btn: {
-    marginTop: 8,
-    paddingHorizontal: 24,
-    paddingVertical: 12,
-    backgroundColor: Colors.skyBlue,
-    borderRadius: 10,
+    marginTop: Spacing.sm,
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.sm + 4,
+    backgroundColor: Colors.primary,
+    borderRadius: Radius.md,
   },
-  btnText: { color: Colors.white, fontWeight: '700', fontSize: 14 },
+  btnText: { color: Colors.white, fontWeight: '700', fontSize: FontSize.sm },
 });

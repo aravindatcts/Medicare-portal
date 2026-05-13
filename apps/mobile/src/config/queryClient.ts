@@ -10,7 +10,7 @@ import { httpClient } from '../services/http';
 // Wire the shared service layer to use the Axios client (with auth interceptors)
 setHttpClient(httpClient);
 
-const APP_VERSION = '1.0.0';
+const APP_VERSION = '1.0.2';
 
 export const queryClient = new QueryClient({
   defaultOptions: {

@@ -1,4 +1,161 @@
 {
+  "cmsPages": [
+    {
+      "id": "dashboard",
+      "title": "Dashboard",
+      "blocks": [
+        {
+          "id": "dashboard-hero-1",
+          "componentType": "HeroBanner",
+          "props": {
+            "tag": "PERSONALIZED CARE",
+            "heading": "CariBear is ready to help.",
+            "subtext": "Access your Medicare benefits, find providers, and manage your health journey all in one place.",
+            "ctaLabel": "Learn More",
+            "ctaAction": "https://www.medicare.gov"
+          }
+        },
+        {
+          "id": "action-required-1",
+          "componentType": "ActionRequiredList",
+          "props": {}
+        },
+        {
+          "id": "benefit-summary",
+          "componentType": "BenefitSummary",
+          "props": {}
+        },
+        {
+          "id": "quick-actions-1",
+          "componentType": "QuickActions",
+          "props": {}
+        },
+        {
+          "id": "id-card",
+          "componentType": "DigitalIdCard",
+          "props": {}
+        },
+        {
+          "id": "pcp-card",
+          "componentType": "PcpCard",
+          "props": {}
+        },
+        {
+          "id": "recent-activity",
+          "componentType": "RecentActivity",
+          "props": {}
+        }
+      ]
+    },
+    {
+      "id": "claims",
+      "title": "Claims",
+      "blocks": [
+        { "id": "claims-hero", "componentType": "ClaimsHero", "props": {} },
+        { "id": "claims-filter", "componentType": "ClaimsFilter", "props": {} },
+        { "id": "claims-list", "componentType": "ClaimsList", "props": {} }
+      ]
+    },
+    {
+      "id": "find-care",
+      "title": "Find Care",
+      "blocks": [
+        { "id": "find-care-layout", "componentType": "FindCareLayout", "props": {} }
+      ]
+    },
+    {
+      "id": "prescriptions",
+      "title": "Prescriptions",
+      "blocks": [
+        { "id": "rx-hero", "componentType": "RxHero", "props": {} },
+        {
+          "id": "rx-content-layout",
+          "componentType": "RxContentLayout",
+          "props": {
+            "leftBlocks": [
+              { "id": "rx-daily-schedule", "componentType": "RxDailySchedule", "props": {} },
+              { "id": "rx-active", "componentType": "RxActivePrescriptions", "props": {} }
+            ],
+            "rightBlocks": [
+              { "id": "rx-primary-pharmacy", "componentType": "RxPrimaryPharmacy", "props": {} },
+              { "id": "rx-ai-assistant", "componentType": "RxAiAssistant", "props": {} },
+              { "id": "rx-delivery", "componentType": "RxDeliveryStatus", "props": {} }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "benefits",
+      "title": "Benefits",
+      "blocks": [
+        { "id": "benefits-hero", "componentType": "BenefitsHero", "props": {} },
+        { "id": "benefits-costs", "componentType": "BenefitsCostTrackers", "props": {} },
+        { "id": "benefits-breakdown", "componentType": "BenefitsBreakdown", "props": {} },
+        { "id": "benefits-wellness", "componentType": "BenefitsWellness", "props": {} }
+      ]
+    },
+    {
+      "id": "notifications",
+      "title": "Notifications",
+      "blocks": [
+        { "id": "notifications-hero", "componentType": "NotificationsHero", "props": {} },
+        { "id": "notifications-list", "componentType": "NotificationsList", "props": {} }
+      ]
+    },
+    {
+      "id": "hra",
+      "title": "Health Risk Assessment",
+      "blocks": [
+        { "id": "hra-hero", "componentType": "HraHero", "props": {} },
+        { "id": "hra-form", "componentType": "HraAssessmentForm", "props": {} }
+      ]
+    },
+    {
+      "id": "settings",
+      "title": "Settings",
+      "blocks": [
+        { "id": "settings-hero", "componentType": "SettingsHero", "props": {} },
+        { "id": "settings-member-card", "componentType": "SettingsMemberCard", "props": {} },
+        {
+          "id": "settings-section-account",
+          "componentType": "SettingsSection",
+          "props": {
+            "title": "Account Details",
+            "blocks": [
+              { "id": "set-acc-1", "componentType": "SettingsActionRow", "props": { "icon": "person", "label": "Legal Name", "value": "Eleanor Vance" } },
+              { "id": "set-acc-2", "componentType": "SettingsActionRow", "props": { "icon": "mail", "label": "Email Address", "value": "e.vance@example.com" } },
+              { "id": "set-acc-3", "componentType": "SettingsActionRow", "props": { "icon": "phone", "label": "Phone Number", "value": "(215) 555-0198" } }
+            ]
+          }
+        },
+        {
+          "id": "settings-section-preferences",
+          "componentType": "SettingsSection",
+          "props": {
+            "title": "Preferences",
+            "blocks": [
+              { "id": "set-pref-1", "componentType": "SettingsToggleRow", "props": { "icon": "mark_email_read", "label": "Electronic Communications", "prefKey": "communicationPreference" } },
+              { "id": "set-pref-2", "componentType": "SettingsToggleRow", "props": { "icon": "description", "label": "Paperless EOBs", "prefKey": "eobPreference" } },
+              { "id": "set-pref-3", "componentType": "SettingsActionRow", "props": { "icon": "language", "label": "Preferred Language", "value": "English (US)" } }
+            ]
+          }
+        },
+        {
+          "id": "settings-section-security",
+          "componentType": "SettingsSection",
+          "props": {
+            "title": "Security",
+            "blocks": [
+              { "id": "set-sec-1", "componentType": "SettingsActionRow", "props": { "icon": "lock", "label": "Change Password" } },
+              { "id": "set-sec-2", "componentType": "SettingsActionRow", "props": { "icon": "fingerprint", "label": "Biometric Authentication" } },
+              { "id": "set-sec-3", "componentType": "SettingsActionRow", "props": { "icon": "devices", "label": "Managed Sessions" } }
+            ]
+          }
+        }
+      ]
+    }
+  ],
   "reviews": [
     {
       "initials": "MB",
@@ -30,7 +187,7 @@
       "name": "Sarah K.",
       "ago": "3 months ago",
       "stars": 5,
-      "text": "\"Compassionate care. He didn't rush me through questions about my medication side effects — I felt truly heard.\""
+      "text": "\"Compassionate care. He didn't rush me through questions about my medication side effects \u2014 I felt truly heard.\""
     },
     {
       "initials": "DL",
@@ -189,7 +346,7 @@
       "statusIcon": "calendar-clock",
       "statusColor": "#3B82F6",
       "title": "Annual Wellness Upcoming Visit",
-      "subtitle": "Dr. Marcus Thorne • 10:00 AM",
+      "subtitle": "Dr. Marcus Thorne \u2022 10:00 AM",
       "detail": "",
       "date": "Oct 26",
       "dateLabel": "OCT\n26"
@@ -5079,8 +5236,8 @@
       "type": "Cardiology Consultation",
       "date": "Jan 12, 2024",
       "status": "Denied",
-      "memberResponsibility": 320.00,
-      "totalBilled": 320.00,
+      "memberResponsibility": 320.0,
+      "totalBilled": 320.0,
       "planDiscount": 0,
       "insurancePaid": 0,
       "serviceDate": "Jan 12, 2024",
@@ -5993,7 +6150,7 @@
       "id": "notif-2",
       "type": "appointment",
       "title": "Appointment Reminder",
-      "body": "Your visit with Dr. Aris is scheduled for tomorrow at 2:00 PM at Jefferson Health – Center City. Please remember to fast 8 hours before your visit.",
+      "body": "Your visit with Dr. Aris is scheduled for tomorrow at 2:00 PM at Jefferson Health \u2013 Center City. Please remember to fast 8 hours before your visit.",
       "daysAgo": 0,
       "hour": 8,
       "minute": 15,
@@ -6033,7 +6190,7 @@
       "id": "notif-6",
       "type": "wellness",
       "title": "Annual Checkup Due This Month",
-      "body": "Your annual preventive care visit is due within 30 days. Preventive visits are covered at 100% under your Member Portal Plan plan — no copay required.",
+      "body": "Your annual preventive care visit is due within 30 days. Preventive visits are covered at 100% under your Member Portal Plan plan \u2014 no copay required.",
       "daysAgo": 1,
       "hour": 9,
       "minute": 0,
@@ -6063,7 +6220,7 @@
       "id": "notif-9",
       "type": "claim",
       "title": "Explanation of Benefits Available",
-      "body": "Your EOB for the Cardiology consultation is now available. Total billed: $320.00 — Plan paid: $272.00 — Your share: $48.00.",
+      "body": "Your EOB for the Cardiology consultation is now available. Total billed: $320.00 \u2014 Plan paid: $272.00 \u2014 Your share: $48.00.",
       "daysAgo": 4,
       "hour": 14,
       "minute": 0,
@@ -6126,7 +6283,7 @@
       "category": "Diagnosis",
       "type": "diagnosis",
       "title": "Type 2 Diabetes Mellitus",
-      "subtitle": "Dr. Sarah Jenkins • Primary Care",
+      "subtitle": "Dr. Sarah Jenkins \u2022 Primary Care",
       "date": "2024-11-15",
       "monthLabel": "NOV 2024",
       "description": "Follow-up evaluation and management plan updated. Chronic management plan initiated with Metformin 500mg.",

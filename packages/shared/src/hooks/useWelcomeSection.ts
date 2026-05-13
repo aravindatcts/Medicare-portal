@@ -1,4 +1,5 @@
 import { useMember } from './queries';
+import { useCmsContent } from '../cms/hooks';
 
 function getTimeBasedGreeting(): string {
   const hour = new Date().getHours();
@@ -15,16 +16,19 @@ export interface WelcomeSectionState {
 }
 
 export function useWelcomeSection(): WelcomeSectionState {
-  const { data: member, isLoading } = useMember();
+  const { data: member, isLoading: isMemberLoading } = useMember();
+  const { data: cms, isLoading: isCmsLoading } = useCmsContent();
 
   const rawName = member?.name ?? '';
   const firstName = rawName.split(' ')[0] || 'there';
   const greeting = getTimeBasedGreeting();
+  
+  const subtitle = cms?.heroBanner?.subtext || 'Your wellness journey is looking bright today.';
 
   return {
     greeting,
     firstName,
-    subtitle: 'Your wellness journey is looking bright today.',
-    isLoading,
+    subtitle,
+    isLoading: isMemberLoading || isCmsLoading,
   };
 }
